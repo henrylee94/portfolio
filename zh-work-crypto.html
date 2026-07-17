@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>加密货币支付通道 — Henry Lee</title>
+  <meta name="description" content="与法币并行的加密货币充值与提现——三种钱包协议,每一处交易边界都做转换,钱包边缘用精确小数处理金额。" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="加密货币支付通道 — Henry Lee" />
+  <meta property="og:description" content="与法币并行的加密货币充值与提现——三种钱包协议,每一处交易边界都做转换,钱包边缘用精确小数处理金额。" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="加密货币支付通道 — Henry Lee" />
+  <meta name="twitter:description" content="与法币并行的加密货币充值与提现——三种钱包协议,每一处交易边界都做转换,钱包边缘用精确小数处理金额。" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="zh-index.html" class="topbar-logo" aria-label="Henry Lee — 首页">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="主导航">
+        <a href="zh-index.html">首页</a>
+        <a href="zh-work.html" aria-current="page">工作</a>
+        <a href="zh-ai.html">AI</a>
+        <a href="zh-lab.html">实验室</a>
+        <a href="zh-notes.html">笔记</a>
+        <a href="zh-index.html#contact">联系</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in English"
+          title="中 / EN"
+        >EN</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="切换到浅色模式"
+          title="切换主题"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="打开菜单"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="移动端导航">
+        <a href="zh-index.html">首页</a>
+        <a href="zh-work.html" aria-current="page">工作</a>
+        <a href="zh-ai.html">AI</a>
+        <a href="zh-lab.html">实验室</a>
+        <a href="zh-notes.html">笔记</a>
+        <a href="zh-index.html#contact">联系</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
+    <section id="case" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>案例 06 / 07</p>
+        <h1 class="section-heading">加密货币支付通道——两年,三种钱包协议</h1>
+        <p class="case-hook">让用户可以用加密货币支付——而且数字永远不会错。</p>
+
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">OMNI · ERC-20 · TRC-20</span>
+          <span class="hero-stat">2 人搭档,2 年</span>
+          <span class="hero-stat">精确小数的资金</span>
+        </div>
+
+        <div class="case-beats">
+          <div class="case-beat"><h4>背景</h4><p>平台需要在法币之外支持加密货币的充值与提现——每一处交易边界都要做转换,而且有些第三方 provider 根本持有不了加密货币。</p></div>
+          <div class="case-beat"><h4>设计</h4><p>资金这条线我推了两年,和团队的副手搭档,两个工程师负责:钱包协议集成(OMNI、ERC-20、TRC-20),转换嵌进每一个转账边界,provider 能力做成按 provider 的配置——钱包边缘全部用精确小数处理,因为在那里,一个舍入误差就是一笔真实的账目差异。</p></div>
+          <div class="case-beat case-beat-outcome"><h4>结果</h4><p>加密货币通道在每一条资金流上都上线了;后来新增的币种直接复用同一套配置驱动的路径,而不用再把它们重新打开。</p></div>
+        </div>
+
+        <!-- ── Prev / next ─────────────────────────────────── -->
+        <nav class="case-pager" aria-label="案例导航">
+          <a href="zh-work-ingestion.html">← 上一篇:交易记录接入</a>
+          <a href="zh-work.html">全部工作</a>
+          <a href="zh-work-reporting.html">下一篇:报表引擎与监管报送 →</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

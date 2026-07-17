@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Field Notes — Henry Lee</title>
+  <meta name="description" content="Short lessons from production — the kind you only learn at 2am. Idempotency, cutovers, handoffs and the discipline behind them." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Field Notes — Henry Lee" />
+  <meta property="og:description" content="Short lessons from production — the kind you only learn at 2am. Idempotency, cutovers, handoffs and the discipline behind them." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Field Notes — Henry Lee" />
+  <meta name="twitter:description" content="Short lessons from production — the kind you only learn at 2am. Idempotency, cutovers, handoffs and the discipline behind them." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html" aria-current="page">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html" aria-current="page">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         FIELD NOTES
+    ══════════════════════════════════════════════════════ -->
+    <section id="notes" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>field notes</p>
+        <h2 class="section-heading">Field <em class="accent-serif">Notes</em></h2>
+        <p class="section-intro">Short lessons from production — the kind you only learn at 2am.</p>
+        <div class="notes-grid">
+          <article class="note-card">
+            <h3>The +1-billion offset</h3>
+            <p>Instead of coordinating a live cutover, make collisions impossible. Boring beats clever when money is watching — the full story is in <a href="work-scale.html">the scaling case</a>.</p>
+          </article>
+          <article class="note-card">
+            <h3>The day the cluster said no</h3>
+            <p>A fix isn't done until it survives the real topology. The war story — a race fixed with MULTI, a cluster that refused it — lives in <a href="work-support.html">the support case</a>.</p>
+          </article>
+          <article class="note-card">
+            <h3>One owner per number</h3>
+            <p>A threshold that lives in two systems will eventually disagree with itself, silently. We deleted the producer-side filter and left the number in exactly one place. Debugging is a graph search — fewer edges wins. The full chain is in <a href="work-pipeline.html">the mission-pipeline case</a>.</p>
+          </article>
+          <article class="note-card">
+            <h3>Idempotency is a contract, not a patch</h3>
+            <p>On money paths we assume every step will be retried, because someday it will be. Design for the retry and the 2am page never comes — the mechanics are in <a href="work-backbone.html">the backbone case</a>.</p>
+          </article>
+          <article class="note-card">
+            <h3>AI writes, humans gate</h3>
+            <p>The skill that matters is discernment — catching what the model got wrong before it merges. The full discipline, gates and failure file live on <a href="ai.html">the AI page</a>.</p>
+          </article>
+          <article class="note-card">
+            <h3>Handoff is a feature</h3>
+            <p>If a system can't survive your absence, it isn't finished. Documentation, runbooks and self-service forms aren't chores; they're how you leave.</p>
+          </article>
+          <article class="note-card">
+            <h3>One bare Server::serve() became a policy</h3>
+            <p>A service once shipped without signal handling — it died mid-request on every deploy. Graceful shutdown is now a readiness gate: any change touching a service entry point without the drain checklist gets blocked.</p>
+          </article>
+          <article class="note-card">
+            <h3>What a lead watches</h3>
+            <p>Every morning before standup: message-queue backlog depth, workflow-retry counts, the slow-query log, CPU on the hot services. Dashboards in Grafana, log forensics in cloud log analytics. Not because watching is comforting — because every one of those curves has a story, and I want to hear it before the users do.</p>
+          </article>
+          <article class="note-card">
+            <h3>Repair scripts are production code</h3>
+            <p>When money or data needs backfilling, someone writes a "one-off" script at midnight. Ours aren't one-offs: batched, resumable, idempotent, dry-run first — because a repair script that fails halfway is a second incident. I've written more of these than I can count; the discipline is what keeps them boring.</p>
+          </article>
+          <article class="note-card">
+            <h3>Index first, cache second</h3>
+            <p>Before the platform earned its Redis layer, months went into the database itself: covering indexes matched to real query shapes, aggregation pipelines rebuilt stage by stage, full-text search where regex scans used to crawl. The fastest cache is the query that no longer needs one.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

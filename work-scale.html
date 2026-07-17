@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Scaling 50k → 300k+ users — Henry Lee</title>
+  <meta name="description" content="The platform grew 6× and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Scaling 50k → 300k+ users — Henry Lee" />
+  <meta property="og:description" content="The platform grew 6× and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Scaling 50k → 300k+ users — Henry Lee" />
+  <meta name="twitter:description" content="The platform grew 6× and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
+    <section id="case" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 02 / 07</p>
+        <h1 class="section-heading">Scaling a platform 50k → 300k+ users</h1>
+        <p class="case-hook">The platform grew six-fold; my job was making sure nobody noticed.</p>
+
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">6× growth, live</span>
+          <span class="hero-stat">+1e9 cutover offset</span>
+          <span class="hero-stat">sub-second pushes</span>
+          <span class="hero-stat">1 day → 30-day queries</span>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-beats">
+            <div class="case-beat"><h4>Situation</h4><p>Over four years the member management platform grew 6×, and growth kept finding the limits of the old mechanisms — a counter document in the database serialized every ID; notification fan-out stalled under load. More than once, the failure happened in production first.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>No rewrite budget, no downtime allowance — every fix had to land inside a weekly release train, live, with users on.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Root-caused each bottleneck to its mechanism, then replaced the mechanism, not the symptom: ID generation moved from a database counter to atomic Redis INCR — cut over with a +1-billion offset so old and new ranges could never collide; notification fan-out moved to Redis pub/sub (shipped, reverted on a production surprise, re-landed hardened); blocking full-set scans replaced with cursor-based SSCAN; a leaking in-memory config cache rebuilt with a 15-minute refresh cycle.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform sustains 300k+ DAU without the old failure modes. The patterns introduced (cache-aside, atomic counters, pub/sub fan-out) became house standards for modules built after.</p></div>
+          </div>
+          <div class="case-diagram" aria-hidden="true">
+            <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+              <text class="dg-label" x="20" y="30">replace the mechanism, not the symptom</text>
+              <g class="dg-node dg-node-fail"><rect x="20" y="56" width="140" height="38" rx="4"/><text x="90" y="80" text-anchor="middle">DB counter doc</text></g>
+              <text class="dg-fail-mark" x="180" y="80">✕ serialized</text>
+              <g class="dg-node dg-node-ok"><rect x="300" y="56" width="160" height="38" rx="4"/><text x="380" y="80" text-anchor="middle">Redis INCR · +1e9</text></g>
+              <g class="dg-node dg-node-fail"><rect x="20" y="120" width="140" height="38" rx="4"/><text x="90" y="144" text-anchor="middle">WS fan-out</text></g>
+              <text class="dg-fail-mark" x="180" y="144">✕ stalls</text>
+              <g class="dg-node dg-node-ok"><rect x="300" y="120" width="160" height="38" rx="4"/><text x="380" y="144" text-anchor="middle">pub/sub · N instances</text></g>
+              <g class="dg-node dg-node-fail"><rect x="20" y="184" width="140" height="38" rx="4"/><text x="90" y="208" text-anchor="middle">SMEMBERS</text></g>
+              <text class="dg-fail-mark" x="180" y="208">✕ blocks</text>
+              <g class="dg-node dg-node-ok"><rect x="300" y="184" width="160" height="38" rx="4"/><text x="380" y="208" text-anchor="middle">SSCAN cursors</text></g>
+              <line class="dg-wire" x1="255" y1="75" x2="300" y2="75"/>
+              <line class="dg-wire" x1="245" y1="139" x2="300" y2="139"/>
+              <line class="dg-wire" x1="240" y1="203" x2="300" y2="203"/>
+              <text class="dg-label" x="20" y="272">shipped inside the weekly release train — users on, zero rewrites</text>
+              <g class="dg-flow">
+                <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="4.5s" repeatCount="indefinite" begin="0s" path="M 255 75 L 460 75"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="4.5s" repeatCount="indefinite" begin="0s"/></circle>
+                <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="4.5s" repeatCount="indefinite" begin="-1.5s" path="M 245 139 L 460 139"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="4.5s" repeatCount="indefinite" begin="-1.5s"/></circle>
+                <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="4.5s" repeatCount="indefinite" begin="-3s" path="M 240 203 L 460 203"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="4.5s" repeatCount="indefinite" begin="-3s"/></circle>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ── War stories ─────────────────────────────────── -->
+        <div class="war-stories">
+          <h3 class="more-work-heading">War stories</h3>
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The tuning months</h3>
+              <p>Before this platform earned its Redis layer, it had to earn its database. The reporting layer predated any BI team — and one stretch of growth broke it visibly: operational reports stopped coming back at all, and on the busiest collection a query couldn't return even a single day's records without timing out.</p>
+              <p>The months that followed were unglamorous: reading the slow-query log like a newspaper, matching covering indexes to the query shapes people actually ran (and deleting the indexes nobody did — on write-heavy collections an unused index is pure tax), rebuilding aggregation pipelines stage by stage, and moving text search off regex scans onto a proper search index.</p>
+              <p>Thirty-day report windows came back comfortably on collections where one day used to time out. That work never made a release announcement — but every feature shipped since stands on it.</p>
+            </article>
+            <article class="note-card">
+              <h3>Measure first, then argue</h3>
+              <p>Push notifications were arriving late, and the room's instinct was to tune the WebSocket layer — it was the visible component. Before touching anything I measured where the time actually went, and the cost wasn't in the sockets at all: it was the fan-out loop behind them, delivering to every connection from one place. We moved fan-out to pub/sub so each instance delivers to its own connections, and pushes went sub-second. The loudest component is rarely the bottleneck; the profile decides, not the intuition.</p>
+            </article>
+            <article class="note-card">
+              <h3>The revert that came back stronger</h3>
+              <p>The fan-out migration shipped — and production surprised us, so we reverted. The second landing looked different: instead of one big change, a series of small, individually revertible steps, each one hardened by what the first attempt had taught us. Nothing about the design was wrong; the delivery was. On a live money platform the unit of change has to equal the unit of rollback — that rule came out of this war and never left.</p>
+            </article>
+            <article class="note-card">
+              <h3>A billion-ID head start</h3>
+              <p>ID generation had to move from a database counter to atomic increments in Redis — with users online and no maintenance window. Instead of choreographing a precise cutover between two live generators, we made collision impossible: the new range started one billion above the old counter, so both could run at once and never meet. Rollback was equally boring — point back at the old counter. When money is watching, the clever solution is the one with nothing left to go wrong.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- ── Prev / next ─────────────────────────────────── -->
+        <nav class="case-pager" aria-label="Case navigation">
+          <a href="work-backbone.html">← Previous: Workflow backbone</a>
+          <a href="work.html">All work</a>
+          <a href="work-support.html">Next: Real-time support platform →</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

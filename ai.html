@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AI Engineering — Henry Lee</title>
+  <meta name="description" content="Using AI well is an engineering discipline, not a habit — the pipeline, the gates, the context and the review roles that ship real features." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Engineering — Henry Lee" />
+  <meta property="og:description" content="Using AI well is an engineering discipline, not a habit — the pipeline, the gates, the context and the review roles that ship real features." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI Engineering — Henry Lee" />
+  <meta name="twitter:description" content="Using AI well is an engineering discipline, not a habit — the pipeline, the gates, the context and the review roles that ship real features." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html" aria-current="page">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html" aria-current="page">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         AI ENGINEERING
+    ══════════════════════════════════════════════════════ -->
+    <section id="tooling" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>ai engineering</p>
+        <h2 class="section-heading">AI <em class="accent-serif">Engineering</em></h2>
+        <p class="section-intro">Using AI well is an engineering discipline, not a habit. I built my team's AI delivery system — the pipeline, the gates, the context, the review roles — and it ships real features.</p>
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">10 pipeline stages</span>
+          <span class="hero-stat">24 skills · 8.7k lines</span>
+          <span class="hero-stat">16 features shipped through it</span>
+          <span class="hero-stat">30+ per-service context files</span>
+          <span class="hero-stat">4 role-based AI reviewers</span>
+          <span class="hero-stat">feature drafts: days → hours</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         THE FAILURE FILE — crown jewel first
+    ══════════════════════════════════════════════════════ -->
+    <section id="failure-file" class="section section-band">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>the failure file</p>
+        <h2 class="section-heading">The failure <em class="accent-serif">file</em></h2>
+        <p class="section-intro">Every AI success story you'll read is missing this section. Here's what went wrong in ours — the discipline came from the failures.</p>
+        <div class="notes-grid">
+          <article class="note-card">
+            <h3>The fix that broke production</h3>
+            <p>The agent found a real bug — one that had sat harmless in production for years — and repaired it. The repair changed behavior other code had quietly grown to depend on, and things blew up. Lesson: an agent evaluates code; it doesn't know your system's history. A harmless bug is load-bearing until proven otherwise.</p>
+          </article>
+          <article class="note-card">
+            <h3>The big answer to a small ask</h3>
+            <p>The requirement was genuinely small — an existing rule needed one more condition, a change the codebase was already shaped for. The agent, not grasping that intent, rebuilt the surrounding flow instead: hundreds of new lines that technically worked and doubled the review burden. Lesson: the smallest correct change comes from knowing what the codebase already wants to do — that judgment is still ours.</p>
+          </article>
+          <article class="note-card">
+            <h3>Correct, and slow</h3>
+            <p>Asked for accuracy, the agent updated the database row by row — correct, and an IO storm at our volume. Batching was the obvious answer, but only obvious to someone who has paid for IO before. Lesson: performance instincts don't ship with the model; they come from the scars.</p>
+          </article>
+        </div>
+        <p class="thesis-block">The pattern behind all three: the damage happens when someone can't yet tell a good answer from a plausible one — a junior burning tokens on the wrong question, merging changes they can't explain. So the rule is not "use AI less." It is: <strong>discernment first, delegation second</strong>. You must be able to judge the problem and the logic before you outsource the typing.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         THE DELIVERY SYSTEM — terminal demo cards
+    ══════════════════════════════════════════════════════ -->
+    <section id="delivery-system" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>the delivery system</p>
+        <h2 class="section-heading">The delivery <em class="accent-serif">system</em></h2>
+        <div class="demo-showcase">
+          <article class="demo-row">
+            <div class="demo-terminal">
+              <div class="demo-terminal-bar" aria-hidden="true">
+                <span class="term-dot term-dot-r"></span>
+                <span class="term-dot term-dot-y"></span>
+                <span class="term-dot term-dot-g"></span>
+                <span class="demo-terminal-title">workflow — zsh</span>
+              </div>
+              <div class="demo-terminal-body">
+                <p class="term-line term-cmd">$ workflow run &lt;feature&gt;</p>
+                <p class="term-line term-ok">prd ✓  proposal ✓  contracts ✓  sdk ✓</p>
+                <p class="term-line term-out">tasks → dev → verify</p>
+                <p class="term-line term-gate">⏸ gate: waiting for human approval…</p>
+                <p class="term-line term-note"># AI never commits</p>
+              </div>
+            </div>
+            <div class="demo-info">
+              <span class="demo-num" aria-hidden="true">D1</span>
+              <h3>AI-native SDLC</h3>
+              <p>An artifact-gated, 10-stage SDLC pipeline built as agent skills: PRD → design → contracts → SDK → tasks → parallel agent dev → machine-judged acceptance. Every artifact carries a human approval signature, and irreversible actions — publish, push, migrations — require explicit human confirmation.</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>Artifact Pipeline</li><li>Role-based Review</li><li>Human Gates</li>
+              </ul>
+            </div>
+          </article>
+          <article class="demo-row">
+            <div class="demo-terminal">
+              <div class="demo-terminal-bar" aria-hidden="true">
+                <span class="term-dot term-dot-r"></span>
+                <span class="term-dot term-dot-y"></span>
+                <span class="term-dot term-dot-g"></span>
+                <span class="demo-terminal-title">#incidents</span>
+              </div>
+              <div class="demo-terminal-body">
+                <p class="term-line term-cmd">[lark] @bugdoctor error spike, workflow svc</p>
+                <p class="term-line term-out">→ tracing across repos… (MCP: logs + code)</p>
+                <p class="term-line term-out">→ hypothesis: stale credential cache</p>
+                <p class="term-line term-out">→ evidence: trace id 8f3a · 3 log lines</p>
+                <p class="term-line term-note"># hours of triage → minutes</p>
+              </div>
+            </div>
+            <div class="demo-info">
+              <span class="demo-num" aria-hidden="true">D2</span>
+              <h3>Bug Doctor</h3>
+              <p>Team-built AI incident diagnoser living in Lark: symptoms in, trace-backed hypotheses out — reading production logs over MCP and code across every repo, frontend and backend. The real work was making the system diagnosable first: standardized errors, trace IDs through every hop, names that tell you what broke. The bot is the payoff; the discipline is the design.</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>Lark Bot</li><li>MCP</li><li>Standardized Tracing</li>
+              </ul>
+            </div>
+          </article>
+          <article class="demo-row">
+            <div class="demo-terminal">
+              <div class="demo-terminal-bar" aria-hidden="true">
+                <span class="term-dot term-dot-r"></span>
+                <span class="term-dot term-dot-y"></span>
+                <span class="term-dot term-dot-g"></span>
+                <span class="demo-terminal-title">schema — zsh</span>
+              </div>
+              <div class="demo-terminal-body">
+                <p class="term-line term-cmd">$ schema build events/*.json</p>
+                <p class="term-line term-ok">codegen → node ✓  java ✓  rust ✓</p>
+                <p class="term-line term-out">publish → sdk v1.0.34</p>
+                <p class="term-line term-note"># producers and consumers can't drift</p>
+              </div>
+            </div>
+            <div class="demo-info">
+              <span class="demo-num" aria-hidden="true">D3</span>
+              <h3>Event Schema Registry</h3>
+              <p>JSON-Schema-first event contracts with multi-language SDK codegen (Node, Java, Rust) — producers and consumers can't drift because the schema is the source of truth.</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>JSON Schema</li><li>Codegen</li><li>Multi-language SDK</li>
+              </ul>
+            </div>
+          </article>
+          <article class="demo-row">
+            <div class="demo-terminal">
+              <div class="demo-terminal-bar" aria-hidden="true">
+                <span class="term-dot term-dot-r"></span>
+                <span class="term-dot term-dot-y"></span>
+                <span class="term-dot term-dot-g"></span>
+                <span class="demo-terminal-title">#operations</span>
+              </div>
+              <div class="demo-terminal-body">
+                <p class="term-line term-cmd">[lark] @reach send a $10 bonus to users registered on Jan 12</p>
+                <p class="term-line term-out">→ target preview ready · audit logged</p>
+                <p class="term-line term-gate">⏸ waiting for "confirm"…</p>
+                <p class="term-line term-out">→ executed · results reported to Lark ✓</p>
+                <p class="term-line term-note"># preview first · a human confirms · audit always</p>
+              </div>
+            </div>
+            <div class="demo-info">
+              <span class="demo-num" aria-hidden="true">D4</span>
+              <h3>Operations agent (human-in-the-loop)</h3>
+              <p>A LangChain agent living in Lark: operations asks in natural language, the agent resolves the target audience, shows a preview, and executes only after an explicit "confirm" — every step audit-logged. The same gate philosophy as everything else I build.</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>LangChain</li><li>Zod Tools</li><li>Preview-first</li>
+              </ul>
+            </div>
+          </article>
+          <article class="demo-row">
+            <div class="demo-terminal">
+              <div class="demo-terminal-bar" aria-hidden="true">
+                <span class="term-dot term-dot-r"></span>
+                <span class="term-dot term-dot-y"></span>
+                <span class="term-dot term-dot-g"></span>
+                <span class="demo-terminal-title">context — zsh</span>
+              </div>
+              <div class="demo-terminal-body">
+                <p class="term-line term-cmd">$ agent task "add a field to the contract"</p>
+                <p class="term-line term-out">→ repo resolved (1 of 17) · context loaded</p>
+                <p class="term-line term-out">→ memory: prior decisions recalled</p>
+                <p class="term-line term-note"># the prompt is engineered context, not clever words</p>
+              </div>
+            </div>
+            <div class="demo-info">
+              <span class="demo-num" aria-hidden="true">D5</span>
+              <h3>Context engineering</h3>
+              <p>Clever prompts don't scale; engineered context does — a routing manifest across 17 repositories, 30+ per-service context files, and persistent memory across sessions. The agent starts every task already knowing the codebase.</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>Routing Manifest</li><li>Context Files</li><li>Persistent Memory</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         PRINCIPLES OF WORKING WITH AGENTS
+    ══════════════════════════════════════════════════════ -->
+    <section id="agent-principles" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">04</span>working with agents</p>
+        <h2 class="section-heading">Principles of working with <em class="accent-serif">agents</em></h2>
+        <ul class="more-work-list">
+          <li><strong>AI proposes, humans approve.</strong> Every irreversible action — commit, publish, deploy, migration — sits behind an explicit human gate. No agent ever commits.</li>
+          <li><strong>AI compresses the zero-to-eighty stretch.</strong> A two-day build becomes a two-hour first draft. The last twenty percent is still ours, and the real skill is discernment: catching what it got wrong.</li>
+          <li><strong>AI amplifies your code culture.</strong> Rot in, rot out — an agent raised on a disciplined codebase ships discipline; raised on mess, it ships mess faster.</li>
+          <li><strong>Context beats prompts.</strong> The agent should start every task already knowing the codebase — routing manifests, per-service context files, persistent memory — not a cleverly worded request.</li>
+          <li><strong>Incidents compile into policy.</strong> A production lesson becomes a rule wired into the agent harness — a readiness gate the agent can't skip, so the same mistake can't ship twice.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         THE RULES MY AGENTS LIVE BY
+    ══════════════════════════════════════════════════════ -->
+    <section id="agent-rules" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">05</span>the rules</p>
+        <h2 class="section-heading">The rules my agents <em class="accent-serif">live by</em></h2>
+        <p class="section-intro">Both of my agents — the one at work and the one at home — run under the same standing rules. Every one of them was written the hard way.</p>
+        <ol class="more-work-list">
+          <li><strong>Rule 0: no guessing.</strong> Verify before speaking; if you can't verify, say so.</li>
+          <li><strong>My words mean exactly what they say.</strong> Don't interpret, don't complete my thoughts — ask.</li>
+          <li><strong>Execute only what was asked.</strong> "While I'm here, let me also…" is where incidents start.</li>
+          <li><strong>Show proof after every write.</strong> "Done" is a claim; a file path is evidence.</li>
+          <li><strong>Discussion is not permission.</strong> Talking about running something is not approval to run it.</li>
+          <li><strong>"It ran" is not "it works."</strong> Verify after every execution.</li>
+        </ol>
+        <p class="thesis-block">Slow is fine. <strong>Wrong is not.</strong></p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         RAISING AN AGENT
+    ══════════════════════════════════════════════════════ -->
+    <section id="raising-an-agent" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">06</span>raising an agent</p>
+        <h2 class="section-heading">Raising an <em class="accent-serif">agent</em></h2>
+        <p class="section-intro">The Lab page shows what my home agent does. This is how it got that way — the same method I use on the agents at work, run twice, converging on the same constitution.</p>
+        <div class="notes-grid">
+          <article class="note-card">
+            <h3>Constitution before tasks</h3>
+            <p>On day two of the agent's life I installed SOUL.md — its identity file: problem-solving protocol, naming rules, behavioral law — before it did any real work. Rules don't retrofit well.</p>
+          </article>
+          <article class="note-card">
+            <h3>Small jobs first</h3>
+            <p>New agent, small scope. I watch where it stalls or overreaches, then widen. It's the same calibrated-challenge ladder I use on junior engineers.</p>
+          </article>
+          <article class="note-card">
+            <h3>Every failure becomes law, immediately</h3>
+            <p>It executed without confirmation three times in one session — that same day, "discussion is not permission" became permanent law. Six standing rules; every one has an incident behind it.</p>
+          </article>
+          <article class="note-card">
+            <h3>Writes must show receipts</h3>
+            <p>After every correction the agent must show the stored entry — ID and content. "Got it" is not evidence that learning happened.</p>
+          </article>
+          <article class="note-card">
+            <h3>Memory has an economy</h3>
+            <p>Every always-loaded fact costs tokens forever, so MEMORY.md — the always-loaded layer — has a 7-day admission test: still true and useful in a week, or it doesn't get in. Facts route by weight — behavioral law loads every turn, Mnemosyne holds the long tail for on-demand recall, transcripts stay searchable but out of the way.</p>
+          </article>
+          <article class="note-card">
+            <h3>Tune the harness, not just the prompt</h3>
+            <p>The expensive model was over-serving simple execution, so it got demoted to deep-reasoning duty only. An update wiped the config once — pre-update backups went on that day. A nightly memory digest, a weekly consolidation pass, a monthly self-audit: the agent maintains itself, on a schedule.</p>
+          </article>
+        </div>
+        <p class="thesis-block">Two agents, two independent memory stores, one converging constitution. That's when you know it's a method — not a habit.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         EVERY TOOL ANSWERS A CONSTRAINT
+    ══════════════════════════════════════════════════════ -->
+    <section id="constraints" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">07</span>the constraints</p>
+        <h2 class="section-heading">Every tool answers a <em class="accent-serif">constraint</em></h2>
+        <p class="section-intro">None of this tooling exists because it's cool. Large language models have a handful of hard constraints — and every piece of my stack is a direct answer to one of them.</p>
+        <div class="notes-grid">
+          <article class="note-card">
+            <h3>Context is finite</h3>
+            <p>A model can only hold so much, so relevance beats volume: a routing manifest across 17 repositories decides where a task belongs, and 30+ per-service context files mean the agent starts already knowing the codebase — instead of re-reading it every session.</p>
+          </article>
+          <article class="note-card">
+            <h3>Memory doesn't persist</h3>
+            <p>The biggest handicap of any agent: session ends, knowledge gone. My answer is layered — an identity file for law, an always-loaded fact file with a 7-day admission test, a vector store (Mnemosyne, 3,700+ entries) for the long tail, and Obsidian as the human-curated layer on top. Facts route by weight; nothing important lives in only one head.</p>
+          </article>
+          <article class="note-card">
+            <h3>Tokens cost money</h3>
+            <p>Every dev command an agent runs burns context. A filtering proxy (RTK) strips the noise before the model sees it — 75M+ tokens measured saved. Scheduled scripts that need no judgment run with no LLM at all. At home, a tiered router sends routine work to budget models and saves the heavyweight for deep reasoning. Same principle at every scale: pay for thinking, not for typing.</p>
+          </article>
+          <article class="note-card">
+            <h3>Plausible is not correct</h3>
+            <p>Models produce answers that look right. That's why nothing merges without a human gate, every memory write shows a receipt, and the failure file above exists. Trust is a budget — spend it on verification, not on hope.</p>
+          </article>
+          <article class="note-card">
+            <h3>Good process doesn't repeat itself</h3>
+            <p>Anything done twice becomes a versioned skill. Some we adopted from the community and adapted — credited, not claimed. Some we built from scratch: the delivery pipeline, the review roles, the repo router. The test is always the same: would a new teammate — human or agent — do this right on day one?</p>
+          </article>
+        </div>
+        <p class="thesis-block">The stack will change. The constraints won't. <strong>Build for the constraints.</strong></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

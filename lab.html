@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Personal Lab — Henry Lee</title>
+  <meta name="description" content="What I build when nobody's paying me to — a self-hosted agent, a scalp analyzer, a stock sentry and an AI home server." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Personal Lab — Henry Lee" />
+  <meta property="og:description" content="What I build when nobody's paying me to — a self-hosted agent, a scalp analyzer, a stock sentry and an AI home server." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Personal Lab — Henry Lee" />
+  <meta name="twitter:description" content="What I build when nobody's paying me to — a self-hosted agent, a scalp analyzer, a stock sentry and an AI home server." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html" aria-current="page">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html" aria-current="page">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         PERSONAL LAB
+    ══════════════════════════════════════════════════════ -->
+    <section id="lab" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>personal lab</p>
+        <h2 class="section-heading">Personal <em class="accent-serif">Lab</em></h2>
+        <p class="section-intro">What I build when nobody's paying me to.</p>
+
+        <article class="lab-card" id="hermes">
+          <h3 class="lab-card-title">Hermes — a self-hosted agent</h3>
+          <div>
+            <div class="demo-row">
+              <div class="demo-terminal">
+                <div class="demo-terminal-bar" aria-hidden="true">
+                  <span class="term-dot term-dot-r"></span>
+                  <span class="term-dot term-dot-y"></span>
+                  <span class="term-dot term-dot-g"></span>
+                  <span class="demo-terminal-title">hermes — zsh</span>
+                </div>
+                <div class="demo-terminal-body">
+                  <p class="term-line term-cmd">$ hermes take "update the portfolio"</p>
+                  <p class="term-line term-out">plan → edit → self-check → report</p>
+                  <p class="term-line term-gate">⏸ gate: human review before deploy</p>
+                  <p class="term-line term-note"># it maintains this very site</p>
+                </div>
+              </div>
+              <div class="demo-info">
+                <p>Hermes Agent — Nous Research's open-source framework — running bare in WSL2 on my home server since May 2026, reachable through Telegram and WhatsApp gateways. Memory is layered: SOUL.md / MEMORY.md / USER.md carry identity and standing law (a fact must survive a 7-day admission test to get in), while Mnemosyne — vector memory on SQLite + embeddings — holds 3,700+ entries and counting for on-demand recall. 73 skills and 7 cron jobs do real work: a daily news brief, pre-market trading levels, a nightly memory digest, weekly memory consolidation, a monthly self-audit — and it built and maintains this very site. Same rule as at work: the agent does the miles, a human owns the gate.</p>
+                <div class="hero-stats case-chips">
+                  <span class="hero-stat">73 skills</span>
+                  <span class="hero-stat">3.7k+ memories</span>
+                  <span class="hero-stat">7 cron jobs</span>
+                  <span class="hero-stat">running since May 2026</span>
+                </div>
+                <ul class="demo-stack" aria-label="Tech stack">
+                  <li>Nous Hermes</li><li>Mnemosyne memory</li><li>Telegram + WhatsApp</li><li>7 cron jobs</li>
+                </ul>
+                <div class="case-diagram" aria-hidden="true">
+                  <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+                    <text class="dg-label" x="20" y="26">gateways in · memory layered · jobs on schedule</text>
+                    <g class="dg-node dg-node-sm"><rect x="20" y="52" width="100" height="32" rx="4"/><text x="70" y="73" text-anchor="middle">Telegram</text></g>
+                    <g class="dg-node dg-node-sm"><rect x="20" y="100" width="100" height="32" rx="4"/><text x="70" y="121" text-anchor="middle">WhatsApp</text></g>
+                    <g class="dg-node dg-node-accent"><rect x="170" y="70" width="120" height="44" rx="4"/><text x="230" y="97" text-anchor="middle">Hermes agent</text></g>
+                    <line class="dg-wire" x1="120" y1="68" x2="170" y2="82"/>
+                    <line class="dg-wire" x1="120" y1="116" x2="170" y2="102"/>
+                    <g class="dg-node dg-node-sm"><rect x="340" y="40" width="120" height="30" rx="4"/><text x="400" y="60" text-anchor="middle">SOUL.md</text></g>
+                    <g class="dg-node dg-node-sm"><rect x="340" y="82" width="120" height="30" rx="4"/><text x="400" y="102" text-anchor="middle">MEMORY.md</text></g>
+                    <g class="dg-node dg-node-ok"><rect x="340" y="124" width="120" height="30" rx="4"/><text x="400" y="144" text-anchor="middle">Mnemosyne</text></g>
+                    <path class="dg-wire" d="M 290 82 C 315 74 320 60 340 55" fill="none"/>
+                    <path class="dg-wire" d="M 290 92 C 315 92 320 97 340 97" fill="none"/>
+                    <path class="dg-wire" d="M 290 102 C 315 110 320 130 340 139" fill="none"/>
+                    <g class="dg-node"><rect x="110" y="190" width="110" height="36" rx="4"/><text x="165" y="213" text-anchor="middle">73 skills</text></g>
+                    <g class="dg-node"><rect x="250" y="190" width="110" height="36" rx="4"/><text x="305" y="213" text-anchor="middle">7 cron jobs</text></g>
+                    <path class="dg-wire" d="M 210 114 C 195 140 175 165 165 190" fill="none"/>
+                    <path class="dg-wire" d="M 250 114 C 265 140 295 165 305 190" fill="none"/>
+                    <text class="dg-label" x="240" y="268" text-anchor="middle">identity in files · recall in vectors · work on cron</text>
+                    <g class="dg-flow">
+                      <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="0s" path="M 70 68 L 170 82 L 230 92 C 280 92 320 97 340 97"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="6s" repeatCount="indefinite" begin="0s"/></circle>
+                      <circle class="dg-dot dg-dot-2" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M 70 116 L 170 102 L 230 102 C 240 130 290 165 305 190"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="6s" repeatCount="indefinite" begin="-3s"/></circle>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card" id="scalp-analyzer">
+          <h3 class="lab-card-title">Scalp analyzer</h3>
+          <div class="case-grid">
+            <div class="demo-info">
+              <p>A live US-stock scalping analyzer in Python, run against a local Moomoo OpenD instance with yfinance as the fallback feed. It pulls 1m/5m/15m candles, computes EMA/MACD/RSI and session-anchored VWAP with pandas + ta, and checks seven classic setups — opening-range breakout, VWAP bounce, bull flag — with a confluence checklist and a 0–10 safety score that penalizes lunch chop and fading momentum. Wired up as a Claude Code skill, so "check NVDA" returns an entry/target/stop card. The pipeline is deliberately linear — feed → candles → checks → score → card — so when a reading looks wrong there is exactly one stage to inspect. Analysis only — every order is placed by hand.</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>Python</li><li>pandas + ta</li><li>Moomoo OpenD</li><li>yfinance fallback</li><li>Claude Code Skill</li>
+              </ul>
+            </div>
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+                <text class="dg-label" x="20" y="26">seven setups, one score, one card</text>
+                <g class="dg-node"><rect x="20" y="52" width="130" height="38" rx="4"/><text x="85" y="76" text-anchor="middle">Moomoo OpenD</text></g>
+                <g class="dg-node"><rect x="190" y="52" width="140" height="38" rx="4"/><text x="260" y="76" text-anchor="middle">1m / 5m / 15m</text></g>
+                <g class="dg-node"><rect x="360" y="52" width="100" height="38" rx="4"/><text x="410" y="70" text-anchor="middle">7 setup</text><text x="410" y="84" text-anchor="middle" opacity="0.7">checks</text></g>
+                <line class="dg-wire" x1="150" y1="71" x2="190" y2="71"/>
+                <line class="dg-wire" x1="330" y1="71" x2="360" y2="71"/>
+                <g class="dg-node dg-node-ok"><rect x="250" y="150" width="160" height="38" rx="4"/><text x="330" y="174" text-anchor="middle">0–10 safety score</text></g>
+                <path class="dg-wire" d="M 410 90 C 410 118 380 135 360 150" fill="none"/>
+                <g class="dg-node dg-node-accent"><rect x="40" y="150" width="170" height="38" rx="4"/><text x="125" y="174" text-anchor="middle">entry · target · stop</text></g>
+                <line class="dg-wire" x1="250" y1="169" x2="210" y2="169"/>
+                <text class="dg-label" x="20" y="232">penalizes lunch chop · fading momentum</text>
+                <text class="dg-label" x="20" y="278">analysis only — orders stay human</text>
+                <g class="dg-flow">
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="7s" repeatCount="indefinite" begin="0s" path="M 85 71 L 410 71 L 410 90 C 410 118 380 135 360 150 L 330 169 L 125 169"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="7s" repeatCount="indefinite" begin="0s"/></circle>
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="7s" repeatCount="indefinite" begin="-3.5s" path="M 85 71 L 410 71 L 410 90 C 410 118 380 135 360 150 L 330 169 L 125 169"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="7s" repeatCount="indefinite" begin="-3.5s"/></circle>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card" id="stock-sentry">
+          <h3 class="lab-card-title">Stock sentry</h3>
+          <div class="case-grid">
+            <div class="demo-info">
+              <p>My biggest personal build: an AI trading assistant living in Telegram — python-telegram-bot at the front, the OpenAI API behind a multi-agent pipeline — analyzer, technical analyst, strategy generator, backtester, final decision — with Finnhub and yfinance for market data, a Streamlit backoffice, deployed on Zeabur. The agents run as a fixed chain — each one's output is the next one's input — so a verdict is traceable back through the backtest, strategy and analysis stages that produced it. Strategies live in a JSON skill library: the orchestrator matches them to market conditions, ranks them by tracked performance, and feeds trade outcomes back in. Every answer is forced into a tight format: verdict, entry, target, stop, one reason. About 8k lines of Python.</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>python-telegram-bot</li><li>OpenAI API</li><li>Finnhub</li><li>Streamlit · Zeabur</li>
+              </ul>
+            </div>
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+                <text class="dg-label" x="20" y="26">five agents, one verdict: entry · target · stop</text>
+                <g class="dg-node"><rect x="20" y="52" width="105" height="36" rx="4"/><text x="72" y="75" text-anchor="middle">Telegram ask</text></g>
+                <g class="dg-node"><rect x="155" y="52" width="95" height="36" rx="4"/><text x="202" y="75" text-anchor="middle">analyzer</text></g>
+                <g class="dg-node"><rect x="280" y="52" width="180" height="36" rx="4"/><text x="370" y="75" text-anchor="middle">technical analyst</text></g>
+                <line class="dg-wire" x1="125" y1="70" x2="155" y2="70"/>
+                <line class="dg-wire" x1="250" y1="70" x2="280" y2="70"/>
+                <g class="dg-node"><rect x="280" y="124" width="180" height="36" rx="4"/><text x="370" y="147" text-anchor="middle">strategy generator</text></g>
+                <line class="dg-wire" x1="370" y1="88" x2="370" y2="124"/>
+                <g class="dg-node"><rect x="155" y="124" width="95" height="36" rx="4"/><text x="202" y="147" text-anchor="middle">backtester</text></g>
+                <line class="dg-wire" x1="280" y1="142" x2="250" y2="142"/>
+                <g class="dg-node dg-node-accent"><rect x="20" y="124" width="105" height="36" rx="4"/><text x="72" y="147" text-anchor="middle">final decision</text></g>
+                <line class="dg-wire" x1="155" y1="142" x2="125" y2="142"/>
+                <g class="dg-node dg-node-sm"><rect x="60" y="212" width="180" height="34" rx="4"/><text x="150" y="234" text-anchor="middle">JSON skill library</text></g>
+                <path class="dg-wire dg-wire-loop" d="M 340 160 C 310 190 260 202 230 212" fill="none"/>
+                <path class="dg-wire dg-wire-loop" d="M 160 212 C 200 188 280 174 320 162" fill="none"/>
+                <text class="dg-label" x="290" y="240">⇄ performance feedback</text>
+                <text class="dg-label" x="20" y="284">matched to conditions · ranked by results · outcomes fed back</text>
+                <g class="dg-flow">
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="8s" repeatCount="indefinite" begin="0s" path="M 72 70 L 370 70 L 370 142 L 72 142"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.93;1" dur="8s" repeatCount="indefinite" begin="0s"/></circle>
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="8s" repeatCount="indefinite" begin="-4s" path="M 72 70 L 370 70 L 370 142 L 72 142"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.93;1" dur="8s" repeatCount="indefinite" begin="-4s"/></circle>
+                  <circle class="dg-dot dg-dot-2" r="4" opacity="0"><animateMotion dur="4.5s" repeatCount="indefinite" begin="-1.5s" path="M 160 212 C 200 188 280 174 320 162"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="4.5s" repeatCount="indefinite" begin="-1.5s"/></circle>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card" id="ai-home-server">
+          <h3 class="lab-card-title">AI home server</h3>
+          <div class="case-grid">
+            <div class="demo-info">
+              <p>No longer a blueprint — a Minisforum UM890 Pro (Ryzen 9 8945HS, 32GB) now runs 24/7 in my living room: Windows 11 with WSL2 Ubuntu, Hermes installed bare-metal inside, plus a FastAPI trading server and a static daily-news page. Access is Tailscale-only — zero open ports, with a Windows portproxy bridging into WSL. The honest lesson: local models were the plan, and they lost — Ollama running Qwen 2.5 7B and Llama 3.1 8B couldn't keep up with multi-round tool calling on CPU-only inference, so a tiered router now sends routine work to budget cloud models and reserves a heavyweight for deep reasoning. The security model survived contact intact: sandboxed agent, outbound allowlist, low-privilege accounts per service, and a green/yellow/red delegation matrix — banking credentials stay red, forever.</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>UM890 · WSL2</li><li>Tailscale-only</li><li>Ollama → tiered cloud</li><li>24/7 since May 2026</li>
+              </ul>
+            </div>
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+                <text class="dg-label" x="20" y="26">one mini-PC, 24/7 in the living room</text>
+                <g class="dg-node dg-node-ok"><rect x="20" y="52" width="110" height="38" rx="4"/><text x="75" y="76" text-anchor="middle">Tailscale</text></g>
+                <g class="dg-node"><rect x="180" y="52" width="150" height="38" rx="4"/><text x="255" y="76" text-anchor="middle">Windows 11 host</text></g>
+                <line class="dg-wire" x1="130" y1="71" x2="180" y2="71"/>
+                <g class="dg-node"><rect x="60" y="130" width="360" height="136" rx="6"/></g>
+                <text class="dg-label" x="80" y="152">WSL2 Ubuntu</text>
+                <path class="dg-wire" d="M 255 90 C 255 105 248 118 244 130" fill="none"/>
+                <g class="dg-node dg-node-accent"><rect x="75" y="168" width="95" height="34" rx="4"/><text x="122" y="190" text-anchor="middle">Hermes</text></g>
+                <g class="dg-node dg-node-sm"><rect x="185" y="168" width="130" height="34" rx="4"/><text x="250" y="190" text-anchor="middle">FastAPI trading</text></g>
+                <g class="dg-node dg-node-sm"><rect x="330" y="168" width="80" height="34" rx="4"/><text x="370" y="190" text-anchor="middle">news page</text></g>
+                <g class="dg-node dg-node-fail"><rect x="75" y="218" width="140" height="34" rx="4"/><text x="145" y="240" text-anchor="middle">Ollama · retired</text></g>
+                <line class="dg-wire" x1="95" y1="236" x2="195" y2="236"/>
+                <text class="dg-fail-mark" x="230" y="240">✕ CPU-only, lost to cloud</text>
+                <text class="dg-label" x="20" y="292">zero open ports · everything behind the VPN</text>
+                <g class="dg-flow">
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="0s" path="M 75 71 L 255 71 L 255 90 C 255 105 248 118 244 130 L 200 168"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="6s" repeatCount="indefinite" begin="0s"/></circle>
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M 75 71 L 255 71 L 255 90 C 255 105 248 118 244 130 L 200 168"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="6s" repeatCount="indefinite" begin="-3s"/></circle>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card" id="fire-planner">
+          <h3 class="lab-card-title">Personal financial planning system</h3>
+          <div class="demo-info">
+            <p>A bilingual (EN / 中文) financial-planning app I built this year to run my own numbers: long-term financial projections at three lifestyle levels, mortgage-acceleration math, portfolio allocation with ten-year projections, and a cash &amp; position tracker. Everything persists in localStorage with JSON export — no accounts, no server. Vanilla JavaScript, no framework — a tool for one user should stay simple enough to maintain in one evening.</p>
+            <ul class="demo-stack" aria-label="Tech stack">
+              <li>Vanilla JS</li><li>Tailwind</li><li>i18n</li>
+            </ul>
+            <div class="demo-links">
+              <a href="https://github.com/henrylee94/Finance_Advice_System" target="_blank" rel="noopener" class="btn btn-ghost" aria-label="Personal financial planning system on GitHub">View on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

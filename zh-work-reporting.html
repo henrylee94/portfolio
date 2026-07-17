@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>报表引擎与监管报送 — Henry Lee</title>
+  <meta name="description" content="在 BI 团队存在之前就建好的预计算/重算报表层——以及每个文件百万行、从不误期的监管报送。" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="报表引擎与监管报送 — Henry Lee" />
+  <meta property="og:description" content="在 BI 团队存在之前就建好的预计算/重算报表层——以及每个文件百万行、从不误期的监管报送。" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="报表引擎与监管报送 — Henry Lee" />
+  <meta name="twitter:description" content="在 BI 团队存在之前就建好的预计算/重算报表层——以及每个文件百万行、从不误期的监管报送。" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="zh-index.html" class="topbar-logo" aria-label="Henry Lee — 首页">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="主导航">
+        <a href="zh-index.html">首页</a>
+        <a href="zh-work.html" aria-current="page">工作</a>
+        <a href="zh-ai.html">AI</a>
+        <a href="zh-lab.html">实验室</a>
+        <a href="zh-notes.html">笔记</a>
+        <a href="zh-index.html#contact">联系</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in English"
+          title="中 / EN"
+        >EN</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="切换到浅色模式"
+          title="切换主题"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="打开菜单"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="移动端导航">
+        <a href="zh-index.html">首页</a>
+        <a href="zh-work.html" aria-current="page">工作</a>
+        <a href="zh-ai.html">AI</a>
+        <a href="zh-lab.html">实验室</a>
+        <a href="zh-notes.html">笔记</a>
+        <a href="zh-index.html#contact">联系</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
+    <section id="case" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>案例 07 / 07</p>
+        <h1 class="section-heading">报表引擎与监管报送</h1>
+        <p class="case-hook">监管方要的报表,按时交,百万行级。</p>
+
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">每天数百万行</span>
+          <span class="hero-stat">硬性期限,从未误期</span>
+          <span class="hero-stat">140+ 次报表变更</span>
+        </div>
+
+        <div class="case-beats">
+          <div class="case-beat"><h4>背景</h4><p>在 BI 团队存在之前,运营、合作方、管理层都需要数据——后来监管方又要求按精确格式做每日报送:每天数百万行,期限是硬性的,还要在生产数据库上跑长时间窗口的 aggregation。</p></div>
+          <div class="case-beat"><h4>设计</h4><p>平台的通用报表层建在预计算 + 重算的双轨上:一个独立的结算进程把每个用户的交易流按 batch 推给 worker,落成每日汇总;临时查询走调优过的 aggregation pipeline。重写了调度器,保证 2 天重算窗口的可靠性。监管报送这边,搭了整条报送 pipeline:按每文件一百万行切片,FTP 上传走 append 方式,stream batch 一路调到几百万行的日子也能塞进窗口。</p></div>
+          <div class="case-beat case-beat-outcome"><h4>结果</h4><p>平台在拥有 BI 团队之前,就先有了一个能用的 BI 职能——后来正式的团队就是在这套地基上继续建的。监管报送在百万行的规模上按时交付;六年里 140+ 次报表变更。</p></div>
+        </div>
+
+        <!-- ── Prev / next ─────────────────────────────────── -->
+        <nav class="case-pager" aria-label="案例导航">
+          <a href="zh-work-crypto.html">← 上一篇:加密货币支付通道</a>
+          <a href="zh-work.html">全部工作</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

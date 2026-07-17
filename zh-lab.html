@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>个人实验室 — Henry Lee</title>
+  <meta name="description" content="没人付钱我也在做的东西——一个 self-hosted 的 agent、一个 scalp 分析器、一个股票哨兵,和一台 AI 家用服务器。" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="个人实验室 — Henry Lee" />
+  <meta property="og:description" content="没人付钱我也在做的东西——一个 self-hosted 的 agent、一个 scalp 分析器、一个股票哨兵,和一台 AI 家用服务器。" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="个人实验室 — Henry Lee" />
+  <meta name="twitter:description" content="没人付钱我也在做的东西——一个 self-hosted 的 agent、一个 scalp 分析器、一个股票哨兵,和一台 AI 家用服务器。" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="zh-index.html" class="topbar-logo" aria-label="Henry Lee — 首页">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="主导航">
+        <a href="zh-index.html">首页</a>
+        <a href="zh-work.html">工作</a>
+        <a href="zh-ai.html">AI</a>
+        <a href="zh-lab.html" aria-current="page">实验室</a>
+        <a href="zh-notes.html">笔记</a>
+        <a href="zh-index.html#contact">联系</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="Switch to English"
+          title="中 / EN"
+        >EN</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="切换到浅色模式"
+          title="切换主题"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="打开菜单"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="移动端导航">
+        <a href="zh-index.html">首页</a>
+        <a href="zh-work.html">工作</a>
+        <a href="zh-ai.html">AI</a>
+        <a href="zh-lab.html" aria-current="page">实验室</a>
+        <a href="zh-notes.html">笔记</a>
+        <a href="zh-index.html#contact">联系</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         PERSONAL LAB
+    ══════════════════════════════════════════════════════ -->
+    <section id="lab" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>个人实验室</p>
+        <h2 class="section-heading">个人<em class="accent-serif">实验室</em></h2>
+        <p class="section-intro">没人付钱我也在做的东西。</p>
+
+        <article class="lab-card" id="hermes">
+          <h3 class="lab-card-title">Hermes——一个 self-hosted 的 agent</h3>
+          <div>
+            <div class="demo-row">
+              <div class="demo-terminal">
+                <div class="demo-terminal-bar" aria-hidden="true">
+                  <span class="term-dot term-dot-r"></span>
+                  <span class="term-dot term-dot-y"></span>
+                  <span class="term-dot term-dot-g"></span>
+                  <span class="demo-terminal-title">hermes — zsh</span>
+                </div>
+                <div class="demo-terminal-body">
+                  <p class="term-line term-cmd">$ hermes take "update the portfolio"</p>
+                  <p class="term-line term-out">plan → edit → self-check → report</p>
+                  <p class="term-line term-gate">⏸ gate: human review before deploy</p>
+                  <p class="term-line term-note"># it maintains this very site</p>
+                </div>
+              </div>
+              <div class="demo-info">
+                <p>Hermes Agent——Nous Research 的开源框架——自 2026 年 5 月起裸装在我家用服务器的 WSL2 里,通过 Telegram 和 WhatsApp 网关随叫随到。记忆是分层的:SOUL.md / MEMORY.md / USER.md 承载身份和长期法条(一条事实要通过「7 天准入测试」才准进),Mnemosyne——建在 SQLite + embeddings 上的向量记忆——存着 3,700+ 条还在涨的条目,按需召回。73 个 skills 和 7 个 cron 任务干的是真活:每日新闻简报、开盘前交易点位、每晚记忆 digest、每周记忆整合、每月自查——这个网站也是它做的、它在维护。和公司里同一条规则:路让 agent 跑,门归人来把。</p>
+                <div class="hero-stats case-chips">
+                  <span class="hero-stat">73 个 skills</span>
+                  <span class="hero-stat">3.7k+ 条记忆</span>
+                  <span class="hero-stat">7 个 cron 任务</span>
+                  <span class="hero-stat">自 2026 年 5 月运行至今</span>
+                </div>
+                <ul class="demo-stack" aria-label="Tech stack">
+                  <li>Nous Hermes</li><li>Mnemosyne 记忆</li><li>Telegram + WhatsApp</li><li>7 个 cron 任务</li>
+                </ul>
+                <div class="case-diagram" aria-hidden="true">
+                  <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+                    <text class="dg-label" x="20" y="26">gateways in · memory layered · jobs on schedule</text>
+                    <g class="dg-node dg-node-sm"><rect x="20" y="52" width="100" height="32" rx="4"/><text x="70" y="73" text-anchor="middle">Telegram</text></g>
+                    <g class="dg-node dg-node-sm"><rect x="20" y="100" width="100" height="32" rx="4"/><text x="70" y="121" text-anchor="middle">WhatsApp</text></g>
+                    <g class="dg-node dg-node-accent"><rect x="170" y="70" width="120" height="44" rx="4"/><text x="230" y="97" text-anchor="middle">Hermes agent</text></g>
+                    <line class="dg-wire" x1="120" y1="68" x2="170" y2="82"/>
+                    <line class="dg-wire" x1="120" y1="116" x2="170" y2="102"/>
+                    <g class="dg-node dg-node-sm"><rect x="340" y="40" width="120" height="30" rx="4"/><text x="400" y="60" text-anchor="middle">SOUL.md</text></g>
+                    <g class="dg-node dg-node-sm"><rect x="340" y="82" width="120" height="30" rx="4"/><text x="400" y="102" text-anchor="middle">MEMORY.md</text></g>
+                    <g class="dg-node dg-node-ok"><rect x="340" y="124" width="120" height="30" rx="4"/><text x="400" y="144" text-anchor="middle">Mnemosyne</text></g>
+                    <path class="dg-wire" d="M 290 82 C 315 74 320 60 340 55" fill="none"/>
+                    <path class="dg-wire" d="M 290 92 C 315 92 320 97 340 97" fill="none"/>
+                    <path class="dg-wire" d="M 290 102 C 315 110 320 130 340 139" fill="none"/>
+                    <g class="dg-node"><rect x="110" y="190" width="110" height="36" rx="4"/><text x="165" y="213" text-anchor="middle">73 skills</text></g>
+                    <g class="dg-node"><rect x="250" y="190" width="110" height="36" rx="4"/><text x="305" y="213" text-anchor="middle">7 cron jobs</text></g>
+                    <path class="dg-wire" d="M 210 114 C 195 140 175 165 165 190" fill="none"/>
+                    <path class="dg-wire" d="M 250 114 C 265 140 295 165 305 190" fill="none"/>
+                    <text class="dg-label" x="240" y="268" text-anchor="middle">identity in files · recall in vectors · work on cron</text>
+                    <g class="dg-flow">
+                      <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="0s" path="M 70 68 L 170 82 L 230 92 C 280 92 320 97 340 97"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="6s" repeatCount="indefinite" begin="0s"/></circle>
+                      <circle class="dg-dot dg-dot-2" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M 70 116 L 170 102 L 230 102 C 240 130 290 165 305 190"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="6s" repeatCount="indefinite" begin="-3s"/></circle>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card" id="scalp-analyzer">
+          <h3 class="lab-card-title">Scalp 分析器</h3>
+          <div class="case-grid">
+            <div class="demo-info">
+              <p>一个用 Python 写的美股 scalp 实时分析器,对着本地 Moomoo OpenD 实例跑,yfinance 做兜底数据源。它拉 1m/5m/15m K 线,用 pandas + ta 算 EMA/MACD/RSI 和以当日开盘锚定的 VWAP,检查七种经典形态——开盘区间突破、VWAP 反弹、bull flag——配一张 confluence 清单和一个 0–10 的安全分,午间震荡和动能衰减都会扣分。包装成了 Claude Code skill,一句「check NVDA」就返回一张 entry/target/stop 卡片。pipeline 刻意做成线性——feed → candles → checks → score → card——读数不对时,要查的环节只会有一个。只做分析——每一笔订单都是手动下的。</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>Python</li><li>pandas + ta</li><li>Moomoo OpenD</li><li>yfinance 兜底</li><li>Claude Code Skill</li>
+              </ul>
+            </div>
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+                <text class="dg-label" x="20" y="26">seven setups, one score, one card</text>
+                <g class="dg-node"><rect x="20" y="52" width="130" height="38" rx="4"/><text x="85" y="76" text-anchor="middle">Moomoo OpenD</text></g>
+                <g class="dg-node"><rect x="190" y="52" width="140" height="38" rx="4"/><text x="260" y="76" text-anchor="middle">1m / 5m / 15m</text></g>
+                <g class="dg-node"><rect x="360" y="52" width="100" height="38" rx="4"/><text x="410" y="70" text-anchor="middle">7 setup</text><text x="410" y="84" text-anchor="middle" opacity="0.7">checks</text></g>
+                <line class="dg-wire" x1="150" y1="71" x2="190" y2="71"/>
+                <line class="dg-wire" x1="330" y1="71" x2="360" y2="71"/>
+                <g class="dg-node dg-node-ok"><rect x="250" y="150" width="160" height="38" rx="4"/><text x="330" y="174" text-anchor="middle">0–10 safety score</text></g>
+                <path class="dg-wire" d="M 410 90 C 410 118 380 135 360 150" fill="none"/>
+                <g class="dg-node dg-node-accent"><rect x="40" y="150" width="170" height="38" rx="4"/><text x="125" y="174" text-anchor="middle">entry · target · stop</text></g>
+                <line class="dg-wire" x1="250" y1="169" x2="210" y2="169"/>
+                <text class="dg-label" x="20" y="232">penalizes lunch chop · fading momentum</text>
+                <text class="dg-label" x="20" y="278">analysis only — orders stay human</text>
+                <g class="dg-flow">
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="7s" repeatCount="indefinite" begin="0s" path="M 85 71 L 410 71 L 410 90 C 410 118 380 135 360 150 L 330 169 L 125 169"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="7s" repeatCount="indefinite" begin="0s"/></circle>
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="7s" repeatCount="indefinite" begin="-3.5s" path="M 85 71 L 410 71 L 410 90 C 410 118 380 135 360 150 L 330 169 L 125 169"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="7s" repeatCount="indefinite" begin="-3.5s"/></circle>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card" id="stock-sentry">
+          <h3 class="lab-card-title">股票哨兵</h3>
+          <div class="case-grid">
+            <div class="demo-info">
+              <p>我最大的个人项目:一个住在 Telegram 里的 AI 交易助手——前面是 python-telegram-bot,后面是 OpenAI API 驱动的多 agent pipeline——分析器、技术分析、策略生成、回测、最终决策——行情数据来自 Finnhub 和 yfinance,配一个 Streamlit 后台,部署在 Zeabur 上。agent 按固定链条跑——上一个的输出就是下一个的输入——所以每个结论都能沿着产生它的回测、策略、分析各阶段追回去。策略放在一个 JSON skill 库里:orchestrator 按市场状态匹配策略,按跟踪到的表现排序,再把交易结果喂回去。每个回答都被强制成紧凑格式:结论、entry、target、stop、一条理由。约 8k 行 Python。</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>python-telegram-bot</li><li>OpenAI API</li><li>Finnhub</li><li>Streamlit · Zeabur</li>
+              </ul>
+            </div>
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+                <text class="dg-label" x="20" y="26">five agents, one verdict: entry · target · stop</text>
+                <g class="dg-node"><rect x="20" y="52" width="105" height="36" rx="4"/><text x="72" y="75" text-anchor="middle">Telegram ask</text></g>
+                <g class="dg-node"><rect x="155" y="52" width="95" height="36" rx="4"/><text x="202" y="75" text-anchor="middle">analyzer</text></g>
+                <g class="dg-node"><rect x="280" y="52" width="180" height="36" rx="4"/><text x="370" y="75" text-anchor="middle">technical analyst</text></g>
+                <line class="dg-wire" x1="125" y1="70" x2="155" y2="70"/>
+                <line class="dg-wire" x1="250" y1="70" x2="280" y2="70"/>
+                <g class="dg-node"><rect x="280" y="124" width="180" height="36" rx="4"/><text x="370" y="147" text-anchor="middle">strategy generator</text></g>
+                <line class="dg-wire" x1="370" y1="88" x2="370" y2="124"/>
+                <g class="dg-node"><rect x="155" y="124" width="95" height="36" rx="4"/><text x="202" y="147" text-anchor="middle">backtester</text></g>
+                <line class="dg-wire" x1="280" y1="142" x2="250" y2="142"/>
+                <g class="dg-node dg-node-accent"><rect x="20" y="124" width="105" height="36" rx="4"/><text x="72" y="147" text-anchor="middle">final decision</text></g>
+                <line class="dg-wire" x1="155" y1="142" x2="125" y2="142"/>
+                <g class="dg-node dg-node-sm"><rect x="60" y="212" width="180" height="34" rx="4"/><text x="150" y="234" text-anchor="middle">JSON skill library</text></g>
+                <path class="dg-wire dg-wire-loop" d="M 340 160 C 310 190 260 202 230 212" fill="none"/>
+                <path class="dg-wire dg-wire-loop" d="M 160 212 C 200 188 280 174 320 162" fill="none"/>
+                <text class="dg-label" x="290" y="240">⇄ performance feedback</text>
+                <text class="dg-label" x="20" y="284">matched to conditions · ranked by results · outcomes fed back</text>
+                <g class="dg-flow">
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="8s" repeatCount="indefinite" begin="0s" path="M 72 70 L 370 70 L 370 142 L 72 142"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.93;1" dur="8s" repeatCount="indefinite" begin="0s"/></circle>
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="8s" repeatCount="indefinite" begin="-4s" path="M 72 70 L 370 70 L 370 142 L 72 142"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.93;1" dur="8s" repeatCount="indefinite" begin="-4s"/></circle>
+                  <circle class="dg-dot dg-dot-2" r="4" opacity="0"><animateMotion dur="4.5s" repeatCount="indefinite" begin="-1.5s" path="M 160 212 C 200 188 280 174 320 162"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="4.5s" repeatCount="indefinite" begin="-1.5s"/></circle>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card" id="ai-home-server">
+          <h3 class="lab-card-title">AI 家用服务器</h3>
+          <div class="case-grid">
+            <div class="demo-info">
+              <p>已经不是蓝图了——一台 Minisforum UM890 Pro(Ryzen 9 8945HS,32GB)现在 24/7 跑在我的客厅里:Windows 11 加 WSL2 Ubuntu,Hermes 裸装在里面,外加一个 FastAPI 交易服务和一个静态每日新闻页。访问只走 Tailscale——零开放端口,由 Windows portproxy 桥进 WSL。诚实的教训:本地模型本来是计划,但它们输了——Ollama 跑 Qwen 2.5 7B 和 Llama 3.1 8B,纯 CPU 推理跟不上多轮 tool calling,所以现在由一个分层 router 把日常工作发给便宜的云端模型,把重型模型留给深度推理。安全模型倒是完好地经受住了现实:沙箱里的 agent、出站白名单、每个服务一个低权限账号,以及一张绿/黄/红委派矩阵——银行凭证永远是红,永远。</p>
+              <ul class="demo-stack" aria-label="Tech stack">
+                <li>UM890 · WSL2</li><li>仅 Tailscale 可达</li><li>Ollama → 分层云端</li><li>24/7,自 2026 年 5 月</li>
+              </ul>
+            </div>
+            <div class="case-diagram" aria-hidden="true">
+              <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+                <text class="dg-label" x="20" y="26">one mini-PC, 24/7 in the living room</text>
+                <g class="dg-node dg-node-ok"><rect x="20" y="52" width="110" height="38" rx="4"/><text x="75" y="76" text-anchor="middle">Tailscale</text></g>
+                <g class="dg-node"><rect x="180" y="52" width="150" height="38" rx="4"/><text x="255" y="76" text-anchor="middle">Windows 11 host</text></g>
+                <line class="dg-wire" x1="130" y1="71" x2="180" y2="71"/>
+                <g class="dg-node"><rect x="60" y="130" width="360" height="136" rx="6"/></g>
+                <text class="dg-label" x="80" y="152">WSL2 Ubuntu</text>
+                <path class="dg-wire" d="M 255 90 C 255 105 248 118 244 130" fill="none"/>
+                <g class="dg-node dg-node-accent"><rect x="75" y="168" width="95" height="34" rx="4"/><text x="122" y="190" text-anchor="middle">Hermes</text></g>
+                <g class="dg-node dg-node-sm"><rect x="185" y="168" width="130" height="34" rx="4"/><text x="250" y="190" text-anchor="middle">FastAPI trading</text></g>
+                <g class="dg-node dg-node-sm"><rect x="330" y="168" width="80" height="34" rx="4"/><text x="370" y="190" text-anchor="middle">news page</text></g>
+                <g class="dg-node dg-node-fail"><rect x="75" y="218" width="140" height="34" rx="4"/><text x="145" y="240" text-anchor="middle">Ollama · retired</text></g>
+                <line class="dg-wire" x1="95" y1="236" x2="195" y2="236"/>
+                <text class="dg-fail-mark" x="230" y="240">✕ CPU-only, lost to cloud</text>
+                <text class="dg-label" x="20" y="292">zero open ports · everything behind the VPN</text>
+                <g class="dg-flow">
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="0s" path="M 75 71 L 255 71 L 255 90 C 255 105 248 118 244 130 L 200 168"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="6s" repeatCount="indefinite" begin="0s"/></circle>
+                  <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M 75 71 L 255 71 L 255 90 C 255 105 248 118 244 130 L 200 168"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="6s" repeatCount="indefinite" begin="-3s"/></circle>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card" id="fire-planner">
+          <h3 class="lab-card-title">个人财务规划系统</h3>
+          <div class="demo-info">
+            <p>一个我今年做来算自己那本账的双语(EN / 中文)财务规划应用:三个生活档位的长期财务推演、提前还房贷的数学、带十年推演的资产配置,外加一个现金与持仓追踪器。所有数据都存在 localStorage,支持 JSON 导出——没有账号,没有服务器。Vanilla JavaScript,不用框架——给一个用户用的工具,就该简单到一个晚上能维护完。</p>
+            <ul class="demo-stack" aria-label="Tech stack">
+              <li>Vanilla JS</li><li>Tailwind</li><li>i18n</li>
+            </ul>
+            <div class="demo-links">
+              <a href="https://github.com/henrylee94/Finance_Advice_System" target="_blank" rel="noopener" class="btn btn-ghost" aria-label="在 GitHub 上查看个人财务规划系统">在 GitHub 查看 ↗</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

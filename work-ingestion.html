@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Transaction-record ingestion — Henry Lee</title>
+  <meta name="description" content="12–14M records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Transaction-record ingestion — Henry Lee" />
+  <meta property="og:description" content="12–14M records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Transaction-record ingestion — Henry Lee" />
+  <meta name="twitter:description" content="12–14M records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
+    <section id="case" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 05 / 07</p>
+        <h1 class="section-heading">Transaction-record ingestion — 12–14M records a day from 10+ sources</h1>
+        <p class="case-hook">Every balance change a user sees, gathered from 10+ systems, always adding up.</p>
+
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">12–14M records/day</span>
+          <span class="hero-stat">10+ sources</span>
+          <span class="hero-stat">hot / cold split</span>
+        </div>
+
+        <div class="case-beats">
+          <div class="case-beat"><h4>Situation</h4><p>Every balance change a user sees must be complete, ordered, and fast to query — but records originate from 10+ heterogeneous sources that disagree on shape, timing, and delivery guarantees: ~8.4M/day through the audited workflow path, the rest streaming directly from providers and internal systems.</p></div>
+          <div class="case-beat"><h4>Design</h4><p>Split storage by read pattern: hot recent history on the OLTP store with covering indexes; long-window analytics offloaded to a columnar layer fed by the ingestion pipeline; source-specific shapes normalized at the boundary, with per-source caching and channel-aware routing.</p></div>
+          <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>12–14M records/day ingested and queryable; recent-history reads stay fast while analytical queries stopped competing with production traffic.</p></div>
+        </div>
+
+        <!-- ── War stories ─────────────────────────────────── -->
+        <div class="war-stories">
+          <h3 class="more-work-heading">War stories</h3>
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>Most of the work was comparing numbers</h3>
+              <p>Nobody tells you this about building an ingestion pipeline: the code is the quick part. For a long stretch of development, one record subtype ran as a permanent probe — continuously reconciled against its sources while everything else was still moving.</p>
+              <p>Then the cross-checks widened: daily totals per record type compared against the analytics team's independent numbers, and per-user daily histories diffed record by record. When a figure disagreed, that was the day's work — trace which source dropped, duplicated or reshaped it, fix the boundary, backfill, compare again.</p>
+              <p>It's manual, it's unglamorous, and it's the only reason the number on a user's screen can be trusted. Correctness isn't a property you declare; it's one you keep re-earning.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- ── Prev / next ─────────────────────────────────── -->
+        <nav class="case-pager" aria-label="Case navigation">
+          <a href="work-pipeline.html">← Previous: Cross-stack mission pipeline</a>
+          <a href="work.html">All work</a>
+          <a href="work-crypto.html">Next: Crypto payment rails →</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>工作 — Henry Lee</title>
+  <meta name="description" content="七个生产系统,如实讲述——从每天审计 8.4M 条记录的 workflow 主干,到百万行规模的监管报送。" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="工作 — Henry Lee" />
+  <meta property="og:description" content="七个生产系统,如实讲述——从每天审计 8.4M 条记录的 workflow 主干,到百万行规模的监管报送。" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="工作 — Henry Lee" />
+  <meta name="twitter:description" content="七个生产系统,如实讲述——从每天审计 8.4M 条记录的 workflow 主干,到百万行规模的监管报送。" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="zh-index.html" class="topbar-logo" aria-label="Henry Lee — 首页">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="主导航">
+        <a href="zh-index.html">首页</a>
+        <a href="zh-work.html" aria-current="page">工作</a>
+        <a href="zh-ai.html">AI</a>
+        <a href="zh-lab.html">实验室</a>
+        <a href="zh-notes.html">笔记</a>
+        <a href="zh-index.html#contact">联系</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="Switch to English"
+          title="中 / EN"
+        >EN</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="切换到浅色模式"
+          title="切换主题"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="打开菜单"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="移动端导航">
+        <a href="zh-index.html">首页</a>
+        <a href="zh-work.html" aria-current="page">工作</a>
+        <a href="zh-ai.html">AI</a>
+        <a href="zh-lab.html">实验室</a>
+        <a href="zh-notes.html">笔记</a>
+        <a href="zh-index.html#contact">联系</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         WORK INDEX
+    ══════════════════════════════════════════════════════ -->
+    <section id="work" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>工作</p>
+        <h2 class="section-heading">全部<em class="accent-serif">工作</em></h2>
+        <p class="section-intro">七个系统,如实讲述——每个模式都能迁移复用。</p>
+
+        <!-- 一条记录的一生——一条河,九个系统 -->
+        <div class="river-block">
+          <h3 class="section-heading">一条记录的<em class="accent-serif">一生</em></h3>
+          <p class="section-intro">一条记录,九个系统。跟着钱走:</p>
+          <div class="case-diagram river-diagram" aria-hidden="true">
+            <svg viewBox="0 0 960 300" preserveAspectRatio="xMidYMid meet">
+              <!-- row 1 -->
+              <g class="dg-node"><rect x="12" y="48" width="118" height="52" rx="4"/><text x="71" y="80" text-anchor="middle">transaction</text></g>
+              <g class="dg-node dg-node-accent"><rect x="166" y="48" width="168" height="52" rx="4"/><text x="250" y="70" text-anchor="middle">audited workflow</text><text class="dg-label" x="250" y="88" text-anchor="middle">8.4M/day</text></g>
+              <g class="dg-node"><rect x="366" y="48" width="208" height="52" rx="4"/><text x="470" y="70" text-anchor="middle">ledger ingestion</text><text class="dg-label" x="470" y="88" text-anchor="middle">12–14M/day · dual-stream join</text></g>
+              <g class="dg-node"><rect x="606" y="48" width="170" height="52" rx="4"/><text x="691" y="80" text-anchor="middle">reconciliation probes</text></g>
+              <g class="dg-node"><rect x="800" y="48" width="128" height="52" rx="4"/><text x="864" y="70" text-anchor="middle">OLAP sync</text><text class="dg-label" x="864" y="88" text-anchor="middle">CDC</text></g>
+              <line class="dg-wire" x1="130" y1="74" x2="166" y2="74"/>
+              <line class="dg-wire" x1="334" y1="74" x2="366" y2="74"/>
+              <line class="dg-wire" x1="574" y1="74" x2="606" y2="74"/>
+              <line class="dg-wire" x1="776" y1="74" x2="800" y2="74"/>
+              <!-- wire wraps down to row 2 -->
+              <path class="dg-wire" d="M 928 74 C 954 74 954 222 928 222" fill="none"/>
+              <!-- row 2 (flows right to left) -->
+              <g class="dg-node"><rect x="754" y="196" width="174" height="52" rx="4"/><text x="841" y="218" text-anchor="middle">reports &amp; filings</text><text class="dg-label" x="841" y="236" text-anchor="middle">1M rows/file</text></g>
+              <g class="dg-node"><rect x="520" y="196" width="180" height="52" rx="4"/><text x="610" y="218" text-anchor="middle">event bus</text><text class="dg-label" x="610" y="236" text-anchor="middle">13 schemas · 3 SDKs</text></g>
+              <g class="dg-node"><rect x="296" y="196" width="170" height="52" rx="4"/><text x="381" y="218" text-anchor="middle">growth pipeline</text><text class="dg-label" x="381" y="236" text-anchor="middle">exactly-once</text></g>
+              <g class="dg-node dg-node-amber"><rect x="96" y="196" width="130" height="52" rx="4"/><text x="161" y="226" text-anchor="middle">risk alerts</text></g>
+              <line class="dg-wire" x1="700" y1="222" x2="754" y2="222"/>
+              <line class="dg-wire" x1="466" y1="222" x2="520" y2="222"/>
+              <line class="dg-wire" x1="226" y1="222" x2="296" y2="222"/>
+              <!-- continuous flow along the whole river -->
+              <g class="dg-flow">
+                <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="0s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="-4s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="-8s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="-12s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
+              </g>
+            </svg>
+          </div>
+          <p class="thesis-block">有的我亲手建,有的我负责运行,有的归团队——但这条河是一个整体,而它必须首尾对得上。</p>
+        </div>
+
+        <article class="case" data-case="1">
+          <p class="case-label">案例 01</p>
+          <h3 class="case-title">Workflow 主干——每天 8.4M 条审计记录</h3>
+          <p class="case-hook">保证钱永远不会被错误地动两次的系统。</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">每天 8.4M 条记录</span>
+            <span class="hero-stat">峰值 ~1k/s</span>
+            <span class="hero-stat">100+ 次 SDK 发布</span>
+            <span class="hero-stat">2 分钟自助接入</span>
+            <span class="hero-stat">585 个测试,跑真实容器</span>
+            <span class="hero-stat">236 种请求类型</span>
+          </div>
+          <p class="case-summary">平台上每一个动钱的操作都要经过同一条带审计的审批 workflow——<span class="hl">每天 8.4M 条记录</span>。我把它重建在 Temporal 上,幂等由构造保证(retry 只可能拿回已存在的那条记录),并把接入做成了对外发布的 SDK:新增一种请求类型,只是一张<span class="hl">两分钟的自助表单</span>。</p>
+          <a class="case-link" href="zh-work-backbone.html">读完整案例 →</a>
+        </article>
+
+        <article class="case" data-case="2">
+          <p class="case-label">案例 02</p>
+          <h3 class="case-title">平台扩容:5 万 → 30 万+ 用户</h3>
+          <p class="case-hook">平台涨了六倍;我的工作是让所有人毫无察觉。</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">6 倍增长,线上完成</span>
+            <span class="hero-stat">cutover 偏移 +1e9</span>
+            <span class="hero-stat">亚秒级推送</span>
+          </div>
+          <p class="case-summary">会员管理平台涨了 6 倍,旧机制在生产上接连破掉。我在线上把它们逐个换掉——ID 生成切到原子方案,cutover 带 <span class="hl">+10 亿的偏移</span>;通知 fan-out 迁到 pub/sub;阻塞式全量扫描改成增量——全部塞进每周发版的节奏里完成。</p>
+          <a class="case-link" href="zh-work-scale.html">读完整案例 →</a>
+        </article>
+
+        <article class="case" data-case="3">
+          <p class="case-label">案例 03</p>
+          <h3 class="case-title">实时客服平台——从零到干净交接</h3>
+          <p class="case-hook">用户先跟 AI 聊——它一卡壳,人立刻接上。</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">单人起步 → 2 人团队</span>
+            <span class="hero-stat">AI 消化 ~70%</span>
+            <span class="hero-stat">队头直取</span>
+            <span class="hero-stat">干净交接</span>
+          </div>
+          <p class="case-summary">带人工接管的 AI 客服,在一个谁都没上过生产的技术栈上从零做起。路由队列把状态、负载、等待时长编码进一个 sorted-set 分数;AI 消化掉重复性的 <span class="hl">~70%</span>,一旦卡壳 10 秒内转人工。然后我把整个系统交了出去——交了两次。</p>
+          <a class="case-link" href="zh-work-support.html">读完整案例 →</a>
+        </article>
+
+        <article class="case" data-case="4">
+          <p class="case-label">案例 04</p>
+          <h3 class="case-title">跨栈任务 pipeline——三种语言,exactly-once</h3>
+          <p class="case-hook">发现快拿到奖励的用户,给他一个 7 天挑战,达成即时发放——而且绝不发两次。</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">4 个服务 · 3 种语言</span>
+            <span class="hero-stat">exactly-once,分层实现</span>
+            <span class="hero-stat">旧系统 0 改动</span>
+            <span class="hero-stat">pre-prod 验证</span>
+          </div>
+          <p class="case-summary">一条横跨四个服务、三种语言的任务 pipeline,组合平台现有的引擎。我的设计核心是那层 <span class="hl">exactly-once</span>——一张原子的 claims 台账,加一个人类可读的幂等 key——在 workflow replay 和消息重投两种情况下都正确。</p>
+          <a class="case-link" href="zh-work-pipeline.html">读完整案例 →</a>
+        </article>
+
+        <div class="case-minis">
+          <article class="case-mini" data-case="5">
+            <h3 class="case-mini-title"><a href="zh-work-ingestion.html">案例 05 —— 交易记录接入:每天 12–14M 条记录,来自 10+ 个来源</a></h3>
+            <p class="case-mini-hook">用户看到的每一笔余额变动,汇聚自 10+ 个系统,账永远对得上。</p>
+            <a class="case-link" href="zh-work-ingestion.html">读完整案例 →</a>
+          </article>
+          <article class="case-mini" data-case="6">
+            <h3 class="case-mini-title"><a href="zh-work-crypto.html">案例 06 —— 加密货币支付通道:两年,三种钱包协议</a></h3>
+            <p class="case-mini-hook">让用户能用加密货币付款——而且数字永远不出错。</p>
+            <a class="case-link" href="zh-work-crypto.html">读完整案例 →</a>
+          </article>
+          <article class="case-mini" data-case="7">
+            <h3 class="case-mini-title"><a href="zh-work-reporting.html">案例 07 —— 报表引擎与监管报送</a></h3>
+            <p class="case-mini-hook">监管要的报表,按时交,百万行规模。</p>
+            <a class="case-link" href="zh-work-reporting.html">读完整案例 →</a>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         ROADS NOT TAKEN — 落选的架构
+    ══════════════════════════════════════════════════════ -->
+    <section id="roads" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>没有走的路</p>
+        <h2 class="section-heading">没有走的<em class="accent-serif">路</em></h2>
+        <p class="section-intro">我现在跑的每一套架构,都替换掉了一套我亲手维护过的。这里是落选者,和它们输掉的原因。</p>
+        <div class="roads-list">
+          <details class="road">
+            <summary>Cron 加扫描,还是 durable workflow</summary>
+            <div class="road-body"><p>旧平台跑着 22+ 个 cron job,其中一个每分钟重扫一遍卡住的审批。这套东西我维护了六年——所以 durable workflow 一来,不需要谁写博客来说服我:retry 应该住在引擎里,而不是扫描器里。什么会让我改主意:一个所有任务都真正 fire-and-forget 的场景。</p></div>
+          </details>
+          <details class="road">
+            <summary>把数据库调得更狠,还是加一层缓存</summary>
+            <div class="road-body"><p>Redis 不是第一个答案——先来的是几个月的 index 功课、aggregation 重写、删掉死 index。等数据库已经诚实了,缓存才配拿到自己的位置。什么会让我改主意:没有;这个顺序本身就是原则。</p></div>
+          </details>
+          <details class="road">
+            <summary>输掉的 benchmark,后来赢了</summary>
+            <div class="road-body"><p>一个 OLAP 引擎在我们的 JSON-path 查询上败下阵来——慢 3 到 15 倍。我们没有接受判决,而是把 schema 拍平、移除弱点,判决就变了。Benchmark 是架构的输入,不是它的法官。</p></div>
+          </details>
+          <details class="road">
+            <summary>本地模型,还是分层 tiered router</summary>
+            <div class="road-body"><p>在家里我什么都想用本地模型——免费、私有、属于我自己。CPU-only 推理在多轮 tool calling 上输了一个数量级,于是 tiered router 顶了上来。干脆地输,好过纸面上赢。</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         WHERE THIS HAPPENED — experience + skill tiers
+    ══════════════════════════════════════════════════════ -->
+    <section id="experience" class="section section-band">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>这些都发生在哪</p>
+        <h2 class="section-heading">这些都发生在<em class="accent-serif">哪</em></h2>
+        <div class="xp-list">
+          <article class="xp-item">
+            <div class="xp-meta">2019 年 12 月 – 至今 · 马来西亚</div>
+            <div>
+              <h3 class="xp-title">后端 Team Lead</h3>
+              <div class="xp-company">SN Soft Sdn Bhd</div>
+              <div class="xp-ladder">Team Lead 2026– · Tech Lead 2024–2026 · 工程师 2019–2024</div>
+              <p class="xp-summary">一个五人团队,负责横跨两代技术栈的六个模块域——旧的单体和新的微服务——外加第三方服务集成。跨团队需求的架构把关人。我靠 ownership 培养工程师——三个 junior 现在自己撑起一个完整的生产平台。每周发版、CI/CD 纪律,mentoring 是这份工作的核心。</p>
+              <p class="xp-summary">2,000+ 个 merge 掉的 PR,从旧平台的全栈一路做到新技术栈的开荒。案例之外的亮点:加固提现流程、C2C 订单撮合(两个月 50+ 个 PR)、会话安全,以及带心跳保活的第三方 WebSocket 集成。我为 workflow 平台开创的 SDK-per-domain 模式,如今成了平台标准——平台团队照这个模式建起了 14 个包的共享 SDK 层,8 个服务在用。</p>
+              <ul class="xp-tags" aria-label="技术栈">
+                <li>NestJS</li><li>Temporal</li><li>MongoDB</li><li>Redis</li><li>Flink</li><li>Rust</li><li>Node</li><li>WebSocket</li><li>Distributed Systems</li><li>CI/CD</li>
+              </ul>
+            </div>
+          </article>
+          <article class="xp-item">
+            <div class="xp-meta">2018 – 2019 · 马来西亚</div>
+            <div>
+              <h3 class="xp-title">移动端工程师</h3>
+              <div class="xp-company">Hitachi Ebworx</div>
+              <p class="xp-summary">保险 POS 混合应用;把每天的 QA 部署自动化了。</p>
+              <ul class="xp-tags" aria-label="技术栈">
+                <li>Cordova</li><li>Hybrid apps</li>
+              </ul>
+            </div>
+          </article>
+        </div><!-- /xp-list -->
+
+        <div class="tiers" id="skills">
+          <div class="tier"><h3>核心(每天在用)</h3><p class="tier-list">TypeScript · NestJS · gRPC / proto 先行的契约 · MongoDB(aggregation、索引、Atlas Search)· Redis(数据结构设计、cluster)· Temporal · Apache Pulsar · Jest + Testcontainers(跑真实数据库,不是 mock)</p></div>
+          <div class="tier"><h3>熟练</h3><p class="tier-list">Java(Flink 流式作业)· Rust(一个完整服务——Temporal SDK、tonic/prost——pre-production)· Apache Flink(DataStream + SQL,托管版)· ClickHouse · Hologres · PostgreSQL · HashiCorp Vault · OpenTelemetry · Grafana · 阿里云 SLS(日志取证)· LangChain / LLM 应用开发</p></div>
+          <div class="tier"><h3>用过</h3><p class="tier-list">Kafka · Node/Express 旧式模式 · Socket.io / Matrix · AngularJS 时代的技术栈 · Docker · GitHub Actions · 阿里云(应用层)</p></div>
+          <div class="tier"><h3>家庭实验室</h3><p class="tier-list">Python(pandas · FastAPI · Streamlit)· Telegram 与 WhatsApp bot · Tailscale · WSL2 · Ollama(本地 LLM)· 向量记忆与 embeddings · Zeabur</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

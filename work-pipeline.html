@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cross-stack mission pipeline — Henry Lee</title>
+  <meta name="description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Cross-stack mission pipeline — Henry Lee" />
+  <meta property="og:description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cross-stack mission pipeline — Henry Lee" />
+  <meta name="twitter:description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
+    <section id="case" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 04 / 07</p>
+        <h1 class="section-heading">Cross-stack mission pipeline — three languages, exactly-once</h1>
+        <p class="case-hook">Spot users close to a reward, give them a 7-day challenge, deliver instantly — and never twice.</p>
+
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">4 services · 3 languages</span>
+          <span class="hero-stat">exactly-once, layered</span>
+          <span class="hero-stat">0 legacy changes</span>
+          <span class="hero-stat">pre-prod verified</span>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-beats">
+            <div class="case-beat"><h4>Situation</h4><p>Marketing wanted automatic, time-boxed missions for users close to their next loyalty tier: detect them in real time, run a 7-day window, grant the upgrade instantly on success.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>The reward path is money-adjacent: a duplicate grant is a real loss, and events arrive at least-once from both the stream and the workflow engine — two independent sources of duplicates.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Built the chain end-to-end across four services in three languages — the boundaries followed the platform's existing seams (the streaming platform, the workflow engine, the reward facade), composing proven engines instead of building new ones: a Java/Flink job filters the event stream and computes entry-anchored goals from a lookup table; a Rust + Temporal engine runs one durable workflow per user; a NestJS facade grants through the existing upgrade path — zero changes to legacy systems. Exactly-once is layered: an atomic claims ledger (one chance per user, tier, month) gates enrollment, and a human-readable idempotency key (`mission:user:tier:month`) gates the grant — debuggable at a glance in production. Thresholds live in exactly one place — producers broadcast unconditionally, so two repositories can never disagree about the same number.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Verified end-to-end against real traffic in the pre-production lane; funnel metrics at every stage. The architecture — detect / orchestrate / grant with single-owner config — is the template for the next mission types.</p></div>
+          </div>
+          <div class="case-diagram" aria-hidden="true">
+            <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+              <text class="dg-label" x="20" y="30">detect → orchestrate → grant · boundaries follow existing seams</text>
+              <g class="dg-node"><rect x="20" y="56" width="120" height="42" rx="4"/><text x="80" y="74" text-anchor="middle">Flink · Java</text><text x="80" y="90" text-anchor="middle" opacity="0.7">detect + goals</text></g>
+              <g class="dg-node dg-node-accent"><rect x="180" y="56" width="130" height="42" rx="4"/><text x="245" y="74" text-anchor="middle">Rust · Temporal</text><text x="245" y="90" text-anchor="middle" opacity="0.7">7-day workflow</text></g>
+              <g class="dg-node"><rect x="350" y="56" width="110" height="42" rx="4"/><text x="405" y="74" text-anchor="middle">NestJS facade</text><text x="405" y="90" text-anchor="middle" opacity="0.7">grant</text></g>
+              <line class="dg-wire" x1="140" y1="77" x2="180" y2="77"/>
+              <line class="dg-wire" x1="310" y1="77" x2="350" y2="77"/>
+              <g class="dg-node dg-node-ok"><rect x="120" y="140" width="180" height="34" rx="4"/><text x="210" y="162" text-anchor="middle">ledger · 1 / user·tier·month</text></g>
+              <path class="dg-wire" d="M 210 140 C 210 120 220 105 235 98" fill="none"/>
+              <g class="dg-node dg-node-ok"><rect x="250" y="196" width="210" height="34" rx="4"/><text x="355" y="218" text-anchor="middle">key · mission:user:tier:month</text></g>
+              <path class="dg-wire" d="M 380 196 C 390 150 400 120 405 98" fill="none"/>
+              <g class="dg-node dg-node-sm"><rect x="20" y="248" width="200" height="32" rx="4"/><text x="120" y="269" text-anchor="middle">legacy upgrade path · 0 changes</text></g>
+              <path class="dg-wire" d="M 220 264 C 330 264 400 130 410 100" fill="none"/>
+              <g class="dg-flow">
+                <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="0s" path="M 80 77 L 405 77"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="6s" repeatCount="indefinite" begin="0s"/></circle>
+                <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M 80 77 L 405 77"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="6s" repeatCount="indefinite" begin="-3s"/></circle>
+                <circle class="dg-dot dg-dot-2" r="4" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" begin="-1s" path="M 380 196 C 390 150 400 120 405 98"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="4s" repeatCount="indefinite" begin="-1s"/></circle>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ── Prev / next ─────────────────────────────────── -->
+        <nav class="case-pager" aria-label="Case navigation">
+          <a href="work-support.html">← Previous: Real-time support platform</a>
+          <a href="work.html">All work</a>
+          <a href="work-ingestion.html">Next: Transaction-record ingestion →</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

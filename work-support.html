@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Real-time support platform — Henry Lee</title>
+  <meta name="description" content="AI-assisted support with human takeover, built from zero on a stack nobody had shipped yet — then handed off clean, twice." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Real-time support platform — Henry Lee" />
+  <meta property="og:description" content="AI-assisted support with human takeover, built from zero on a stack nobody had shipped yet — then handed off clean, twice." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Real-time support platform — Henry Lee" />
+  <meta name="twitter:description" content="AI-assisted support with human takeover, built from zero on a stack nobody had shipped yet — then handed off clean, twice." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
+    <section id="case" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 03 / 07</p>
+        <h1 class="section-heading">Real-time support platform — from zero to clean handoff</h1>
+        <p class="case-hook">Customers talk to an AI first — a human steps in the moment it struggles.</p>
+
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">solo start → team of 2</span>
+          <span class="hero-stat">~70% AI-absorbed</span>
+          <span class="hero-stat">head-of-queue pick</span>
+          <span class="hero-stat">handed off clean</span>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-beats">
+            <div class="case-beat"><h4>Situation</h4><p>The company needed AI-assisted customer conversations with human takeover — and had just decided on a new microservices stack no one had shipped to production yet. I was handed both problems at once.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>Solo start; NestJS, gRPC, Temporal, Pulsar and Matrix — all new to me at once; the outcome would decide whether the company's migration was viable.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Self-hosted Matrix/Synapse as the message transport (the framework was the CTO's call; the data model and flows were mine), then built everything it doesn't have: an agent-routing queue encoding status > load > wait-time into a single Redis sorted-set score — banded so status always outranks load, and load outranks waiting time; assignment just reads the head of the queue; a mini back-office management system so agents see a member's account records, top-up / withdrawal history and permissions in one screen instead of switching systems; AI answers first — designed to absorb the repetitive ~70% of inquiries — with a 10-second race guard that hands the chat to a human whenever the model stalls or errors. Concurrency was the war — the score race and the duplicate-invite storm both have their own war stories below.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>First production service on the new stack — the pattern reference (config via Vault, contract-first gRPC, structured logging, graceful shutdown) that later services copied. Grew the team to two, handed the service to a maintenance team, later to the AI team. It now runs as a standalone multi-channel middleware.</p></div>
+          </div>
+          <div class="case-diagram" aria-hidden="true">
+            <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+              <text class="dg-label" x="20" y="30">AI answers first — humans take the handoff</text>
+              <g class="dg-node"><rect x="20" y="56" width="90" height="38" rx="4"/><text x="65" y="80" text-anchor="middle">user msg</text></g>
+              <g class="dg-node dg-node-accent"><rect x="150" y="56" width="80" height="38" rx="4"/><text x="190" y="80" text-anchor="middle">bot</text></g>
+              <line class="dg-wire" x1="110" y1="75" x2="150" y2="75"/>
+              <g class="dg-node dg-node-ok"><rect x="300" y="36" width="160" height="34" rx="4"/><text x="380" y="58" text-anchor="middle">answered · ~70%</text></g>
+              <path class="dg-wire" d="M 230 68 C 260 60 270 53 300 53" fill="none"/>
+              <g class="dg-node"><rect x="300" y="88" width="160" height="34" rx="4"/><text x="380" y="110" text-anchor="middle">handoff · 10s guard</text></g>
+              <path class="dg-wire" d="M 230 84 C 260 92 270 100 300 105" fill="none"/>
+              <g class="dg-node dg-node-sm"><rect x="60" y="170" width="360" height="40" rx="4"/><text x="240" y="195" text-anchor="middle">zset queue · status ≫ load ≫ wait time</text></g>
+              <path class="dg-wire" d="M 380 122 C 380 145 300 155 240 170" fill="none"/>
+              <g class="dg-node dg-node-ok"><rect x="180" y="240" width="120" height="34" rx="4"/><text x="240" y="262" text-anchor="middle">agent · O(1)</text></g>
+              <line class="dg-wire" x1="240" y1="210" x2="240" y2="240"/>
+              <text class="dg-label" x="20" y="296">Matrix as transport — everything above it, built in-house</text>
+              <g class="dg-flow">
+                <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="11s" repeatCount="indefinite" begin="0s" path="M 65 75 L 220 80 C 260 92 270 100 300 105 L 380 108 L 380 122 C 380 145 300 155 240 170 L 240 250"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.93;1" dur="11s" repeatCount="indefinite" begin="0s"/></circle>
+                <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="11s" repeatCount="indefinite" begin="-5.5s" path="M 65 75 L 220 80 C 260 92 270 100 300 105 L 380 108 L 380 122 C 380 145 300 155 240 170 L 240 250"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.93;1" dur="11s" repeatCount="indefinite" begin="-5.5s"/></circle>
+                <circle class="dg-dot dg-dot-2" r="4" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" begin="-2s" path="M 230 68 C 260 60 270 53 300 53 L 380 53"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="4s" repeatCount="indefinite" begin="-2s"/></circle>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ── War stories ─────────────────────────────────── -->
+        <div class="war-stories">
+          <h3 class="more-work-heading">War stories</h3>
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The day the cluster said no</h3>
+              <p>Queue positions lived as scores, and the original update was read-modify-write: read the score, compute in memory, write it back. Under concurrency two updates interleaved and one silently overwrote the other. I rebuilt the updates as atomic increments wrapped in a transaction — and then production revealed our Redis cluster wouldn't accept the transaction at all. Because the score design was banded — status, load and waiting time each own their own order of magnitude — every state change was already expressible as a single atomic increment, so we degraded to pure atomic ops the same day. A fix isn't done until it survives the real topology — and data designed for plan B is why the fallback was a same-day change, not a redesign.</p>
+            </article>
+            <article class="note-card">
+              <h3>Two agents, one conversation</h3>
+              <p>Two messages arriving in the same conversation at the same moment each decided a human agent was needed — and two agents got invited into one chat. The fence is a per-room lock: the first caller takes it and performs the invite, everyone else finds it held and walks away, and the lock's TTL is aligned to the operation so a crash can't leave the room locked forever. Anything triggered by "a message arrived" will eventually be triggered twice in the same millisecond — design for the second caller before it exists.</p>
+            </article>
+            <article class="note-card">
+              <h3>The model is a dependency you can't trust</h3>
+              <p>AI answering first means AI failing first. Every model call races a ten-second timer, and on stall, error or timeout the conversation is handed straight to a human — the user always ends up with a person, never with a spinner. The model gets treated like any flaky third-party dependency: timeout, fallback, and never in the critical path without an exit. That guard fired in production more than once, and nobody noticed — which was the point.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- ── Prev / next ─────────────────────────────────── -->
+        <nav class="case-pager" aria-label="Case navigation">
+          <a href="work-scale.html">← Previous: Scaling 50k → 300k+ users</a>
+          <a href="work.html">All work</a>
+          <a href="work-pipeline.html">Next: Cross-stack mission pipeline →</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

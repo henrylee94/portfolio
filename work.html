@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Work — Henry Lee</title>
+  <meta name="description" content="Seven production systems, told honestly — from a workflow backbone auditing 8.4M records a day to regulatory filings at million-row scale." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Work — Henry Lee" />
+  <meta property="og:description" content="Seven production systems, told honestly — from a workflow backbone auditing 8.4M records a day to regulatory filings at million-row scale." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Work — Henry Lee" />
+  <meta name="twitter:description" content="Seven production systems, told honestly — from a workflow backbone auditing 8.4M records a day to regulatory filings at million-row scale." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         WORK INDEX
+    ══════════════════════════════════════════════════════ -->
+    <section id="work" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>work</p>
+        <h2 class="section-heading">The <em class="accent-serif">Work</em></h2>
+        <p class="section-intro">Seven systems, told honestly — every pattern transfers.</p>
+
+        <!-- The life of a record — one river across nine systems -->
+        <div class="river-block">
+          <h3 class="section-heading">The life of a <em class="accent-serif">record</em></h3>
+          <p class="section-intro">One record, nine systems. Follow the money:</p>
+          <div class="case-diagram river-diagram" aria-hidden="true">
+            <svg viewBox="0 0 960 300" preserveAspectRatio="xMidYMid meet">
+              <!-- row 1 -->
+              <g class="dg-node"><rect x="12" y="48" width="118" height="52" rx="4"/><text x="71" y="80" text-anchor="middle">transaction</text></g>
+              <g class="dg-node dg-node-accent"><rect x="166" y="48" width="168" height="52" rx="4"/><text x="250" y="70" text-anchor="middle">audited workflow</text><text class="dg-label" x="250" y="88" text-anchor="middle">8.4M/day</text></g>
+              <g class="dg-node"><rect x="366" y="48" width="208" height="52" rx="4"/><text x="470" y="70" text-anchor="middle">ledger ingestion</text><text class="dg-label" x="470" y="88" text-anchor="middle">12–14M/day · dual-stream join</text></g>
+              <g class="dg-node"><rect x="606" y="48" width="170" height="52" rx="4"/><text x="691" y="80" text-anchor="middle">reconciliation probes</text></g>
+              <g class="dg-node"><rect x="800" y="48" width="128" height="52" rx="4"/><text x="864" y="70" text-anchor="middle">OLAP sync</text><text class="dg-label" x="864" y="88" text-anchor="middle">CDC</text></g>
+              <line class="dg-wire" x1="130" y1="74" x2="166" y2="74"/>
+              <line class="dg-wire" x1="334" y1="74" x2="366" y2="74"/>
+              <line class="dg-wire" x1="574" y1="74" x2="606" y2="74"/>
+              <line class="dg-wire" x1="776" y1="74" x2="800" y2="74"/>
+              <!-- wire wraps down to row 2 -->
+              <path class="dg-wire" d="M 928 74 C 954 74 954 222 928 222" fill="none"/>
+              <!-- row 2 (flows right to left) -->
+              <g class="dg-node"><rect x="754" y="196" width="174" height="52" rx="4"/><text x="841" y="218" text-anchor="middle">reports &amp; filings</text><text class="dg-label" x="841" y="236" text-anchor="middle">1M rows/file</text></g>
+              <g class="dg-node"><rect x="520" y="196" width="180" height="52" rx="4"/><text x="610" y="218" text-anchor="middle">event bus</text><text class="dg-label" x="610" y="236" text-anchor="middle">13 schemas · 3 SDKs</text></g>
+              <g class="dg-node"><rect x="296" y="196" width="170" height="52" rx="4"/><text x="381" y="218" text-anchor="middle">growth pipeline</text><text class="dg-label" x="381" y="236" text-anchor="middle">exactly-once</text></g>
+              <g class="dg-node dg-node-amber"><rect x="96" y="196" width="130" height="52" rx="4"/><text x="161" y="226" text-anchor="middle">risk alerts</text></g>
+              <line class="dg-wire" x1="700" y1="222" x2="754" y2="222"/>
+              <line class="dg-wire" x1="466" y1="222" x2="520" y2="222"/>
+              <line class="dg-wire" x1="226" y1="222" x2="296" y2="222"/>
+              <!-- continuous flow along the whole river -->
+              <g class="dg-flow">
+                <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="0s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="-4s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="-8s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="-12s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
+              </g>
+            </svg>
+          </div>
+          <p class="thesis-block">Some of these I built, some I run, some my team owns — but the river is one system, and it has to add up end to end.</p>
+        </div>
+
+        <article class="case" data-case="1">
+          <p class="case-label">Case 01</p>
+          <h3 class="case-title">Workflow backbone — 8.4M audited records a day</h3>
+          <p class="case-hook">The system that makes sure money never moves twice by mistake.</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">8.4M records/day</span>
+            <span class="hero-stat">~1k/s peak</span>
+            <span class="hero-stat">100+ SDK releases</span>
+            <span class="hero-stat">2-min self-service</span>
+            <span class="hero-stat">585 tests, real containers</span>
+            <span class="hero-stat">236 request types</span>
+          </div>
+          <p class="case-summary">Every money-moving action passes one audited approval workflow — <span class="hl">8.4M records a day</span>. I rebuilt it on Temporal with idempotency by construction (a retry can only return the existing record) and turned integration into a published SDK: adding a new request type is a <span class="hl">two-minute self-service</span> form.</p>
+          <a class="case-link" href="work-backbone.html">Read the case study →</a>
+        </article>
+
+        <article class="case" data-case="2">
+          <p class="case-label">Case 02</p>
+          <h3 class="case-title">Scaling a platform 50k → 300k+ users</h3>
+          <p class="case-hook">The platform grew six-fold; my job was making sure nobody noticed.</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">6× growth, live</span>
+            <span class="hero-stat">+1e9 cutover offset</span>
+            <span class="hero-stat">sub-second pushes</span>
+          </div>
+          <p class="case-summary">The member management platform grew 6× and the old mechanisms broke in production. I replaced them live — atomic ID generation cut over with a <span class="hl">+1-billion offset</span>, notification fan-out moved to pub/sub, blocking scans made incremental — inside a weekly release train.</p>
+          <a class="case-link" href="work-scale.html">Read the case study →</a>
+        </article>
+
+        <article class="case" data-case="3">
+          <p class="case-label">Case 03</p>
+          <h3 class="case-title">Real-time support platform — from zero to clean handoff</h3>
+          <p class="case-hook">Customers talk to an AI first — a human steps in the moment it struggles.</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">solo start → team of 2</span>
+            <span class="hero-stat">~70% AI-absorbed</span>
+            <span class="hero-stat">head-of-queue pick</span>
+            <span class="hero-stat">handed off clean</span>
+          </div>
+          <p class="case-summary">AI-assisted support with human takeover, built from zero on a stack nobody had shipped yet. The routing queue encodes status, load and wait-time into one sorted-set score; the AI absorbs the repetitive <span class="hl">~70%</span> and hands off in under 10 seconds when it stalls. Then I handed the whole thing off — twice.</p>
+          <a class="case-link" href="work-support.html">Read the case study →</a>
+        </article>
+
+        <article class="case" data-case="4">
+          <p class="case-label">Case 04</p>
+          <h3 class="case-title">Cross-stack mission pipeline — three languages, exactly-once</h3>
+          <p class="case-hook">Spot users close to a reward, give them a 7-day challenge, deliver instantly — and never twice.</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">4 services · 3 languages</span>
+            <span class="hero-stat">exactly-once, layered</span>
+            <span class="hero-stat">0 legacy changes</span>
+            <span class="hero-stat">pre-prod verified</span>
+          </div>
+          <p class="case-summary">A mission pipeline across four services in three languages, composing the platform's existing engines. My design: the <span class="hl">exactly-once layer</span> — an atomic claims ledger plus a human-readable idempotency key — correct under both workflow replays and message redeliveries.</p>
+          <a class="case-link" href="work-pipeline.html">Read the case study →</a>
+        </article>
+
+        <div class="case-minis">
+          <article class="case-mini" data-case="5">
+            <h3 class="case-mini-title"><a href="work-ingestion.html">Case 05 — Transaction-record ingestion: 12–14M records a day from 10+ sources</a></h3>
+            <p class="case-mini-hook">Every balance change a user sees, gathered from 10+ systems, always adding up.</p>
+            <a class="case-link" href="work-ingestion.html">Read the case study →</a>
+          </article>
+          <article class="case-mini" data-case="6">
+            <h3 class="case-mini-title"><a href="work-crypto.html">Case 06 — Crypto payment rails: two years, three wallet protocols</a></h3>
+            <p class="case-mini-hook">Letting users pay in crypto — with numbers that are never off.</p>
+            <a class="case-link" href="work-crypto.html">Read the case study →</a>
+          </article>
+          <article class="case-mini" data-case="7">
+            <h3 class="case-mini-title"><a href="work-reporting.html">Case 07 — Reporting engine &amp; regulatory delivery</a></h3>
+            <p class="case-mini-hook">The reports a regulator demands, on time, at millions of rows.</p>
+            <a class="case-link" href="work-reporting.html">Read the case study →</a>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         ROADS NOT TAKEN — the architectures that lost
+    ══════════════════════════════════════════════════════ -->
+    <section id="roads" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>roads not taken</p>
+        <h2 class="section-heading">Roads not <em class="accent-serif">taken</em></h2>
+        <p class="section-intro">Every architecture I run replaced one I personally operated. Here's what lost, and why.</p>
+        <div class="roads-list">
+          <details class="road">
+            <summary>Cron and scan, versus durable workflows</summary>
+            <div class="road-body"><p>The old platform ran 22+ cron jobs, one of them re-scanning for stuck approvals every single minute. I maintained that for six years — so when durable workflows arrived, I didn't need a blog post to explain why retries belong in the engine, not in a scanner. What would change my mind: a workload where every task is truly fire-and-forget.</p></div>
+          </details>
+          <details class="road">
+            <summary>Tune the database harder, versus add a cache</summary>
+            <div class="road-body"><p>Redis was not the first answer — months of index work, aggregation rewrites and dead-index deletion came first. The cache earned its place only after the database was already honest. What would change my mind: nothing; the order itself is the principle.</p></div>
+          </details>
+          <details class="road">
+            <summary>The benchmark that lost, then won</summary>
+            <div class="road-body"><p>An OLAP engine failed our JSON-path queries — 3 to 15 times slower. Instead of accepting the verdict, we flattened the schema and removed the weakness, and the verdict changed. Benchmarks are inputs to architecture, not judges of it.</p></div>
+          </details>
+          <details class="road">
+            <summary>Local models, versus a tiered router</summary>
+            <div class="road-body"><p>At home I wanted local models for everything — free, private, mine. CPU-only inference lost to multi-round tool calling by an order of magnitude, so a tiered router took its place. Losing cleanly beats winning on paper.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         WHERE THIS HAPPENED — experience + skill tiers
+    ══════════════════════════════════════════════════════ -->
+    <section id="experience" class="section section-band">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>where this happened</p>
+        <h2 class="section-heading">Where this <em class="accent-serif">happened</em></h2>
+        <div class="xp-list">
+          <article class="xp-item">
+            <div class="xp-meta">Dec 2019 – present · Malaysia</div>
+            <div>
+              <h3 class="xp-title">Backend Team Lead</h3>
+              <div class="xp-company">SN Soft Sdn Bhd</div>
+              <div class="xp-ladder">Team Lead 2026– · Tech Lead 2024–2026 · Engineer 2019–2024</div>
+              <p class="xp-summary">A five-person team owning six module domains across two generations of stack — legacy monolith and modern microservices — plus third-party service integrations. Architecture gatekeeper for cross-team requirements. I grow engineers through ownership — three juniors now run an entire production platform themselves. Weekly releases, CI/CD discipline, mentoring as the core of the job.</p>
+              <p class="xp-summary">2,000+ merged PRs, from full-stack on the legacy platform to pioneering the new stack. Highlights beyond the case studies: hardened withdrawal flows, C2C order matching (50+ PRs in two months), session security, and third-party WebSocket integrations with heartbeat keep-alives. The SDK-per-domain pattern I pioneered for the workflow platform has since become the platform standard — a shared SDK layer of 14 packages, consumed by 8 services, built by the platform team on that model.</p>
+              <ul class="xp-tags" aria-label="Technologies">
+                <li>NestJS</li><li>Temporal</li><li>MongoDB</li><li>Redis</li><li>Flink</li><li>Rust</li><li>Node</li><li>WebSocket</li><li>Distributed Systems</li><li>CI/CD</li>
+              </ul>
+            </div>
+          </article>
+          <article class="xp-item">
+            <div class="xp-meta">2018 – 2019 · Malaysia</div>
+            <div>
+              <h3 class="xp-title">Mobile Engineer</h3>
+              <div class="xp-company">Hitachi Ebworx</div>
+              <p class="xp-summary">Insurance point-of-sale hybrid app; automated the daily QA deployment.</p>
+              <ul class="xp-tags" aria-label="Technologies">
+                <li>Cordova</li><li>Hybrid apps</li>
+              </ul>
+            </div>
+          </article>
+        </div><!-- /xp-list -->
+
+        <div class="tiers" id="skills">
+          <div class="tier"><h3>Core (ships daily)</h3><p class="tier-list">TypeScript · NestJS · gRPC / proto-first contracts · MongoDB (aggregation, indexing, Atlas Search) · Redis (data-structure design, cluster) · Temporal · Apache Pulsar · Jest + Testcontainers (real databases, not mocks)</p></div>
+          <div class="tier"><h3>Working</h3><p class="tier-list">Java (Flink streaming jobs) · Rust (one full service — Temporal SDK, tonic/prost — pre-production) · Apache Flink (DataStream + SQL, managed) · ClickHouse · Hologres · PostgreSQL · HashiCorp Vault · OpenTelemetry · Grafana · Alibaba Cloud SLS (log forensics) · LangChain / LLM app development</p></div>
+          <div class="tier"><h3>Familiar</h3><p class="tier-list">Kafka · Node/Express legacy patterns · Socket.io / Matrix · AngularJS-era stack · Docker · GitHub Actions · Alibaba Cloud (application level)</p></div>
+          <div class="tier"><h3>Home lab</h3><p class="tier-list">Python (pandas · FastAPI · Streamlit) · Telegram &amp; WhatsApp bots · Tailscale · WSL2 · Ollama (local LLMs) · vector memory &amp; embeddings · Zeabur</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

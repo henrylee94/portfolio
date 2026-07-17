@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Henry Lee — Backend Team Lead</title>
+  <meta name="description" content="Hi — I'm Henry. I build the backend systems behind millions of daily transactions — and lead the team that runs them." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Henry Lee — Backend Team Lead" />
+  <meta property="og:description" content="Hi — I'm Henry. I build the backend systems behind millions of daily transactions — and lead the team that runs them." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Henry Lee — Backend Team Lead" />
+  <meta name="twitter:description" content="Hi — I'm Henry. I build the backend systems behind millions of daily transactions — and lead the team that runs them." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <!-- Brand / logo -->
+      <a href="#hero" class="topbar-logo" aria-label="Henry Lee — Back to top">&lt;H/&gt;</a>
+
+      <!-- Desktop nav -->
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="#hero" aria-current="page">Home</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Actions: theme, hamburger -->
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Mobile nav drawer -->
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="#hero" aria-current="page">Home</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         HERO — scene 1: full-width typographic statement
+    ══════════════════════════════════════════════════════ -->
+    <section id="hero" class="section">
+      <div class="container hero-inner">
+        <div class="hero-grid">
+
+          <div class="hero-text">
+
+            <p class="hero-prompt" aria-hidden="true">~/portfolio $</p>
+
+            <h1 class="hero-name"><span class="hero-line">Henry</span><br><span class="hero-line">Lee</span></h1>
+
+            <p class="hero-role">
+              Backend Team Lead
+            </p>
+
+            <p class="hero-statement">
+              <span class="hero-statement-l1">Money doesn't forgive mistakes.</span>
+              <span class="hero-statement-l2">I build systems that don't <em class="hero-amber">make them</em>.</span>
+            </p>
+
+            <p class="hero-positioning">
+              Hi — I'm Henry. I build the backend systems behind millions of daily transactions — and lead the team that runs them.
+            </p>
+
+            <div class="hero-stats hero-stats-detailed" role="status" aria-live="polite">
+              <div class="hero-stat-item">
+                <span class="hero-stat">7 years</span>
+                <span class="hero-stat-sub">engineer → tech lead → team lead</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="hero-stat">8.4M records/day, audited</span>
+                <span class="hero-stat-sub">every money movement, checked and logged</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="hero-stat">50k → 300k+ users</span>
+                <span class="hero-stat-sub">users never noticed — which was the job</span>
+              </div>
+            </div>
+
+            <div class="hero-ctas">
+              <a href="#contact" class="btn btn-primary">
+                Get in touch
+              </a>
+              <a href="work.html" class="btn btn-ghost">
+                See the work
+              </a>
+            </div>
+
+          </div>
+
+          <div class="hero-visual">
+            <div class="case-diagram hero-diagram" aria-hidden="true">
+              <svg viewBox="0 0 480 420" preserveAspectRatio="xMidYMid meet">
+                <text class="dg-label" x="240" y="28" text-anchor="middle">every movement, checked · none duplicated</text>
+                <g class="dg-node"><rect x="55" y="54" width="140" height="48" rx="4"/><text x="125" y="83" text-anchor="middle">request</text></g>
+                <g class="dg-node dg-node-amber"><rect x="45" y="158" width="160" height="56" rx="4"/><text x="125" y="191" text-anchor="middle">◆ audit gate</text></g>
+                <g class="dg-node"><rect x="55" y="258" width="140" height="48" rx="4"/><text x="125" y="287" text-anchor="middle">execute</text></g>
+                <g class="dg-node dg-node-ok"><rect x="55" y="352" width="140" height="48" rx="4"/><text x="125" y="381" text-anchor="middle">ledger ✓</text></g>
+                <g class="dg-node dg-node-sm"><rect x="315" y="260" width="120" height="44" rx="4"/><text x="375" y="287" text-anchor="middle">retry ⟲</text></g>
+                <line class="dg-wire" x1="125" y1="102" x2="125" y2="158"/>
+                <line class="dg-wire" x1="125" y1="214" x2="125" y2="258"/>
+                <line class="dg-wire" x1="125" y1="306" x2="125" y2="352"/>
+                <line class="dg-wire dg-wire-loop" x1="195" y1="282" x2="315" y2="282"/>
+                <path class="dg-wire dg-wire-loop" d="M 375 260 C 375 205 310 186 205 186" fill="none"/>
+                <g class="dg-flow">
+                  <circle class="dg-dot" r="4"><animateMotion dur="4.5s" repeatCount="indefinite" begin="0s" path="M 125 78 L 125 376"/></circle>
+                  <circle class="dg-dot" r="4"><animateMotion dur="4.5s" repeatCount="indefinite" begin="-1.5s" path="M 125 78 L 125 376"/></circle>
+                  <circle class="dg-dot" r="4"><animateMotion dur="4.5s" repeatCount="indefinite" begin="-3s" path="M 125 78 L 125 376"/></circle>
+                  <circle class="dg-dot dg-dot-2" r="4" opacity="0"><animateMotion dur="5s" repeatCount="indefinite" begin="-1s" path="M 195 282 L 375 282 L 375 260 C 375 205 310 186 205 186"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="5s" repeatCount="indefinite" begin="-1s"/></circle>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="hero-scroll-cue" aria-hidden="true">⌄</p>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         FEATURED WORK — scene 2: card grid, teaser copy only
+    ══════════════════════════════════════════════════════ -->
+    <section id="work" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>featured work</p>
+        <h2 class="section-heading">Featured <em class="accent-serif">Work</em></h2>
+
+        <article class="case" data-case="1">
+          <p class="case-label">Case 01</p>
+          <h3 class="case-title">Workflow backbone</h3>
+          <p class="case-hook">The system that makes sure money never moves twice by mistake.</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">Temporal</span>
+            <span class="hero-stat">idempotent by construction</span>
+            <span class="hero-stat">self-service SDK</span>
+          </div>
+          <p class="case-summary">Every money-moving action on the platform passes one audited workflow. I rebuilt it on Temporal so a retry can only ever return the record it already created — and turned integration into a published, self-service SDK.</p>
+          <a class="case-link" href="work-backbone.html">Read the case study →</a>
+        </article>
+
+        <article class="case" data-case="2">
+          <p class="case-label">Case 02</p>
+          <h3 class="case-title">Scaling a platform, live</h3>
+          <p class="case-hook">Growth kept finding the limits of the old mechanisms; my job was making sure nobody noticed.</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">replaced live</span>
+            <span class="hero-stat">pub/sub fan-out</span>
+            <span class="hero-stat">incremental scans</span>
+          </div>
+          <p class="case-summary">ID generation, notification fan-out and blocking scans all broke in production as the platform grew. I replaced each mechanism live — no downtime allowance, users online.</p>
+          <a class="case-link" href="work-scale.html">Read the case study →</a>
+        </article>
+
+        <article class="case" data-case="3">
+          <p class="case-label">Case 03</p>
+          <h3 class="case-title">Real-time support platform — from zero to clean handoff</h3>
+          <p class="case-hook">Customers talk to an AI first — a human steps in the moment it struggles.</p>
+          <div class="hero-stats case-chips">
+            <span class="hero-stat">built from zero</span>
+            <span class="hero-stat">AI-first, human takeover</span>
+            <span class="hero-stat">handed off twice</span>
+          </div>
+          <p class="case-summary">AI-assisted support with human takeover, built from zero on a stack nobody had shipped to production yet. Then I handed the whole thing off — twice.</p>
+          <a class="case-link" href="work-support.html">Read the case study →</a>
+        </article>
+
+        <div class="more-work">
+          <h3 class="more-work-heading">More work</h3>
+          <ul class="more-work-list">
+            <li><a href="work-pipeline.html">Cross-stack mission pipeline — three languages, exactly-once →</a></li>
+            <li><a href="work-ingestion.html">Transaction-record ingestion — 10+ sources, always adding up →</a></li>
+            <li><a href="work-crypto.html">Crypto payment rails — two years, three wallet protocols →</a></li>
+            <li><a href="work-reporting.html">Reporting engine &amp; regulatory delivery →</a></li>
+          </ul>
+          <p class="more-work-all"><a href="work.html">All seven systems →</a></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         NUMBERS — scene 3: focal amber band (the page's tone-jump)
+    ══════════════════════════════════════════════════════ -->
+    <section id="numbers" class="section section-band band-amber" aria-label="By the numbers">
+      <div class="container">
+        <div class="numbers-band">
+          <div class="band-cell">
+            <span class="num-value">8.4M</span>
+            <span class="band-label">audited records a day</span>
+          </div>
+          <div class="band-cell">
+            <span class="num-value">6×</span>
+            <span class="band-label">user growth, live</span>
+          </div>
+          <div class="band-cell">
+            <span class="num-value">3</span>
+            <span class="band-label">juniors grown into owners</span>
+          </div>
+        </div>
+        <p class="band-facts">5 teams coordinated per project · 6 domains, two stacks · 80% coverage gate, enforced · weekly release train, full regression · 16 features shipped through my AI pipeline</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         HOW I WORK — scene 4: statement rows + quiet compact list
+    ══════════════════════════════════════════════════════ -->
+    <section id="how" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>how i work</p>
+        <h2 class="section-heading">How I <em class="accent-serif">Work</em></h2>
+        <p class="section-intro">Principles first, tasks second. The systems are half the job — the other half is building the people who build them.</p>
+
+        <div class="statements">
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">P1</span>
+            <h3>Price the risk before pricing the work.</h3>
+            <p>The first question is never "how long will it take" — it's "what breaks if this is wrong, and who feels it?" Failure cost decides engineering rigor.</p>
+          </article>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">L1</span>
+            <h3>Grow owners, not task-takers.</h3>
+            <p>Each engineer owns a domain end-to-end — requirements negotiation with business included.</p>
+          </article>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">L2</span>
+            <h3>Command the incident, then make it pay rent.</h3>
+            <p>Roll back first, diagnose second — then the incident pays: a playbook, a release rule, a report upward. Our risk-alerting pipeline was born from <span class="hl">a single missed charge</span>.</p>
+          </article>
+        </div>
+
+        <div class="principles-compact">
+          <div class="principle-line">
+            <h4>Design for the next change, not this delivery.</h4>
+            <p>What business will tune later becomes configuration, not code — a feature request becomes an ops change, not a deploy.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Decompose by ownership, not by ticket.</h4>
+            <p>Contracts split before anyone writes code — a cross-cutting feature once landed across five repositories in one day.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Decide with evidence, commit with a rollback.</h4>
+            <p>Big choices get benchmarks and POCs — one OLAP evaluation ran 30 queries × 50 rounds across three engines before we committed.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Turn work into leverage.</h4>
+            <p>Anything done twice becomes a tool — integration SDKs, incident playbooks, an AI diagnosis bot the whole team runs.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Calibrate the challenge.</h4>
+            <p>Stretch without drowning — I watch where people stall and nudge; I don't grab the keyboard.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Pair temperaments, not just skills.</h4>
+            <p>A meticulous slow-mover next to a fast pusher who gets careless — tuned like any other system, re-tuned when they drift.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Keep a floating seat.</h4>
+            <p>One engineer goes wherever the pressure is — that seat is how I grew up, so I built it into the team on purpose.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Trade one deadline for the next ten.</h4>
+            <p>Build the base once and the next ten requests become configuration — a "no" always ships with its reason and its alternative.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT — scene 5: prose + quiet reference lines + marquee
+    ══════════════════════════════════════════════════════ -->
+    <section id="about" class="section section-wash">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>about</p>
+        <h2 class="section-heading">About <em class="accent-serif">me</em></h2>
+        <div class="about-body">
+          <p>Seven years ago I joined a high-traffic transaction platform as a full-stack dev. It grew — and went down a few times along the way. I was the firefighter, then the one hand-picked to pioneer a new stack, then the owner of the platform's most critical module — and now I lead the team that runs its core.</p>
+          <p>I care about two things: systems that don't lose money, and engineers who outgrow the tasks I give them.</p>
+          <p>Now: raising a self-hosted Hermes agent (<span class="hl">it maintains this very site</span>), going deeper on Rust and stream processing, and writing down what production taught me.</p>
+        </div>
+        <div class="about-lines">
+          <p class="about-line"><span class="about-line-label">experience</span><span>SN Soft Sdn Bhd, 2019 → present — engineer to Backend Team Lead. <a href="work.html#experience">Where this happened →</a></span></p>
+          <p class="about-line"><span class="about-line-label">core stack</span><span>TypeScript · NestJS · gRPC · MongoDB · Redis · Temporal · Pulsar — <a href="work.html#skills">full tiers →</a></span></p>
+        </div>
+        <div class="tech-marquee tech-marquee-quiet" aria-label="Technology stack">
+          <div class="tech-marquee-track">
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>TypeScript</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>NestJS</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Node.js</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>gRPC</span></span>
+            <span class="tech-item tech-item-badge"><span>Temporal</span></span>
+            <span class="tech-item tech-item-badge"><span>Apache Pulsar</span></span>
+            <span class="tech-item tech-item-badge"><span>Apache Flink</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Redis</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>MongoDB</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>PostgreSQL</span></span>
+            <span class="tech-item tech-item-badge"><span>ClickHouse</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Java</span></span>
+            <span class="tech-item"><img class="tech-icon-invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Rust</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Docker</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>GitHub Actions</span></span>
+            <span class="tech-item tech-item-badge"><span>LangChain</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Grafana</span></span>
+          </div>
+          <div class="tech-marquee-track" aria-hidden="true">
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>TypeScript</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>NestJS</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Node.js</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>gRPC</span></span>
+            <span class="tech-item tech-item-badge"><span>Temporal</span></span>
+            <span class="tech-item tech-item-badge"><span>Apache Pulsar</span></span>
+            <span class="tech-item tech-item-badge"><span>Apache Flink</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Redis</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>MongoDB</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>PostgreSQL</span></span>
+            <span class="tech-item tech-item-badge"><span>ClickHouse</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Java</span></span>
+            <span class="tech-item"><img class="tech-icon-invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Rust</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Docker</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>GitHub Actions</span></span>
+            <span class="tech-item tech-item-badge"><span>LangChain</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Grafana</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         CONTACT
+    ══════════════════════════════════════════════════════ -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-inner">
+
+          <p class="section-label" aria-hidden="true"><span class="section-num">04</span>contact</p>
+          <h2 class="section-heading">Get in <em class="accent-serif">touch</em></h2>
+
+          <p class="section-intro">Open to backend team-lead and senior platform roles — the systems change, the discipline doesn't.</p>
+
+          <p class="contact-tagline">
+            henrylee_xhfc@hotmail.com · +60 19-413 3366
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:henrylee_xhfc@hotmail.com" class="btn btn-primary" aria-label="Send email to henrylee_xhfc@hotmail.com">
+              Email ↗
+            </a>
+
+            <a href="https://www.linkedin.com/in/henry-lee-985300158" target="_blank" rel="noopener" class="btn btn-ghost" aria-label="LinkedIn profile">
+              LinkedIn ↗
+            </a>
+
+            <a href="https://github.com/henrylee94" target="_blank" rel="noopener" class="btn btn-ghost" aria-label="GitHub profile">
+              GitHub ↗
+            </a>
+          </div>
+
+          <p class="contact-location">Alor Setar, Malaysia · UTC+8 · remote-ready</p>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Workflow backbone — Henry Lee</title>
+  <meta name="description" content="Every money-moving action passes one audited workflow — 8.4M records a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Workflow backbone — Henry Lee" />
+  <meta property="og:description" content="Every money-moving action passes one audited workflow — 8.4M records a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workflow backbone — Henry Lee" />
+  <meta name="twitter:description" content="Every money-moving action passes one audited workflow — 8.4M records a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" aria-current="page">Work</a>
+        <a href="ai.html">AI</a>
+        <a href="lab.html">Lab</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
+    <section id="case" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 01 / 07</p>
+        <h1 class="section-heading">Workflow backbone — 8.4M audited records a day</h1>
+        <p class="case-hook">The system that makes sure money never moves twice by mistake.</p>
+
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">8.4M records/day</span>
+          <span class="hero-stat">~1k/s peak</span>
+          <span class="hero-stat">100+ SDK releases</span>
+          <span class="hero-stat">2-min self-service</span>
+          <span class="hero-stat">585 tests, real containers</span>
+          <span class="hero-stat">236 request types</span>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-beats">
+            <div class="case-beat"><h4>Situation</h4><p>Every money-moving action on the platform — withdrawal, top-up, loyalty reward, configuration change — must pass one audited create → review → approve → execute lifecycle. The legacy implementation was tightly coupled inside a monolith; every consumer re-implemented its own wiring.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>This is the platform's single point of trust: production pushes ~8.4M records a day through it, and a duplicate execution means real money moved twice.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Rebuilt it as a gRPC microservice orchestrated by Temporal: one generic durable workflow runs every request type, with business extension points as child-workflow slots. Idempotency is structural — the workflow ID doubles as the creation key, so a retried step returns the existing record instead of creating twice. Integration became a published SDK: any service registers an executor with one import; adding a new request type is a self-service CI form, not a queue on my desk. 100+ SDK releases, SemVer-disciplined.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>8.4M records/day in production. Duplicate execution is prevented by construction rather than caught after the fact. New-type integration went from a 30-to-60-minute, person-dependent process to two-minute self-service.</p></div>
+          </div>
+          <div class="case-diagram" aria-hidden="true">
+            <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+              <text class="dg-label" x="20" y="30">audited lifecycle — every money-moving action</text>
+              <g class="dg-node"><rect x="20" y="56" width="92" height="42" rx="4"/><text x="66" y="82" text-anchor="middle">create</text></g>
+              <g class="dg-node"><rect x="136" y="56" width="92" height="42" rx="4"/><text x="182" y="82" text-anchor="middle">review</text></g>
+              <g class="dg-node"><rect x="252" y="56" width="92" height="42" rx="4"/><text x="298" y="82" text-anchor="middle">approve</text></g>
+              <g class="dg-node dg-node-accent"><rect x="368" y="56" width="92" height="42" rx="4"/><text x="414" y="82" text-anchor="middle">execute</text></g>
+              <line class="dg-wire" x1="112" y1="77" x2="136" y2="77"/>
+              <line class="dg-wire" x1="228" y1="77" x2="252" y2="77"/>
+              <line class="dg-wire" x1="344" y1="77" x2="368" y2="77"/>
+              <path class="dg-wire dg-wire-loop" d="M 414 98 C 414 130 66 130 66 98" fill="none"/>
+              <text class="dg-label" x="240" y="142" text-anchor="middle">retry ⟲ returns the same record — workflow ID = creation key</text>
+              <text class="dg-label" x="182" y="52" text-anchor="middle" opacity="0.7">human human review</text>
+              <g class="dg-node dg-node-sm"><rect x="20" y="196" width="150" height="34" rx="4"/><text x="95" y="218" text-anchor="middle">any microservice</text></g>
+              <g class="dg-node dg-node-sm"><rect x="220" y="196" width="110" height="34" rx="4"/><text x="275" y="218" text-anchor="middle">SDK · 1 import</text></g>
+              <line class="dg-wire" x1="170" y1="213" x2="220" y2="213"/>
+              <path class="dg-wire" d="M 330 213 C 380 213 400 140 405 102" fill="none"/>
+              <text class="dg-label" x="20" y="278">new request type = self-service form · 2 minutes</text>
+              <g class="dg-flow">
+                <circle class="dg-dot" r="4"><animateMotion dur="9s" repeatCount="indefinite" begin="0s" path="M 66 77 L 414 77 L 414 98 C 414 130 66 130 66 98 L 66 77"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="9s" repeatCount="indefinite" begin="-4.5s" path="M 66 77 L 414 77 L 414 98 C 414 130 66 130 66 98 L 66 77"/></circle>
+                <circle class="dg-dot dg-dot-2" r="4" opacity="0"><animateMotion dur="5s" repeatCount="indefinite" begin="-1s" path="M 170 213 L 330 213 C 380 213 400 140 405 102"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="5s" repeatCount="indefinite" begin="-1s"/></circle>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ── War stories ─────────────────────────────────── -->
+        <div class="war-stories">
+          <h3 class="more-work-heading">War stories</h3>
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The redemption that didn't charge</h3>
+              <p>Customer support found it before any dashboard did: a reward-redemption flow was handing out value without deducting the balance. A pre-charge step in the workflow was being skipped — silently.</p>
+              <p>Rollback first, debug second. The trail led to a shared contract file that had quietly fallen behind on one branch; a routine package upgrade activated the stale copy. Tests never caught it, because the change came from a different kind of project — the classic blind spot where two individually safe changes combine into one unsafe system.</p>
+              <p>The fixes were systemic, not local: the workflow fails loudly if the pre-charge step doesn't run; every release regression-tests every money-touching path, no exceptions; and the incident report went up and out — the whole team knows this failure shape now.</p>
+              <p>One more thing grew out of it: the first version of our risk-alerting pipeline — every redemption event published onto the event bus, alerting the risk team in chat. Detection first, automation later. Incidents are cheapest when they compile into systems.</p>
+            </article>
+            <article class="note-card">
+              <h3>The signal that arrived too early</h3>
+              <p>Our workflows accept human decisions and third-party confirmations as signals — and one day a callback landed before our own state had finished persisting. The workflow received a signal for a record that, from its point of view, didn't exist yet; worse, on replay the interleaving wasn't deterministic. The fix was structural: signals are buffered until the state they refer to has landed, and every behavioural change to the workflow code ships behind a versioned patch marker — so workflows already running mid-history replay the exact logic they started with, while new ones take the new path. In durable workflows, a code deploy is an event your running history has to survive.</p>
+            </article>
+            <article class="note-card">
+              <h3>The retry that had to return the same record</h3>
+              <p>The engine retries failed steps — that's the point of it. But on a money path, a retried create is a potential duplicate record, and a duplicate record is money moved twice. So creation isn't guarded by a check bolted on afterwards; it's guarded by construction: the workflow ID doubles as the record's creation key, and every create looks up before it writes — a retry finds the record its first attempt made and returns it. Updates carry status guards, and illegal state transitions throw instead of writing. When the failure mode is financial, idempotency can't be a best effort; it has to be impossible to get wrong.</p>
+            </article>
+            <article class="note-card">
+              <h3>Four environments, one engine</h3>
+              <p>Several environments shared one workflow-engine cluster, and workers began stealing each other's tasks — a developer's local worker could quietly pick up and fail a task that belonged to a shared test lane. The fix was a naming discipline, not more hardware: task-queue names resolve per environment — production gets a fixed name, local runs are suffixed with the developer's identity, test lanes with the environment. Boring, but it ended a whole class of "works on my machine, breaks your test run" ghosts. Shared infrastructure needs namespacing before it needs capacity.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- ── Prev / next ─────────────────────────────────── -->
+        <nav class="case-pager" aria-label="Case navigation">
+          <a href="work.html">← All work</a>
+          <a href="work-scale.html">Next: Scaling 50k → 300k+ users →</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>
