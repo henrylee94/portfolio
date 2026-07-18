@@ -41,7 +41,7 @@
       <!-- Desktop nav -->
       <nav class="topbar-nav" aria-label="Primary navigation">
         <a href="#hero" aria-current="page">Home</a>
-        <a href="work.html">Work</a>
+        <a href="work/index.html">Work</a>
         <a href="ai.html">AI</a>
         <a href="lab.html">Lab</a>
         <a href="notes.html">Notes</a>
@@ -80,7 +80,7 @@
       <!-- Mobile nav drawer -->
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
         <a href="#hero" aria-current="page">Home</a>
-        <a href="work.html">Work</a>
+        <a href="work/index.html">Work</a>
         <a href="ai.html">AI</a>
         <a href="lab.html">Lab</a>
         <a href="notes.html">Notes</a>
@@ -112,8 +112,8 @@
             </p>
 
             <p class="hero-statement">
-              <span class="hero-statement-l1">Financial systems don't forgive mistakes.</span>
-              <span class="hero-statement-l2">I build systems that don't <em class="hero-amber">make them</em>.</span>
+              <span class="hero-statement-l1">I build the backend systems a real-money platform runs on —</span>
+              <span class="hero-statement-l2">and lead the team that keeps them <em class="hero-amber">correct at scale</em>.</span>
             </p>
 
             <p class="hero-positioning">
@@ -130,7 +130,7 @@
                 <span class="hero-stat-sub">every transaction, checked and logged</span>
               </div>
               <div class="hero-stat-item">
-                <span class="hero-stat">50k → 300k+ users</span>
+                <span class="hero-stat">50k → 400k+ users</span>
                 <span class="hero-stat-sub">users never noticed — which was the job</span>
               </div>
             </div>
@@ -139,7 +139,7 @@
               <a href="#contact" class="btn btn-primary">
                 Get in touch
               </a>
-              <a href="work.html" class="btn btn-ghost">
+              <a href="work/index.html" class="btn btn-ghost">
                 See the work
               </a>
             </div>
@@ -186,52 +186,52 @@
 
         <article class="case" data-case="1">
           <p class="case-label">Case 01</p>
-          <h3 class="case-title">Workflow backbone</h3>
-          <p class="case-hook">The system that makes sure no transaction is ever processed twice.</p>
+          <h3 class="case-title">The transaction backbone</h3>
+          <p class="case-hook">Every money movement on the platform passes through it — I took it from a legacy monolith to a contract-first service.</p>
           <div class="hero-stats case-chips">
-            <span class="hero-stat">Temporal</span>
+            <span class="hero-stat">monolith → microservices</span>
             <span class="hero-stat">idempotent by construction</span>
-            <span class="hero-stat">self-service SDK</span>
+            <span class="hero-stat">self-serve SDK</span>
           </div>
-          <p class="case-summary">Every financial transaction on the platform passes one audited workflow. I rebuilt it on Temporal so a retry can only ever return the record it already created — and turned integration into a published, self-service SDK.</p>
-          <a class="case-link" href="work-backbone.html">Read the case study →</a>
+          <p class="case-summary">Millions of transactions a day, and if it goes down the whole platform stops. I rebuilt it from a legacy monolith onto gRPC + durable workflows — idempotency by construction, so a retry can only return the record it already made — and made integration a self-serve SDK that cut new-type onboarding from 30–60 minutes to two.</p>
+          <a class="case-link" href="work/backbone.html">Read the case study →</a>
         </article>
 
         <article class="case" data-case="2">
           <p class="case-label">Case 02</p>
           <h3 class="case-title">Scaling a platform, live</h3>
-          <p class="case-hook">Growth kept finding the limits of the old mechanisms; my job was making sure nobody noticed.</p>
+          <p class="case-hook">50k → 400k+ users and still climbing — the job was making sure nobody noticed.</p>
           <div class="hero-stats case-chips">
+            <span class="hero-stat">measured before tuning</span>
             <span class="hero-stat">replaced live</span>
-            <span class="hero-stat">pub/sub fan-out</span>
-            <span class="hero-stat">incremental scans</span>
+            <span class="hero-stat">every step revertible</span>
           </div>
-          <p class="case-summary">ID generation, notification fan-out and blocking scans all broke in production as the platform grew. I replaced each mechanism live — no downtime allowance, users online.</p>
-          <a class="case-link" href="work-scale.html">Read the case study →</a>
+          <p class="case-summary">As the platform grew, ID generation, notification fan-out and blocking scans each hit the old architecture's limits — an outage stops every transaction. I measured where the time actually went, then replaced each mechanism in production: no downtime, users online, every step revertible.</p>
+          <a class="case-link" href="work/scale.html">Read the case study →</a>
         </article>
 
         <article class="case" data-case="3">
           <p class="case-label">Case 03</p>
           <h3 class="case-title">Real-time support platform — from zero to clean handoff</h3>
-          <p class="case-hook">Customers talk to an AI first — a human steps in the moment it struggles.</p>
+          <p class="case-hook">The first production service on a new stack — every pattern I set became the template others copied.</p>
           <div class="hero-stats case-chips">
-            <span class="hero-stat">built from zero</span>
-            <span class="hero-stat">AI-first, human takeover</span>
-            <span class="hero-stat">handed off twice</span>
+            <span class="hero-stat">first on the new stack</span>
+            <span class="hero-stat">buy the base, build the moat</span>
+            <span class="hero-stat">solo → team → clean handoff</span>
           </div>
-          <p class="case-summary">AI-assisted support with human takeover, built from zero on a stack nobody had shipped to production yet. Then I handed the whole thing off — twice.</p>
-          <a class="case-link" href="work-support.html">Read the case study →</a>
+          <p class="case-summary">AI-assisted support with human takeover, built solo on a stack nobody had shipped to production yet. I bought the messaging base and self-built only the differentiators — routing, AI-to-human handoff, back-office — grew it to a two-person team, and handed it off clean. Being the pilot meant my patterns became the template every later service copied.</p>
+          <a class="case-link" href="work/support.html">Read the case study →</a>
         </article>
 
         <div class="more-work">
           <h3 class="more-work-heading">More work</h3>
           <ul class="more-work-list">
-            <li><a href="work-pipeline.html">Cross-stack mission pipeline — three languages, exactly-once →</a></li>
-            <li><a href="work-ingestion.html">Transaction-record ingestion — 10+ sources, always adding up →</a></li>
-            <li><a href="work-crypto.html">Crypto payment rails — two years, three wallet protocols →</a></li>
-            <li><a href="work-reporting.html">Reporting engine &amp; regulatory delivery →</a></li>
+            <li><a href="work/pipeline.html">Cross-stack mission pipeline — three languages, exactly-once →</a></li>
+            <li><a href="work/ingestion.html">Account-change ingestion — over ten million records a day, 10+ sources →</a></li>
+            <li><a href="work/crypto.html">Crypto payment rails — two years, three wallet protocols →</a></li>
+            <li><a href="work/reporting.html">Reporting engine &amp; regulatory delivery →</a></li>
           </ul>
-          <p class="more-work-all"><a href="work.html">All seven systems →</a></p>
+          <p class="more-work-all"><a href="work/index.html">All seven systems →</a></p>
         </div>
 
       </div>
@@ -248,8 +248,8 @@
             <span class="band-label">transactions a day, audited</span>
           </div>
           <div class="band-cell">
-            <span class="num-value">6×</span>
-            <span class="band-label">user growth, live</span>
+            <span class="num-value">400k+</span>
+            <span class="band-label">daily users, from 50k (climbing)</span>
           </div>
           <div class="band-cell">
             <span class="num-value">5</span>
@@ -366,8 +366,8 @@
           <p>Now: raising a self-hosted Hermes agent (<span class="hl">it maintains this very site</span>), going deeper on Rust and stream processing, and writing down what production taught me.</p>
         </div>
         <div class="about-lines">
-          <p class="about-line"><span class="about-line-label">experience</span><span>SN Soft Sdn Bhd, 2019 → present — engineer to Backend Team Lead. <a href="work.html#experience">Where this happened →</a></span></p>
-          <p class="about-line"><span class="about-line-label">core stack</span><span>TypeScript · NestJS · gRPC · MongoDB · Redis · Temporal · Pulsar — <a href="work.html#skills">full tiers →</a></span></p>
+          <p class="about-line"><span class="about-line-label">experience</span><span>A real-money transaction platform, 2019 → present — engineer to Backend Team Lead. <a href="work/index.html#experience">Where this happened →</a></span></p>
+          <p class="about-line"><span class="about-line-label">core stack</span><span>TypeScript · NestJS · gRPC · MongoDB · Redis · Temporal · Pulsar — <a href="work/index.html#skills">full tiers →</a></span></p>
         </div>
         <div class="tech-marquee tech-marquee-quiet" aria-label="Technology stack">
           <div class="tech-marquee-track">
@@ -422,7 +422,7 @@
           <p class="section-label" aria-hidden="true"><span class="section-num">05</span>contact</p>
           <h2 class="section-heading">Get in <em class="accent-serif">touch</em></h2>
 
-          <p class="section-intro">Open to backend team-lead and senior platform roles — the systems change, the discipline doesn't.</p>
+          <p class="section-intro">Open to backend team-lead and senior platform roles.</p>
 
           <p class="contact-tagline">
             henrylee_xhfc@hotmail.com · +60 19-413 3366
@@ -461,6 +461,8 @@
     </div>
   </footer>
 
+  <script src="js/i18n-zh.js" defer></script>
+  <script src="js/i18n.js" defer></script>
   <script src="js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

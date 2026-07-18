@@ -17,8 +17,8 @@
   <meta name="twitter:title" content="Crypto payment rails — Henry Lee" />
   <meta name="twitter:description" content="Cryptocurrency deposits and withdrawals alongside fiat — three wallet protocols, conversion at every transaction boundary, exact-decimal handling at the wallet edges." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
 
   <script>
     (function () {
@@ -35,15 +35,15 @@
   <header class="topbar" role="banner">
     <div class="topbar-inner">
 
-      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+      <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -75,12 +75,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -96,8 +96,8 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 06 / 07</p>
-        <h1 class="section-heading">Crypto payment rails — two years, three wallet protocols</h1>
-        <p class="case-hook">Letting users pay in crypto — with numbers that are never off.</p>
+        <h1 class="section-heading">Building the platform's crypto payment rails — a fintech capability at every transaction boundary</h1>
+        <p class="case-hook">A two-year epic threading fiat↔stablecoin conversion through every money boundary on the platform — where a precision slip is a real financial loss.</p>
 
         <div class="hero-stats case-chips">
           <span class="hero-stat">OMNI · ERC-20 · TRC-20</span>
@@ -107,15 +107,15 @@
 
         <div class="case-beats">
           <div class="case-beat"><h4>Situation</h4><p>The platform needed cryptocurrency deposits and withdrawals alongside fiat — conversion at every transaction boundary, on a platform where some third-party providers couldn't hold crypto at all.</p></div>
-          <div class="case-beat"><h4>Design</h4><p>I drove the payments side for two years as half of a two-engineer pair (alongside the team's assistant lead): wallet protocol integrations (OMNI, ERC-20, TRC-20), conversion embedded at transfer boundaries, provider capability as per-provider configuration — and exact-decimal handling at the wallet edges, where a rounding error becomes a real discrepancy.</p></div>
+          <div class="case-beat"><h4>Approach</h4><p>I drove the payments side for two years as half of a two-engineer pair (alongside the team's assistant lead): wallet protocol integrations (OMNI, ERC-20, TRC-20), stablecoin deposits and withdrawals, and fiat↔stablecoin conversion threaded through every transaction boundary. Provider heterogeneity was the judgment call — some providers couldn't hold the stablecoin at all, so I absorbed the difference in one cross-cutting compatibility layer rather than leaking it into every call site — with exact-decimal handling at the wallet edges, where a rounding error becomes a real discrepancy.</p></div>
           <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Crypto rails went live across every payment flow; later currencies reused the same config-driven paths instead of re-opening them.</p></div>
         </div>
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="work-ingestion.html">← Previous: Transaction-record ingestion</a>
-          <a href="work.html">All work</a>
-          <a href="work-reporting.html">Next: Reporting engine &amp; regulatory delivery →</a>
+          <a href="ingestion.html">← Previous: Transaction-record ingestion</a>
+          <a href="index.html">All work</a>
+          <a href="reporting.html">Next: Reporting engine &amp; regulatory delivery →</a>
         </nav>
 
       </div>
@@ -134,11 +134,13 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="../js/i18n-zh.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/animations.js" defer></script>
+  <script src="../js/animations.js" defer></script>
 
 </body>
 </html>

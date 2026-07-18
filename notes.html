@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Field Notes — Henry Lee</title>
-  <meta name="description" content="Short lessons from production — the kind you only learn at 2am. Idempotency, cutovers, handoffs and the discipline behind them." />
+  <meta name="description" content="Short, practical lessons from operating production systems. Idempotency, cutovers, handoffs and the discipline behind them." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Field Notes — Henry Lee" />
-  <meta property="og:description" content="Short lessons from production — the kind you only learn at 2am. Idempotency, cutovers, handoffs and the discipline behind them." />
+  <meta property="og:description" content="Short, practical lessons from operating production systems. Idempotency, cutovers, handoffs and the discipline behind them." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Field Notes — Henry Lee" />
-  <meta name="twitter:description" content="Short lessons from production — the kind you only learn at 2am. Idempotency, cutovers, handoffs and the discipline behind them." />
+  <meta name="twitter:description" content="Short, practical lessons from operating production systems. Idempotency, cutovers, handoffs and the discipline behind them." />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -39,7 +39,7 @@
 
       <nav class="topbar-nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
+        <a href="work/index.html">Work</a>
         <a href="ai.html">AI</a>
         <a href="lab.html">Lab</a>
         <a href="notes.html" aria-current="page">Notes</a>
@@ -76,7 +76,7 @@
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
         <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
+        <a href="work/index.html">Work</a>
         <a href="ai.html">AI</a>
         <a href="lab.html">Lab</a>
         <a href="notes.html" aria-current="page">Notes</a>
@@ -97,23 +97,23 @@
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>field notes</p>
         <h2 class="section-heading">Field <em class="accent-serif">Notes</em></h2>
-        <p class="section-intro">Short lessons from production — the kind you only learn at 2am.</p>
+        <p class="section-intro">Short, practical lessons from operating production systems.</p>
         <div class="notes-grid">
           <article class="note-card">
             <h3>The +1-billion offset</h3>
-            <p>Instead of coordinating a live cutover, make collisions impossible. Boring beats clever when transactions are on the line — the full story is in <a href="work-scale.html">the scaling case</a>.</p>
+            <p>Instead of coordinating a live cutover, make collisions impossible. Boring beats clever when transactions are on the line — the full story is in <a href="work/scale.html">the scaling case</a>.</p>
           </article>
           <article class="note-card">
             <h3>The day the cluster said no</h3>
-            <p>A fix isn't done until it survives the real topology. The war story — a race fixed with MULTI, a cluster that refused it — lives in <a href="work-support.html">the support case</a>.</p>
+            <p>A fix isn't done until it survives the real topology. The war story — a race fixed with MULTI, a cluster that refused it — lives in <a href="work/support.html">the support case</a>.</p>
           </article>
           <article class="note-card">
             <h3>One owner per number</h3>
-            <p>A threshold that lives in two systems will eventually disagree with itself, silently. We deleted the producer-side filter and left the number in exactly one place. Debugging is a graph search — fewer edges wins. The full chain is in <a href="work-pipeline.html">the mission-pipeline case</a>.</p>
+            <p>A threshold that lives in two systems will eventually disagree with itself, silently. We deleted the producer-side filter and left the number in exactly one place. Debugging is a graph search — fewer edges wins. The full chain is in <a href="work/pipeline.html">the mission-pipeline case</a>.</p>
           </article>
           <article class="note-card">
             <h3>Idempotency is a contract, not a patch</h3>
-            <p>On transaction paths we assume every step will be retried, because someday it will be. Design for the retry and the 2am page never comes — the mechanics are in <a href="work-backbone.html">the backbone case</a>.</p>
+            <p>On transaction paths we assume every step will be retried, because someday it will be. Design for the retry and the 2am page never comes — the mechanics are in <a href="work/backbone.html">the backbone case</a>.</p>
           </article>
           <article class="note-card">
             <h3>AI writes, humans gate</h3>
@@ -156,6 +156,8 @@
     </div>
   </footer>
 
+  <script src="js/i18n-zh.js" defer></script>
+  <script src="js/i18n.js" defer></script>
   <script src="js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

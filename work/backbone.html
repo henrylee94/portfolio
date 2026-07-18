@@ -17,8 +17,8 @@
   <meta name="twitter:title" content="Workflow backbone — Henry Lee" />
   <meta name="twitter:description" content="Every financial transaction passes one audited workflow — millions of transactions a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
 
   <script>
     (function () {
@@ -35,15 +35,15 @@
   <header class="topbar" role="banner">
     <div class="topbar-inner">
 
-      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+      <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -75,12 +75,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -96,16 +96,15 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 01 / 07</p>
-        <h1 class="section-heading">Workflow backbone — millions of transactions a day, audited</h1>
-        <p class="case-hook">The system that makes sure no transaction is ever processed twice.</p>
+        <h1 class="section-heading">The transaction backbone — from a legacy monolith to a contract-first service</h1>
+        <p class="case-hook">Every money movement on the platform passes through it — millions a day, and it can never process one twice.</p>
 
         <div class="hero-stats case-chips">
-          <span class="hero-stat">Millions of transactions/day</span>
-          <span class="hero-stat">~1k/s peak</span>
-          <span class="hero-stat">100+ SDK releases</span>
-          <span class="hero-stat">2-min self-service</span>
-          <span class="hero-stat">585 tests, real containers</span>
-          <span class="hero-stat">236 request types</span>
+          <span class="hero-stat">monolith → microservices</span>
+          <span class="hero-stat">millions of transactions/day</span>
+          <span class="hero-stat">idempotent by construction</span>
+          <span class="hero-stat">2-min self-serve SDK</span>
+          <span class="hero-stat">200+ types · one base workflow</span>
         </div>
 
         <div class="case-grid">
@@ -170,8 +169,8 @@
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="work.html">← All work</a>
-          <a href="work-scale.html">Next: Scaling 50k → 300k+ users →</a>
+          <a href="index.html">← All work</a>
+          <a href="scale.html">Next: Scaling 50k → 400k+ users →</a>
         </nav>
 
       </div>
@@ -190,11 +189,13 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="../js/i18n-zh.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/animations.js" defer></script>
+  <script src="../js/animations.js" defer></script>
 
 </body>
 </html>

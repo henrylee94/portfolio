@@ -27,22 +27,10 @@
     applyTheme(current === 'dark' ? 'light' : 'dark');
   }
 
-  // ── Language toggle (EN ↔ zh mirror pages) ──────────────────
-  // Manual navigation only — no auto-redirect on load (no flash).
-  // Naming convention: index.html ↔ zh-index.html
-  function initLangToggle() {
-    var btn = document.querySelector('[data-action="toggle-lang"]');
-    if (!btn) return;
-
-    btn.addEventListener('click', function () {
-      var page = window.location.pathname.split('/').pop() || 'index.html';
-      var isZh = page.indexOf('zh-') === 0;
-      var target = isZh ? page.slice(3) : 'zh-' + page;
-      localStorage.setItem('lang', isZh ? 'en' : 'zh');
-      var url = target + window.location.hash;
-      window.location.href = url;
-    });
-  }
+  // ── Language toggle ─────────────────────────────────────────
+  // Handled by js/i18n.js (in-place translation via js/i18n-zh.js dictionary).
+  // No page navigation, no zh-*.html mirror files.
+  function initLangToggle() { /* moved to i18n.js */ }
 
   // ── Hamburger (mobile nav) ───────────────────────────────────
   function initHamburger() {

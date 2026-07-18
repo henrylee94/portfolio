@@ -39,7 +39,7 @@
 
       <nav class="topbar-nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
+        <a href="work/index.html">Work</a>
         <a href="ai.html" aria-current="page">AI</a>
         <a href="lab.html">Lab</a>
         <a href="notes.html">Notes</a>
@@ -76,7 +76,7 @@
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
         <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
+        <a href="work/index.html">Work</a>
         <a href="ai.html" aria-current="page">AI</a>
         <a href="lab.html">Lab</a>
         <a href="notes.html">Notes</a>
@@ -177,7 +177,7 @@
                 <span class="demo-terminal-title">#incidents</span>
               </div>
               <div class="demo-terminal-body">
-                <p class="term-line term-cmd">[lark] @bugdoctor error spike, workflow svc</p>
+                <p class="term-line term-cmd">[chat] @bugdoctor error spike, workflow svc</p>
                 <p class="term-line term-out">→ tracing across repos… (MCP: logs + code)</p>
                 <p class="term-line term-out">→ hypothesis: stale credential cache</p>
                 <p class="term-line term-out">→ evidence: trace id 8f3a · 3 log lines</p>
@@ -187,9 +187,9 @@
             <div class="demo-info">
               <span class="demo-num" aria-hidden="true">D2</span>
               <h3>Bug Doctor</h3>
-              <p>Team-built AI incident diagnoser living in Lark: symptoms in, trace-backed hypotheses out — reading production logs over MCP and code across every repo, frontend and backend. The real work was making the system diagnosable first: standardized errors, trace IDs through every hop, names that tell you what broke. The bot is the payoff; the discipline is the design.</p>
+              <p>Team-built AI incident diagnoser living in our team chat: symptoms in, trace-backed hypotheses out — reading production logs over MCP and code across every repo, frontend and backend. The real work was making the system diagnosable first: standardized errors, trace IDs through every hop, names that tell you what broke. The bot is the payoff; the discipline is the design.</p>
               <ul class="demo-stack" aria-label="Tech stack">
-                <li>Lark Bot</li><li>MCP</li><li>Standardized Tracing</li>
+                <li>Chat Bot</li><li>MCP</li><li>Standardized Tracing</li>
               </ul>
             </div>
           </article>
@@ -226,17 +226,17 @@
                 <span class="demo-terminal-title">#operations</span>
               </div>
               <div class="demo-terminal-body">
-                <p class="term-line term-cmd">[lark] @reach send a $10 bonus to users registered on Jan 12</p>
+                <p class="term-line term-cmd">[chat] @reach send a $10 bonus to users registered on Jan 12</p>
                 <p class="term-line term-out">→ target preview ready · audit logged</p>
                 <p class="term-line term-gate">⏸ waiting for "confirm"…</p>
-                <p class="term-line term-out">→ executed · results reported to Lark ✓</p>
+                <p class="term-line term-out">→ executed · results reported to chat ✓</p>
                 <p class="term-line term-note"># preview first · a human confirms · audit always</p>
               </div>
             </div>
             <div class="demo-info">
               <span class="demo-num" aria-hidden="true">D4</span>
               <h3>Operations agent (human-in-the-loop)</h3>
-              <p>A LangChain agent living in Lark: operations asks in natural language, the agent resolves the target audience, shows a preview, and executes only after an explicit "confirm" — every step audit-logged. The same gate philosophy as everything else I build.</p>
+              <p>A LangChain agent living in our team chat: operations asks in natural language, the agent resolves the target audience, shows a preview, and executes only after an explicit "confirm" — every step audit-logged. The same gate philosophy as everything else I build.</p>
               <ul class="demo-stack" aria-label="Tech stack">
                 <li>LangChain</li><li>Zod Tools</li><li>Preview-first</li>
               </ul>
@@ -392,6 +392,8 @@
     </div>
   </footer>
 
+  <script src="js/i18n-zh.js" defer></script>
+  <script src="js/i18n.js" defer></script>
   <script src="js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

@@ -39,7 +39,7 @@
 
       <nav class="topbar-nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
+        <a href="work/index.html">Work</a>
         <a href="ai.html">AI</a>
         <a href="lab.html" aria-current="page">Lab</a>
         <a href="notes.html">Notes</a>
@@ -76,7 +76,7 @@
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
         <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
+        <a href="work/index.html">Work</a>
         <a href="ai.html">AI</a>
         <a href="lab.html" aria-current="page">Lab</a>
         <a href="notes.html">Notes</a>
@@ -232,7 +232,7 @@
           <h3 class="lab-card-title">AI home server</h3>
           <div class="case-grid">
             <div class="demo-info">
-              <p>No longer a blueprint — a Minisforum UM890 Pro (Ryzen 9 8945HS, 32GB) now runs 24/7 in my living room: Windows 11 with WSL2 Ubuntu, Hermes installed bare-metal inside, plus a FastAPI trading server and a static daily-news page. Access is Tailscale-only — zero open ports, with a Windows portproxy bridging into WSL. The honest lesson: local models were the plan, and they lost — Ollama running Qwen 2.5 7B and Llama 3.1 8B couldn't keep up with multi-round tool calling on CPU-only inference, so a tiered router now sends routine work to budget cloud models and reserves a heavyweight for deep reasoning. The security model survived contact intact: sandboxed agent, outbound allowlist, low-privilege accounts per service, and a green/yellow/red delegation matrix — banking credentials stay red, forever.</p>
+              <p>No longer a blueprint — a Minisforum UM890 Pro (Ryzen 9 8945HS, 32GB) now runs 24/7 in my living room: Windows 11 with WSL2 Ubuntu, Hermes installed bare-metal inside, plus a FastAPI trading server and a static daily-news page. Access is Tailscale-only — zero open ports, with a Windows portproxy bridging into WSL. The honest lesson: local models were the plan, and they lost — Ollama running Qwen 2.5 7B and Llama 3.1 8B couldn't keep up with multi-round tool calling on CPU-only inference, so a tiered router now sends routine work to budget cloud models and reserves a heavyweight for deep reasoning. The security model survived contact intact: sandboxed agent, outbound allowlist, low-privilege accounts per service, and a green/yellow/red delegation table — banking credentials stay red, forever.</p>
               <ul class="demo-stack" aria-label="Tech stack">
                 <li>UM890 · WSL2</li><li>Tailscale-only</li><li>Ollama → tiered cloud</li><li>24/7 since May 2026</li>
               </ul>
@@ -291,6 +291,8 @@
     </div>
   </footer>
 
+  <script src="js/i18n-zh.js" defer></script>
+  <script src="js/i18n.js" defer></script>
   <script src="js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

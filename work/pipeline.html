@@ -1,24 +1,24 @@
 <!doctype html>
-<html lang="zh" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>跨栈任务 pipeline — Henry Lee</title>
-  <meta name="description" content="一条横跨四个服务、三种语言的任务 pipeline——exactly-once 靠一张原子的 claims 台账,加一个人类可读的幂等 key,旧系统 0 改动。" />
+  <title>Cross-stack mission pipeline — Henry Lee</title>
+  <meta name="description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="跨栈任务 pipeline — Henry Lee" />
-  <meta property="og:description" content="一条横跨四个服务、三种语言的任务 pipeline——exactly-once 靠一张原子的 claims 台账,加一个人类可读的幂等 key,旧系统 0 改动。" />
+  <meta property="og:title" content="Cross-stack mission pipeline — Henry Lee" />
+  <meta property="og:description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="跨栈任务 pipeline — Henry Lee" />
-  <meta name="twitter:description" content="一条横跨四个服务、三种语言的任务 pipeline——exactly-once 靠一张原子的 claims 台账,加一个人类可读的幂等 key,旧系统 0 改动。" />
+  <meta name="twitter:title" content="Cross-stack mission pipeline — Henry Lee" />
+  <meta name="twitter:description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
 
   <script>
     (function () {
@@ -35,36 +35,36 @@
   <header class="topbar" role="banner">
     <div class="topbar-inner">
 
-      <a href="zh-index.html" class="topbar-logo" aria-label="Henry Lee — 首页">&lt;H/&gt;</a>
+      <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
-      <nav class="topbar-nav" aria-label="主导航">
-        <a href="zh-index.html">首页</a>
-        <a href="zh-work.html" aria-current="page">工作</a>
-        <a href="zh-ai.html">AI</a>
-        <a href="zh-lab.html">实验室</a>
-        <a href="zh-notes.html">笔记</a>
-        <a href="zh-index.html#contact">联系</a>
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
         <button
           class="topbar-btn"
           data-action="toggle-lang"
-          aria-label="View this page in English"
+          aria-label="View this page in Chinese"
           title="中 / EN"
-        >EN</button>
+        >中</button>
 
         <button
           class="topbar-btn"
           data-action="toggle-theme"
-          aria-label="切换到浅色模式"
-          title="切换主题"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
         >☀</button>
 
         <button
           class="topbar-hamburger"
           data-action="toggle-menu"
-          aria-label="打开菜单"
+          aria-label="Open menu"
           aria-expanded="false"
           aria-controls="mobile-nav"
         >
@@ -74,13 +74,13 @@
         </button>
       </div>
 
-      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="移动端导航">
-        <a href="zh-index.html">首页</a>
-        <a href="zh-work.html" aria-current="page">工作</a>
-        <a href="zh-ai.html">AI</a>
-        <a href="zh-lab.html">实验室</a>
-        <a href="zh-notes.html">笔记</a>
-        <a href="zh-index.html#contact">联系</a>
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -95,23 +95,23 @@
     ══════════════════════════════════════════════════════ -->
     <section id="case" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>案例 04 / 07</p>
-        <h1 class="section-heading">跨栈任务 pipeline——三种语言,exactly-once</h1>
-        <p class="case-hook">发现快拿到奖励的用户,给他一个 7 天挑战,达成即时发放——而且绝不发两次。</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 04 / 07</p>
+        <h1 class="section-heading">The exactly-once reliability layer for a cross-stack rewards pipeline</h1>
+        <p class="case-hook">Four services, three languages, a reward path where a double-pay is real loss — I designed the layer that makes payout happen exactly once, with zero changes to the legacy system.</p>
 
         <div class="hero-stats case-chips">
-          <span class="hero-stat">4 个服务 · 3 种语言</span>
-          <span class="hero-stat">exactly-once,分层实现</span>
-          <span class="hero-stat">旧系统 0 改动</span>
-          <span class="hero-stat">pre-prod 验证</span>
+          <span class="hero-stat">4 services · 3 languages</span>
+          <span class="hero-stat">exactly-once, layered</span>
+          <span class="hero-stat">0 legacy changes</span>
+          <span class="hero-stat">pre-prod verified</span>
         </div>
 
         <div class="case-grid">
           <div class="case-beats">
-            <div class="case-beat"><h4>背景</h4><p>市场团队想给接近下一个忠诚度等级的用户做自动的、限时的任务:实时发现他们,跑一个 7 天窗口,达成后即时发放升级。</p></div>
-            <div class="case-beat"><h4>约束</h4><p>发奖路径涉及资金:重复发放就是真实损失,而事件从流和 workflow 引擎两边都是 at-least-once 到达——两个互相独立的重复来源。</p></div>
-            <div class="case-beat"><h4>做法</h4><p>端到端把这条链做穿四个服务、三种语言——边界沿着平台现有的缝走(流处理平台、workflow 引擎、发奖 facade),组合已被验证的引擎,而不是造新的:一个 Java/Flink 作业过滤事件流,按查表计算以进入时刻为锚点的目标;一个 Rust + Temporal 引擎给每个用户跑一条持久 workflow;一个 NestJS facade 走现有升级路径发放——旧系统 0 改动。exactly-once 分层实现:一张原子的 claims 台账(每个用户、等级、月份只有一次机会)把住报名,一个人类可读的幂等 key(`mission:user:tier:month`)把住发放——生产上一眼就能排查。阈值只存在一个地方——生产者无条件广播,两个仓库永远不可能对同一个数字有分歧。</p></div>
-            <div class="case-beat case-beat-outcome"><h4>结果</h4><p>在 pre-production 通道里对着真实流量做了端到端验证;每一级都有漏斗指标。这套架构——发现 / 编排 / 发放,配置单一 owner——成了下一批任务类型的模板。</p></div>
+            <div class="case-beat"><h4>Situation</h4><p>Marketing wanted automatic, time-boxed missions for users close to their next loyalty tier: detect them in real time, run a 7-day window, grant the upgrade instantly on success.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>The reward path is financially sensitive: a duplicate grant is a real loss, and events arrive at least-once from both the stream and the workflow engine — two independent sources of duplicates.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Built the chain end-to-end across four services in three languages — the boundaries followed the platform's existing seams (the streaming platform, the workflow engine, the reward facade), composing proven engines instead of building new ones: a Java/Flink job filters the event stream and computes entry-anchored goals from a lookup table; a Rust + Temporal engine runs one durable workflow per user; a NestJS facade grants through the existing upgrade path — zero changes to legacy systems. Exactly-once is layered: an atomic claims ledger (one chance per user, tier, month) gates enrollment, and a human-readable idempotency key (`mission:user:tier:month`) gates the grant — debuggable at a glance in production. Thresholds live in exactly one place — producers broadcast unconditionally, so two repositories can never disagree about the same number.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Verified end-to-end against real production-like traffic in the pre-production lane — honest scope: it runs in QAT, not production — with funnel metrics at every stage and a dry-run-by-default rollout I put through an outside red-team before calling it safe. The service decomposition wasn't mine to claim; my design was the reliability layer on top — exactly-once by an owned ledger and key. That layer, plus detect / orchestrate / grant with single-owner config, is the template for the next mission types.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
             <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
@@ -137,10 +137,10 @@
         </div>
 
         <!-- ── Prev / next ─────────────────────────────────── -->
-        <nav class="case-pager" aria-label="案例导航">
-          <a href="zh-work-support.html">← 上一篇:实时客服平台</a>
-          <a href="zh-work.html">全部工作</a>
-          <a href="zh-work-ingestion.html">下一篇:交易记录接入 →</a>
+        <nav class="case-pager" aria-label="Case navigation">
+          <a href="support.html">← Previous: Real-time support platform</a>
+          <a href="index.html">All work</a>
+          <a href="ingestion.html">Next: Transaction-record ingestion →</a>
         </nav>
 
       </div>
@@ -159,11 +159,13 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="../js/i18n-zh.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/animations.js" defer></script>
+  <script src="../js/animations.js" defer></script>
 
 </body>
 </html>
