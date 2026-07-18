@@ -117,7 +117,7 @@
             </p>
 
             <p class="hero-positioning">
-              嗨,我是 Henry。每天数百万笔交易背后的后端系统是我做的,运营这些系统的团队也是我在带。
+              嗨,我是 Henry。我把后端平台从老单体带到契约先行的 gRPC 微服务——每天数百万笔交易背后的系统——并带着运营它的团队。
             </p>
 
             <div class="hero-stats hero-stats-detailed" role="status" aria-live="polite">
@@ -261,11 +261,40 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════
+         SYSTEMS AT ALTITUDE — scene 3.5: 大局观
+    ══════════════════════════════════════════════════════ -->
+    <section id="systems" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>大局观</p>
+        <h2 class="section-heading">系统,<em class="accent-serif">从高处看</em></h2>
+        <p class="section-intro">超越任何单个功能——拆解、平台,以及运行它的纪律。</p>
+
+        <div class="statements">
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">01</span>
+            <h3>把老单体拆成 gRPC 微服务。</h3>
+            <p>是增长逼出来的重构——每天数百万笔交易、峰值 ~1,000/s 还在往上爬,老架构撑不住了。我带队把平台最关键的流程迁到新的 NestJS/gRPC + Temporal 栈:框架先行、迁移途中清理死码、切流由 SDK 承载并做 endpoint 级降级回退。迁移即现代化,每一步都内建回退。</p>
+          </article>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">02</span>
+            <h3>搭起团队据以交付的契约先行平台。</h3>
+            <p>proto-first、契约先行:一份 <span class="hl">.proto</span> 生成 SDK 与所有服务共享的 gRPC 类型,接入就是一个 import、零样板。新增一个请求类型,从要人翻代码、等 merge 的 30–60 分钟,变成 <span class="hl">两分钟自助</span>表单——PR、发版、SemVer、changelog、通知。100+ 已发布版本;200+ 请求类型跑在一个 base workflow 上。这是 developer enablement,不只是一个库。</p>
+          </article>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">03</span>
+            <h3>用生产级可观测性把它跑起来。</h3>
+            <p>我每天早上盯的:队列积压、workflow 重试、DB 负载、慢查询、CPU/内存尖峰与泄漏——都在 Grafana 上,配合阿里云 SLS 做基于日志的告警与线上排查,底层是 OpenTelemetry 链路和 Prometheus 指标。优雅停机是不可妥协的 readiness gate——它是从一次真实事故里长出来的规则。<span class="hl">先索引,后缓存</span>:当年查一天数据都超时的查询,如今随便查 30 天窗口。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
          HOW I WORK — scene 4: statement rows + quiet compact list
     ══════════════════════════════════════════════════════ -->
     <section id="how" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>我怎么工作</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>我怎么工作</p>
         <h2 class="section-heading">我怎么<em class="accent-serif">工作</em></h2>
         <p class="section-intro">先讲原则,再谈任务。系统只是工作的一半——另一半是把做系统的人带出来。</p>
 
@@ -329,7 +358,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="about" class="section section-wash">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>关于</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">04</span>关于</p>
         <h2 class="section-heading">关于<em class="accent-serif">我</em></h2>
         <div class="about-body">
           <p>七年前,我以全栈工程师的身份加入一个高并发交易平台。它一路在长——中间也挂过几次。我先是救火的人,后来被点名去开荒新技术栈,再后来接手平台最关键的模块——现在带着团队负责它的核心。</p>
@@ -390,7 +419,7 @@
       <div class="container">
         <div class="contact-inner">
 
-          <p class="section-label" aria-hidden="true"><span class="section-num">04</span>联系</p>
+          <p class="section-label" aria-hidden="true"><span class="section-num">05</span>联系</p>
           <h2 class="section-heading">联系<em class="accent-serif">我</em></h2>
 
           <p class="section-intro">后端 team-lead 和资深平台方向的机会都可以聊——系统会换,纪律不会。</p>
