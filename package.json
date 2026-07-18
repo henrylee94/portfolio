@@ -13,7 +13,10 @@
   "scripts": {
     "start": "npx --yes serve .",
     "dev": "npx --yes serve .",
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint-check": "npm run format:check && npm run check"
   },
   "keywords": [
     "portfolio",

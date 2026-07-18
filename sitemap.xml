@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://henrylee94.github.io/portfolio/ai.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://henrylee94.github.io/portfolio/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/ai.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://henrylee94.github.io/portfolio/lab.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://henrylee94.github.io/portfolio/notes.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/work-backbone.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/work-crypto.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/work-ingestion.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/work-pipeline.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/work-reporting.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/work-scale.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/work-support.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/work.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-ai.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-index.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-lab.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-notes.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-work-backbone.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-work-crypto.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-work-ingestion.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-work-pipeline.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-work-reporting.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-work-scale.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-work-support.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://henrylee94.github.io/portfolio/zh-work.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/work/backbone.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/work/crypto.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/work/index.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/work/ingestion.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/work/pipeline.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/work/reporting.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/work/scale.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://henrylee94.github.io/portfolio/work/support.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

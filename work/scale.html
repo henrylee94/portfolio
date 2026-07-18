@@ -4,21 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Scaling 50k → 300k+ users — Henry Lee</title>
-  <meta name="description" content="The platform grew 6× and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
+  <title>Scaling 50k → 400k+ users — Henry Lee</title>
+  <meta name="description" content="The platform grew from 50k to 400k+ and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Scaling 50k → 300k+ users — Henry Lee" />
-  <meta property="og:description" content="The platform grew 6× and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
+  <meta property="og:title" content="Scaling 50k → 400k+ users — Henry Lee" />
+  <meta property="og:description" content="The platform grew from 50k to 400k+ and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Scaling 50k → 300k+ users — Henry Lee" />
-  <meta name="twitter:description" content="The platform grew 6× and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
+  <meta name="twitter:title" content="Scaling 50k → 400k+ users — Henry Lee" />
+  <meta name="twitter:description" content="The platform grew from 50k to 400k+ and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
 
   <script>
     (function () {
@@ -35,15 +35,15 @@
   <header class="topbar" role="banner">
     <div class="topbar-inner">
 
-      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+      <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -75,12 +75,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -96,30 +96,30 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 02 / 07</p>
-        <h1 class="section-heading">Scaling a platform 50k → 300k+ users</h1>
-        <p class="case-hook">The platform grew six-fold; my job was making sure nobody noticed.</p>
+        <h1 class="section-heading">Keeping a high-concurrency transaction platform standing 50k → 400k+ users</h1>
+        <p class="case-hook">I drove the re-architectures that kept the platform up as daily users climbed to 400k+ — replacing the ceilings one live single-point at a time.</p>
 
         <div class="hero-stats case-chips">
-          <span class="hero-stat">6× growth, live</span>
-          <span class="hero-stat">+1e9 cutover offset</span>
+          <span class="hero-stat">50k → 400k+, live</span>
+          <span class="hero-stat">collision-proof cutover</span>
           <span class="hero-stat">sub-second pushes</span>
           <span class="hero-stat">1 day → 30-day queries</span>
         </div>
 
         <div class="case-grid">
           <div class="case-beats">
-            <div class="case-beat"><h4>Situation</h4><p>Over four years the member management platform grew 6×, and growth kept finding the limits of the old mechanisms — a counter document in the database serialized every ID; notification fan-out stalled under load. More than once, the failure happened in production first.</p></div>
+            <div class="case-beat"><h4>Situation</h4><p>Over four years the member management platform grew from 50k to 400k+, and growth kept finding the limits of the old mechanisms — a counter document in the database serialized every ID; notification fan-out stalled under load. More than once, the failure happened in production first.</p></div>
             <div class="case-beat"><h4>Constraint</h4><p>No rewrite budget, no downtime allowance — every fix had to land inside a weekly release train, live, with users on.</p></div>
-            <div class="case-beat"><h4>Approach</h4><p>Root-caused each bottleneck to its mechanism, then replaced the mechanism, not the symptom: ID generation moved from a database counter to atomic Redis INCR — cut over with a +1-billion offset so old and new ranges could never collide; notification fan-out moved to Redis pub/sub (shipped, reverted on a production surprise, re-landed hardened); blocking full-set scans replaced with cursor-based SSCAN; a leaking in-memory config cache rebuilt with a 15-minute refresh cycle.</p></div>
-            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform sustains 300k+ DAU without the old failure modes. The patterns introduced (cache-aside, atomic counters, pub/sub fan-out) became house standards for modules built after.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Every target was a live global single-point, so I optimized for reversibility over speed — small, individually revertible PRs shipped in series rather than one big-bang cutover. I championed bringing a distributed cache into the platform, then root-caused each bottleneck to its mechanism and replaced the mechanism, not the symptom: ID generation moved from a database counter to atomic Redis INCR — cut over with a +1-billion offset so old and new ranges could never collide; notification fan-out moved to Redis pub/sub (shipped, reverted on a production surprise, re-landed hardened); blocking full-set scans replaced with cursor-based SSCAN; a leaking in-memory config cache rebuilt with a 15-minute refresh cycle.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform sustains 400k+ daily active users without the old failure modes. The patterns introduced (cache-aside, atomic counters, pub/sub fan-out) became house standards for modules built after.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
             <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
               <text class="dg-label" x="20" y="30">replace the mechanism, not the symptom</text>
-              <g class="dg-node dg-node-fail"><rect x="20" y="56" width="140" height="38" rx="4"/><text x="90" y="80" text-anchor="middle">DB counter doc</text></g>
+              <g class="dg-node dg-node-fail"><rect x="20" y="56" width="140" height="38" rx="4"/><text x="90" y="80" text-anchor="middle">database counter</text></g>
               <text class="dg-fail-mark" x="180" y="80">✕ serialized</text>
               <g class="dg-node dg-node-ok"><rect x="300" y="56" width="160" height="38" rx="4"/><text x="380" y="80" text-anchor="middle">Redis INCR · +1e9</text></g>
-              <g class="dg-node dg-node-fail"><rect x="20" y="120" width="140" height="38" rx="4"/><text x="90" y="144" text-anchor="middle">WS fan-out</text></g>
+              <g class="dg-node dg-node-fail"><rect x="20" y="120" width="140" height="38" rx="4"/><text x="90" y="144" text-anchor="middle">WebSocket fan-out</text></g>
               <text class="dg-fail-mark" x="180" y="144">✕ stalls</text>
               <g class="dg-node dg-node-ok"><rect x="300" y="120" width="160" height="38" rx="4"/><text x="380" y="144" text-anchor="middle">pub/sub · N instances</text></g>
               <g class="dg-node dg-node-fail"><rect x="20" y="184" width="140" height="38" rx="4"/><text x="90" y="208" text-anchor="middle">SMEMBERS</text></g>
@@ -144,7 +144,7 @@
           <div class="notes-grid">
             <article class="note-card">
               <h3>The tuning months</h3>
-              <p>Before this platform earned its Redis layer, it had to earn its database. The reporting layer predated any BI team — and one stretch of growth broke it visibly: operational reports stopped coming back at all, and on the busiest collection a query couldn't return even a single day's records without timing out.</p>
+              <p>Before this platform earned its Redis layer, it had to earn its database. The reporting layer predated any business-intelligence team — and one stretch of growth broke it visibly: operational reports stopped coming back at all, and on the busiest collection a query couldn't return even a single day's records without timing out.</p>
               <p>The months that followed were unglamorous: reading the slow-query log like a newspaper, matching covering indexes to the query shapes people actually ran (and deleting the indexes nobody did — on write-heavy collections an unused index is pure tax), rebuilding aggregation pipelines stage by stage, and moving text search off regex scans onto a proper search index.</p>
               <p>Thirty-day report windows came back comfortably on collections where one day used to time out. That work never made a release announcement — but every feature shipped since stands on it.</p>
             </article>
@@ -165,9 +165,9 @@
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="work-backbone.html">← Previous: Workflow backbone</a>
-          <a href="work.html">All work</a>
-          <a href="work-support.html">Next: Real-time support platform →</a>
+          <a href="backbone.html">← Previous: Workflow backbone</a>
+          <a href="index.html">All work</a>
+          <a href="support.html">Next: Real-time support platform →</a>
         </nav>
 
       </div>
@@ -186,11 +186,13 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="../js/i18n-zh.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/animations.js" defer></script>
+  <script src="../js/animations.js" defer></script>
 
 </body>
 </html>

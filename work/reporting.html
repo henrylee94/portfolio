@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Reporting engine &amp; regulatory delivery — Henry Lee</title>
-  <meta name="description" content="A precompute/recompute reporting layer built before a BI team existed — and million-row-per-file regulatory filings that always met the deadline." />
+  <meta name="description" content="A precompute/recompute reporting layer built before a business-intelligence team existed — and million-row-per-file regulatory filings that always met the deadline." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Reporting engine &amp; regulatory delivery — Henry Lee" />
-  <meta property="og:description" content="A precompute/recompute reporting layer built before a BI team existed — and million-row-per-file regulatory filings that always met the deadline." />
+  <meta property="og:description" content="A precompute/recompute reporting layer built before a business-intelligence team existed — and million-row-per-file regulatory filings that always met the deadline." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Reporting engine &amp; regulatory delivery — Henry Lee" />
-  <meta name="twitter:description" content="A precompute/recompute reporting layer built before a BI team existed — and million-row-per-file regulatory filings that always met the deadline." />
+  <meta name="twitter:description" content="A precompute/recompute reporting layer built before a business-intelligence team existed — and million-row-per-file regulatory filings that always met the deadline." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
 
   <script>
     (function () {
@@ -35,15 +35,15 @@
   <header class="topbar" role="banner">
     <div class="topbar-inner">
 
-      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+      <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -75,12 +75,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -96,8 +96,8 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 07 / 07</p>
-        <h1 class="section-heading">Reporting engine &amp; regulatory delivery</h1>
-        <p class="case-hook">The reports a regulator demands, on time, at millions of rows.</p>
+        <h1 class="section-heading">The platform's reporting engine for six years — before there was a business-intelligence (BI) team</h1>
+        <p class="case-hook">Multi-view analytics over million-row, long-window queries on the primary database — 140+ reporting changes, plus regulatory filings on time at millions of rows.</p>
 
         <div class="hero-stats case-chips">
           <span class="hero-stat">millions of rows/day</span>
@@ -107,14 +107,14 @@
 
         <div class="case-beats">
           <div class="case-beat"><h4>Situation</h4><p>Before a BI team existed, operations, partners, and management all needed data — and later, a regulator needed daily filings in exact formats: millions of rows per day, hard deadline, aggregated over long windows on the production database.</p></div>
-          <div class="case-beat"><h4>Design</h4><p>Built the platform's general-purpose reporting layer on a precompute + recompute dual track: an independent settlement process streams per-user transaction flows to workers in batches, landing daily summaries; ad-hoc queries run tuned aggregation pipelines. Rewrote the scheduler for reliable 2-day recompute windows. For regulatory delivery, built the filing pipeline: million-row-per-file slicing, append-based FTP upload, stream batches tuned until multi-million-row days fit the window.</p></div>
+          <div class="case-beat"><h4>Design</h4><p>Reporting numbers feed commercial reconciliation, so I optimized for both speed and correctness rather than trading one for the other — a precompute + recompute dual track: read from precomputed daily summaries for latency, keep a recompute window open so late corrections still land. An independent settlement process streams per-user transaction flows to workers in batches, landing those daily summaries; ad-hoc queries run tuned aggregation pipelines; the scheduler was rewritten for reliable 2-day recompute windows. For regulatory delivery, built the filing pipeline: million-row-per-file slicing, append-based FTP upload, stream batches tuned until multi-million-row days fit the window.</p></div>
           <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform had a working BI function before it had a BI team — the formal team later built on these foundations. Regulatory filings shipped on schedule at million-row scale; 140+ reporting changes over six years.</p></div>
         </div>
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="work-crypto.html">← Previous: Crypto payment rails</a>
-          <a href="work.html">All work</a>
+          <a href="crypto.html">← Previous: Crypto payment rails</a>
+          <a href="index.html">All work</a>
         </nav>
 
       </div>
@@ -133,11 +133,13 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="../js/i18n-zh.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/animations.js" defer></script>
+  <script src="../js/animations.js" defer></script>
 
 </body>
 </html>

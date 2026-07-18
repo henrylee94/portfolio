@@ -17,8 +17,8 @@
   <meta name="twitter:title" content="Real-time support platform — Henry Lee" />
   <meta name="twitter:description" content="AI-assisted support with human takeover, built from zero on a stack nobody had shipped yet — then handed off clean, twice." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
 
   <script>
     (function () {
@@ -35,15 +35,15 @@
   <header class="topbar" role="banner">
     <div class="topbar-inner">
 
-      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+      <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -75,12 +75,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -96,21 +96,21 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 03 / 07</p>
-        <h1 class="section-heading">Real-time support platform — from zero to clean handoff</h1>
-        <p class="case-hook">Customers talk to an AI first — a human steps in the moment it struggles.</p>
+        <h1 class="section-heading">The first production service on a brand-new stack — from zero to clean handoff</h1>
+        <p class="case-hook">The pilot the whole stack migration was judged on — I built it solo, and every pattern I set became the template later services copied.</p>
 
         <div class="hero-stats case-chips">
-          <span class="hero-stat">solo start → team of 2</span>
-          <span class="hero-stat">~70% AI-absorbed</span>
-          <span class="hero-stat">head-of-queue pick</span>
-          <span class="hero-stat">handed off clean</span>
+          <span class="hero-stat">first on the new stack</span>
+          <span class="hero-stat">buy the base, build the moat</span>
+          <span class="hero-stat">solo → team → clean handoff</span>
+          <span class="hero-stat">became the template others copied</span>
         </div>
 
         <div class="case-grid">
           <div class="case-beats">
             <div class="case-beat"><h4>Situation</h4><p>The company needed AI-assisted customer conversations with human takeover — and had just decided on a new microservices stack no one had shipped to production yet. I was handed both problems at once.</p></div>
-            <div class="case-beat"><h4>Constraint</h4><p>Solo start; NestJS, gRPC, Temporal, Pulsar and Matrix — all new to me at once; the outcome would decide whether the company's migration was viable.</p></div>
-            <div class="case-beat"><h4>Approach</h4><p>Self-hosted Matrix/Synapse as the message transport (the framework was the CTO's call; the data model and flows were mine), then built everything it doesn't have: an agent-routing queue encoding status > load > wait-time into a single Redis sorted-set score — banded so status always outranks load, and load outranks waiting time; assignment just reads the head of the queue; a mini back-office management system so agents see a member's account records, top-up / withdrawal history and permissions in one screen instead of switching systems; AI answers first — designed to absorb the repetitive ~70% of inquiries — with a 10-second race guard that hands the chat to a human whenever the model stalls or errors. Concurrency was the war — the score race and the duplicate-invite storm both have their own war stories below.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>Solo start; NestJS, gRPC, Temporal, Pulsar and an off-the-shelf messaging backbone — all new to me at once; the outcome would decide whether the company's migration was viable.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Self-hosted an off-the-shelf messaging backbone as the message transport (the framework was the CTO's call; the data model and flows were mine), then built only the differentiators it doesn't have: an agent-routing queue encoding status > load > wait-time into a single Redis sorted-set score — banded so status always outranks load, and load outranks waiting time; assignment just reads the head of the queue; a mini back-office management system so agents see a member's account records, top-up / withdrawal history and permissions in one screen instead of switching systems; AI answers first — designed to absorb the repetitive ~70% of inquiries — with a 10-second race guard that hands the chat to a human whenever the model stalls or errors. Concurrency was the war — the score race and the duplicate-invite storm both have their own war stories below.</p></div>
             <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>First production service on the new stack — the pattern reference (config via Vault, contract-first gRPC, structured logging, graceful shutdown) that later services copied. Grew the team to two, handed the service to a maintenance team, later to the AI team. It now runs as a standalone multi-channel middleware.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
@@ -127,7 +127,7 @@
               <path class="dg-wire" d="M 380 122 C 380 145 300 155 240 170" fill="none"/>
               <g class="dg-node dg-node-ok"><rect x="180" y="240" width="120" height="34" rx="4"/><text x="240" y="262" text-anchor="middle">agent · O(1)</text></g>
               <line class="dg-wire" x1="240" y1="210" x2="240" y2="240"/>
-              <text class="dg-label" x="20" y="296">Matrix as transport — everything above it, built in-house</text>
+              <text class="dg-label" x="20" y="296">off-the-shelf backbone as transport — everything above it, built in-house</text>
               <g class="dg-flow">
                 <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="11s" repeatCount="indefinite" begin="0s" path="M 65 75 L 220 80 C 260 92 270 100 300 105 L 380 108 L 380 122 C 380 145 300 155 240 170 L 240 250"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.93;1" dur="11s" repeatCount="indefinite" begin="0s"/></circle>
                 <circle class="dg-dot" r="4" opacity="0"><animateMotion dur="11s" repeatCount="indefinite" begin="-5.5s" path="M 65 75 L 220 80 C 260 92 270 100 300 105 L 380 108 L 380 122 C 380 145 300 155 240 170 L 240 250"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.93;1" dur="11s" repeatCount="indefinite" begin="-5.5s"/></circle>
@@ -147,7 +147,7 @@
             </article>
             <article class="note-card">
               <h3>Two agents, one conversation</h3>
-              <p>Two messages arriving in the same conversation at the same moment each decided a human agent was needed — and two agents got invited into one chat. The fence is a per-room lock: the first caller takes it and performs the invite, everyone else finds it held and walks away, and the lock's TTL is aligned to the operation so a crash can't leave the room locked forever. Anything triggered by "a message arrived" will eventually be triggered twice in the same millisecond — design for the second caller before it exists.</p>
+              <p>Two messages arriving in the same conversation at the same moment each decided a human agent was needed — and two agents got invited into one chat. The fence is a per-room lock: the first caller takes it and performs the invite, everyone else finds it held and walks away, and the lock's time-to-live is aligned to the operation so a crash can't leave the room locked forever. Anything triggered by "a message arrived" will eventually be triggered twice in the same millisecond — design for the second caller before it exists.</p>
             </article>
             <article class="note-card">
               <h3>The model is a dependency you can't trust</h3>
@@ -158,9 +158,9 @@
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="work-scale.html">← Previous: Scaling 50k → 300k+ users</a>
-          <a href="work.html">All work</a>
-          <a href="work-pipeline.html">Next: Cross-stack mission pipeline →</a>
+          <a href="scale.html">← Previous: Scaling 50k → 400k+ users</a>
+          <a href="index.html">All work</a>
+          <a href="pipeline.html">Next: Cross-stack mission pipeline →</a>
         </nav>
 
       </div>
@@ -179,11 +179,13 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="../js/i18n-zh.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/animations.js" defer></script>
+  <script src="../js/animations.js" defer></script>
 
 </body>
 </html>

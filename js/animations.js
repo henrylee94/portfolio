@@ -21,7 +21,8 @@
       ? '#hero .hero-stat-item'
       : '#hero .hero-stat';
 
-    const tl = gsap.timeline({ delay: 0.2, defaults: { ease: 'power3.out' } })
+    const tl = gsap
+      .timeline({ delay: 0.2, defaults: { ease: 'power3.out' } })
       .from('.hero-prompt', { y: 16, opacity: 0, duration: 0.35 }, 0)
       .from('#hero .hero-name .hero-line', { y: 28, opacity: 0, duration: 0.7, stagger: 0.1 }, 0.1);
 
@@ -46,20 +47,26 @@
     const heroSvg = document.querySelector('#hero .hero-diagram svg');
     if (heroSvg) {
       tl.from('.hero-visual', { x: 24, opacity: 0, duration: 0.5 }, 0.75);
-      const heroWires = Array.from(heroSvg.querySelectorAll('.dg-wire'))
-        .filter((w) => typeof w.getTotalLength === 'function');
+      const heroWires = Array.from(heroSvg.querySelectorAll('.dg-wire')).filter(
+        (w) => typeof w.getTotalLength === 'function',
+      );
       if (heroWires.length) {
         heroWires.forEach((w) => {
           const len = w.getTotalLength();
           gsap.set(w, { strokeDasharray: len, strokeDashoffset: len });
         });
-        tl.to(heroWires, {
-          strokeDashoffset: 0,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: 'power1.inOut',
-          onComplete: () => gsap.set(heroWires, { clearProps: 'strokeDasharray,strokeDashoffset' }),
-        }, 0.95);
+        tl.to(
+          heroWires,
+          {
+            strokeDashoffset: 0,
+            duration: 0.7,
+            stagger: 0.08,
+            ease: 'power1.inOut',
+            onComplete: () =>
+              gsap.set(heroWires, { clearProps: 'strokeDasharray,strokeDashoffset' }),
+          },
+          0.95,
+        );
       }
     }
   }
@@ -69,7 +76,10 @@
   // ---------------------------------------------------------------------------
   gsap.utils.toArray('.section-heading').forEach((el) => {
     gsap.from(el, {
-      y: 24, opacity: 0, duration: 0.6, ease: 'power2.out',
+      y: 24,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 85%', once: true },
     });
   });
@@ -79,21 +89,24 @@
   //    clearProps removes the leftover transform so sticky case diagrams
   //    and CSS hover translations keep working after the reveal.
   // ---------------------------------------------------------------------------
-  const targets = gsap.utils.toArray('.about-body, .about-lines, .num-cell, .band-cell, .band-facts, .case, .case-mini, .case-beat, .more-work, .principle, .statement, .principle-line, .note-card, .demo-row, .xp-item, .tier, .lab-card, .road');
+  const targets = gsap.utils.toArray(
+    '.about-body, .about-lines, .num-cell, .band-cell, .band-facts, .case, .case-mini, .case-beat, .more-work, .principle, .statement, .principle-line, .note-card, .demo-row, .xp-item, .tier, .lab-card, .road',
+  );
   if (targets.length) {
     gsap.set(targets, { y: 24, opacity: 0 });
 
     ScrollTrigger.batch(targets, {
-    start: 'top 88%',
-    once: true,
-      onEnter: (els) => gsap.to(els, {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power2.out',
-        clearProps: 'transform',
-      }),
+      start: 'top 88%',
+      once: true,
+      onEnter: (els) =>
+        gsap.to(els, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power2.out',
+          clearProps: 'transform',
+        }),
     });
   }
 
@@ -102,16 +115,20 @@
   //     oversized section numbers keep drifting as long as the page moves.
   // ---------------------------------------------------------------------------
   gsap.utils.toArray('.section-num').forEach((el) => {
-    gsap.fromTo(el, { y: 30 }, {
-      y: -30,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: el.closest('.section') || el,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.5,
+    gsap.fromTo(
+      el,
+      { y: 30 },
+      {
+        y: -30,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el.closest('.section') || el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5,
+        },
       },
-    });
+    );
   });
 
   // ---------------------------------------------------------------------------
@@ -136,14 +153,16 @@
     const nums = spec.filter((s) => s.text === undefined);
 
     const render = () => {
-      el.textContent = spec.map((s) => {
-        if (s.text !== undefined) return s.text;
-        return s.value.toLocaleString('en-US', {
-          minimumFractionDigits: s.decimals,
-          maximumFractionDigits: s.decimals,
-          useGrouping: s.grouped,
-        });
-      }).join('');
+      el.textContent = spec
+        .map((s) => {
+          if (s.text !== undefined) return s.text;
+          return s.value.toLocaleString('en-US', {
+            minimumFractionDigits: s.decimals,
+            maximumFractionDigits: s.decimals,
+            useGrouping: s.grouped,
+          });
+        })
+        .join('');
     };
 
     gsap.to(nums, {
@@ -151,7 +170,9 @@
       duration: 1.2,
       ease: 'power2.out',
       onUpdate: render,
-      onComplete: () => { el.textContent = original; },
+      onComplete: () => {
+        el.textContent = original;
+      },
       scrollTrigger: { trigger: el, start: 'top 88%', once: true },
     });
   });
@@ -179,8 +200,9 @@
   // ---------------------------------------------------------------------------
   gsap.utils.toArray('.case-diagram svg').forEach((svg) => {
     if (svg.closest('.hero-diagram')) return; // hero diagram draws in its own timeline
-    const wires = Array.from(svg.querySelectorAll('.dg-wire'))
-      .filter((w) => typeof w.getTotalLength === 'function');
+    const wires = Array.from(svg.querySelectorAll('.dg-wire')).filter(
+      (w) => typeof w.getTotalLength === 'function',
+    );
     if (!wires.length) return;
 
     wires.forEach((w) => {
@@ -197,5 +219,4 @@
       scrollTrigger: { trigger: svg, start: 'top 80%', once: true },
     });
   });
-
-}());
+})();

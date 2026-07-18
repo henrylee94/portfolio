@@ -17,8 +17,8 @@
   <meta name="twitter:title" content="Transaction-record ingestion — Henry Lee" />
   <meta name="twitter:description" content="over ten million records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
 
   <script>
     (function () {
@@ -35,15 +35,15 @@
   <header class="topbar" role="banner">
     <div class="topbar-inner">
 
-      <a href="index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+      <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -75,12 +75,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="index.html">Home</a>
-        <a href="work.html" aria-current="page">Work</a>
-        <a href="ai.html">AI</a>
-        <a href="lab.html">Lab</a>
-        <a href="notes.html">Notes</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../ai.html">AI</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -96,19 +96,20 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 05 / 07</p>
-        <h1 class="section-heading">Transaction-record ingestion — over ten million records a day from 10+ sources</h1>
-        <p class="case-hook">Every balance change a user sees, gathered from 10+ systems, always adding up.</p>
+        <h1 class="section-heading">Hand-building the platform's highest-volume data path — over ten million records a day</h1>
+        <p class="case-hook">Every balance change a user sees, pulled from 10+ heterogeneous systems most of which my team didn't own — aligned record by record, always adding up.</p>
 
         <div class="hero-stats case-chips">
           <span class="hero-stat">over ten million records/day</span>
-          <span class="hero-stat">10+ sources</span>
+          <span class="hero-stat">10+ heterogeneous sources</span>
+          <span class="hero-stat">cross-team alignment</span>
           <span class="hero-stat">hot / cold split</span>
         </div>
 
         <div class="case-beats">
-          <div class="case-beat"><h4>Situation</h4><p>Every balance change a user sees must be complete, ordered, and fast to query — but records originate from 10+ heterogeneous sources that disagree on shape, timing, and delivery guarantees: millions/day through the audited workflow path, the rest streaming directly from providers and internal systems.</p></div>
-          <div class="case-beat"><h4>Design</h4><p>Split storage by read pattern: hot recent history on the OLTP store with covering indexes; long-window analytics offloaded to a columnar layer fed by the ingestion pipeline; source-specific shapes normalized at the boundary, with per-source caching and channel-aware routing.</p></div>
-          <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>over ten million records/day ingested and queryable; recent-history reads stay fast while analytical queries stopped competing with production traffic.</p></div>
+          <div class="case-beat"><h4>Situation</h4><p>The platform's most demanding data path — a superset of the transaction backbone. Every balance change a user sees must be complete, ordered, and fast to query, but records originate from 10+ heterogeneous sources that disagree on shape, timing, and delivery guarantees: millions/day through the audited workflow path, the rest streaming straight from providers and internal systems most of which my team didn't own.</p></div>
+          <div class="case-beat"><h4>Approach</h4><p>Hand-built the ingestion pipeline — composing a stream processor with a durable-workflow engine — and chose an analytics-oriented store deliberately, so long-window analytics volume wouldn't contend with production reads and writes for resources: hot recent history on the operational store with covering indexes; long-window analytics offloaded to a columnar layer fed by the pipeline; source-specific shapes normalized at the boundary, with per-source caching and channel-aware routing. The hard part was cross-team alignment, not code: I scanned every transaction path across two generations of the system, drove the direction for the owning teams, and reconciled historical mismatches record by record where amounts didn't line up — and shipped it while learning the real-time analytics database and stream stack on the fly, in two weeks.</p></div>
+          <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Over ten million records a day (climbing) ingested and queryable; recent-history reads stay fast while analytical queries stopped competing with production traffic.</p></div>
         </div>
 
         <!-- ── War stories ─────────────────────────────────── -->
@@ -126,9 +127,9 @@
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="work-pipeline.html">← Previous: Cross-stack mission pipeline</a>
-          <a href="work.html">All work</a>
-          <a href="work-crypto.html">Next: Crypto payment rails →</a>
+          <a href="pipeline.html">← Previous: Cross-stack mission pipeline</a>
+          <a href="index.html">All work</a>
+          <a href="crypto.html">Next: Crypto payment rails →</a>
         </nav>
 
       </div>
@@ -147,11 +148,13 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="../js/i18n-zh.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/main.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/animations.js" defer></script>
+  <script src="../js/animations.js" defer></script>
 
 </body>
 </html>

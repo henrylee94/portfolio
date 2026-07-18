@@ -17,7 +17,10 @@
     // Update toggle button aria-label for accessibility
     var btn = document.querySelector('[data-action="toggle-theme"]');
     if (btn) {
-      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+      );
       btn.textContent = theme === 'dark' ? '☀' : '◑';
     }
   }
@@ -27,21 +30,11 @@
     applyTheme(current === 'dark' ? 'light' : 'dark');
   }
 
-  // ── Language toggle (EN ↔ zh mirror pages) ──────────────────
-  // Manual navigation only — no auto-redirect on load (no flash).
-  // Naming convention: index.html ↔ zh-index.html
+  // ── Language toggle ─────────────────────────────────────────
+  // Handled by js/i18n.js (in-place translation via js/i18n-zh.js dictionary).
+  // No page navigation, no zh-*.html mirror files.
   function initLangToggle() {
-    var btn = document.querySelector('[data-action="toggle-lang"]');
-    if (!btn) return;
-
-    btn.addEventListener('click', function () {
-      var page = window.location.pathname.split('/').pop() || 'index.html';
-      var isZh = page.indexOf('zh-') === 0;
-      var target = isZh ? page.slice(3) : 'zh-' + page;
-      localStorage.setItem('lang', isZh ? 'en' : 'zh');
-      var url = target + window.location.hash;
-      window.location.href = url;
-    });
+    /* moved to i18n.js */
   }
 
   // ── Hamburger (mobile nav) ───────────────────────────────────
@@ -100,12 +93,16 @@
       ticking = false;
     }
 
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(update);
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
     window.addEventListener('resize', update);
     update();
   }
@@ -128,22 +125,31 @@
       }
     }
 
-    svgs.forEach(function (svg) { setRunning(svg, false); });
+    svgs.forEach(function (svg) {
+      setRunning(svg, false);
+    });
 
     if (reduced) return; // stays paused (dots are also hidden via CSS)
 
     if (!('IntersectionObserver' in window)) {
-      svgs.forEach(function (svg) { setRunning(svg, true); });
+      svgs.forEach(function (svg) {
+        setRunning(svg, true);
+      });
       return;
     }
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        setRunning(entry.target, entry.isIntersecting);
-      });
-    }, { rootMargin: '80px' });
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          setRunning(entry.target, entry.isIntersecting);
+        });
+      },
+      { rootMargin: '80px' },
+    );
 
-    svgs.forEach(function (svg) { observer.observe(svg); });
+    svgs.forEach(function (svg) {
+      observer.observe(svg);
+    });
   }
 
   // ── Boot ─────────────────────────────────────────────────────
@@ -163,4 +169,4 @@
     initScrollProgress();
     initDiagramFlow();
   });
-}());
+})();

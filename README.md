@@ -2,7 +2,7 @@
 
 [![Live](https://img.shields.io/badge/live-henrylee94.github.io%2Fportfolio-4de3ff?style=flat)](https://henrylee94.github.io/portfolio/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f0a63c?style=flat)](LICENSE)
-![No build step](https://img.shields.io/badge/build-none%20(static)-26d07c?style=flat)
+![No build step](<https://img.shields.io/badge/build-none%20(static)-26d07c?style=flat>)
 
 > Backend Team Lead — I design and ship the systems behind a high-concurrency,
 > real-money platform, from legacy monolith to modern microservices.
