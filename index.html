@@ -289,6 +289,32 @@
             <p>What I watch every morning: queue backlog, workflow retries, database load, slow queries, CPU/memory spikes and leaks — on Grafana, with Aliyun SLS for log-based alerting and incident triage, OpenTelemetry traces and Prometheus metrics underneath. Graceful shutdown is a non-negotiable readiness gate — it came out of a real incident. <span class="hl">Index first, cache second</span>: queries that timed out on a single day of data now scan a 30-day window.</p>
           </article>
         </div>
+
+        <!-- ── Proof strip — live demos as evidence ────────── -->
+        <div class="proof-strip">
+          <h3 class="more-work-heading">Proof — run the designs</h3>
+          <p class="section-intro proof-strip-intro">Don't take my word for it — these are live, interactive rebuilds of the designs above. Break them yourself.</p>
+          <div class="proof-cards">
+            <a class="proof-card" href="https://henrylee94.github.io/lab/showcase-idempotency.html" target="_blank" rel="noopener">
+              <span class="proof-card-kicker">live demo 01</span>
+              <h4>Retry Storm</h4>
+              <p>Hammer one transaction with retries — the idempotency design refuses to execute it twice.</p>
+              <span class="proof-card-cta">Play the design →</span>
+            </a>
+            <a class="proof-card" href="https://henrylee94.github.io/lab/showcase-router.html" target="_blank" rel="noopener">
+              <span class="proof-card-kicker">live demo 02</span>
+              <h4>Dispatch Floor</h4>
+              <p>Watch the routing queue pick the next agent — status first, load second, longest wait breaks the tie.</p>
+              <span class="proof-card-cta">Play the design →</span>
+            </a>
+            <a class="proof-card" href="https://henrylee94.github.io/lab/showcase-github.html" target="_blank" rel="noopener">
+              <span class="proof-card-kicker">live demo 03</span>
+              <h4>Live GitHub</h4>
+              <p>This site's own repository activity, streamed straight from the GitHub API — the shipping never stopped.</p>
+              <span class="proof-card-cta">See it live →</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 

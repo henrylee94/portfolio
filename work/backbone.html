@@ -141,6 +141,44 @@
           </div>
         </div>
 
+        <!-- ── The design, in code ─────────────────────────── -->
+        <div class="proof-code">
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">create-record.workflow.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Idempotency by construction — the workflow ID doubles as the creation key.</span>
+<span class="tk-kw">async function</span> <span class="tk-fn">createRecord</span>(req: <span class="tk-type">CreateRequest</span>): <span class="tk-type">Promise</span>&lt;<span class="tk-type">TxRecord</span>&gt; {
+  <span class="tk-kw">const</span> workflowId = <span class="tk-str">`tx-${req.type}-${req.requestId}`</span>;
+
+  <span class="tk-cm">// Look up before write: a retried step finds the record its</span>
+  <span class="tk-cm">// first attempt made — and returns it. Never a duplicate.</span>
+  <span class="tk-kw">const</span> existing = <span class="tk-kw">await</span> repo.<span class="tk-fn">findByCreationKey</span>(workflowId);
+  <span class="tk-kw">if</span> (existing) <span class="tk-kw">return</span> existing;
+
+  <span class="tk-kw">return</span> repo.<span class="tk-fn">insert</span>({ creationKey: workflowId, ...<span class="tk-fn">toRecord</span>(req) });
+}</code></pre>
+          </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">retry-policy.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Retries are for infrastructure, never for business rejections.</span>
+<span class="tk-kw">const</span> retryPolicy = {
+  retryableErrors: [<span class="tk-str">'UNAVAILABLE'</span>], <span class="tk-cm">// a business "no" must stay a no</span>
+  backoff: { initial: <span class="tk-str">'500ms'</span>, factor: <span class="tk-num">2</span>, maxAttempts: <span class="tk-num">3</span> },
+};</code></pre>
+          </div>
+        </div>
+
         <!-- ── War stories ─────────────────────────────────── -->
         <div class="war-stories">
           <h3 class="more-work-heading">War stories</h3>
