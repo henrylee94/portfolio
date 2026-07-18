@@ -68,5 +68,13 @@ if (existsSync('js/i18n-zh.js')) {
   } catch (e) { check('js/i18n-zh.js unreadable'); }
 }
 
+
+// content lint — banned terms must never reappear in published pages
+const BANNED = [/\bmoney\b/i, /\b300k\b/, /6×/, /\bFPMS\b/, /casino/i, /iGaming/i, /gambling/i, /\bLark\b/, /SN Soft/, /Matrix\/Synapse|Synapse/];
+for (const f of htmlFiles) {
+  const html = readFileSync(f, 'utf8');
+  for (const re of BANNED) { const m = html.match(re); if (m) check(`banned term "${m[0]}" in ${f}`); }
+}
+
 if (errors) { console.error(`\n${errors} problem(s) found.`); process.exit(1); }
 console.log('✓ all checks passed');
