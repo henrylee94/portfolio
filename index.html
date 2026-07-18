@@ -117,7 +117,7 @@
             </p>
 
             <p class="hero-positioning">
-              Hi — I'm Henry. I build the backend systems behind millions of daily transactions — and lead the team that runs them.
+              Hi — I'm Henry. I take backend platforms from a legacy monolith to contract-first gRPC microservices — the systems behind millions of daily transactions — and I lead the team that runs them.
             </p>
 
             <div class="hero-stats hero-stats-detailed" role="status" aria-live="polite">
@@ -261,11 +261,40 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════
+         SYSTEMS AT ALTITUDE — scene 3.5: the big-picture thesis
+    ══════════════════════════════════════════════════════ -->
+    <section id="systems" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>at altitude</p>
+        <h2 class="section-heading">Systems, <em class="accent-serif">at altitude</em></h2>
+        <p class="section-intro">Beyond any single feature — the decomposition, the platform, and the discipline to run it.</p>
+
+        <div class="statements">
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">01</span>
+            <h3>Decomposed a legacy monolith into gRPC microservices.</h3>
+            <p>Growth forced the rewrite — millions of transactions a day, ~1,000/s and still climbing past what the old architecture could hold. I led the migration of the platform's most critical flows onto a new NestJS/gRPC + Temporal stack: framework first, dead code retired on the way, the cutover carried by the SDK with endpoint-level fallback. Migration as modernization, with a rollback built into every step.</p>
+          </article>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">02</span>
+            <h3>Built the contract-first platform the team ships on.</h3>
+            <p>Proto-first by contract: one <span class="hl">.proto</span> generates the gRPC types the SDK and every service share, so integration is one import with zero boilerplate. Adding a new request type went from a 30–60-minute, person-dependent process to a <span class="hl">two-minute self-serve</span> form — PR, publish, SemVer, changelog, notify. 100+ published versions; 200+ request types run through one base workflow. Developer enablement, not just a library.</p>
+          </article>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">03</span>
+            <h3>Ran it with production-grade observability.</h3>
+            <p>What I watch every morning: queue backlog, workflow retries, DB load, slow queries, CPU/memory spikes and leaks — on Grafana, with Aliyun SLS for log-based alerting and incident triage, OpenTelemetry traces and Prometheus metrics underneath. Graceful shutdown is a non-negotiable readiness gate — it came out of a real incident. <span class="hl">Index first, cache second</span>: queries that timed out on a single day of data now scan a 30-day window.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
          HOW I WORK — scene 4: statement rows + quiet compact list
     ══════════════════════════════════════════════════════ -->
     <section id="how" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>how i work</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>how i work</p>
         <h2 class="section-heading">How I <em class="accent-serif">Work</em></h2>
         <p class="section-intro">Principles first, tasks second. The systems are half the job — the other half is building the people who build them.</p>
 
@@ -329,7 +358,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="about" class="section section-wash">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>about</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">04</span>about</p>
         <h2 class="section-heading">About <em class="accent-serif">me</em></h2>
         <div class="about-body">
           <p>Seven years ago I joined a high-traffic transaction platform as a full-stack dev. It grew — and went down a few times along the way. I was the firefighter, then the one hand-picked to pioneer a new stack, then the owner of the platform's most critical module — and now I lead the team that runs its core.</p>
@@ -390,7 +419,7 @@
       <div class="container">
         <div class="contact-inner">
 
-          <p class="section-label" aria-hidden="true"><span class="section-num">04</span>contact</p>
+          <p class="section-label" aria-hidden="true"><span class="section-num">05</span>contact</p>
           <h2 class="section-heading">Get in <em class="accent-serif">touch</em></h2>
 
           <p class="section-intro">Open to backend team-lead and senior platform roles — the systems change, the discipline doesn't.</p>
