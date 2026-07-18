@@ -154,11 +154,11 @@
             </article>
             <article class="note-card">
               <h3>The revert that came back stronger</h3>
-              <p>The fan-out migration shipped — and production surprised us, so we reverted. The second landing looked different: instead of one big change, a series of small, individually revertible steps, each one hardened by what the first attempt had taught us. Nothing about the design was wrong; the delivery was. On a live money platform the unit of change has to equal the unit of rollback — that rule came out of this war and never left.</p>
+              <p>The fan-out migration shipped — and production surprised us, so we reverted. The second landing looked different: instead of one big change, a series of small, individually revertible steps, each one hardened by what the first attempt had taught us. Nothing about the design was wrong; the delivery was. On a live transaction platform the unit of change has to equal the unit of rollback — that rule came out of this war and never left.</p>
             </article>
             <article class="note-card">
               <h3>A billion-ID head start</h3>
-              <p>ID generation had to move from a database counter to atomic increments in Redis — with users online and no maintenance window. Instead of choreographing a precise cutover between two live generators, we made collision impossible: the new range started one billion above the old counter, so both could run at once and never meet. Rollback was equally boring — point back at the old counter. When money is watching, the clever solution is the one with nothing left to go wrong.</p>
+              <p>ID generation had to move from a database counter to atomic increments in Redis — with users online and no maintenance window. Instead of choreographing a precise cutover between two live generators, we made collision impossible: the new range started one billion above the old counter, so both could run at once and never meet. Rollback was equally boring — point back at the old counter. When transactions are on the line, the clever solution is the one with nothing left to go wrong.</p>
             </article>
           </div>
         </div>

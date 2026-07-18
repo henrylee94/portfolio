@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>交易记录接入 — Henry Lee</title>
-  <meta name="description" content="每天 12–14M 条记录,来自 10+ 个异构来源——存储按读取模式拆分,形状在边界归一化,分析负载从生产库卸走。" />
+  <meta name="description" content="每天 上千万条记录,来自 10+ 个异构来源——存储按读取模式拆分,形状在边界归一化,分析负载从生产库卸走。" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="交易记录接入 — Henry Lee" />
-  <meta property="og:description" content="每天 12–14M 条记录,来自 10+ 个异构来源——存储按读取模式拆分,形状在边界归一化,分析负载从生产库卸走。" />
+  <meta property="og:description" content="每天 上千万条记录,来自 10+ 个异构来源——存储按读取模式拆分,形状在边界归一化,分析负载从生产库卸走。" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="交易记录接入 — Henry Lee" />
-  <meta name="twitter:description" content="每天 12–14M 条记录,来自 10+ 个异构来源——存储按读取模式拆分,形状在边界归一化,分析负载从生产库卸走。" />
+  <meta name="twitter:description" content="每天 上千万条记录,来自 10+ 个异构来源——存储按读取模式拆分,形状在边界归一化,分析负载从生产库卸走。" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -96,19 +96,19 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>案例 05 / 07</p>
-        <h1 class="section-heading">交易记录接入——每天 12–14M 条记录,来自 10+ 个来源</h1>
+        <h1 class="section-heading">交易记录接入——每天 上千万条记录,来自 10+ 个来源</h1>
         <p class="case-hook">用户看到的每一次余额变动,汇集自 10+ 个系统,而且永远对得上账。</p>
 
         <div class="hero-stats case-chips">
-          <span class="hero-stat">每天 12–14M 条记录</span>
+          <span class="hero-stat">每天 上千万条记录</span>
           <span class="hero-stat">10+ 个来源</span>
           <span class="hero-stat">冷热拆分</span>
         </div>
 
         <div class="case-beats">
-          <div class="case-beat"><h4>背景</h4><p>用户看到的每一次余额变动,都必须完整、有序、查得快——但记录来自 10+ 个异构来源,它们在形状、时序和投递保证上各说各话:每天约 8.4M 条走带审计的 workflow 路径,其余的直接从 provider 和内部系统流进来。</p></div>
+          <div class="case-beat"><h4>背景</h4><p>用户看到的每一次余额变动,都必须完整、有序、查得快——但记录来自 10+ 个异构来源,它们在形状、时序和投递保证上各说各话:每天约数百万笔走带审计的 workflow 路径,其余的直接从 provider 和内部系统流进来。</p></div>
           <div class="case-beat"><h4>设计</h4><p>存储按读取模式拆分:热的近期历史放在 OLTP 存储上,配 covering index;长窗口的分析卸到一个列式存储层,由接入 pipeline 喂数;来源特有的形状在边界归一化,配上按来源的缓存和感知渠道的路由。</p></div>
-          <div class="case-beat case-beat-outcome"><h4>结果</h4><p>每天 12–14M 条记录接入并可查询;近期历史的读取保持快速,分析查询不再和生产流量抢资源。</p></div>
+          <div class="case-beat case-beat-outcome"><h4>结果</h4><p>每天 上千万条记录接入并可查询;近期历史的读取保持快速,分析查询不再和生产流量抢资源。</p></div>
         </div>
 
         <!-- ── War stories ─────────────────────────────────── -->

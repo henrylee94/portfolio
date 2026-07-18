@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Workflow backbone — Henry Lee</title>
-  <meta name="description" content="Every money-moving action passes one audited workflow — 8.4M records a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
+  <meta name="description" content="Every financial transaction passes one audited workflow — millions of transactions a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Workflow backbone — Henry Lee" />
-  <meta property="og:description" content="Every money-moving action passes one audited workflow — 8.4M records a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
+  <meta property="og:description" content="Every financial transaction passes one audited workflow — millions of transactions a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Workflow backbone — Henry Lee" />
-  <meta name="twitter:description" content="Every money-moving action passes one audited workflow — 8.4M records a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
+  <meta name="twitter:description" content="Every financial transaction passes one audited workflow — millions of transactions a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -96,11 +96,11 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 01 / 07</p>
-        <h1 class="section-heading">Workflow backbone — 8.4M audited records a day</h1>
-        <p class="case-hook">The system that makes sure money never moves twice by mistake.</p>
+        <h1 class="section-heading">Workflow backbone — millions of transactions a day, audited</h1>
+        <p class="case-hook">The system that makes sure no transaction is ever processed twice.</p>
 
         <div class="hero-stats case-chips">
-          <span class="hero-stat">8.4M records/day</span>
+          <span class="hero-stat">Millions of transactions/day</span>
           <span class="hero-stat">~1k/s peak</span>
           <span class="hero-stat">100+ SDK releases</span>
           <span class="hero-stat">2-min self-service</span>
@@ -110,14 +110,14 @@
 
         <div class="case-grid">
           <div class="case-beats">
-            <div class="case-beat"><h4>Situation</h4><p>Every money-moving action on the platform — withdrawal, top-up, loyalty reward, configuration change — must pass one audited create → review → approve → execute lifecycle. The legacy implementation was tightly coupled inside a monolith; every consumer re-implemented its own wiring.</p></div>
-            <div class="case-beat"><h4>Constraint</h4><p>This is the platform's single point of trust: production pushes ~8.4M records a day through it, and a duplicate execution means real money moved twice.</p></div>
+            <div class="case-beat"><h4>Situation</h4><p>Every financial transaction on the platform — withdrawal, top-up, loyalty reward, configuration change — must pass one audited create → review → approve → execute lifecycle. The legacy implementation was tightly coupled inside a monolith; every consumer re-implemented its own wiring.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>This is the platform's single point of trust: production pushes millions of transactions a day through it — into the tens of millions at peak — and a duplicate execution means a transaction is processed twice.</p></div>
             <div class="case-beat"><h4>Approach</h4><p>Rebuilt it as a gRPC microservice orchestrated by Temporal: one generic durable workflow runs every request type, with business extension points as child-workflow slots. Idempotency is structural — the workflow ID doubles as the creation key, so a retried step returns the existing record instead of creating twice. Integration became a published SDK: any service registers an executor with one import; adding a new request type is a self-service CI form, not a queue on my desk. 100+ SDK releases, SemVer-disciplined.</p></div>
-            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>8.4M records/day in production. Duplicate execution is prevented by construction rather than caught after the fact. New-type integration went from a 30-to-60-minute, person-dependent process to two-minute self-service.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Millions of transactions a day in production. Duplicate execution is prevented by construction rather than caught after the fact. New-type integration went from a 30-to-60-minute, person-dependent process to two-minute self-service.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
             <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
-              <text class="dg-label" x="20" y="30">audited lifecycle — every money-moving action</text>
+              <text class="dg-label" x="20" y="30">audited lifecycle — every transaction</text>
               <g class="dg-node"><rect x="20" y="56" width="92" height="42" rx="4"/><text x="66" y="82" text-anchor="middle">create</text></g>
               <g class="dg-node"><rect x="136" y="56" width="92" height="42" rx="4"/><text x="182" y="82" text-anchor="middle">review</text></g>
               <g class="dg-node"><rect x="252" y="56" width="92" height="42" rx="4"/><text x="298" y="82" text-anchor="middle">approve</text></g>
@@ -150,7 +150,7 @@
               <h3>The redemption that didn't charge</h3>
               <p>Customer support found it before any dashboard did: a reward-redemption flow was handing out value without deducting the balance. A pre-charge step in the workflow was being skipped — silently.</p>
               <p>Rollback first, debug second. The trail led to a shared contract file that had quietly fallen behind on one branch; a routine package upgrade activated the stale copy. Tests never caught it, because the change came from a different kind of project — the classic blind spot where two individually safe changes combine into one unsafe system.</p>
-              <p>The fixes were systemic, not local: the workflow fails loudly if the pre-charge step doesn't run; every release regression-tests every money-touching path, no exceptions; and the incident report went up and out — the whole team knows this failure shape now.</p>
+              <p>The fixes were systemic, not local: the workflow fails loudly if the pre-charge step doesn't run; every release regression-tests every transaction path, no exceptions; and the incident report went up and out — the whole team knows this failure shape now.</p>
               <p>One more thing grew out of it: the first version of our risk-alerting pipeline — every redemption event published onto the event bus, alerting the risk team in chat. Detection first, automation later. Incidents are cheapest when they compile into systems.</p>
             </article>
             <article class="note-card">
@@ -159,7 +159,7 @@
             </article>
             <article class="note-card">
               <h3>The retry that had to return the same record</h3>
-              <p>The engine retries failed steps — that's the point of it. But on a money path, a retried create is a potential duplicate record, and a duplicate record is money moved twice. So creation isn't guarded by a check bolted on afterwards; it's guarded by construction: the workflow ID doubles as the record's creation key, and every create looks up before it writes — a retry finds the record its first attempt made and returns it. Updates carry status guards, and illegal state transitions throw instead of writing. When the failure mode is financial, idempotency can't be a best effort; it has to be impossible to get wrong.</p>
+              <p>The engine retries failed steps — that's the point of it. But on a transaction path, a retried create is a potential duplicate record, and a duplicate record is a transaction processed twice. So creation isn't guarded by a check bolted on afterwards; it's guarded by construction: the workflow ID doubles as the record's creation key, and every create looks up before it writes — a retry finds the record its first attempt made and returns it. Updates carry status guards, and illegal state transitions throw instead of writing. When the failure mode is financial, idempotency can't be a best effort; it has to be impossible to get wrong.</p>
             </article>
             <article class="note-card">
               <h3>Four environments, one engine</h3>

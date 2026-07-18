@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Transaction-record ingestion — Henry Lee</title>
-  <meta name="description" content="12–14M records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+  <meta name="description" content="over ten million records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Transaction-record ingestion — Henry Lee" />
-  <meta property="og:description" content="12–14M records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+  <meta property="og:description" content="over ten million records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Transaction-record ingestion — Henry Lee" />
-  <meta name="twitter:description" content="12–14M records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+  <meta name="twitter:description" content="over ten million records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -96,19 +96,19 @@
     <section id="case" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 05 / 07</p>
-        <h1 class="section-heading">Transaction-record ingestion — 12–14M records a day from 10+ sources</h1>
+        <h1 class="section-heading">Transaction-record ingestion — over ten million records a day from 10+ sources</h1>
         <p class="case-hook">Every balance change a user sees, gathered from 10+ systems, always adding up.</p>
 
         <div class="hero-stats case-chips">
-          <span class="hero-stat">12–14M records/day</span>
+          <span class="hero-stat">over ten million records/day</span>
           <span class="hero-stat">10+ sources</span>
           <span class="hero-stat">hot / cold split</span>
         </div>
 
         <div class="case-beats">
-          <div class="case-beat"><h4>Situation</h4><p>Every balance change a user sees must be complete, ordered, and fast to query — but records originate from 10+ heterogeneous sources that disagree on shape, timing, and delivery guarantees: ~8.4M/day through the audited workflow path, the rest streaming directly from providers and internal systems.</p></div>
+          <div class="case-beat"><h4>Situation</h4><p>Every balance change a user sees must be complete, ordered, and fast to query — but records originate from 10+ heterogeneous sources that disagree on shape, timing, and delivery guarantees: millions/day through the audited workflow path, the rest streaming directly from providers and internal systems.</p></div>
           <div class="case-beat"><h4>Design</h4><p>Split storage by read pattern: hot recent history on the OLTP store with covering indexes; long-window analytics offloaded to a columnar layer fed by the ingestion pipeline; source-specific shapes normalized at the boundary, with per-source caching and channel-aware routing.</p></div>
-          <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>12–14M records/day ingested and queryable; recent-history reads stay fast while analytical queries stopped competing with production traffic.</p></div>
+          <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>over ten million records/day ingested and queryable; recent-history reads stay fast while analytical queries stopped competing with production traffic.</p></div>
         </div>
 
         <!-- ── War stories ─────────────────────────────────── -->

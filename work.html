@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Work — Henry Lee</title>
-  <meta name="description" content="Seven production systems, told honestly — from a workflow backbone auditing 8.4M records a day to regulatory filings at million-row scale." />
+  <meta name="description" content="Seven production systems, told honestly — from a workflow backbone auditing millions of transactions a day to regulatory filings at million-row scale." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Work — Henry Lee" />
-  <meta property="og:description" content="Seven production systems, told honestly — from a workflow backbone auditing 8.4M records a day to regulatory filings at million-row scale." />
+  <meta property="og:description" content="Seven production systems, told honestly — from a workflow backbone auditing millions of transactions a day to regulatory filings at million-row scale." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Work — Henry Lee" />
-  <meta name="twitter:description" content="Seven production systems, told honestly — from a workflow backbone auditing 8.4M records a day to regulatory filings at million-row scale." />
+  <meta name="twitter:description" content="Seven production systems, told honestly — from a workflow backbone auditing millions of transactions a day to regulatory filings at million-row scale." />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -102,13 +102,13 @@
         <!-- The life of a record — one river across nine systems -->
         <div class="river-block">
           <h3 class="section-heading">The life of a <em class="accent-serif">record</em></h3>
-          <p class="section-intro">One record, nine systems. Follow the money:</p>
+          <p class="section-intro">One record, nine systems. Follow the record:</p>
           <div class="case-diagram river-diagram" aria-hidden="true">
             <svg viewBox="0 0 960 300" preserveAspectRatio="xMidYMid meet">
               <!-- row 1 -->
               <g class="dg-node"><rect x="12" y="48" width="118" height="52" rx="4"/><text x="71" y="80" text-anchor="middle">transaction</text></g>
-              <g class="dg-node dg-node-accent"><rect x="166" y="48" width="168" height="52" rx="4"/><text x="250" y="70" text-anchor="middle">audited workflow</text><text class="dg-label" x="250" y="88" text-anchor="middle">8.4M/day</text></g>
-              <g class="dg-node"><rect x="366" y="48" width="208" height="52" rx="4"/><text x="470" y="70" text-anchor="middle">ledger ingestion</text><text class="dg-label" x="470" y="88" text-anchor="middle">12–14M/day · dual-stream join</text></g>
+              <g class="dg-node dg-node-accent"><rect x="166" y="48" width="168" height="52" rx="4"/><text x="250" y="70" text-anchor="middle">audited workflow</text><text class="dg-label" x="250" y="88" text-anchor="middle">millions/day</text></g>
+              <g class="dg-node"><rect x="366" y="48" width="208" height="52" rx="4"/><text x="470" y="70" text-anchor="middle">ledger ingestion</text><text class="dg-label" x="470" y="88" text-anchor="middle">10M+/day · dual-stream join</text></g>
               <g class="dg-node"><rect x="606" y="48" width="170" height="52" rx="4"/><text x="691" y="80" text-anchor="middle">reconciliation probes</text></g>
               <g class="dg-node"><rect x="800" y="48" width="128" height="52" rx="4"/><text x="864" y="70" text-anchor="middle">OLAP sync</text><text class="dg-label" x="864" y="88" text-anchor="middle">CDC</text></g>
               <line class="dg-wire" x1="130" y1="74" x2="166" y2="74"/>
@@ -139,17 +139,17 @@
 
         <article class="case" data-case="1">
           <p class="case-label">Case 01</p>
-          <h3 class="case-title">Workflow backbone — 8.4M audited records a day</h3>
-          <p class="case-hook">The system that makes sure money never moves twice by mistake.</p>
+          <h3 class="case-title">Workflow backbone — millions of transactions a day, audited</h3>
+          <p class="case-hook">The system that makes sure no transaction is ever processed twice.</p>
           <div class="hero-stats case-chips">
-            <span class="hero-stat">8.4M records/day</span>
+            <span class="hero-stat">Millions of transactions/day</span>
             <span class="hero-stat">~1k/s peak</span>
             <span class="hero-stat">100+ SDK releases</span>
             <span class="hero-stat">2-min self-service</span>
             <span class="hero-stat">585 tests, real containers</span>
             <span class="hero-stat">236 request types</span>
           </div>
-          <p class="case-summary">Every money-moving action passes one audited approval workflow — <span class="hl">8.4M records a day</span>. I rebuilt it on Temporal with idempotency by construction (a retry can only return the existing record) and turned integration into a published SDK: adding a new request type is a <span class="hl">two-minute self-service</span> form.</p>
+          <p class="case-summary">Every financial transaction passes one audited approval workflow — <span class="hl">millions of transactions a day</span>. I rebuilt it on Temporal with idempotency by construction (a retry can only return the existing record) and turned integration into a published SDK: adding a new request type is a <span class="hl">two-minute self-service</span> form.</p>
           <a class="case-link" href="work-backbone.html">Read the case study →</a>
         </article>
 
@@ -196,7 +196,7 @@
 
         <div class="case-minis">
           <article class="case-mini" data-case="5">
-            <h3 class="case-mini-title"><a href="work-ingestion.html">Case 05 — Transaction-record ingestion: 12–14M records a day from 10+ sources</a></h3>
+            <h3 class="case-mini-title"><a href="work-ingestion.html">Case 05 — Transaction-record ingestion: over ten million records a day from 10+ sources</a></h3>
             <p class="case-mini-hook">Every balance change a user sees, gathered from 10+ systems, always adding up.</p>
             <a class="case-link" href="work-ingestion.html">Read the case study →</a>
           </article>

@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>工作 — Henry Lee</title>
-  <meta name="description" content="七个生产系统,如实讲述——从每天审计 8.4M 条记录的 workflow 主干,到百万行规模的监管报送。" />
+  <meta name="description" content="七个生产系统,如实讲述——从每天审计 数百万笔交易的 workflow 主干,到百万行规模的监管报送。" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="工作 — Henry Lee" />
-  <meta property="og:description" content="七个生产系统,如实讲述——从每天审计 8.4M 条记录的 workflow 主干,到百万行规模的监管报送。" />
+  <meta property="og:description" content="七个生产系统,如实讲述——从每天审计 数百万笔交易的 workflow 主干,到百万行规模的监管报送。" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="工作 — Henry Lee" />
-  <meta name="twitter:description" content="七个生产系统,如实讲述——从每天审计 8.4M 条记录的 workflow 主干,到百万行规模的监管报送。" />
+  <meta name="twitter:description" content="七个生产系统,如实讲述——从每天审计 数百万笔交易的 workflow 主干,到百万行规模的监管报送。" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -102,13 +102,13 @@
         <!-- 一条记录的一生——一条河,九个系统 -->
         <div class="river-block">
           <h3 class="section-heading">一条记录的<em class="accent-serif">一生</em></h3>
-          <p class="section-intro">一条记录,九个系统。跟着钱走:</p>
+          <p class="section-intro">一条记录,九个系统。跟着记录走:</p>
           <div class="case-diagram river-diagram" aria-hidden="true">
             <svg viewBox="0 0 960 300" preserveAspectRatio="xMidYMid meet">
               <!-- row 1 -->
               <g class="dg-node"><rect x="12" y="48" width="118" height="52" rx="4"/><text x="71" y="80" text-anchor="middle">transaction</text></g>
-              <g class="dg-node dg-node-accent"><rect x="166" y="48" width="168" height="52" rx="4"/><text x="250" y="70" text-anchor="middle">audited workflow</text><text class="dg-label" x="250" y="88" text-anchor="middle">8.4M/day</text></g>
-              <g class="dg-node"><rect x="366" y="48" width="208" height="52" rx="4"/><text x="470" y="70" text-anchor="middle">ledger ingestion</text><text class="dg-label" x="470" y="88" text-anchor="middle">12–14M/day · dual-stream join</text></g>
+              <g class="dg-node dg-node-accent"><rect x="166" y="48" width="168" height="52" rx="4"/><text x="250" y="70" text-anchor="middle">audited workflow</text><text class="dg-label" x="250" y="88" text-anchor="middle">数百万/天</text></g>
+              <g class="dg-node"><rect x="366" y="48" width="208" height="52" rx="4"/><text x="470" y="70" text-anchor="middle">ledger ingestion</text><text class="dg-label" x="470" y="88" text-anchor="middle">上千万/天 · dual-stream join</text></g>
               <g class="dg-node"><rect x="606" y="48" width="170" height="52" rx="4"/><text x="691" y="80" text-anchor="middle">reconciliation probes</text></g>
               <g class="dg-node"><rect x="800" y="48" width="128" height="52" rx="4"/><text x="864" y="70" text-anchor="middle">OLAP sync</text><text class="dg-label" x="864" y="88" text-anchor="middle">CDC</text></g>
               <line class="dg-wire" x1="130" y1="74" x2="166" y2="74"/>
@@ -139,17 +139,17 @@
 
         <article class="case" data-case="1">
           <p class="case-label">案例 01</p>
-          <h3 class="case-title">Workflow 主干——每天 8.4M 条审计记录</h3>
-          <p class="case-hook">保证钱永远不会被错误地动两次的系统。</p>
+          <h3 class="case-title">Workflow 主干——每天数百万笔审计交易</h3>
+          <p class="case-hook">保证任何交易永远不会被错误地处理两次的系统。</p>
           <div class="hero-stats case-chips">
-            <span class="hero-stat">每天 8.4M 条记录</span>
+            <span class="hero-stat">每天数百万笔交易</span>
             <span class="hero-stat">峰值 ~1k/s</span>
             <span class="hero-stat">100+ 次 SDK 发布</span>
             <span class="hero-stat">2 分钟自助接入</span>
             <span class="hero-stat">585 个测试,跑真实容器</span>
             <span class="hero-stat">236 种请求类型</span>
           </div>
-          <p class="case-summary">平台上每一个动钱的操作都要经过同一条带审计的审批 workflow——<span class="hl">每天 8.4M 条记录</span>。我把它重建在 Temporal 上,幂等由构造保证(retry 只可能拿回已存在的那条记录),并把接入做成了对外发布的 SDK:新增一种请求类型,只是一张<span class="hl">两分钟的自助表单</span>。</p>
+          <p class="case-summary">平台上每一笔金融交易都要经过同一条带审计的审批 workflow——<span class="hl">每天数百万笔交易</span>。我把它重建在 Temporal 上,幂等由构造保证(retry 只可能拿回已存在的那条记录),并把接入做成了对外发布的 SDK:新增一种请求类型,只是一张<span class="hl">两分钟的自助表单</span>。</p>
           <a class="case-link" href="zh-work-backbone.html">读完整案例 →</a>
         </article>
 
@@ -196,7 +196,7 @@
 
         <div class="case-minis">
           <article class="case-mini" data-case="5">
-            <h3 class="case-mini-title"><a href="zh-work-ingestion.html">案例 05 —— 交易记录接入:每天 12–14M 条记录,来自 10+ 个来源</a></h3>
+            <h3 class="case-mini-title"><a href="zh-work-ingestion.html">案例 05 —— 交易记录接入:每天 上千万条记录,来自 10+ 个来源</a></h3>
             <p class="case-mini-hook">用户看到的每一笔余额变动,汇聚自 10+ 个系统,账永远对得上。</p>
             <a class="case-link" href="zh-work-ingestion.html">读完整案例 →</a>
           </article>

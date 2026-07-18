@@ -109,7 +109,7 @@
         <div class="case-grid">
           <div class="case-beats">
             <div class="case-beat"><h4>背景</h4><p>市场团队想给接近下一个忠诚度等级的用户做自动的、限时的任务:实时发现他们,跑一个 7 天窗口,达成后即时发放升级。</p></div>
-            <div class="case-beat"><h4>约束</h4><p>发奖路径紧挨着钱:重复发放就是真实损失,而事件从流和 workflow 引擎两边都是 at-least-once 到达——两个互相独立的重复来源。</p></div>
+            <div class="case-beat"><h4>约束</h4><p>发奖路径涉及资金:重复发放就是真实损失,而事件从流和 workflow 引擎两边都是 at-least-once 到达——两个互相独立的重复来源。</p></div>
             <div class="case-beat"><h4>做法</h4><p>端到端把这条链做穿四个服务、三种语言——边界沿着平台现有的缝走(流处理平台、workflow 引擎、发奖 facade),组合已被验证的引擎,而不是造新的:一个 Java/Flink 作业过滤事件流,按查表计算以进入时刻为锚点的目标;一个 Rust + Temporal 引擎给每个用户跑一条持久 workflow;一个 NestJS facade 走现有升级路径发放——旧系统 0 改动。exactly-once 分层实现:一张原子的 claims 台账(每个用户、等级、月份只有一次机会)把住报名,一个人类可读的幂等 key(`mission:user:tier:month`)把住发放——生产上一眼就能排查。阈值只存在一个地方——生产者无条件广播,两个仓库永远不可能对同一个数字有分歧。</p></div>
             <div class="case-beat case-beat-outcome"><h4>结果</h4><p>在 pre-production 通道里对着真实流量做了端到端验证;每一级都有漏斗指标。这套架构——发现 / 编排 / 发放,配置单一 owner——成了下一批任务类型的模板。</p></div>
           </div>
