@@ -162,7 +162,6 @@
       applyTheme(getTheme());
     }
 
-    initPageCurtain();
     initLangToggle();
     initHamburger();
     initSmoothScroll();
