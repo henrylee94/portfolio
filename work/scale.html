@@ -138,6 +138,29 @@
           </div>
         </div>
 
+        <!-- ── The design, in code ─────────────────────────── -->
+        <div class="proof-code">
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">id-cutover.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Live cutover with users online: the new range starts one billion above</span>
+<span class="tk-cm">// the old counter, so both generators can run at once and never collide.</span>
+<span class="tk-kw">const</span> OFFSET = <span class="tk-num">1_000_000_000</span>;
+
+<span class="tk-kw">const</span> legacy = <span class="tk-kw">await</span> db.counters.<span class="tk-fn">findOne</span>({ _id: <span class="tk-str">'memberId'</span> }); <span class="tk-cm">// old ceiling</span>
+<span class="tk-kw">await</span> redis.<span class="tk-fn">set</span>(<span class="tk-str">'seq:memberId'</span>, legacy.seq + OFFSET, { nx: <span class="tk-kw">true</span> }); <span class="tk-cm">// seed once</span>
+
+<span class="tk-kw">const</span> nextId = <span class="tk-kw">await</span> redis.<span class="tk-fn">incr</span>(<span class="tk-str">'seq:memberId'</span>); <span class="tk-cm">// atomic — no document lock</span>
+<span class="tk-cm">// Rollback is boring on purpose: point back at the old counter.</span></code></pre>
+          </div>
+        </div>
+
         <!-- ── War stories ─────────────────────────────────── -->
         <div class="war-stories">
           <h3 class="more-work-heading">War stories</h3>

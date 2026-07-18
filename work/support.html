@@ -137,6 +137,33 @@
           </div>
         </div>
 
+        <!-- ── The design, in code ─────────────────────────── -->
+        <div class="proof-code">
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">routing-score.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// One number encodes the whole routing policy — banded so each term</span>
+<span class="tk-cm">// owns an order of magnitude and can never outvote the one above it.</span>
+<span class="tk-kw">const</span> score =
+  statusLevel * <span class="tk-num">1e18</span> + <span class="tk-cm">// status ▸ away sinks below every online agent</span>
+  chatCount * <span class="tk-num">1e15</span> +   <span class="tk-cm">// load ▸ fewer active chats ranks first</span>
+  timestampMs;           <span class="tk-cm">// waited-longest ▸ idle-since breaks the tie</span>
+
+<span class="tk-cm">// Every state change is one atomic increment — no read-modify-write race.</span>
+<span class="tk-kw">await</span> redis.<span class="tk-fn">zincrby</span>(QUEUE, +<span class="tk-num">1e18</span>, agentId); <span class="tk-cm">// agent steps away</span>
+<span class="tk-kw">await</span> redis.<span class="tk-fn">zincrby</span>(QUEUE, -<span class="tk-num">1e18</span>, agentId); <span class="tk-cm">// agent comes back online</span>
+
+<span class="tk-cm">// Assignment is O(1): the best agent is simply the head of the set.</span>
+<span class="tk-kw">const</span> [next] = <span class="tk-kw">await</span> redis.<span class="tk-fn">zrange</span>(QUEUE, <span class="tk-num">0</span>, <span class="tk-num">0</span>);</code></pre>
+          </div>
+        </div>
+
         <!-- ── War stories ─────────────────────────────────── -->
         <div class="war-stories">
           <h3 class="more-work-heading">War stories</h3>

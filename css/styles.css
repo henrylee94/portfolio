@@ -1912,3 +1912,107 @@ footer {
   padding: 0.6rem 0 0.25rem 1.35rem;
   max-width: 68ch;
 }
+
+/* ── Proof pass 2026-07-19: code snippets on case pages ·
+      proof strip (live demos as evidence) ──────────────────── */
+
+/* "The design, in code" — representative snippets, terminal-card framed */
+.proof-code {
+  border-top: 1px solid var(--border);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: 2.5rem;
+}
+.proof-code-note {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 1.25rem;
+  max-width: 62ch;
+}
+.code-proof { max-width: 780px; }
+.code-proof + .code-proof { margin-top: 1.25rem; }
+.code-proof-body {
+  margin: 0;
+  padding: 1.15rem 1.3rem 1.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: var(--text);
+  overflow-x: auto;
+  tab-size: 2;
+}
+.code-proof-body code { font-family: inherit; }
+
+/* Hand-rolled token colors — no highlight library */
+.tk-cm   { color: var(--text-mute); font-style: italic; }
+.tk-kw   { color: #C084FC; }
+.tk-fn   { color: #7AA2F7; }
+.tk-type { color: #2DD4BF; }
+.tk-str  { color: #34D399; }
+.tk-num  { color: var(--accent2); }
+
+:root[data-theme="light"] .tk-cm   { color: #8888A0; }
+:root[data-theme="light"] .tk-kw   { color: #9333EA; }
+:root[data-theme="light"] .tk-fn   { color: #2563EB; }
+:root[data-theme="light"] .tk-type { color: #0D9488; }
+:root[data-theme="light"] .tk-str  { color: #059669; }
+
+/* Proof strip (index · systems) — live interactive demos as evidence.
+   Amber family: this is impact, not plumbing. */
+.proof-strip {
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+}
+.proof-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+@media (max-width: 860px) {
+  .proof-cards { grid-template-columns: 1fr; }
+}
+.proof-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elev);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  color: inherit;
+  transition: border-color var(--dur) var(--ease),
+              transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+.proof-card:hover {
+  text-decoration: none;
+  border-color: var(--accent2-40);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--accent2-dim);
+}
+.proof-card-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent2);
+  margin-bottom: 0.5rem;
+}
+.proof-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+.proof-card p {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.proof-card-cta {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
