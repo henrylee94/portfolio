@@ -147,7 +147,7 @@
             </article>
             <article class="note-card">
               <h3>Two agents, one conversation</h3>
-              <p>Two messages arriving in the same conversation at the same moment each decided a human agent was needed — and two agents got invited into one chat. The fence is a per-room lock: the first caller takes it and performs the invite, everyone else finds it held and walks away, and the lock's TTL is aligned to the operation so a crash can't leave the room locked forever. Anything triggered by "a message arrived" will eventually be triggered twice in the same millisecond — design for the second caller before it exists.</p>
+              <p>Two messages arriving in the same conversation at the same moment each decided a human agent was needed — and two agents got invited into one chat. The fence is a per-room lock: the first caller takes it and performs the invite, everyone else finds it held and walks away, and the lock's time-to-live is aligned to the operation so a crash can't leave the room locked forever. Anything triggered by "a message arrived" will eventually be triggered twice in the same millisecond — design for the second caller before it exists.</p>
             </article>
             <article class="note-card">
               <h3>The model is a dependency you can't trust</h3>

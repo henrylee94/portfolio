@@ -123,7 +123,7 @@
             <div class="hero-stats hero-stats-detailed" role="status" aria-live="polite">
               <div class="hero-stat-item">
                 <span class="hero-stat">7 years</span>
-                <span class="hero-stat-sub">engineer → tech lead → team lead</span>
+                <span class="hero-stat-sub">engineer → senior → lead</span>
               </div>
               <div class="hero-stat-item">
                 <span class="hero-stat">Millions of transactions/day, audited</span>
@@ -141,6 +141,9 @@
               </a>
               <a href="work/index.html" class="btn btn-ghost">
                 See the work
+              </a>
+              <a href="assets/Henry-Lee-Resume.pdf" class="btn btn-ghost" download>
+                Resume (PDF)
               </a>
             </div>
 
@@ -278,12 +281,12 @@
           <article class="statement">
             <span class="statement-kicker" aria-hidden="true">02</span>
             <h3>Built the contract-first platform the team ships on.</h3>
-            <p>Proto-first by contract: one <span class="hl">.proto</span> generates the gRPC types the SDK and every service share, so integration is one import with zero boilerplate. Adding a new request type went from a 30–60-minute, person-dependent process to a <span class="hl">two-minute self-serve</span> form — PR, publish, SemVer, changelog, notify. 100+ published versions; 200+ request types run through one base workflow. Developer enablement, not just a library.</p>
+            <p>Proto-first by contract: one <span class="hl">.proto</span> generates the gRPC types the SDK and every service share, so integration is one import with zero boilerplate. Adding a new request type went from a 30–60-minute, person-dependent process to a <span class="hl">two-minute self-serve</span> form — pull request, publish, semantic versioning, changelog, notify. 100+ published versions; 200+ request types run through one base workflow. Developer enablement, not just a library.</p>
           </article>
           <article class="statement">
             <span class="statement-kicker" aria-hidden="true">03</span>
             <h3>Ran it with production-grade observability.</h3>
-            <p>What I watch every morning: queue backlog, workflow retries, DB load, slow queries, CPU/memory spikes and leaks — on Grafana, with Aliyun SLS for log-based alerting and incident triage, OpenTelemetry traces and Prometheus metrics underneath. Graceful shutdown is a non-negotiable readiness gate — it came out of a real incident. <span class="hl">Index first, cache second</span>: queries that timed out on a single day of data now scan a 30-day window.</p>
+            <p>What I watch every morning: queue backlog, workflow retries, database load, slow queries, CPU/memory spikes and leaks — on Grafana, with Aliyun SLS for log-based alerting and incident triage, OpenTelemetry traces and Prometheus metrics underneath. Graceful shutdown is a non-negotiable readiness gate — it came out of a real incident. <span class="hl">Index first, cache second</span>: queries that timed out on a single day of data now scan a 30-day window.</p>
           </article>
         </div>
       </div>
@@ -327,7 +330,7 @@
           </div>
           <div class="principle-line">
             <h4>Decide with evidence, commit with a rollback.</h4>
-            <p>Big choices get benchmarks and POCs — one OLAP evaluation ran 30 queries × 50 rounds across three engines before we committed.</p>
+            <p>Big choices get benchmarks and proofs of concept — one analytics-store evaluation ran 30 queries × 50 rounds across three engines before we committed.</p>
           </div>
           <div class="principle-line">
             <h4>Turn work into leverage.</h4>

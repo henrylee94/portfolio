@@ -111,15 +111,15 @@
             <div class="case-beat"><h4>Situation</h4><p>Over four years the member management platform grew from 50k to 400k+, and growth kept finding the limits of the old mechanisms — a counter document in the database serialized every ID; notification fan-out stalled under load. More than once, the failure happened in production first.</p></div>
             <div class="case-beat"><h4>Constraint</h4><p>No rewrite budget, no downtime allowance — every fix had to land inside a weekly release train, live, with users on.</p></div>
             <div class="case-beat"><h4>Approach</h4><p>Every target was a live global single-point, so I optimized for reversibility over speed — small, individually revertible PRs shipped in series rather than one big-bang cutover. I championed bringing a distributed cache into the platform, then root-caused each bottleneck to its mechanism and replaced the mechanism, not the symptom: ID generation moved from a database counter to atomic Redis INCR — cut over with a +1-billion offset so old and new ranges could never collide; notification fan-out moved to Redis pub/sub (shipped, reverted on a production surprise, re-landed hardened); blocking full-set scans replaced with cursor-based SSCAN; a leaking in-memory config cache rebuilt with a 15-minute refresh cycle.</p></div>
-            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform sustains 400k+ DAU without the old failure modes. The patterns introduced (cache-aside, atomic counters, pub/sub fan-out) became house standards for modules built after.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform sustains 400k+ daily active users without the old failure modes. The patterns introduced (cache-aside, atomic counters, pub/sub fan-out) became house standards for modules built after.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
             <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
               <text class="dg-label" x="20" y="30">replace the mechanism, not the symptom</text>
-              <g class="dg-node dg-node-fail"><rect x="20" y="56" width="140" height="38" rx="4"/><text x="90" y="80" text-anchor="middle">DB counter doc</text></g>
+              <g class="dg-node dg-node-fail"><rect x="20" y="56" width="140" height="38" rx="4"/><text x="90" y="80" text-anchor="middle">database counter</text></g>
               <text class="dg-fail-mark" x="180" y="80">✕ serialized</text>
               <g class="dg-node dg-node-ok"><rect x="300" y="56" width="160" height="38" rx="4"/><text x="380" y="80" text-anchor="middle">Redis INCR · +1e9</text></g>
-              <g class="dg-node dg-node-fail"><rect x="20" y="120" width="140" height="38" rx="4"/><text x="90" y="144" text-anchor="middle">WS fan-out</text></g>
+              <g class="dg-node dg-node-fail"><rect x="20" y="120" width="140" height="38" rx="4"/><text x="90" y="144" text-anchor="middle">WebSocket fan-out</text></g>
               <text class="dg-fail-mark" x="180" y="144">✕ stalls</text>
               <g class="dg-node dg-node-ok"><rect x="300" y="120" width="160" height="38" rx="4"/><text x="380" y="144" text-anchor="middle">pub/sub · N instances</text></g>
               <g class="dg-node dg-node-fail"><rect x="20" y="184" width="140" height="38" rx="4"/><text x="90" y="208" text-anchor="middle">SMEMBERS</text></g>
@@ -144,7 +144,7 @@
           <div class="notes-grid">
             <article class="note-card">
               <h3>The tuning months</h3>
-              <p>Before this platform earned its Redis layer, it had to earn its database. The reporting layer predated any BI team — and one stretch of growth broke it visibly: operational reports stopped coming back at all, and on the busiest collection a query couldn't return even a single day's records without timing out.</p>
+              <p>Before this platform earned its Redis layer, it had to earn its database. The reporting layer predated any business-intelligence team — and one stretch of growth broke it visibly: operational reports stopped coming back at all, and on the busiest collection a query couldn't return even a single day's records without timing out.</p>
               <p>The months that followed were unglamorous: reading the slow-query log like a newspaper, matching covering indexes to the query shapes people actually ran (and deleting the indexes nobody did — on write-heavy collections an unused index is pure tax), rebuilding aggregation pipelines stage by stage, and moving text search off regex scans onto a proper search index.</p>
               <p>Thirty-day report windows came back comfortably on collections where one day used to time out. That work never made a release announcement — but every feature shipped since stands on it.</p>
             </article>
