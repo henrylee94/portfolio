@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.1] — 2026-07-18
 
 ### Changed
+
 - **Team size synced:** the numbers wall now reflects a **five-person team** (was a
   misleading "3"); the LiveChat "three juniors → owners" story stays in prose only.
 - **Number framing:** replaced the over-precise `8.4M` / `12–14M` with rounded,
@@ -24,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 First tagged release. The portfolio is live at https://henrylee94.github.io/portfolio/.
 
 ### Added
+
 - Multi-page portfolio: hero + numbers, selected work (`work-*.html`: backbone,
   scale, support, pipeline, ingestion, crypto, reporting), how I think / lead,
   field notes, AI engineering (`ai.html`), home lab (`lab.html`).
@@ -36,6 +38,7 @@ First tagged release. The portfolio is live at https://henrylee94.github.io/port
   and CI (`scripts/check.mjs`: syntax + link + EN/zh-parity checks).
 
 ### Notes
+
 - All content honors an internal do-not-publish list — no real names, employer,
   industry specifics, IPs, phone numbers, or financial data.
 

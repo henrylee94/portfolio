@@ -1,0 +1,10 @@
+# Hand-formatted / generated — reformatting would create huge diffs
+*.html
+js/i18n-zh.js
+
+# Out of format scope (format scope = js/*.js, scripts/*.mjs, *.md, *.json)
+css/
+assets/
+*.yml
+*.xml
+*.txt
