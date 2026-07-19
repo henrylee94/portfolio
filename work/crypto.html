@@ -97,7 +97,7 @@
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 06 / 07</p>
         <h1 class="section-heading">Building the platform's crypto payment rails — a fintech capability at every transaction boundary</h1>
-        <p class="case-hook">A two-year epic threading fiat↔stablecoin conversion through every transaction boundary on the platform — where a precision slip is a real financial loss.</p>
+        <p class="case-hook">A two-year epic threading fiat↔USDT conversion through every transaction boundary on the platform — where a precision slip is a real financial loss.</p>
 
         <div class="hero-stats case-chips">
           <span class="hero-stat">OMNI · ERC-20 · TRC-20</span>
@@ -107,7 +107,7 @@
 
         <div class="case-beats">
           <div class="case-beat"><h4>Situation</h4><p>The platform needed cryptocurrency deposits and withdrawals alongside fiat — conversion at every transaction boundary, on a platform where some third-party providers couldn't hold crypto at all.</p></div>
-          <div class="case-beat"><h4>Approach</h4><p>I drove the payments side for two years as half of a two-engineer pair (alongside the team's assistant lead): wallet protocol integrations (OMNI, ERC-20, TRC-20), stablecoin deposits and withdrawals, and fiat↔stablecoin conversion threaded through every transaction boundary. Provider heterogeneity was the judgment call — some providers couldn't hold the stablecoin at all, so I absorbed the difference in one cross-cutting compatibility layer rather than leaking it into every call site — with exact-decimal handling at the wallet edges, where a rounding error becomes a real discrepancy.</p></div>
+          <div class="case-beat"><h4>Approach</h4><p>I drove the payments side for two years as half of a two-engineer pair (alongside the team's assistant lead): wallet protocol integrations (OMNI, ERC-20, TRC-20), USDT deposits and withdrawals, and fiat↔USDT conversion threaded through every transaction boundary. Provider heterogeneity was the judgment call — some providers couldn't hold USDT at all, so I absorbed the difference in one cross-cutting compatibility layer rather than leaking it into every call site — with exact-decimal handling at the wallet edges, where a rounding error becomes a real discrepancy.</p></div>
           <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Crypto rails went live across every payment flow; later currencies reused the same config-driven paths instead of re-opening them.</p></div>
         </div>
 
@@ -144,11 +144,11 @@
             </div>
             <pre class="code-proof-body"><code><span class="tk-cm">// At a wallet edge a rounding error is a real discrepancy. Never float —</span>
 <span class="tk-cm">// convert in integer minor units, and absorb provider quirks in one layer.</span>
-<span class="tk-kw">function</span> <span class="tk-fn">toStablecoin</span>(fiatMinor: <span class="tk-type">bigint</span>, rate: <span class="tk-type">Rate</span>): <span class="tk-type">bigint</span> {
+<span class="tk-kw">function</span> <span class="tk-fn">toUsdt</span>(fiatMinor: <span class="tk-type">bigint</span>, rate: <span class="tk-type">Rate</span>): <span class="tk-type">bigint</span> {
   <span class="tk-kw">return</span> (fiatMinor * rate.num) / rate.den; <span class="tk-cm">// exact integer math</span>
 }
 
-<span class="tk-cm">// Some providers can't hold the stablecoin at all — the difference is</span>
+<span class="tk-cm">// Some providers can't hold USDT at all — the difference is</span>
 <span class="tk-cm">// absorbed here, not leaked into every call site.</span>
 <span class="tk-kw">function</span> <span class="tk-fn">settleCurrency</span>(p: <span class="tk-type">Provider</span>): <span class="tk-type">Currency</span> {
   <span class="tk-kw">return</span> p.<span class="tk-fn">supports</span>(<span class="tk-str">'USDT'</span>) ? <span class="tk-str">'USDT'</span> : <span class="tk-fn">convertAtBoundary</span>(p.fiat);
