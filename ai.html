@@ -105,7 +105,7 @@
         <p class="section-intro">Using AI well is an engineering discipline, not a habit. I built my team's AI delivery system — the pipeline, the gates, the context, the review roles — and it ships real features.</p>
         <div class="hero-stats case-chips">
           <span class="hero-stat">10 pipeline stages</span>
-          <span class="hero-stat">24 skills · 8.7k lines</span>
+          <span class="hero-stat">23 skills · 12 agents</span>
           <span class="hero-stat">16 features shipped through it</span>
           <span class="hero-stat">30+ per-service context files</span>
           <span class="hero-stat">4 role-based AI reviewers</span>
@@ -276,11 +276,143 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════
+         THE PIPELINE — 10 artifact-gated stages
+    ══════════════════════════════════════════════════════ -->
+    <section id="pipeline" class="section section-band">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">04</span>the pipeline</p>
+        <h2 class="section-heading">Ten stages, one <em class="accent-serif">gate at a time</em></h2>
+        <p class="section-intro">A one-line feature request walks through ten stages, each invoked as <code>/workflow-&lt;stage&gt;</code>. There is no <code>state.json</code> — every stage derives its state from the presence and content hash of the artifact the previous stage wrote, and refuses to run until that artifact exists and is approved.</p>
+        <ol class="more-work-list">
+          <li><strong>1 · Init</strong> — open the feature workspace; downstream stages populate it, nothing else.</li>
+          <li><strong>2 · PRD</strong> — draft the requirements document, marking every unknown as <code>[to confirm]</code> instead of guessing.</li>
+          <li><strong>3 · Proposal</strong> — frontend/backend design, the API contracts, and the data contract.</li>
+          <li><strong>4 · Approve</strong> — a human sign-off gate on the design. Nothing proceeds without it.</li>
+          <li><strong>5 · Proto</strong> — generate the <code>.proto</code> contracts and publish the shared gRPC types.</li>
+          <li><strong>6 · SDK</strong> — update the SDK to consume the freshly-published contracts.</li>
+          <li><strong>7 · Figma</strong> — map the frontend design to components (optional, when there's UI).</li>
+          <li><strong>8 · Tasks</strong> — a dependency-ordered work breakdown the agents can pick up.</li>
+          <li><strong>9 · Dev</strong> — parallel implementation by subagents, one task at a time.</li>
+          <li><strong>10 · Verify</strong> — machine-judged acceptance against the contracts.</li>
+        </ol>
+        <p class="thesis-block">Artifact-gated, human-approved, contract-first. Contracts are generated and shared <strong>before</strong> a line of code is written — so producers and consumers can't drift.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SAMPLE — a skill
+    ══════════════════════════════════════════════════════ -->
+    <section id="sample-skill" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">05</span>sample: a skill</p>
+        <h2 class="section-heading">A skill is a <em class="accent-serif">checklist with teeth</em></h2>
+        <p class="section-intro">Each stage — and each reusable building block — is a skill: a Markdown file the agent reads before it acts. This is a real excerpt from <code>graceful-shutdown</code>, the policy every backend service must satisfy before it's called production-ready. It came out of a real incident.</p>
+        <div class="proof-code">
+          <p class="proof-code-note">Real excerpt from the ai-native-sdlc repo — desensitized (neutral service names, no company internals).</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">skills/graceful-shutdown/SKILL.md</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm"># Graceful Shutdown — Monorepo Default Policy</span>
+
+<span class="tk-cm"># A service is "graceful-restart capable" iff all six hold:</span>
+
+  1. <span class="tk-kw">Signal binding.</span> Listen for SIGTERM → enter draining state, do not exit.
+  2. <span class="tk-kw">Two-stage drain.</span> Flip health probe to NOT_SERVING first, wait one
+     readiness period so the load balancer stops sending traffic, then drain.
+  3. <span class="tk-kw">In-flight wait.</span> Stop accepting new connections; let in-flight
+     requests finish, bounded by a timeout &lt; terminationGracePeriodSeconds.
+  4. <span class="tk-kw">Background workers drained.</span> Consumers, tickers, span processors
+     all observe the shutdown signal and exit cleanly.
+  5. <span class="tk-kw">Connection cleanup.</span> DB / Redis / upstream pools closed after the
+     server stops; telemetry flushed last.
+  6. <span class="tk-kw">K8s manifest aligned.</span> terminationGracePeriodSeconds ≥ drain + buffer.
+
+<span class="tk-cm"># If verification can't be done, say so in the PR —</span>
+<span class="tk-cm"># do not claim "graceful shutdown done" on code review alone.</span></code></pre>
+          </div>
+        </div>
+        <p class="section-intro">The skill also ships stack-specific templates (Rust, NestJS, Node, Java), the K8s manifest, a local SIGTERM test, and a list of anti-patterns to reject in review. Twenty-three skills like this live in the repo — the ten pipeline stages plus reusable blocks.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SAMPLE — an agent
+    ══════════════════════════════════════════════════════ -->
+    <section id="sample-agent" class="section section-band">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">06</span>sample: an agent</p>
+        <h2 class="section-heading">Each reviewer is a <em class="accent-serif">specialist, not a generalist</em></h2>
+        <p class="section-intro">The pipeline dispatches role-specialized subagents, each with a tight remit and its own tool budget. Here is the real remit of <code>code-reviewer</code> — one of twelve.</p>
+        <div class="proof-code">
+          <p class="proof-code-note">Real excerpt from the ai-native-sdlc repo — the agent's own definition file.</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">agents/code-reviewer.md</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm"># Role: senior code reviewer. Correctness, security, performance,</span>
+<span class="tk-cm"># maintainability — with constructive, specific feedback.</span>
+
+When invoked:
+  1. Identify the scope of changes and the language/framework.
+  2. Read the changed code in full, plus enough context to judge correctness.
+  3. Review in order: correctness → security → performance
+     → maintainability → tests → docs.
+  4. Produce prioritized, actionable feedback with file/line references.
+
+Severity:
+  <span class="tk-kw">CRITICAL</span> security or data-loss risk — BLOCK merge.
+  <span class="tk-kw">HIGH</span>     real bug or broken contract — fix before merge.
+  <span class="tk-kw">MEDIUM</span>   maintainability / minor correctness — fix when practical.
+  <span class="tk-kw">LOW</span>      style, naming — optional.
+
+<span class="tk-cm"># Be specific, be brief, be kind.</span></code></pre>
+          </div>
+        </div>
+        <p class="section-intro">The full roster is twelve: <strong>planner</strong>, <strong>product-owner</strong>, <strong>microservice-architect</strong>, <strong>code-architect</strong>, <strong>backend-developer</strong>, <strong>frontend-developer</strong>, <strong>data-layer-reviewer</strong>, <strong>code-reviewer</strong>, <strong>qa-expert</strong>, <strong>security-auditor</strong>, <strong>technical-writer</strong> and <strong>harness-optimizer</strong>. Each one draws a boundary; none of them can approve its own work.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         GOVERNANCE — the operating discipline
+    ══════════════════════════════════════════════════════ -->
+    <section id="governance" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">07</span>governance</p>
+        <h2 class="section-heading">The discipline the agents <em class="accent-serif">run under</em></h2>
+        <p class="section-intro">All of it operates under one standing rule set — a desensitized set of Karpathy-derived guidelines that bias toward caution over speed.</p>
+        <ul class="more-work-list">
+          <li><strong>Human-in-the-loop, always.</strong> Approval gates sit at design and before any publish; the AI never commits or publishes on its own.</li>
+          <li><strong>Content-hash state.</strong> State lives in the artifacts, not a database. Re-running a stage hashes the upstream artifact and detects changes, so edits ripple forward deterministically.</li>
+          <li><strong>No unreviewed merge.</strong> Every stage produces a reviewable artifact; the next stage refuses to run until the previous one exists and is signed off. Plausible is not correct — nothing merges on hope.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         CTA — explore on GitHub
+    ══════════════════════════════════════════════════════ -->
+    <section id="pipeline-cta" class="section section-band">
+      <div class="container">
+        <h2 class="section-heading">The full <em class="accent-serif">build</em></h2>
+        <p class="section-intro">The whole pipeline — 10 stages, 23 skills, 12 agents — lives on GitHub, desensitized and MIT-licensed. What you've seen here is a few samples; the rest is in the open.</p>
+        <!-- TODO: swap to github.com/henrylee94/ai-native-sdlc once public -->
+        <p class="thesis-block"><a href="https://github.com/henrylee94" class="case-link">explore the build on GitHub →</a></p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
          PRINCIPLES OF WORKING WITH AGENTS
     ══════════════════════════════════════════════════════ -->
     <section id="agent-principles" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">04</span>working with agents</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">08</span>working with agents</p>
         <h2 class="section-heading">Principles of working with <em class="accent-serif">agents</em></h2>
         <ul class="more-work-list">
           <li><strong>AI proposes, humans approve.</strong> Every irreversible action — commit, publish, deploy, migration — sits behind an explicit human gate. No agent ever commits.</li>
@@ -297,7 +429,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="agent-rules" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">05</span>the rules</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">09</span>the rules</p>
         <h2 class="section-heading">The rules my agents <em class="accent-serif">live by</em></h2>
         <p class="section-intro">Both of my agents — the one at work and the one at home — run under the same standing rules. Every one of them was written the hard way.</p>
         <ol class="more-work-list">
@@ -317,7 +449,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="raising-an-agent" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">06</span>raising an agent</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">10</span>raising an agent</p>
         <h2 class="section-heading">Raising an <em class="accent-serif">agent</em></h2>
         <p class="section-intro">The Lab page shows what my home agent does. This is how it got that way — the same method I use on the agents at work, run twice, converging on the same constitution.</p>
         <div class="notes-grid">
@@ -355,7 +487,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="constraints" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">07</span>the constraints</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">11</span>the constraints</p>
         <h2 class="section-heading">Every tool answers a <em class="accent-serif">constraint</em></h2>
         <p class="section-intro">None of this tooling exists because it's cool. Large language models have a handful of hard constraints — and every piece of my stack is a direct answer to one of them.</p>
         <div class="notes-grid">
