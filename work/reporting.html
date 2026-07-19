@@ -111,6 +111,49 @@
           <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform had a working BI function before it had a BI team — the formal team later built on these foundations. Regulatory filings shipped on schedule at million-row scale; 140+ reporting changes over six years.</p></div>
         </div>
 
+        <!-- ── The design, in code ─────────────────────────── -->
+        <div class="proof-code">
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">report-read.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Reporting feeds reconciliation — it has to be fast AND correct. Read</span>
+<span class="tk-cm">// precomputed daily summaries for speed; keep a recompute window open so</span>
+<span class="tk-cm">// late corrections still land instead of freezing a wrong number.</span>
+<span class="tk-kw">async function</span> <span class="tk-fn">report</span>(view: <span class="tk-type">View</span>, from: <span class="tk-type">Date</span>, to: <span class="tk-type">Date</span>) {
+  <span class="tk-kw">const</span> settled = <span class="tk-kw">await</span> summaries.<span class="tk-fn">find</span>({ view, day: { $lt: <span class="tk-fn">recomputeCutoff</span>() } });
+  <span class="tk-kw">const</span> recent  = <span class="tk-kw">await</span> <span class="tk-fn">aggregateLive</span>(view, <span class="tk-fn">recomputeCutoff</span>(), to); <span class="tk-cm">// 2-day window</span>
+  <span class="tk-kw">return</span> <span class="tk-fn">merge</span>(settled, recent); <span class="tk-cm">// precompute + recompute, both tracks</span>
+}</code></pre>
+          </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">regulatory-filing.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// A multi-million-row day has to fit the filing window. Stream in batches,</span>
+<span class="tk-cm">// slice at a million rows per file, append-upload — never buffer it all.</span>
+<span class="tk-kw">const</span> ROWS_PER_FILE = <span class="tk-num">1_000_000</span>;
+
+<span class="tk-kw">async function</span> <span class="tk-fn">fileDay</span>(day: <span class="tk-type">string</span>) {
+  <span class="tk-kw">let</span> part = <span class="tk-num">0</span>, rows = <span class="tk-num">0</span>, out = <span class="tk-fn">openSlice</span>(day, part);
+  <span class="tk-kw">for await</span> (<span class="tk-kw">const</span> batch <span class="tk-kw">of</span> <span class="tk-fn">streamSettled</span>(day)) {
+    <span class="tk-kw">await</span> out.<span class="tk-fn">appendUpload</span>(batch); <span class="tk-cm">// FTP append — constant memory</span>
+    <span class="tk-kw">if</span> ((rows += batch.length) &gt;= ROWS_PER_FILE) {
+      out = <span class="tk-fn">openSlice</span>(day, ++part); rows = <span class="tk-num">0</span>; <span class="tk-cm">// roll to the next file</span>
+    }
+  }
+}</code></pre>
+          </div>
+        </div>
+
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
           <a href="crypto.html">← Previous: Crypto payment rails</a>

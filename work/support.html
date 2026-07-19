@@ -162,6 +162,44 @@
 <span class="tk-cm">// Assignment is O(1): the best agent is simply the head of the set.</span>
 <span class="tk-kw">const</span> [next] = <span class="tk-kw">await</span> redis.<span class="tk-fn">zrange</span>(QUEUE, <span class="tk-num">0</span>, <span class="tk-num">0</span>);</code></pre>
           </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">agent-invite.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Two messages in the same room, same millisecond, both want a human —</span>
+<span class="tk-cm">// without a fence, two agents get invited into one chat. First caller wins.</span>
+<span class="tk-kw">async function</span> <span class="tk-fn">inviteAgent</span>(roomId: <span class="tk-type">string</span>) {
+  <span class="tk-kw">const</span> locked = <span class="tk-kw">await</span> redis.<span class="tk-fn">set</span>(
+    <span class="tk-str">`agentRoomLock:${roomId}`</span>, <span class="tk-str">'1'</span>, { nx: <span class="tk-kw">true</span>, px: <span class="tk-num">10_000</span> });
+  <span class="tk-kw">if</span> (!locked) <span class="tk-kw">return</span>; <span class="tk-cm">// someone else already took the room — walk away</span>
+
+  <span class="tk-kw">const</span> agent = <span class="tk-kw">await</span> <span class="tk-fn">assignFromQueue</span>(roomId);
+  <span class="tk-kw">await</span> <span class="tk-fn">notify</span>(agent, roomId); <span class="tk-cm">// TTL aligned to op: a crash can't lock forever</span>
+}</code></pre>
+          </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">ai-race-guard.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// AI answering first means AI failing first. The model is a flaky</span>
+<span class="tk-cm">// dependency: race it against a timer, and on stall or error fall</span>
+<span class="tk-cm">// straight through to a human — the user never gets a spinner.</span>
+<span class="tk-kw">try</span> {
+  <span class="tk-kw">const</span> reply = <span class="tk-kw">await</span> <span class="tk-type">Promise</span>.<span class="tk-fn">race</span>([
+    <span class="tk-fn">askModel</span>(message),
+    <span class="tk-fn">rejectAfter</span>(<span class="tk-num">10_000</span>), <span class="tk-cm">// ten seconds, then it's a person's job</span>
+  ]);
+  <span class="tk-kw">return</span> <span class="tk-fn">send</span>(reply);
+} <span class="tk-kw">catch</span> {
+  <span class="tk-kw">return</span> <span class="tk-fn">forceToAgent</span>(message); <span class="tk-cm">// timeout OR error → human takeover</span>
+}</code></pre>
+          </div>
         </div>
 
         <!-- ── War stories ─────────────────────────────────── -->

@@ -125,6 +125,51 @@
           </div>
         </div>
 
+        <!-- ── The design, in code ─────────────────────────── -->
+        <div class="proof-code">
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">ingest-boundary.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// 10+ sources disagree on shape, timing and delivery. Normalize at the</span>
+<span class="tk-cm">// boundary, then split by read pattern: hot recent rows stay operational,</span>
+<span class="tk-cm">// long-window volume goes to the columnar store so neither starves.</span>
+<span class="tk-kw">async function</span> <span class="tk-fn">onRecord</span>(raw: <span class="tk-type">SourceRecord</span>, source: <span class="tk-type">Channel</span>) {
+  <span class="tk-kw">const</span> rec = <span class="tk-fn">normalize</span>(raw, source); <span class="tk-cm">// per-source shape → one canonical row</span>
+
+  <span class="tk-kw">await</span> <span class="tk-type">Promise</span>.<span class="tk-fn">all</span>([
+    hotStore.<span class="tk-fn">upsert</span>(rec),        <span class="tk-cm">// recent history — covering-indexed reads</span>
+    columnar.<span class="tk-fn">append</span>(rec),         <span class="tk-cm">// analytics — off the production path</span>
+  ]);
+}</code></pre>
+          </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">reconcile.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Correctness is re-earned daily: diff each source's totals against the</span>
+<span class="tk-cm">// analytics store. A mismatch is the day's work — trace, fix, backfill.</span>
+<span class="tk-kw">async function</span> <span class="tk-fn">reconcile</span>(day: <span class="tk-type">string</span>) {
+  <span class="tk-kw">for</span> (<span class="tk-kw">const</span> type <span class="tk-kw">of</span> recordTypes) {
+    <span class="tk-kw">const</span> mine = <span class="tk-kw">await</span> hotStore.<span class="tk-fn">countByType</span>(type, day);
+    <span class="tk-kw">const</span> theirs = <span class="tk-kw">await</span> columnar.<span class="tk-fn">countByType</span>(type, day);
+    <span class="tk-kw">if</span> (mine !== theirs) {
+      logger.<span class="tk-fn">warn</span>(<span class="tk-str">`drift ${type} ${day}: ${mine} vs ${theirs}`</span>);
+      <span class="tk-kw">await</span> <span class="tk-fn">flagForBackfill</span>(type, day); <span class="tk-cm">// never silently paper over it</span>
+    }
+  }
+}</code></pre>
+          </div>
+        </div>
+
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
           <a href="pipeline.html">← Previous: Cross-stack mission pipeline</a>

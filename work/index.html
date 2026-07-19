@@ -138,59 +138,67 @@
         </div>
 
         <article class="case" data-case="1">
-          <p class="case-label">Case 01</p>
-          <h3 class="case-title">The transaction backbone — from a legacy monolith to a contract-first service</h3>
-          <p class="case-hook">The system that makes sure no transaction is ever processed twice.</p>
-          <div class="hero-stats case-chips">
-            <span class="hero-stat">monolith → microservices</span>
-            <span class="hero-stat">millions of transactions/day</span>
-            <span class="hero-stat">idempotent by construction</span>
-            <span class="hero-stat">2-min self-serve SDK</span>
-            <span class="hero-stat">200+ types · one base workflow</span>
-          </div>
-          <p class="case-summary">Every financial transaction passes one audited approval workflow — <span class="hl">millions of transactions a day</span>. I rebuilt it on Temporal with idempotency by construction (a retry can only return the existing record) and turned integration into a published SDK: adding a new request type is a <span class="hl">two-minute self-service</span> form.</p>
-          <a class="case-link" href="backbone.html">Read the case study →</a>
+          <a class="case-cardlink" href="backbone.html" aria-label="Read the case study: The transaction backbone">
+            <p class="case-label">Case 01</p>
+            <h3 class="case-title">The transaction backbone — from a legacy monolith to a contract-first service</h3>
+            <p class="case-hook">The system that makes sure no transaction is ever processed twice.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">monolith → microservices</span>
+              <span class="hero-stat">millions of transactions/day</span>
+              <span class="hero-stat">idempotent by construction</span>
+              <span class="hero-stat">2-min self-serve SDK</span>
+              <span class="hero-stat">200+ types · one base workflow</span>
+            </div>
+            <p class="case-summary">Every financial transaction passes one audited approval workflow — <span class="hl">millions of transactions a day</span>. I rebuilt it on Temporal with idempotency by construction (a retry can only return the existing record) and turned integration into a published SDK: adding a new request type is a <span class="hl">two-minute self-service</span> form.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
         </article>
 
         <article class="case" data-case="2">
-          <p class="case-label">Case 02</p>
-          <h3 class="case-title">Keeping a high-concurrency transaction platform standing 50k → 400k+ users</h3>
-          <p class="case-hook">I drove the re-architectures that kept the platform up as daily users climbed to 400k+ — one live single-point at a time.</p>
-          <div class="hero-stats case-chips">
-            <span class="hero-stat">50k → 400k+, live</span>
-            <span class="hero-stat">collision-proof cutover</span>
-            <span class="hero-stat">sub-second pushes</span>
-          </div>
-          <p class="case-summary">The member management platform grew from 50k to 400k+ and the old mechanisms broke in production. I replaced them live — atomic ID generation cut over with a <span class="hl">+1-billion offset</span>, notification fan-out moved to pub/sub, blocking scans made incremental — inside a weekly release train.</p>
-          <a class="case-link" href="scale.html">Read the case study →</a>
+          <a class="case-cardlink" href="scale.html" aria-label="Read the case study: Keeping a high-concurrency platform standing">
+            <p class="case-label">Case 02</p>
+            <h3 class="case-title">Keeping a high-concurrency transaction platform standing 50k → 400k+ users</h3>
+            <p class="case-hook">I drove the re-architectures that kept the platform up as daily users climbed to 400k+ — one live single-point at a time.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">50k → 400k+, live</span>
+              <span class="hero-stat">collision-proof cutover</span>
+              <span class="hero-stat">sub-second pushes</span>
+            </div>
+            <p class="case-summary">The member management platform grew from 50k to 400k+ and the old mechanisms broke in production. I replaced them live — atomic ID generation cut over with a <span class="hl">+1-billion offset</span>, notification fan-out moved to pub/sub, blocking scans made incremental — inside a weekly release train.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
         </article>
 
         <article class="case" data-case="3">
-          <p class="case-label">Case 03</p>
-          <h3 class="case-title">The first production service on a brand-new stack — from zero to clean handoff</h3>
-          <p class="case-hook">The pilot the whole stack migration was judged on — every pattern I set became the template later services copied.</p>
-          <div class="hero-stats case-chips">
-            <span class="hero-stat">first on the new stack</span>
-            <span class="hero-stat">buy the base, build the moat</span>
-            <span class="hero-stat">solo → team → clean handoff</span>
-            <span class="hero-stat">became the template others copied</span>
-          </div>
-          <p class="case-summary">AI-assisted support with human takeover, built solo on a stack nobody had shipped to production yet. I bought the messaging base and self-built only the differentiators — a routing queue encoding status, load and wait-time into one sorted-set score, AI-to-human handoff, a mini back-office — grew it to a two-person team, and handed it off clean. Being the pilot meant my patterns became the template every later service copied.</p>
-          <a class="case-link" href="support.html">Read the case study →</a>
+          <a class="case-cardlink" href="support.html" aria-label="Read the case study: The first production service on a brand-new stack">
+            <p class="case-label">Case 03</p>
+            <h3 class="case-title">The first production service on a brand-new stack — from zero to clean handoff</h3>
+            <p class="case-hook">The pilot the whole stack migration was judged on — every pattern I set became the template later services copied.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">first on the new stack</span>
+              <span class="hero-stat">buy the base, build the moat</span>
+              <span class="hero-stat">solo → team → clean handoff</span>
+              <span class="hero-stat">became the template others copied</span>
+            </div>
+            <p class="case-summary">AI-assisted support with human takeover, built solo on a stack nobody had shipped to production yet. I bought the messaging base and self-built only the differentiators — a routing queue encoding status, load and wait-time into one sorted-set score, AI-to-human handoff, a mini back-office — grew it to a two-person team, and handed it off clean. Being the pilot meant my patterns became the template every later service copied.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
         </article>
 
         <article class="case" data-case="4">
-          <p class="case-label">Case 04</p>
-          <h3 class="case-title">The exactly-once reliability layer for a cross-stack rewards pipeline</h3>
-          <p class="case-hook">Four services, three languages, a reward path where a double-pay is real loss — I designed the layer that makes payout happen exactly once, zero legacy changes.</p>
-          <div class="hero-stats case-chips">
-            <span class="hero-stat">4 services · 3 languages</span>
-            <span class="hero-stat">exactly-once, layered</span>
-            <span class="hero-stat">0 legacy changes</span>
-            <span class="hero-stat">pre-prod verified</span>
-          </div>
-          <p class="case-summary">A mission pipeline across four services in three languages, composing the platform's existing engines. My design: the <span class="hl">exactly-once layer</span> — an atomic claims ledger plus a human-readable idempotency key — correct under both workflow replays and message redeliveries.</p>
-          <a class="case-link" href="pipeline.html">Read the case study →</a>
+          <a class="case-cardlink" href="pipeline.html" aria-label="Read the case study: The exactly-once reliability layer">
+            <p class="case-label">Case 04</p>
+            <h3 class="case-title">The exactly-once reliability layer for a cross-stack rewards pipeline</h3>
+            <p class="case-hook">Four services, three languages, a reward path where a double-pay is real loss — I designed the layer that makes payout happen exactly once, zero legacy changes.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">4 services · 3 languages</span>
+              <span class="hero-stat">exactly-once, layered</span>
+              <span class="hero-stat">0 legacy changes</span>
+              <span class="hero-stat">pre-prod verified</span>
+            </div>
+            <p class="case-summary">A mission pipeline across four services in three languages, composing the platform's existing engines. My design: the <span class="hl">exactly-once layer</span> — an atomic claims ledger plus a human-readable idempotency key — correct under both workflow replays and message redeliveries.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
         </article>
 
         <div class="case-minis">
