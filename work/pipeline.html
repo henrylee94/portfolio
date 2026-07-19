@@ -136,6 +136,49 @@
           </div>
         </div>
 
+        <!-- ── The design, in code ─────────────────────────── -->
+        <div class="proof-code">
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">exactly-once.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Two independent sources of duplicates — message re-delivery AND workflow</span>
+<span class="tk-cm">// replay. One atomic ledger claim per user·tier·month neutralizes both.</span>
+<span class="tk-kw">async function</span> <span class="tk-fn">grantOnce</span>(userId: <span class="tk-type">string</span>, tier: <span class="tk-type">number</span>, month: <span class="tk-type">string</span>) {
+  <span class="tk-kw">const</span> key = <span class="tk-str">`mission:${userId}:${tier}:${month}`</span>; <span class="tk-cm">// human-readable, debuggable</span>
+
+  <span class="tk-cm">// Insert-if-absent is the whole fence: the second caller collides and stops.</span>
+  <span class="tk-kw">const</span> claim = <span class="tk-kw">await</span> ledger.<span class="tk-fn">insertUnique</span>({ _id: key, at: <span class="tk-type">Date</span>.<span class="tk-fn">now</span>() });
+  <span class="tk-kw">if</span> (!claim.inserted) <span class="tk-kw">return</span>; <span class="tk-cm">// already granted — a replay, not a new reward</span>
+
+  <span class="tk-kw">await</span> legacyUpgradePath.<span class="tk-fn">grant</span>(userId, tier); <span class="tk-cm">// reuse old system, 0 changes</span>
+}</code></pre>
+          </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">thresholds.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Every threshold has exactly one owner — a lookup table. Producers</span>
+<span class="tk-cm">// broadcast unconditionally, so two repos can never disagree on a number.</span>
+<span class="tk-kw">const</span> GOALS: <span class="tk-type">Record</span>&lt;<span class="tk-type">number</span>, <span class="tk-type">number</span>&gt; = { <span class="tk-num">1</span>: <span class="tk-num">500</span>, <span class="tk-num">2</span>: <span class="tk-num">2_000</span>, <span class="tk-num">3</span>: <span class="tk-num">10_000</span> };
+
+<span class="tk-cm">// Entry-anchored: the goal is fixed at enrollment, immune to later edits.</span>
+<span class="tk-kw">function</span> <span class="tk-fn">goalFor</span>(tier: <span class="tk-type">number</span>): <span class="tk-type">number</span> {
+  <span class="tk-kw">const</span> goal = GOALS[tier];
+  <span class="tk-kw">if</span> (goal === <span class="tk-kw">undefined</span>) <span class="tk-kw">throw new</span> <span class="tk-type">Error</span>(<span class="tk-str">`no goal for tier ${tier}`</span>);
+  <span class="tk-kw">return</span> goal;
+}</code></pre>
+          </div>
+        </div>
+
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
           <a href="support.html">← Previous: Real-time support platform</a>

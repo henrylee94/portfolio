@@ -177,6 +177,28 @@
   backoff: { initial: <span class="tk-str">'500ms'</span>, factor: <span class="tk-num">2</span>, maxAttempts: <span class="tk-num">3</span> },
 };</code></pre>
           </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">base.workflow.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// One generic workflow runs every request type. A third-party callback</span>
+<span class="tk-cm">// can arrive before our own state has landed — so signals are buffered</span>
+<span class="tk-cm">// until the record they refer to exists, and behaviour changes ship</span>
+<span class="tk-cm">// behind a version marker so in-flight histories replay deterministically.</span>
+<span class="tk-kw">export async function</span> <span class="tk-fn">proposalBaseWorkflow</span>(req: <span class="tk-type">Request</span>) {
+  <span class="tk-kw">const</span> buffered: <span class="tk-type">Signal</span>[] = [];
+  <span class="tk-fn">setHandler</span>(decisionSignal, (s) =&gt; buffered.<span class="tk-fn">push</span>(s)); <span class="tk-cm">// never dropped</span>
+
+  <span class="tk-kw">const</span> record = <span class="tk-kw">await</span> <span class="tk-fn">createRecord</span>(req);         <span class="tk-cm">// idempotent create</span>
+  <span class="tk-kw">await</span> <span class="tk-fn">condition</span>(() =&gt; buffered.length &gt; <span class="tk-num">0</span>);      <span class="tk-cm">// drain once state exists</span>
+
+  <span class="tk-kw">if</span> (<span class="tk-fn">patched</span>(<span class="tk-str">'settle-v2'</span>)) <span class="tk-kw">return</span> <span class="tk-fn">settleV2</span>(record, buffered);
+  <span class="tk-kw">return</span> <span class="tk-fn">settleV1</span>(record, buffered);       <span class="tk-cm">// old runs keep old logic</span>
+}</code></pre>
+          </div>
         </div>
 
         <!-- ── War stories ─────────────────────────────────── -->

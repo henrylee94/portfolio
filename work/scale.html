@@ -159,6 +159,43 @@
 <span class="tk-kw">const</span> nextId = <span class="tk-kw">await</span> redis.<span class="tk-fn">incr</span>(<span class="tk-str">'seq:memberId'</span>); <span class="tk-cm">// atomic — no document lock</span>
 <span class="tk-cm">// Rollback is boring on purpose: point back at the old counter.</span></code></pre>
           </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">push-fanout.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// The bottleneck was never the sockets — it was one process fanning out</span>
+<span class="tk-cm">// to every connection. Publish once; each instance delivers to its own.</span>
+<span class="tk-kw">export function</span> <span class="tk-fn">broadcast</span>(userId: <span class="tk-type">string</span>, event: <span class="tk-type">Event</span>) {
+  <span class="tk-kw">return</span> redis.<span class="tk-fn">publish</span>(<span class="tk-str">`push:${userId}`</span>, <span class="tk-type">JSON</span>.<span class="tk-fn">stringify</span>(event));
+}
+
+<span class="tk-cm">// Every instance subscribes and only touches sockets it actually holds.</span>
+redis.<span class="tk-fn">psubscribe</span>(<span class="tk-str">'push:*'</span>, (channel, payload) =&gt; {
+  <span class="tk-kw">const</span> userId = channel.<span class="tk-fn">slice</span>(<span class="tk-str">'push:'</span>.length);
+  localSockets.<span class="tk-fn">get</span>(userId)?.<span class="tk-fn">send</span>(payload); <span class="tk-cm">// sub-second, N instances</span>
+});</code></pre>
+          </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">config-cache.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// The old in-memory config cache grew without bound and leaked. Rebuilt</span>
+<span class="tk-cm">// cache-aside: read local, fall through to Redis, refresh on a fixed cycle.</span>
+<span class="tk-kw">async function</span> <span class="tk-fn">getConfig</span>(key: <span class="tk-type">string</span>): <span class="tk-type">Promise</span>&lt;<span class="tk-type">Config</span>&gt; {
+  <span class="tk-kw">const</span> hit = local.<span class="tk-fn">get</span>(key);
+  <span class="tk-kw">if</span> (hit &amp;&amp; hit.expires &gt; <span class="tk-type">Date</span>.<span class="tk-fn">now</span>()) <span class="tk-kw">return</span> hit.value;
+
+  <span class="tk-kw">const</span> value = <span class="tk-kw">await</span> redis.<span class="tk-fn">get</span>(key).<span class="tk-fn">then</span>(<span class="tk-type">JSON</span>.parse);
+  local.<span class="tk-fn">set</span>(key, { value, expires: <span class="tk-type">Date</span>.<span class="tk-fn">now</span>() + <span class="tk-num">15</span> * <span class="tk-num">60_000</span> });
+  <span class="tk-kw">return</span> value; <span class="tk-cm">// bounded, self-refreshing — config edits go live in minutes</span>
+}</code></pre>
+          </div>
         </div>
 
         <!-- ── War stories ─────────────────────────────────── -->
