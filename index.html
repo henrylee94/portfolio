@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Henry Lee — Backend Engineer & Technical Lead</title>
-  <meta name="description" content="I design and build distributed backend systems for high-concurrency transaction platforms, processing millions of operations every day." />
+  <title>Henry Lee — Backend Team Lead</title>
+  <meta name="description" content="Hi — I'm Henry. I build the backend systems behind millions of daily transactions — and lead the team that runs them." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Henry Lee — Backend Engineer & Technical Lead" />
-  <meta property="og:description" content="I design and build distributed backend systems for high-concurrency transaction platforms, processing millions of operations every day." />
+  <meta property="og:title" content="Henry Lee — Backend Team Lead" />
+  <meta property="og:description" content="Hi — I'm Henry. I build the backend systems behind millions of daily transactions — and lead the team that runs them." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Henry Lee — Backend Engineer & Technical Lead" />
-  <meta name="twitter:description" content="I design and build distributed backend systems for high-concurrency transaction platforms, processing millions of operations every day." />
+  <meta name="twitter:title" content="Henry Lee — Backend Team Lead" />
+  <meta name="twitter:description" content="Hi — I'm Henry. I build the backend systems behind millions of daily transactions — and lead the team that runs them." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -45,10 +45,12 @@
 
       <!-- Desktop nav -->
       <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="#hero" aria-current="page">Home</a>
         <a href="work/index.html">Work</a>
-        <a href="#about">About</a>
+        <a href="ai.html">AI</a>
         <a href="lab.html">Lab</a>
-        <a href="assets/Henry-Lee-Resume.pdf" download>Résumé</a>
+        <a href="notes.html">Notes</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <!-- Actions: theme, hamburger -->
@@ -82,10 +84,12 @@
 
       <!-- Mobile nav drawer -->
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="#hero" aria-current="page">Home</a>
         <a href="work/index.html">Work</a>
-        <a href="#about">About</a>
+        <a href="ai.html">AI</a>
         <a href="lab.html">Lab</a>
-        <a href="assets/Henry-Lee-Resume.pdf" download>Résumé</a>
+        <a href="notes.html">Notes</a>
+        <a href="#contact">Contact</a>
       </nav>
 
     </div>
@@ -96,7 +100,7 @@
   <main>
 
     <!-- ══════════════════════════════════════════════════════
-         HERO
+         HERO — scene 1: full-width typographic statement
     ══════════════════════════════════════════════════════ -->
     <section id="hero" class="section">
       <div class="container hero-inner">
@@ -104,32 +108,47 @@
 
           <div class="hero-text">
 
+            <p class="hero-prompt" aria-hidden="true">~/portfolio $</p>
+
             <h1 class="hero-name"><span class="hero-line">Henry</span><br><span class="hero-line">Lee</span></h1>
 
             <p class="hero-role">
-              Backend Engineer &amp; Technical Lead
+              Backend Team Lead
+            </p>
+
+            <p class="hero-statement">
+              <span class="hero-statement-l1">I build the backend systems a high-concurrency transaction platform runs on —</span>
+              <span class="hero-statement-l2">and lead the team that keeps them <em class="hero-amber">correct at scale</em>.</span>
             </p>
 
             <p class="hero-positioning">
-              I design and build distributed backend systems for high-concurrency transaction platforms, processing millions of operations every day.
+              Hi — I'm Henry. I take backend platforms from a legacy monolith to contract-first gRPC microservices — the systems behind millions of daily transactions — and I lead the team that runs them.
             </p>
 
-            <p class="hero-supporting">
-              Eight years in software, from legacy systems and production scaling to microservices, workflow orchestration, and technical leadership.
-            </p>
-
-            <div class="hero-stats" role="status" aria-live="polite">
-              <span class="hero-stat">400k+ — Daily active users</span>
-              <span class="hero-stat">Millions/day — Financial operations</span>
-              <span class="hero-stat">100+ — SDK releases</span>
+            <div class="hero-stats hero-stats-detailed" role="status" aria-live="polite">
+              <div class="hero-stat-item">
+                <span class="hero-stat">7 years</span>
+                <span class="hero-stat-sub">engineer → senior → lead</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="hero-stat">Millions of transactions/day, audited</span>
+                <span class="hero-stat-sub">every transaction, checked and logged</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="hero-stat">50k → 400k+ users</span>
+                <span class="hero-stat-sub">users never noticed — which was the job</span>
+              </div>
             </div>
 
             <div class="hero-ctas">
-              <a href="#work" class="btn btn-primary">
-                View selected work
+              <a href="#contact" class="btn btn-primary">
+                Get in touch
+              </a>
+              <a href="work/index.html" class="btn btn-ghost">
+                See the work
               </a>
               <a href="assets/Henry-Lee-Resume.pdf" class="btn btn-ghost" download>
-                Download résumé
+                Resume (PDF)
               </a>
             </div>
 
@@ -166,106 +185,269 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════
-         FEATURED WORK
+         FEATURED WORK — scene 2: card grid, teaser copy only
     ══════════════════════════════════════════════════════ -->
     <section id="work" class="section">
       <div class="container">
         <p class="section-label" aria-hidden="true"><span class="section-num">01</span>featured work</p>
         <h2 class="section-heading">Featured <em class="accent-serif">Work</em></h2>
 
-        <div class="featured-grid">
+        <article class="case" data-case="1">
+          <a class="case-cardlink" href="work/backbone.html" aria-label="Read the case study: The transaction backbone">
+            <p class="case-label">Case 01</p>
+            <h3 class="case-title">The transaction backbone</h3>
+            <p class="case-hook">Every financial transaction on the platform passes through it — I took it from a legacy monolith to a contract-first service.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">monolith → microservices</span>
+              <span class="hero-stat">idempotent by construction</span>
+              <span class="hero-stat">self-serve SDK</span>
+            </div>
+            <p class="case-summary">Millions of transactions a day, and if it goes down the whole platform stops. I rebuilt it from a legacy monolith onto gRPC + durable workflows — idempotency by construction, so a retry can only return the record it already made — and made integration a self-serve SDK that cut new-type onboarding from 30–60 minutes to two.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
+        </article>
 
-          <article class="featured-card">
-            <a class="case-cardlink" href="work/backbone.html" aria-label="Read the case study: Transaction Backbone">
-              <h3 class="featured-card-title">Transaction Backbone</h3>
-              <p class="featured-card-hook">Rebuilt a legacy transaction flow into a durable workflow service with safe retries and self-service integration.</p>
-              <div class="hero-stats case-chips">
-                <span class="hero-stat">Millions/day</span>
-                <span class="hero-stat">100+ SDK releases</span>
-                <span class="hero-stat">30–60 min → ~2 min onboarding</span>
-              </div>
-              <span class="case-link">Explore the case →</span>
-            </a>
-          </article>
+        <article class="case" data-case="2">
+          <a class="case-cardlink" href="work/scale.html" aria-label="Read the case study: Scaling a platform, live">
+            <p class="case-label">Case 02</p>
+            <h3 class="case-title">Scaling a platform, live</h3>
+            <p class="case-hook">50k → 400k+ users and still climbing — the job was making sure nobody noticed.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">measured before tuning</span>
+              <span class="hero-stat">replaced live</span>
+              <span class="hero-stat">every step revertible</span>
+            </div>
+            <p class="case-summary">As the platform grew, ID generation, notification fan-out and blocking scans each hit the old architecture's limits — an outage stops every transaction. I measured where the time actually went, then replaced each mechanism in production: no downtime, users online, every step revertible.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
+        </article>
 
-          <article class="featured-card">
-            <a class="case-cardlink" href="work/scale.html" aria-label="Read the case study: Scaling the Platform">
-              <h3 class="featured-card-title">Scaling the Platform</h3>
-              <p class="featured-card-hook">Improved core platform mechanisms as daily active users grew from 50k to 400k+.</p>
-              <div class="hero-stats case-chips">
-                <span class="hero-stat">50k → 400k+ DAU</span>
-                <span class="hero-stat">Zero-downtime migration</span>
-                <span class="hero-stat">Redis fan-out &amp; routing</span>
-              </div>
-              <span class="case-link">Explore the case →</span>
-            </a>
-          </article>
-
-          <article class="featured-card">
-            <a class="case-cardlink" href="work/ingestion.html" aria-label="Read the case study: Data Ingestion Pipeline">
-              <h3 class="featured-card-title">Data Ingestion Pipeline</h3>
-              <p class="featured-card-hook">Unified 10M+ daily records from 10+ sources into a reconciled queryable layer.</p>
-              <div class="hero-stats case-chips">
-                <span class="hero-stat">10M+ records/day</span>
-                <span class="hero-stat">10+ sources</span>
-                <span class="hero-stat">Streaming + durable workflows</span>
-              </div>
-              <span class="case-link">Explore the case →</span>
-            </a>
-          </article>
-
-        </div>
+        <article class="case" data-case="3">
+          <a class="case-cardlink" href="work/support.html" aria-label="Read the case study: Real-time support platform">
+            <p class="case-label">Case 03</p>
+            <h3 class="case-title">Real-time support platform — from zero to clean handoff</h3>
+            <p class="case-hook">The first production service on a new stack — every pattern I set became the template others copied.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">first on the new stack</span>
+              <span class="hero-stat">buy the base, build the moat</span>
+              <span class="hero-stat">solo → team → clean handoff</span>
+            </div>
+            <p class="case-summary">AI-assisted support with human takeover, built solo on a stack nobody had shipped to production yet. I bought the messaging base and self-built only the differentiators — routing, AI-to-human handoff, back-office — grew it to a two-person team, and handed it off clean. Being the pilot meant my patterns became the template every later service copied.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
+        </article>
 
         <div class="more-work">
-          <p class="more-work-all"><a href="work/index.html">All case studies →</a></p>
+          <h3 class="more-work-heading">More work</h3>
+          <ul class="more-work-list">
+            <li><a href="work/pipeline.html">Cross-stack mission pipeline — three languages, exactly-once →</a></li>
+            <li><a href="work/ingestion.html">Account-change ingestion — over ten million records a day, 10+ sources →</a></li>
+            <li><a href="work/crypto.html">Crypto payment rails — two years, three wallet protocols →</a></li>
+            <li><a href="work/reporting.html">Reporting engine &amp; regulatory delivery →</a></li>
+          </ul>
+          <p class="more-work-all"><a href="work/index.html">All seven systems →</a></p>
         </div>
 
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════
-         PRINCIPLES
+         NUMBERS — scene 3: focal amber band (the page's tone-jump)
+    ══════════════════════════════════════════════════════ -->
+    <section id="numbers" class="section section-band band-amber" aria-label="By the numbers">
+      <div class="container">
+        <div class="numbers-band">
+          <div class="band-cell">
+            <span class="num-value">Millions</span>
+            <span class="band-label">transactions a day, audited</span>
+          </div>
+          <div class="band-cell">
+            <span class="num-value">400k+</span>
+            <span class="band-label">daily users, from 50k (climbing)</span>
+          </div>
+          <div class="band-cell">
+            <span class="num-value">5</span>
+            <span class="band-label">person team, two stacks</span>
+          </div>
+        </div>
+        <p class="band-facts">5 partner teams coordinated per project · 6 domains, two stacks · 80% coverage gate, enforced · weekly release train, full regression · 16 features shipped through my AI pipeline</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SYSTEMS AT ALTITUDE — scene 3.5: the big-picture thesis
+    ══════════════════════════════════════════════════════ -->
+    <section id="systems" class="section">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>at altitude</p>
+        <h2 class="section-heading">Systems, <em class="accent-serif">at altitude</em></h2>
+        <p class="section-intro">Beyond any single feature — the decomposition, the platform, and the discipline to run it.</p>
+
+        <div class="statements">
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">01</span>
+            <h3>Decomposed a legacy monolith into gRPC microservices.</h3>
+            <p>Growth forced the rewrite — millions of transactions a day, ~1,000/s and still climbing past what the old architecture could hold. I led the migration of the platform's most critical flows onto a new NestJS/gRPC + Temporal stack: framework first, dead code retired on the way, the cutover carried by the SDK with endpoint-level fallback. Migration as modernization, with a rollback built into every step.</p>
+          </article>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">02</span>
+            <h3>Built the contract-first platform the team ships on.</h3>
+            <p>Proto-first by contract: one <span class="hl">.proto</span> generates the gRPC types the SDK and every service share, so integration is one import with zero boilerplate. Adding a new request type went from a 30–60-minute, person-dependent process to a <span class="hl">two-minute self-serve</span> form — pull request, publish, semantic versioning, changelog, notify. 100+ published versions; 200+ request types run through one base workflow. Developer enablement, not just a library.</p>
+          </article>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">03</span>
+            <h3>Ran it with production-grade observability.</h3>
+            <p>What I watch every morning: queue backlog, workflow retries, database load, slow queries, CPU/memory spikes and leaks — on Grafana, with Aliyun SLS for log-based alerting and incident triage, OpenTelemetry traces and Prometheus metrics underneath. Graceful shutdown is a non-negotiable readiness gate — it came out of a real incident. <span class="hl">Index first, cache second</span>: queries that timed out on a single day of data now scan a 30-day window.</p>
+          </article>
+        </div>
+
+        <!-- ── Proof strip — live demos as evidence ────────── -->
+        <div class="proof-strip">
+          <h3 class="more-work-heading">Proof — run the designs</h3>
+          <p class="section-intro proof-strip-intro">Don't take my word for it — these are live, interactive rebuilds of the designs above. Break them yourself.</p>
+          <div class="proof-cards">
+            <a class="proof-card" href="https://henrylee94.github.io/lab/showcase-idempotency.html" target="_blank" rel="noopener">
+              <span class="proof-card-kicker">live demo 01</span>
+              <h4>Retry Storm</h4>
+              <p>Hammer one transaction with retries — the idempotency design refuses to execute it twice.</p>
+              <span class="proof-card-cta">Play the design →</span>
+            </a>
+            <a class="proof-card" href="https://henrylee94.github.io/lab/showcase-router.html" target="_blank" rel="noopener">
+              <span class="proof-card-kicker">live demo 02</span>
+              <h4>Dispatch Floor</h4>
+              <p>Watch the routing queue pick the next agent — status first, load second, longest wait breaks the tie.</p>
+              <span class="proof-card-cta">Play the design →</span>
+            </a>
+            <a class="proof-card" href="https://henrylee94.github.io/lab/showcase-github.html" target="_blank" rel="noopener">
+              <span class="proof-card-kicker">live demo 03</span>
+              <h4>Live GitHub</h4>
+              <p>This site's own repository activity, streamed straight from the GitHub API — the shipping never stopped.</p>
+              <span class="proof-card-cta">See it live →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         HOW I WORK — scene 4: statement rows + quiet compact list
     ══════════════════════════════════════════════════════ -->
     <section id="how" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>how i work</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>how i work</p>
         <h2 class="section-heading">How I <em class="accent-serif">Work</em></h2>
+        <p class="section-intro">Principles first, tasks second. The systems are half the job — the other half is building the people who build them.</p>
 
-        <div class="principles-grid">
-          <article class="principle-card">
-            <h3>Design for the next change</h3>
-            <p>I prefer systems that make the next requirement cheaper, not just the current delivery possible.</p>
+        <div class="statements">
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">P1</span>
+            <h3>Price the risk before pricing the work.</h3>
+            <p>The first question is never "how long will it take" — it's "what breaks if this is wrong, and who feels it?" Failure cost decides engineering rigor.</p>
           </article>
-          <article class="principle-card">
-            <h3>Decide with evidence</h3>
-            <p>Important technical decisions should be backed by measurements, prototypes, or production data.</p>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">L1</span>
+            <h3>Grow owners, not task-takers.</h3>
+            <p>Each engineer owns a domain end-to-end — requirements negotiation with business included.</p>
           </article>
-          <article class="principle-card">
-            <h3>Build for recovery</h3>
-            <p>Critical changes should include failure handling, rollback paths, and operational visibility.</p>
-          </article>
-          <article class="principle-card">
-            <h3>Write context down</h3>
-            <p>Decisions and trade-offs should be accessible to the team, not stored only in someone's head.</p>
+          <article class="statement">
+            <span class="statement-kicker" aria-hidden="true">L2</span>
+            <h3>Command the incident, then make it pay rent.</h3>
+            <p>Roll back first, diagnose second — then the incident pays: a playbook, a release rule, a report upward. Our risk-alerting pipeline was born from <span class="hl">a single missed charge</span>.</p>
           </article>
         </div>
 
+        <div class="principles-compact">
+          <div class="principle-line">
+            <h4>Design for the next change, not this delivery.</h4>
+            <p>What business will tune later becomes configuration, not code — a feature request becomes an ops change, not a deploy.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Decompose by ownership, not by ticket.</h4>
+            <p>Contracts split before anyone writes code — a cross-cutting feature once landed across five repositories in one day.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Decide with evidence, commit with a rollback.</h4>
+            <p>Big choices get benchmarks and proofs of concept — one analytics-store evaluation ran 30 queries × 50 rounds across three engines before we committed.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Turn work into leverage.</h4>
+            <p>Anything done twice becomes a tool — integration SDKs, incident playbooks, an AI diagnosis bot the whole team runs.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Calibrate the challenge.</h4>
+            <p>Stretch without drowning — I watch where people stall and nudge; I don't grab the keyboard.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Pair temperaments, not just skills.</h4>
+            <p>A meticulous slow-mover next to a fast pusher who gets careless — tuned like any other system, re-tuned when they drift.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Keep a floating seat.</h4>
+            <p>One engineer goes wherever the pressure is — that seat is how I grew up, so I built it into the team on purpose.</p>
+          </div>
+          <div class="principle-line">
+            <h4>Trade one deadline for the next ten.</h4>
+            <p>Build the base once and the next ten requests become configuration — a "no" always ships with its reason and its alternative.</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════
-         ABOUT PREVIEW
+         ABOUT — scene 5: prose + quiet reference lines + marquee
     ══════════════════════════════════════════════════════ -->
     <section id="about" class="section section-wash">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>about</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">04</span>about</p>
         <h2 class="section-heading">About <em class="accent-serif">me</em></h2>
         <div class="about-body">
-          <p>I started in frontend and mobile development, then moved into backend systems, distributed workflows, platform engineering, and technical leadership. Today I lead a four-engineer core backend team across six module domains while staying hands-on with architecture and production systems.</p>
-          <p>Based in Malaysia (UTC+8). Comfortable collaborating across teams through clear documentation and async communication.</p>
+          <p>Seven years ago I joined a high-traffic transaction platform as a full-stack dev. It grew — and went down a few times along the way. I was the firefighter, then the one hand-picked to pioneer a new stack, then the owner of the platform's most critical module — and now I lead the team that runs its core.</p>
+          <p>I care about two things: systems that don't drop a transaction, and engineers who outgrow the tasks I give them.</p>
+          <p>Now: raising a self-hosted Hermes agent (<span class="hl">it maintains this very site</span>), going deeper on Rust and stream processing, and writing down what production taught me.</p>
         </div>
-        <div class="about-cta">
-          <a href="work/index.html#experience" class="btn btn-ghost">More about me</a>
+        <div class="about-lines">
+          <p class="about-line"><span class="about-line-label">experience</span><span>A high-concurrency transaction platform, 2019 → present — engineer to Backend Team Lead. <a href="work/index.html#experience">Where this happened →</a></span></p>
+          <p class="about-line"><span class="about-line-label">core stack</span><span>TypeScript · NestJS · gRPC · MongoDB · Redis · Temporal · Pulsar — <a href="work/index.html#skills">full tiers →</a></span></p>
+        </div>
+        <div class="tech-marquee tech-marquee-quiet" aria-label="Technology stack">
+          <div class="tech-marquee-track">
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>TypeScript</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>NestJS</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Node.js</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>gRPC</span></span>
+            <span class="tech-item tech-item-badge"><span>Temporal</span></span>
+            <span class="tech-item tech-item-badge"><span>Apache Pulsar</span></span>
+            <span class="tech-item tech-item-badge"><span>Apache Flink</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Redis</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>MongoDB</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>PostgreSQL</span></span>
+            <span class="tech-item tech-item-badge"><span>ClickHouse</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Java</span></span>
+            <span class="tech-item"><img class="tech-icon-invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Rust</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Docker</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>GitHub Actions</span></span>
+            <span class="tech-item tech-item-badge"><span>LangChain</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Grafana</span></span>
+          </div>
+          <div class="tech-marquee-track" aria-hidden="true">
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>TypeScript</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>NestJS</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Node.js</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>gRPC</span></span>
+            <span class="tech-item tech-item-badge"><span>Temporal</span></span>
+            <span class="tech-item tech-item-badge"><span>Apache Pulsar</span></span>
+            <span class="tech-item tech-item-badge"><span>Apache Flink</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Redis</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>MongoDB</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>PostgreSQL</span></span>
+            <span class="tech-item tech-item-badge"><span>ClickHouse</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Java</span></span>
+            <span class="tech-item"><img class="tech-icon-invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Rust</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Docker</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>GitHub Actions</span></span>
+            <span class="tech-item tech-item-badge"><span>LangChain</span></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg" alt="" loading="lazy" onerror="this.style.display='none'"><span>Grafana</span></span>
+          </div>
         </div>
       </div>
     </section>
@@ -277,7 +459,7 @@
       <div class="container">
         <div class="contact-inner">
 
-          <p class="section-label" aria-hidden="true"><span class="section-num">04</span>contact</p>
+          <p class="section-label" aria-hidden="true"><span class="section-num">05</span>contact</p>
           <h2 class="section-heading">Get in <em class="accent-serif">touch</em></h2>
 
           <p class="section-intro">Open to backend team-lead and senior platform roles.</p>

@@ -17,34 +17,36 @@
   //    .hero-line must never gain transformed descendants).
   // ---------------------------------------------------------------------------
   if (document.querySelector('#hero .hero-name')) {
+    const heroStats = document.querySelector('#hero .hero-stat-item')
+      ? '#hero .hero-stat-item'
+      : '#hero .hero-stat';
+
     const tl = gsap
       .timeline({ delay: 0.2, defaults: { ease: 'power3.out' } })
+      .from('.hero-prompt', { y: 16, opacity: 0, duration: 0.35 }, 0)
       .from('#hero .hero-name .hero-line', { y: 28, opacity: 0, duration: 0.7, stagger: 0.1 }, 0.1);
 
     if (document.querySelector('#hero .hero-role')) {
       tl.from('#hero .hero-role', { y: 20, opacity: 0, duration: 0.5 }, 0.45);
     }
-
-    tl.from('.hero-positioning', { y: 20, opacity: 0, duration: 0.4 }, 0.6);
-
-    if (document.querySelector('#hero .hero-supporting')) {
-      tl.from('.hero-supporting', { y: 20, opacity: 0, duration: 0.4 }, 0.75);
+    if (document.querySelector('#hero .hero-statement-l1')) {
+      tl.from('#hero .hero-statement-l1', { y: 20, opacity: 0, duration: 0.5 }, 0.6);
+    }
+    if (document.querySelector('#hero .hero-statement-l2')) {
+      tl.from('#hero .hero-statement-l2', { y: 24, opacity: 0, duration: 0.55 }, 0.72);
     }
 
-    const heroStats = document.querySelector('#hero .hero-stat-item')
-      ? '#hero .hero-stat-item'
-      : '#hero .hero-stat';
-
-    tl.from(heroStats, { y: 16, opacity: 0, duration: 0.35, stagger: 0.05 }, 0.9)
-      .from('.hero-ctas', { y: 16, opacity: 0, duration: 0.35 }, 1.05);
+    tl.from('.hero-positioning', { y: 20, opacity: 0, duration: 0.4 }, 0.95)
+      .from(heroStats, { y: 16, opacity: 0, duration: 0.35, stagger: 0.05 }, 1.1)
+      .from('.hero-ctas', { y: 16, opacity: 0, duration: 0.35 }, 1.25);
 
     if (document.querySelector('#hero .hero-scroll-cue')) {
-      tl.from('.hero-scroll-cue', { opacity: 0, duration: 0.4 }, 1.2);
+      tl.from('.hero-scroll-cue', { opacity: 0, duration: 0.4 }, 1.4);
     }
 
     const heroSvg = document.querySelector('#hero .hero-diagram svg');
     if (heroSvg) {
-      tl.from('.hero-visual', { x: 24, opacity: 0, duration: 0.5 }, 0.6);
+      tl.from('.hero-visual', { x: 24, opacity: 0, duration: 0.5 }, 0.75);
       const heroWires = Array.from(heroSvg.querySelectorAll('.dg-wire')).filter(
         (w) => typeof w.getTotalLength === 'function',
       );
@@ -63,7 +65,7 @@
             onComplete: () =>
               gsap.set(heroWires, { clearProps: 'strokeDasharray,strokeDashoffset' }),
           },
-          0.8,
+          0.95,
         );
       }
     }
@@ -88,7 +90,7 @@
   //    and CSS hover translations keep working after the reveal.
   // ---------------------------------------------------------------------------
   const targets = gsap.utils.toArray(
-    '.about-body, .about-lines, .about-cta, .num-cell, .band-cell, .band-facts, .case, .case-mini, .case-beat, .more-work, .principle, .principle-card, .principle-line, .statement, .note-card, .demo-row, .xp-item, .tier, .lab-card, .road, .featured-card',
+    '.about-body, .about-lines, .num-cell, .band-cell, .band-facts, .case, .case-mini, .case-beat, .more-work, .principle, .statement, .principle-line, .note-card, .demo-row, .xp-item, .tier, .lab-card, .road',
   );
   if (targets.length) {
     gsap.set(targets, { y: 24, opacity: 0 });
