@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Transaction-record ingestion — Henry Lee</title>
-  <meta name="description" content="over ten million records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+  <title>Data Ingestion Pipeline — Henry Lee</title>
+  <meta name="description" content="Unified 10M+ daily records from 10+ sources into a reconciled queryable layer — shapes normalized at the boundary, analytics offloaded from production." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Transaction-record ingestion — Henry Lee" />
-  <meta property="og:description" content="over ten million records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+  <meta property="og:title" content="Data Ingestion Pipeline — Henry Lee" />
+  <meta property="og:description" content="Unified 10M+ daily records from 10+ sources into a reconciled queryable layer — shapes normalized at the boundary, analytics offloaded from production." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/ingestion.html" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Transaction-record ingestion — Henry Lee" />
-  <meta name="twitter:description" content="over ten million records a day from 10+ heterogeneous sources — storage split by read pattern, shapes normalized at the boundary, analytics offloaded from production." />
+  <meta name="twitter:title" content="Data Ingestion Pipeline — Henry Lee" />
+  <meta name="twitter:description" content="Unified 10M+ daily records from 10+ sources into a reconciled queryable layer — shapes normalized at the boundary, analytics offloaded from production." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -43,12 +43,10 @@
       <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../ai.html">AI</a>
+        <a href="../index.html#about">About</a>
         <a href="../lab.html">Lab</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
       </nav>
 
       <div class="topbar-actions">
@@ -80,12 +78,10 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../ai.html">AI</a>
+        <a href="../index.html#about">About</a>
         <a href="../lab.html">Lab</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
       </nav>
 
     </div>
@@ -95,31 +91,135 @@
 
   <main>
 
-    <!-- ══════════════════════════════════════════════════════
-         CASE STUDY
-    ══════════════════════════════════════════════════════ -->
     <section id="case" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 05 / 07</p>
-        <h1 class="section-heading">Hand-building the platform's highest-volume data path — over ten million records a day</h1>
-        <p class="case-hook">Every balance change a user sees, pulled from 10+ heterogeneous systems most of which my team didn't own — aligned record by record, always adding up.</p>
 
-        <div class="hero-stats case-chips">
-          <span class="hero-stat">over ten million records/day</span>
-          <span class="hero-stat">10+ heterogeneous sources</span>
-          <span class="hero-stat">cross-team alignment</span>
-          <span class="hero-stat">hot / cold split</span>
+        <!-- ── 1 · Overview ────────────────────────────────── -->
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 03 / 08</p>
+        <h1 class="section-heading">Data Ingestion <em class="accent-serif">Pipeline</em></h1>
+        <p class="case-hook">Unified 10M+ daily records from 10+ sources into a reconciled queryable layer.</p>
+
+        <div class="case-overview">
+          <div class="case-overview-cell">
+            <h4>Role</h4>
+            <p>Hand-built the pipeline end to end, drove alignment across the teams that own the sources, and reconciled the historical data myself.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Scale</h4>
+            <p>Over ten million records a day and climbing, from 10+ heterogeneous sources — the platform's most demanding data path.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Stack</h4>
+            <p>Flink stream processing · Temporal durable workflows · Hologres columnar analytics store · operational store with covering indexes.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Outcome</h4>
+            <p>One reconciled, queryable layer feeding downstream BI and analytics; shipped in two weeks while learning the stream stack hands-on.</p>
+          </div>
         </div>
 
-        <div class="case-beats">
-          <div class="case-beat"><h4>Situation</h4><p>The platform's most demanding data path — a superset of the transaction backbone. Every balance change a user sees must be complete, ordered, and fast to query, but records originate from 10+ heterogeneous sources that disagree on shape, timing, and delivery guarantees: millions/day through the audited workflow path, the rest streaming straight from providers and internal systems most of which my team didn't own.</p></div>
-          <div class="case-beat"><h4>Approach</h4><p>Hand-built the ingestion pipeline — composing a stream processor with a durable-workflow engine — and chose an analytics-oriented store deliberately, so long-window analytics volume wouldn't contend with production reads and writes for resources: hot recent history on the operational store with covering indexes; long-window analytics offloaded to a columnar layer fed by the pipeline; source-specific shapes normalized at the boundary, with per-source caching and channel-aware routing. The hard part was cross-team alignment, not code: I scanned every transaction path across two generations of the system, drove the direction for the owning teams, and reconciled historical mismatches record by record where amounts didn't line up — and shipped it while learning the real-time analytics database and stream stack on the fly, in two weeks.</p></div>
-          <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Over ten million records a day (climbing) ingested and queryable; recent-history reads stay fast while analytical queries stopped competing with production traffic.</p></div>
+        <!-- ── 2 · Problem ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Problem</h2>
+          <p>Every balance change a user sees must be complete, ordered, and fast to query — but the records originate from 10+ heterogeneous systems that disagree on shape, timing, and delivery guarantees. Millions a day arrive through the audited workflow path; the rest stream straight from providers and internal systems, most of which my team didn't own.</p>
+          <p>On top of correctness, there was contention: long-window analytics volume was competing with production reads and writes for the same resources. The platform needed one unified layer where the numbers add up and analytical queries don't slow down production.</p>
         </div>
 
-        <!-- ── War stories ─────────────────────────────────── -->
+        <!-- ── 3 · Constraints ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Constraints</h2>
+          <ul>
+            <li>Most sources were owned by other teams, on their own schedules — alignment had to be driven, not assumed.</li>
+            <li>Correctness at the record level: per-user histories had to line up with every source, not just aggregate totals.</li>
+            <li>Analytics queries could not contend with production reads and writes for resources.</li>
+            <li>Two generations of the system were live — every transaction path in both had to be accounted for.</li>
+            <li>Delivery pressure: the pipeline shipped in two weeks, while learning Hologres and Flink hands-on.</li>
+          </ul>
+        </div>
+
+        <!-- ── 4 · Role and responsibility ─────────────────── -->
+        <div class="case-section">
+          <h2>Role and responsibility</h2>
+          <p>I built this pipeline by hand. I scanned every transaction path across two generations of the system, drove the direction for the teams that own each source, composed the stream processor with the durable-workflow engine, and chose the storage split. When historical amounts didn't line up, I reconciled the mismatches record by record. The hard part was cross-team alignment, not code.</p>
+        </div>
+
+        <!-- ── 5 · Architecture ────────────────────────────── -->
+        <div class="case-section">
+          <h2>Architecture</h2>
+          <p>The pipeline composes Flink stream processing with Temporal durable workflows: the audited workflow path delivers millions of records a day, and streaming ingest covers the providers and internal systems beyond it. Source-specific shapes are normalized at the boundary — per-source caching, channel-aware routing — into one canonical row. Storage is split by read pattern: hot recent history stays on the operational store behind covering indexes, while long-window volume flows into a Hologres columnar layer, so analytics never contends with production. Continuous reconciliation sits across both.</p>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-beats">
+            <div class="case-beat"><h4>Flow</h4><p>source → ingest → normalize → reconcile → query. 10+ sources enter through streaming or the durable workflow path, get normalized at the boundary, are continuously reconciled, and land in a layer that downstream BI and analytics build on.</p></div>
+            <div class="case-beat"><h4>Walkthrough — a record's journey</h4><p><strong>Arrival:</strong> a record lands via stream or workflow, in its source's own shape. <strong>Normalize:</strong> the boundary adapter maps it to the canonical row — schema differences end here, not downstream. <strong>Store:</strong> one write to the hot operational store for recent-history reads, one to the columnar layer for analytics. <strong>Reconcile:</strong> daily totals and per-user histories are diffed against the sources; drift is flagged and backfilled, never papered over.</p></div>
+          </div>
+          <div class="case-diagram" aria-hidden="true">
+            <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+              <text class="dg-label" x="20" y="26">source → ingest → normalize → reconcile → query</text>
+              <g class="dg-node dg-node-sm"><rect x="20" y="46" width="120" height="30" rx="4"/><text x="80" y="66" text-anchor="middle">10+ sources</text></g>
+              <g class="dg-node dg-node-sm"><rect x="20" y="86" width="120" height="30" rx="4"/><text x="80" y="106" text-anchor="middle">workflow path</text></g>
+              <g class="dg-node"><rect x="180" y="56" width="110" height="50" rx="4"/><text x="235" y="78" text-anchor="middle">normalize</text><text class="dg-label" x="235" y="96" text-anchor="middle">at the boundary</text></g>
+              <line class="dg-wire" x1="140" y1="61" x2="180" y2="71"/>
+              <line class="dg-wire" x1="140" y1="101" x2="180" y2="91"/>
+              <g class="dg-node"><rect x="330" y="26" width="130" height="44" rx="4"/><text x="395" y="44" text-anchor="middle">hot store</text><text class="dg-label" x="395" y="61" text-anchor="middle">recent history</text></g>
+              <g class="dg-node dg-node-accent"><rect x="330" y="92" width="130" height="44" rx="4"/><text x="395" y="110" text-anchor="middle">columnar layer</text><text class="dg-label" x="395" y="127" text-anchor="middle">analytics · BI</text></g>
+              <line class="dg-wire" x1="290" y1="71" x2="330" y2="50"/>
+              <line class="dg-wire" x1="290" y1="91" x2="330" y2="112"/>
+              <g class="dg-node dg-node-sm"><rect x="180" y="176" width="180" height="34" rx="4"/><text x="270" y="198" text-anchor="middle">reconciliation · daily diff</text></g>
+              <path class="dg-wire dg-wire-loop" d="M 395 136 C 395 176 360 193 360 193" fill="none"/>
+              <path class="dg-wire dg-wire-loop" d="M 180 193 C 100 193 80 140 80 116" fill="none"/>
+              <text class="dg-label" x="20" y="248">drift → trace source → fix boundary → backfill</text>
+              <text class="dg-label" x="20" y="272">10M+ records/day · climbing</text>
+              <g class="dg-flow">
+                <circle class="dg-dot" r="4"><animateMotion dur="8s" repeatCount="indefinite" begin="0s" path="M 80 61 L 235 76 L 395 48"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="8s" repeatCount="indefinite" begin="-4s" path="M 80 101 L 235 86 L 395 114"/></circle>
+                <circle class="dg-dot dg-dot-2" r="4"><animateMotion dur="10s" repeatCount="indefinite" begin="-2s" path="M 395 136 C 395 176 360 193 360 193 L 180 193 C 100 193 80 140 80 116"/></circle>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ── 6 · Key decisions ───────────────────────────── -->
+        <div class="case-section">
+          <h2>Key decisions</h2>
+          <div class="decisions">
+            <div class="decision">
+              <h3>Compose streaming with durable workflows</h3>
+              <dl>
+                <dt>Options</dt><dd>Force every source through one ingestion mode, or compose two: durable workflows for the audited transaction path, stream processing for everything beyond it.</dd>
+                <dt>Decision</dt><dd>Flink and Temporal together — each source enters through the mode that matches its delivery guarantees.</dd>
+                <dt>Reason</dt><dd>Sources disagree on shape, timing, and delivery guarantees; one mode would have flattened those differences instead of handling them.</dd>
+                <dt>Trade-off</dt><dd>Two ingestion paths mean two operational surfaces to run, and reconciliation is what proves they agree.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Split storage by read pattern</h3>
+              <dl>
+                <dt>Options</dt><dd>Serve everything from the operational store, or split: hot recent history operational, long-window volume in a columnar analytics store.</dd>
+                <dt>Decision</dt><dd>Hot/cold split — covering indexes for recent-history reads, a Hologres columnar layer fed by the pipeline for analytics.</dd>
+                <dt>Reason</dt><dd>Long-window analytics volume must not contend with production reads and writes for resources.</dd>
+                <dt>Trade-off</dt><dd>Two stores that must agree — the analytics layer trails the operational store, and reconciliation carries the burden of proving they match.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Normalize at the boundary, per source</h3>
+              <dl>
+                <dt>Options</dt><dd>Store raw source shapes and translate at query time, or normalize each source into one canonical row the moment it enters.</dd>
+                <dt>Decision</dt><dd>Per-source adapters at the boundary — with per-source caching and channel-aware routing — so everything downstream sees one shape.</dd>
+                <dt>Reason</dt><dd>Schema differences handled once at entry cost far less than every consumer re-handling 10+ shapes.</dd>
+                <dt>Trade-off</dt><dd>Every source quirk becomes boundary code I own; when a source drops, duplicates, or reshapes a record, the fix lands there.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 7 · Failure modes and recovery ──────────────── -->
+        <div class="case-section">
+          <h2>Failure modes and recovery</h2>
+          <p>The failure mode of an ingestion pipeline is silent: a source drops, duplicates, or reshapes a record and everything keeps running — the numbers are just wrong. Recovery here is built as a permanent process, not an incident response.</p>
+        </div>
         <div class="war-stories">
-          <h3 class="more-work-heading">War stories</h3>
           <div class="notes-grid">
             <article class="note-card">
               <h3>Most of the work was comparing numbers</h3>
@@ -127,13 +227,17 @@
               <p>Then the cross-checks widened: daily totals per record type compared against the analytics team's independent numbers, and per-user daily histories diffed record by record. When a figure disagreed, that was the day's work — trace which source dropped, duplicated or reshaped it, fix the boundary, backfill, compare again.</p>
               <p>It's manual, it's unglamorous, and it's the only reason the number on a user's screen can be trusted. Correctness isn't a property you declare; it's one you keep re-earning.</p>
             </article>
+            <article class="note-card">
+              <h3>Drift never gets papered over</h3>
+              <p>When reconciliation finds a mismatch, the pipeline flags it for backfill rather than adjusting a total to make the books balance. The recovery loop is always the same: trace the drift to the source that caused it, fix the boundary adapter so the class of error can't recur, backfill the affected window, then diff again to confirm. Duplicates and drops are caught the same way — the daily diff is the detection mechanism, and the backfill is the repair.</p>
+            </article>
           </div>
         </div>
 
-        <!-- ── The design, in code ─────────────────────────── -->
+        <!-- ── 8 · Representative code ─────────────────────── -->
         <div class="proof-code">
-          <h3 class="more-work-heading">The design, in code</h3>
-          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <h3 class="more-work-heading">Representative code</h3>
+          <p class="proof-code-note">Rewritten for publication to show the production design — not company source.</p>
           <div class="demo-terminal code-proof">
             <div class="demo-terminal-bar">
               <span class="term-dot term-dot-r"></span>
@@ -175,11 +279,45 @@
           </div>
         </div>
 
+        <!-- ── 9 · Testing ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Testing and validation</h2>
+          <p>Platform practice applies here as everywhere: Jest integration tests run against real databases via Testcontainers rather than mocks, behind an 80% coverage gate, with a weekly full regression across the platform. But the validation that mattered most on this path was the reconciliation itself — one record subtype running as a permanent probe throughout development, daily totals checked against the analytics team's independent numbers, and per-user histories diffed record by record until the sources and the layer agreed.</p>
+        </div>
+
+        <!-- ── 10 · Trade-offs ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Trade-offs</h2>
+          <ul>
+            <li>Freshness vs correctness — a record is queryable as soon as it lands, but proven correct only after reconciliation has diffed it against its source; the daily cross-check is the price of trusting the number.</li>
+            <li>Eventual consistency between stores — the columnar layer is fed by the pipeline and trails the operational store; an analytics query can lag the hot path until the sync and the daily diff close the gap.</li>
+            <li>Operational overhead — a stream processor, a workflow engine, and two stores is a lot of surface for one pipeline, and the team adopted the stream stack while shipping on it.</li>
+            <li>Source-specific quirks live at the boundary — every adapter encodes one source's behaviour, so each new source, and each source's schema change, is boundary work that someone has to own.</li>
+          </ul>
+        </div>
+
+        <!-- ── 11 · Outcome ────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Outcome</h2>
+          <ul>
+            <li>Over ten million records a day — and climbing — ingested and queryable through one reconciled layer.</li>
+            <li>Recent-history reads stay fast; long-window analytics stopped competing with production traffic.</li>
+            <li>Downstream BI and analytics build on the unified layer instead of chasing 10+ source shapes.</li>
+            <li>Historical mismatches reconciled record by record; drift now detected and backfilled as routine.</li>
+            <li>Shipped in two weeks, learning Hologres and Flink hands-on along the way.</li>
+          </ul>
+        </div>
+
+        <!-- ── 12 · What I learned ─────────────────────────── -->
+        <div class="case-section">
+          <h2>What I learned</h2>
+          <p>The code is the quick part. On a pipeline like this, the real work is comparing numbers — reconciling record by record against sources other teams own, and driving those teams toward one direction. Correctness isn't a property you declare at launch; it's one you keep re-earning, which is why reconciliation became a permanent part of the system instead of a validation phase. And schema differences are cheapest exactly once, at the boundary — everything downstream should only ever see one shape.</p>
+        </div>
+
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="pipeline.html">← Previous: Cross-stack mission pipeline</a>
-          <a href="index.html">All work</a>
-          <a href="crypto.html">Next: Crypto payment rails →</a>
+          <a href="index.html">← All work</a>
+          <a href="support.html">Next: Support System →</a>
         </nav>
 
       </div>
@@ -192,6 +330,14 @@
   ══════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
     <div class="container">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Work</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../ai.html">AI</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../hermes.html">Hermes</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
       <p class="footer-copy">
         © 2026 Henry Lee
       </p>

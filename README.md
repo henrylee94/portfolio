@@ -4,8 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-f0a63c?style=flat)](LICENSE)
 ![No build step](<https://img.shields.io/badge/build-none%20(static)-26d07c?style=flat>)
 
-> Backend Team Lead — I design and ship the systems behind a high-concurrency,
-> real-money platform, from legacy monolith to modern microservices.
+> Backend Engineer & Technical Lead — I design and build distributed backend
+> systems for high-concurrency transaction platforms, from legacy monolith to
+> modern microservices.
 
 The main, scannable portfolio: signature work, how I lead, field notes, and AI
 engineering — in English and 中文. Companion to the interactive **[Lab](https://henrylee94.github.io/lab/)**.
@@ -14,13 +15,14 @@ engineering — in English and 中文. Companion to the interactive **[Lab](http
 
 ## Pages
 
-- `index.html` — hero, numbers, selected work, how I think / lead, contact
-- `work.html` + `work-*.html` — signature case studies (backbone, scale, support,
-  pipeline, ingestion, crypto, reporting)
-- `ai.html` — AI-native engineering: the SDLC pipeline and the rules my agents live by
-- `lab.html` — home lab & side projects
-- `notes.html` — field notes
-- `zh-*.html` — full 中文 mirror of every page
+- `index.html` — hero, featured work, about, how I work, contact
+- `work/index.html` + `work/*.html` — eight case studies on one 12-section
+  template (backbone, scale, ingestion, support, reporting, ai-delivery,
+  crypto, pipeline)
+- `ai.html` — AI engineering: the delivery pipeline and the rules my agents live by
+- `lab.html` — home lab, live demos & side projects
+- `notes.html` — field notes · `hermes.html` — agent deep-dive
+- 中文 via in-place toggle (`js/i18n.js` + `js/i18n-zh.js`), no mirror pages
 
 ## Tech stack
 

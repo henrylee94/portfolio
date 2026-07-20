@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Cross-stack mission pipeline — Henry Lee</title>
-  <meta name="description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
+  <title>Cross-Stack Rewards Pipeline — Henry Lee</title>
+  <meta name="description" content="A rewards pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Cross-stack mission pipeline — Henry Lee" />
-  <meta property="og:description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
+  <meta property="og:title" content="Cross-Stack Rewards Pipeline — Henry Lee" />
+  <meta property="og:description" content="A rewards pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/pipeline.html" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cross-stack mission pipeline — Henry Lee" />
-  <meta name="twitter:description" content="A mission pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
+  <meta name="twitter:title" content="Cross-Stack Rewards Pipeline — Henry Lee" />
+  <meta name="twitter:description" content="A rewards pipeline across four services in three languages — exactly-once by an atomic claims ledger plus a human-readable idempotency key, with zero legacy changes." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -43,12 +43,10 @@
       <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../ai.html">AI</a>
+        <a href="../index.html#about">About</a>
         <a href="../lab.html">Lab</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
       </nav>
 
       <div class="topbar-actions">
@@ -80,12 +78,10 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../ai.html">AI</a>
+        <a href="../index.html#about">About</a>
         <a href="../lab.html">Lab</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
       </nav>
 
     </div>
@@ -95,28 +91,68 @@
 
   <main>
 
-    <!-- ══════════════════════════════════════════════════════
-         CASE STUDY
-    ══════════════════════════════════════════════════════ -->
     <section id="case" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 04 / 07</p>
-        <h1 class="section-heading">The exactly-once reliability layer for a cross-stack rewards pipeline</h1>
-        <p class="case-hook">Four services, three languages, a reward path where a double-pay is real loss — I designed the layer that makes payout happen exactly once, with zero changes to the legacy system.</p>
 
-        <div class="hero-stats case-chips">
-          <span class="hero-stat">4 services · 3 languages</span>
-          <span class="hero-stat">exactly-once, layered</span>
-          <span class="hero-stat">0 legacy changes</span>
-          <span class="hero-stat">pre-prod verified</span>
+        <!-- ── 1 · Overview ────────────────────────────────── -->
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 08 / 08</p>
+        <h1 class="section-heading">Cross-Stack Rewards <em class="accent-serif">Pipeline</em></h1>
+        <p class="case-hook">Four services, three languages, a reward path where a double-pay is real loss — the layer that makes payout happen exactly once, with zero legacy changes.</p>
+
+        <div class="case-overview">
+          <div class="case-overview-cell">
+            <h4>Role</h4>
+            <p>Designed the exactly-once reliability layer — the owned ledger and idempotency key. The service decomposition follows the platform's existing seams and wasn't mine to claim.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Scale</h4>
+            <p>Four services in three languages; real-time detection on the event stream; one durable 7-day workflow per enrolled user.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Stack</h4>
+            <p>Java/Flink stream job · Rust + Temporal workflow engine · NestJS reward facade · atomic claims ledger.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Outcome</h4>
+            <p>Exactly-once under both workflow replays and message redeliveries; zero changes to legacy services; verified end-to-end in pre-production.</p>
+          </div>
+        </div>
+
+        <!-- ── 2 · Problem ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Problem</h2>
+          <p>Marketing wanted automatic, time-boxed missions for users close to their next loyalty tier: detect them in real time, run a 7-day window, and grant the tier upgrade instantly on success. That grant sits on a financially sensitive path — a duplicate payout is a real loss, not a cosmetic bug.</p>
+          <p>The hard part is that duplicates arrive from two independent sources. The event stream delivers at-least-once, and the workflow engine replays histories on recovery — so the grant step can legitimately run twice even when every component is behaving correctly. The pipeline also spans four services in three languages, and the legacy reward systems it ends in could not be modified.</p>
+        </div>
+
+        <!-- ── 3 · Constraints ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Constraints</h2>
+          <ul>
+            <li>Financial correctness — a duplicate grant is a real loss; the payout must happen exactly once per user, tier, and month.</li>
+            <li>Two independent duplicate sources — at-least-once delivery from the stream and history replay from the workflow engine — both had to be neutralized by the same design.</li>
+            <li>Zero changes to legacy services — the grant had to go through the existing upgrade path untouched.</li>
+            <li>Cross-stack composition — four services in three languages, so the correctness guarantee could not rely on any one runtime's features.</li>
+            <li>Config consistency — mission thresholds used by more than one service could never be allowed to disagree.</li>
+          </ul>
+        </div>
+
+        <!-- ── 4 · Role and responsibility ─────────────────── -->
+        <div class="case-section">
+          <h2>Role and responsibility</h2>
+          <p>My design is the reliability layer on top of the pipeline: the atomic claims ledger that gates enrollment, the human-readable idempotency key that gates the grant, and the single-owner rule for thresholds. I built the chain end-to-end across the four services, composing the platform's proven engines rather than building new ones, and I put the rollout through a dry-run-by-default plan and an outside red-team before calling it safe. The decomposition into detect / orchestrate / grant follows boundaries the platform already had — I claim the layer that makes it correct, not the seams.</p>
+        </div>
+
+        <!-- ── 5 · Architecture ────────────────────────────── -->
+        <div class="case-section">
+          <h2>Architecture</h2>
+          <p>Three stages on existing platform seams: a Java/Flink job filters the event stream and computes entry-anchored goals from a lookup table; a Rust + Temporal engine runs one durable workflow per user for the 7-day window; a NestJS facade grants the upgrade through the existing legacy path. Exactly-once is layered on top — an atomic claims ledger (one chance per user, tier, month) gates enrollment, and a human-readable idempotency key gates the grant.</p>
         </div>
 
         <div class="case-grid">
           <div class="case-beats">
-            <div class="case-beat"><h4>Situation</h4><p>Marketing wanted automatic, time-boxed missions for users close to their next loyalty tier: detect them in real time, run a 7-day window, grant the upgrade instantly on success.</p></div>
-            <div class="case-beat"><h4>Constraint</h4><p>The reward path is financially sensitive: a duplicate grant is a real loss, and events arrive at least-once from both the stream and the workflow engine — two independent sources of duplicates.</p></div>
-            <div class="case-beat"><h4>Approach</h4><p>Built the chain end-to-end across four services in three languages — the boundaries followed the platform's existing seams (the streaming platform, the workflow engine, the reward facade), composing proven engines instead of building new ones: a Java/Flink job filters the event stream and computes entry-anchored goals from a lookup table; a Rust + Temporal engine runs one durable workflow per user; a NestJS facade grants through the existing upgrade path — zero changes to legacy systems. Exactly-once is layered: an atomic claims ledger (one chance per user, tier, month) gates enrollment, and a human-readable idempotency key (`mission:user:tier:month`) gates the grant — debuggable at a glance in production. Thresholds live in exactly one place — producers broadcast unconditionally, so two repositories can never disagree about the same number.</p></div>
-            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Verified end-to-end against real production-like traffic in the pre-production lane — honest scope: it runs in pre-production (QAT), not production — with funnel metrics at every stage and a dry-run-by-default rollout I put through an outside red-team before calling it safe. The service decomposition wasn't mine to claim; my design was the reliability layer on top — exactly-once by an owned ledger and key. That layer, plus detect / orchestrate / grant with single-owner config, is the template for the next mission types.</p></div>
+            <div class="case-beat"><h4>Detect → orchestrate → grant</h4><p>Each stage reuses an engine the platform already runs: the streaming platform for detection, the workflow engine for the time-boxed window, the reward facade for the grant. Nothing new was built where something proven existed.</p></div>
+            <div class="case-beat"><h4>Walkthrough — how a duplicate dies</h4><p><strong>Enrollment:</strong> the ledger accepts exactly one claim per user, tier, and month — a redelivered detection event collides and stops. <strong>Grant:</strong> the key <code>mission:user:tier:month</code> is inserted before the payout; a workflow replay finds the key already present and returns without paying. <strong>Either way:</strong> the user is upgraded once, and the key is readable at a glance when someone has to debug it.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
             <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
@@ -141,10 +177,70 @@
           </div>
         </div>
 
-        <!-- ── The design, in code ─────────────────────────── -->
+        <!-- ── 6 · Key decisions ───────────────────────────── -->
+        <div class="case-section">
+          <h2>Key decisions</h2>
+          <div class="decisions">
+            <div class="decision">
+              <h3>Compose existing engines, not build new ones</h3>
+              <dl>
+                <dt>Options</dt><dd>Build a bespoke mission service owning detection, timing and payout — or place each stage on an engine the platform already runs.</dd>
+                <dt>Decision</dt><dd>Boundaries follow existing seams: the streaming platform detects, the workflow engine holds the 7-day window, the reward facade grants.</dd>
+                <dt>Reason</dt><dd>Every engine in the chain was already proven in this platform; the only genuinely new problem was making the composition exactly-once.</dd>
+                <dt>Trade-off</dt><dd>Four services in three languages means no single runtime can carry the correctness guarantee — it had to live in shared data, not in any one framework's features.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Layered exactly-once with a human-readable key</h3>
+              <dl>
+                <dt>Options</dt><dd>One dedupe check at the payout, an opaque hash key, or two independent gates — ledger at enrollment, idempotency key at the grant.</dd>
+                <dt>Decision</dt><dd>Both gates, and the key is readable: <code>mission:user:tier:month</code>.</dd>
+                <dt>Reason</dt><dd>Duplicates come from two independent sources — message redelivery and workflow replay — so a single gate leaves one source uncovered. A readable key means an on-call engineer can see at a glance who was granted what, and why a second attempt was refused.</dd>
+                <dt>Trade-off</dt><dd>Two writes on the happy path instead of one, and the key format becomes a contract — changing it later would invalidate the dedupe history.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Zero legacy changes — grant through the existing path</h3>
+              <dl>
+                <dt>Options</dt><dd>Modify the legacy reward systems to understand missions, or wrap the existing upgrade path behind a thin facade and leave legacy untouched.</dd>
+                <dt>Decision</dt><dd>A NestJS facade calls the existing upgrade path as-is; the mission concept never leaks into legacy code.</dd>
+                <dt>Reason</dt><dd>The legacy path already carries the platform's real upgrades — reusing it means the grant behaves identically to every other upgrade, with no new code on the sensitive side.</dd>
+                <dt>Trade-off</dt><dd>The pipeline inherits the legacy path's behavior and limits wholesale; anything it can't express, the mission can't grant.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 7 · Failure modes and recovery ──────────────── -->
+        <div class="case-section">
+          <h2>Failure modes and recovery</h2>
+          <p>The failure modes this layer was designed against — each one is structural to the platform, not hypothetical.</p>
+        </div>
+        <div class="war-stories">
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The message that arrives twice</h3>
+              <p>The event stream is at-least-once by contract: the same detection event can be redelivered after a consumer restart or a rebalance. Without a gate, a redelivered event enrolls the same user twice and the mission pays twice. The ledger makes enrollment an atomic insert — one chance per user, tier, and month — so the second delivery collides on the claim and stops. Recovery is nothing: the duplicate simply dies at the door.</p>
+            </article>
+            <article class="note-card">
+              <h3>The workflow that runs its history again</h3>
+              <p>The workflow engine recovers by replaying history on another worker — which means the grant step can execute again even though the first attempt succeeded. The idempotency key is inserted before the payout: a replay finds <code>mission:user:tier:month</code> already present and returns without paying. The two gates are independent on purpose — either source of duplicates is stopped even if the other gate were bypassed.</p>
+            </article>
+            <article class="note-card">
+              <h3>Two repos, two versions of the same number</h3>
+              <p>Mission thresholds are consumed by more than one service. If each repository carried its own copy, a config edit in one place would silently split the pipeline's view of the goal. So every threshold has exactly one owner — a lookup table — and producers broadcast unconditionally; consumers never hold a local copy that can drift. Two repositories can never disagree about the same number, because only one of them has it.</p>
+            </article>
+            <article class="note-card">
+              <h3>The goal that changes mid-mission</h3>
+              <p>A 7-day window outlives config edits. If a threshold is raised on day three, users already running would see their goal move under them. Goals are entry-anchored: computed once at enrollment from the lookup table and fixed for the life of the workflow — later edits apply to new enrollments only. A running mission always finishes under the rules it started with.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- ── 8 · Representative code ─────────────────────── -->
         <div class="proof-code">
-          <h3 class="more-work-heading">The design, in code</h3>
-          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <h3 class="more-work-heading">Representative code</h3>
+          <p class="proof-code-note">Rewritten for publication to show the production design — not company source.</p>
           <div class="demo-terminal code-proof">
             <div class="demo-terminal-bar">
               <span class="term-dot term-dot-r"></span>
@@ -184,11 +280,46 @@
           </div>
         </div>
 
+        <!-- ── 9 · Testing ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Testing and validation</h2>
+          <p>The pipeline follows the platform's standard test discipline — Jest with integration tests against real dependencies via Testcontainers, and every path covered by the weekly regression suite. The tests that matter most here mirror the two duplicate sources: deliver the same detection event twice and assert one enrollment; drive the grant step through a replay and assert one payout.</p>
+          <p>Beyond tests, the chain was verified end-to-end against production-like traffic in the pre-production lane, with funnel metrics at every stage — detected, enrolled, completed, granted — so a lost or doubled record is visible as a stage-to-stage mismatch. The rollout itself was dry-run by default, and I put the plan through an outside red-team before calling it safe.</p>
+        </div>
+
+        <!-- ── 10 · Trade-offs ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Trade-offs</h2>
+          <ul>
+            <li>Layered exactly-once costs an extra write and an extra collection on the hot path — accepted, because either duplicate source alone can produce a real loss.</li>
+            <li>The human-readable key is a contract: its format can't change without invalidating the dedupe history, so it's deliberately boring and minimal.</li>
+            <li>Granting through the untouched legacy path means inheriting its behavior and limits wholesale — the price of zero legacy changes.</li>
+            <li>Three languages across four services keeps each stage on its best engine, but every cross-service guarantee has to live in data, and debugging spans three toolchains.</li>
+          </ul>
+        </div>
+
+        <!-- ── 11 · Outcome ────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Outcome</h2>
+          <ul>
+            <li>Exactly-once payout under both workflow replays and message redeliveries — the two duplicate sources are gated independently.</li>
+            <li>Zero changes to legacy services; the grant reuses the existing upgrade path as-is.</li>
+            <li>Verified end-to-end against production-like traffic in the pre-production lane (QAT) — honest scope: pre-production, not production.</li>
+            <li>Funnel metrics at every stage and a dry-run-by-default rollout, red-teamed before being called safe.</li>
+            <li>The layer — owned ledger, readable key, detect / orchestrate / grant with single-owner config — is the template for the next mission types.</li>
+          </ul>
+        </div>
+
+        <!-- ── 12 · What I learned ─────────────────────────── -->
+        <div class="case-section">
+          <h2>What I learned</h2>
+          <p>When a pipeline crosses runtimes, correctness can't be borrowed from any one framework — it has to live in data both sides can see, which is why the ledger and the key carry the guarantee instead of any engine feature. Duplicates from independent sources need independent gates; one check that "should" cover both is one bug away from covering neither. And observability is part of the design, not an add-on: a key a human can read and a funnel a human can diff are what make an exactly-once claim checkable rather than taken on faith.</p>
+        </div>
+
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="support.html">← Previous: Real-time support platform</a>
-          <a href="index.html">All work</a>
-          <a href="ingestion.html">Next: Transaction-record ingestion →</a>
+          <a href="index.html">← All work</a>
+          <a href="backbone.html">Next: Transaction Backbone →</a>
         </nav>
 
       </div>
@@ -201,6 +332,14 @@
   ══════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
     <div class="container">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Work</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../ai.html">AI</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../hermes.html">Hermes</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
       <p class="footer-copy">
         © 2026 Henry Lee
       </p>

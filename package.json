@@ -1,8 +1,8 @@
 {
   "name": "henry-portfolio",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": true,
-  "description": "Henry Lee — Backend Team Lead. Multi-page bilingual portfolio (EN / 中文).",
+  "description": "Henry Lee — Backend Engineer & Technical Lead. Multi-page bilingual portfolio (EN / 中文).",
   "homepage": "https://henrylee94.github.io/portfolio/",
   "repository": {
     "type": "git",

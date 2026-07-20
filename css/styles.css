@@ -2041,3 +2041,192 @@ footer {
 .qna-item .code-proof {
   margin-top: 1.15rem;
 }
+
+/* =============================================================
+   V2 components — principles grid, footer nav, case template
+   ============================================================= */
+
+/* ── How I work: four principles, 2×2 ─────────────────────── */
+.principles-four {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.25rem;
+}
+.principle-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.4rem 1.5rem;
+}
+.principle-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.principle-card p {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+@media (max-width: 700px) {
+  .principles-four { grid-template-columns: 1fr; }
+}
+
+/* ── Footer navigation ────────────────────────────────────── */
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.5rem;
+  margin-bottom: 0.9rem;
+}
+.footer-nav a {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
+  color: var(--text);
+}
+
+/* ── Case overview summary panel ──────────────────────────── */
+.case-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-block: 2rem;
+}
+.case-overview-cell {
+  background: var(--bg-elev);
+  padding: 1rem 1.15rem;
+}
+.case-overview-cell h4 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.35rem;
+}
+.case-overview-cell p {
+  color: var(--text);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* ── Case section heading (12-part template) ──────────────── */
+.case-section {
+  margin-top: 3rem;
+}
+.case-section > h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.case-section > p {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  max-width: 72ch;
+}
+.case-section > p + p {
+  margin-top: 0.75rem;
+}
+.case-section ul {
+  list-style: none;
+  margin-top: 0.75rem;
+  max-width: 72ch;
+}
+.case-section ul li {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  padding-left: 1.1rem;
+  position: relative;
+}
+.case-section ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-mute);
+}
+
+/* ── Key decisions ────────────────────────────────────────── */
+.decisions {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.decision {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent-40);
+  border-radius: 6px;
+  padding: 1.25rem 1.4rem;
+}
+.decision h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+.decision dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 1rem;
+}
+.decision dt {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding-top: 0.15rem;
+}
+.decision dd {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+@media (max-width: 560px) {
+  .decision dl { grid-template-columns: 1fr; gap: 0.1rem; }
+  .decision dd { margin-bottom: 0.5rem; }
+}
+
+/* ── Code block copy button ───────────────────────────────── */
+.demo-terminal-bar {
+  position: relative;
+}
+.code-copy {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid var(--border-hi);
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+}
+.code-copy:hover,
+.code-copy:focus-visible {
+  color: var(--text);
+  border-color: var(--accent-40);
+}
