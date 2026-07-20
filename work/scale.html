@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Scaling the Platform — Henry Lee</title>
-  <meta name="description" content="Improved core platform mechanisms as daily active users grew from 50k to 400k+ — notification fan-out, ID generation, caching and queries, replaced live with a rollback for every step." />
+  <title>Scaling 50k → 400k+ users — Henry Lee</title>
+  <meta name="description" content="The platform grew from 50k to 400k+ and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Scaling the Platform — Henry Lee" />
-  <meta property="og:description" content="Improved core platform mechanisms as daily active users grew from 50k to 400k+ — notification fan-out, ID generation, caching and queries, replaced live with a rollback for every step." />
+  <meta property="og:title" content="Scaling 50k → 400k+ users — Henry Lee" />
+  <meta property="og:description" content="The platform grew from 50k to 400k+ and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/scale.html" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scaling the Platform — Henry Lee" />
-  <meta name="twitter:description" content="Improved core platform mechanisms as daily active users grew from 50k to 400k+ — notification fan-out, ID generation, caching and queries, replaced live with a rollback for every step." />
+  <meta name="twitter:title" content="Scaling 50k → 400k+ users — Henry Lee" />
+  <meta name="twitter:description" content="The platform grew from 50k to 400k+ and the old mechanisms broke in production — replaced live, mechanism by mechanism, inside a weekly release train with users on." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -43,10 +43,12 @@
       <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../index.html#about">About</a>
+        <a href="../ai.html">AI</a>
         <a href="../lab.html">Lab</a>
-        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -78,10 +80,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../index.html#about">About</a>
+        <a href="../ai.html">AI</a>
         <a href="../lab.html">Lab</a>
-        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -91,67 +95,28 @@
 
   <main>
 
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
     <section id="case" class="section">
       <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 02 / 07</p>
+        <h1 class="section-heading">Keeping a high-concurrency transaction platform standing 50k → 400k+ users</h1>
+        <p class="case-hook">I drove the re-architectures that kept the platform up as daily users climbed to 400k+ — replacing the ceilings one live single-point at a time.</p>
 
-        <!-- ── 1 · Overview ────────────────────────────────── -->
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 02 / 08</p>
-        <h1 class="section-heading">Scaling the <em class="accent-serif">Platform</em></h1>
-        <p class="case-hook">Improved core platform mechanisms as daily active users grew from 50k to 400k+.</p>
-
-        <div class="case-overview">
-          <div class="case-overview-cell">
-            <h4>Role</h4>
-            <p>Drove the scaling work as the platform grew — measured the bottlenecks, designed the replacements, and landed them with the team inside the weekly release train.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Scale</h4>
-            <p>50k → 400k+ daily active users over four years; every change shipped live, with users on.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Stack</h4>
-            <p>Redis (INCR · Pub/Sub · SSCAN) · MongoDB · WebSocket gateway · TypeScript services.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Outcome</h4>
-            <p>Old failure modes gone at 400k+ DAU; sub-second pushes; 30-day report queries where one day used to time out; every cutover zero-downtime and revertible.</p>
-          </div>
-        </div>
-
-        <!-- ── 2 · Problem ─────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Problem</h2>
-          <p>Over four years the member management platform grew from 50k to 400k+ daily active users, and growth kept finding the limits of the old mechanisms. A counter document in the database serialized every ID issued. Notification fan-out ran from one process to every connection and stalled under load. Blocking full-set scans held Redis while they ran. An in-memory config cache grew without bound and leaked. Report queries on the busiest collection couldn't return a single day's records without timing out.</p>
-          <p>More than once, the failure happened in production first. Each of these was a live global single-point — the question was never just what to replace it with, but how to replace it with users online.</p>
-        </div>
-
-        <!-- ── 3 · Constraints ─────────────────────────────── -->
-        <div class="case-section">
-          <h2>Constraints</h2>
-          <ul>
-            <li>No downtime allowance — the platform stayed live through every change, users on.</li>
-            <li>No rewrite budget — every fix had to land inside the weekly release train, alongside normal feature work.</li>
-            <li>Every target was a live global single-point, so each step needed its own rollback before it shipped.</li>
-            <li>ID generation could never produce a collision — old and new generators had to be safe to run at the same time.</li>
-          </ul>
-        </div>
-
-        <!-- ── 4 · Role and responsibility ─────────────────── -->
-        <div class="case-section">
-          <h2>Role and responsibility</h2>
-          <p>I drove this work as the platform grew: I championed bringing a distributed cache into the platform, measured where the time actually went before proposing changes, root-caused each bottleneck to its mechanism, and designed the replacements and their cutover plans. Implementation and delivery were shared with the team — the changes shipped through the same weekly release train as everything else.</p>
-        </div>
-
-        <!-- ── 5 · Architecture ────────────────────────────── -->
-        <div class="case-section">
-          <h2>Architecture</h2>
-          <p>The principle was to replace the mechanism, not the symptom. ID generation moved from a database counter document to atomic Redis INCR. Notification fan-out moved to Redis Pub/Sub: publish once per event, and channel names route each user's events so an instance only touches the sockets it actually holds. Blocking SMEMBERS scans became cursor-based SSCAN. The leaking in-memory config cache was rebuilt cache-aside — read local, fall through to Redis, refresh on a fixed 15-minute cycle. Underneath it all, the query layer was retuned: covering indexes matched to real query shapes, unused indexes removed, aggregation pipelines rebuilt, text search moved off regex scans onto a proper search index.</p>
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">50k → 400k+, live</span>
+          <span class="hero-stat">collision-proof cutover</span>
+          <span class="hero-stat">sub-second pushes</span>
+          <span class="hero-stat">1 day → 30-day queries</span>
         </div>
 
         <div class="case-grid">
           <div class="case-beats">
-            <div class="case-beat"><h4>Before → after</h4><p>Database counter → Redis INCR with a +1-billion offset. Single-process WebSocket fan-out → Pub/Sub across N instances. Blocking SMEMBERS → SSCAN cursors. Unbounded in-memory cache → bounded cache-aside with a fixed refresh cycle.</p></div>
-            <div class="case-beat"><h4>Walkthrough — how a live cutover ran</h4><p><strong>Seed:</strong> the new mechanism starts in a range or path that cannot collide with the old one — for IDs, one billion above the old counter. <strong>Run both:</strong> old and new operate at the same time; neither can corrupt the other. <strong>Cut over:</strong> traffic moves in small, individually revertible steps, one release at a time. <strong>Rollback:</strong> boring on purpose — point back at the old mechanism. Each step's rollback existed before the step shipped.</p></div>
+            <div class="case-beat"><h4>Situation</h4><p>Over four years the member management platform grew from 50k to 400k+, and growth kept finding the limits of the old mechanisms — a counter document in the database serialized every ID; notification fan-out stalled under load. More than once, the failure happened in production first.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>No rewrite budget, no downtime allowance — every fix had to land inside a weekly release train, live, with users on.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Every target was a live global single-point, so I optimized for reversibility over speed — small, individually revertible PRs shipped in series rather than one big-bang cutover. I championed bringing a distributed cache into the platform, then root-caused each bottleneck to its mechanism and replaced the mechanism, not the symptom: ID generation moved from a database counter to atomic Redis INCR — cut over with a +1-billion offset so old and new ranges could never collide; notification fan-out moved to Redis pub/sub (shipped, reverted on a production surprise, re-landed hardened); blocking full-set scans replaced with cursor-based SSCAN; a leaking in-memory config cache rebuilt with a 15-minute refresh cycle.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform sustains 400k+ daily active users without the old failure modes. The patterns introduced (cache-aside, atomic counters, pub/sub fan-out) became house standards for modules built after.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
             <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
@@ -178,66 +143,10 @@
           </div>
         </div>
 
-        <!-- ── 6 · Key decisions ───────────────────────────── -->
-        <div class="case-section">
-          <h2>Key decisions</h2>
-          <div class="decisions">
-            <div class="decision">
-              <h3>ID cutover by offset, not choreography</h3>
-              <dl>
-                <dt>Options</dt><dd>Choreograph a precise handover between two live ID generators, or start the new range one billion above the old counter so both can run at once.</dd>
-                <dt>Decision</dt><dd>The +1-billion offset. Old and new generators ran in parallel and could never collide.</dd>
-                <dt>Reason</dt><dd>With users online and no maintenance window, the safest cutover is the one where collision is impossible by construction, not prevented by timing.</dd>
-                <dt>Trade-off</dt><dd>A permanent billion-wide gap in the ID sequence, and ID issuance now depends on Redis being up — a new availability dependency the team had to operate.</dd>
-              </dl>
-            </div>
-            <div class="decision">
-              <h3>Move fan-out to Pub/Sub instead of tuning the sockets</h3>
-              <dl>
-                <dt>Options</dt><dd>Tune the WebSocket layer — the visible component — or measure first and change whatever the profile pointed at.</dd>
-                <dt>Decision</dt><dd>Measurement showed the cost was the single-process fan-out loop, not the sockets. We published each event once to Redis Pub/Sub; every instance subscribes and delivers only to the connections it holds.</dd>
-                <dt>Reason</dt><dd>Channel-per-user routing removes the single fan-out point entirely and scales delivery with the number of instances.</dd>
-                <dt>Trade-off</dt><dd>Redis Pub/Sub is fire-and-forget — an instance that is down during publish misses the message — so delivery behaviour under Redis failure had to be understood and accepted for notifications.</dd>
-              </dl>
-            </div>
-            <div class="decision">
-              <h3>Unit of change = unit of rollback</h3>
-              <dl>
-                <dt>Options</dt><dd>Ship each migration as one big change, or as a series of small, individually revertible steps.</dd>
-                <dt>Decision</dt><dd>Small steps in series, each with its own rollback. The fan-out migration taught us this the hard way: the first landing shipped as one change, production surprised us, and we reverted the whole thing.</dd>
-                <dt>Reason</dt><dd>On a live platform the design being right isn't enough — the delivery has to be revertible at the same granularity it ships.</dd>
-                <dt>Trade-off</dt><dd>Slower delivery: more releases per migration, and a longer window where old and new mechanisms run in parallel and both need watching.</dd>
-              </dl>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── 7 · Failure modes and recovery ──────────────── -->
-        <div class="case-section">
-          <h2>Failure modes and recovery</h2>
-          <p>What broke, and the practices that came out of it.</p>
-        </div>
-        <div class="war-stories">
-          <div class="notes-grid">
-            <article class="note-card">
-              <h3>Reports that stopped coming back</h3>
-              <p>One stretch of growth broke the reporting layer visibly: operational reports stopped returning, and on the busiest collection a query couldn't fetch a single day's records without timing out. Recovery was months of unglamorous work — reading the slow-query log, matching covering indexes to the query shapes people actually ran, deleting the indexes nobody used (on write-heavy collections an unused index is pure tax), rebuilding aggregation pipelines stage by stage, and moving text search off regex scans onto a search index. Thirty-day report windows came back comfortably where one day used to time out.</p>
-            </article>
-            <article class="note-card">
-              <h3>Measure first, then argue</h3>
-              <p>Push notifications were arriving late, and the room's instinct was to tune the WebSocket layer — the visible component. Measuring where the time actually went showed the cost was the fan-out loop behind the sockets, delivering to every connection from one place. Fan-out moved to Pub/Sub and pushes went sub-second. The loudest component is rarely the bottleneck; the profile decides.</p>
-            </article>
-            <article class="note-card">
-              <h3>The revert that came back stronger</h3>
-              <p>The fan-out migration shipped — and production surprised us, so we reverted. The second landing was a series of small, individually revertible steps, each hardened by what the first attempt taught us. Nothing about the design was wrong; the delivery was. The rule that came out of it — the unit of change has to equal the unit of rollback — applied to every migration after.</p>
-            </article>
-          </div>
-        </div>
-
-        <!-- ── 8 · Representative code ─────────────────────── -->
+        <!-- ── The design, in code ─────────────────────────── -->
         <div class="proof-code">
-          <h3 class="more-work-heading">Representative code</h3>
-          <p class="proof-code-note">Rewritten for publication to show the production design — not company source.</p>
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
           <div class="demo-terminal code-proof">
             <div class="demo-terminal-bar">
               <span class="term-dot term-dot-r"></span>
@@ -294,46 +203,36 @@ redis.<span class="tk-fn">psubscribe</span>(<span class="tk-str">'push:*'</span>
           </div>
         </div>
 
-        <!-- ── 9 · Testing ─────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Testing and validation</h2>
-          <p>The platform-wide practice applied here: Jest with Testcontainers against real databases rather than mocks, an 80% coverage gate, and a full regression pass every week before release — which is what made shipping migrations inside the release train tolerable. Beyond the suite, every mechanism change was validated by measurement: profile before to find the real bottleneck, run old and new in parallel where possible, and watch the same metric after each revertible step before taking the next one.</p>
-        </div>
-
-        <!-- ── 10 · Trade-offs ─────────────────────────────── -->
-        <div class="case-section">
-          <h2>Trade-offs</h2>
-          <ul>
-            <li>Operational complexity: Redis went from a cache to core infrastructure — ID issuance, notification delivery and config reads all depend on it, so its memory, monitoring and failover became things the team had to own.</li>
-            <li>Redis failure behaviour: Pub/Sub is fire-and-forget, so an instance that is down at publish time misses the message — acceptable for notifications, and part of why the audited transaction path never moved onto it. If Redis is unavailable, new ID issuance stops rather than risking a collision.</li>
-            <li>Observability requirements: revertible steps only work if you can see them working — each cutover needed before/after measurement and a watch window, and during migration both old and new mechanisms had to be monitored at once.</li>
-            <li>Consistency: the cache-aside config layer trades freshness for boundedness — an edit can take up to the 15-minute refresh cycle to converge across instances, a window that had to be acceptable to the people changing configs.</li>
-            <li>Migration in small steps was slower than a big-bang cutover would have been — more releases, and a longer parallel-run tail.</li>
-          </ul>
-        </div>
-
-        <!-- ── 11 · Outcome ────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Outcome</h2>
-          <ul>
-            <li>The platform sustains 400k+ daily active users without the old failure modes.</li>
-            <li>Push notifications went from visibly late to sub-second, delivered across N instances.</li>
-            <li>Thirty-day report queries return comfortably on collections where a single day used to time out.</li>
-            <li>ID generation cut over live with zero downtime and zero collisions; rollback stayed one config change away throughout.</li>
-            <li>The patterns introduced — cache-aside, atomic counters, pub/sub fan-out — became house standards for modules built after.</li>
-          </ul>
-        </div>
-
-        <!-- ── 12 · What I learned ─────────────────────────── -->
-        <div class="case-section">
-          <h2>What I learned</h2>
-          <p>Measure before arguing — the visible component is rarely the bottleneck, and the profile settles debates that intuition keeps open. Replace mechanisms, not symptoms: tuning a serialized counter or a single-process fan-out loop only postpones the same failure. And on a live platform, delivery design matters as much as system design — the +1-billion offset and the reverted-then-relanded fan-out both taught the same lesson: prefer the change with nothing left to go wrong, and make its unit of change equal its unit of rollback.</p>
+        <!-- ── War stories ─────────────────────────────────── -->
+        <div class="war-stories">
+          <h3 class="more-work-heading">War stories</h3>
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The tuning months</h3>
+              <p>Before this platform earned its Redis layer, it had to earn its database. The reporting layer predated any business-intelligence team — and one stretch of growth broke it visibly: operational reports stopped coming back at all, and on the busiest collection a query couldn't return even a single day's records without timing out.</p>
+              <p>The months that followed were unglamorous: reading the slow-query log like a newspaper, matching covering indexes to the query shapes people actually ran (and deleting the indexes nobody did — on write-heavy collections an unused index is pure tax), rebuilding aggregation pipelines stage by stage, and moving text search off regex scans onto a proper search index.</p>
+              <p>Thirty-day report windows came back comfortably on collections where one day used to time out. That work never made a release announcement — but every feature shipped since stands on it.</p>
+            </article>
+            <article class="note-card">
+              <h3>Measure first, then argue</h3>
+              <p>Push notifications were arriving late, and the room's instinct was to tune the WebSocket layer — it was the visible component. Before touching anything I measured where the time actually went, and the cost wasn't in the sockets at all: it was the fan-out loop behind them, delivering to every connection from one place. We moved fan-out to pub/sub so each instance delivers to its own connections, and pushes went sub-second. The loudest component is rarely the bottleneck; the profile decides, not the intuition.</p>
+            </article>
+            <article class="note-card">
+              <h3>The revert that came back stronger</h3>
+              <p>The fan-out migration shipped — and production surprised us, so we reverted. The second landing looked different: instead of one big change, a series of small, individually revertible steps, each one hardened by what the first attempt had taught us. Nothing about the design was wrong; the delivery was. On a live transaction platform the unit of change has to equal the unit of rollback — that rule came out of this war and never left.</p>
+            </article>
+            <article class="note-card">
+              <h3>A billion-ID head start</h3>
+              <p>ID generation had to move from a database counter to atomic increments in Redis — with users online and no maintenance window. Instead of choreographing a precise cutover between two live generators, we made collision impossible: the new range started one billion above the old counter, so both could run at once and never meet. Rollback was equally boring — point back at the old counter. When transactions are on the line, the clever solution is the one with nothing left to go wrong.</p>
+            </article>
+          </div>
         </div>
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="index.html">← All work</a>
-          <a href="ingestion.html">Next: Data Ingestion Pipeline →</a>
+          <a href="backbone.html">← Previous: Workflow backbone</a>
+          <a href="index.html">All work</a>
+          <a href="support.html">Next: Real-time support platform →</a>
         </nav>
 
       </div>
@@ -346,14 +245,6 @@ redis.<span class="tk-fn">psubscribe</span>(<span class="tk-str">'push:*'</span>
   ══════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
     <div class="container">
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html">Work</a>
-        <a href="../lab.html">Lab</a>
-        <a href="../ai.html">AI</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../hermes.html">Hermes</a>
-        <a href="../index.html#contact">Contact</a>
-      </nav>
       <p class="footer-copy">
         © 2026 Henry Lee
       </p>

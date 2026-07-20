@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Selected Work — Henry Lee</title>
-  <meta name="description" content="Eight case studies covering transaction workflows, platform scaling, data ingestion, support systems, reporting, payments, and delivery tooling." />
+  <title>Work — Henry Lee</title>
+  <meta name="description" content="Seven production systems, told honestly — from a workflow backbone auditing millions of transactions a day to regulatory filings at million-row scale." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Selected Work — Henry Lee" />
-  <meta property="og:description" content="Eight case studies covering transaction workflows, platform scaling, data ingestion, support systems, reporting, payments, and delivery tooling." />
+  <meta property="og:title" content="Work — Henry Lee" />
+  <meta property="og:description" content="Seven production systems, told honestly — from a workflow backbone auditing millions of transactions a day to regulatory filings at million-row scale." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/index.html" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Selected Work — Henry Lee" />
-  <meta name="twitter:description" content="Eight case studies covering transaction workflows, platform scaling, data ingestion, support systems, reporting, payments, and delivery tooling." />
+  <meta name="twitter:title" content="Work — Henry Lee" />
+  <meta name="twitter:description" content="Seven production systems, told honestly — from a workflow backbone auditing millions of transactions a day to regulatory filings at million-row scale." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -43,10 +43,12 @@
       <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../index.html#about">About</a>
+        <a href="../ai.html">AI</a>
         <a href="../lab.html">Lab</a>
-        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -78,10 +80,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../index.html#about">About</a>
+        <a href="../ai.html">AI</a>
         <a href="../lab.html">Lab</a>
-        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -92,93 +96,18 @@
   <main>
 
     <!-- ══════════════════════════════════════════════════════
-         SELECTED WORK
+         WORK INDEX
     ══════════════════════════════════════════════════════ -->
     <section id="work" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>selected work</p>
-        <h2 class="section-heading">Selected <em class="accent-serif">Work</em></h2>
-        <p class="section-intro">Eight case studies covering transaction workflows, platform scaling, data ingestion, support systems, reporting, payments, and delivery tooling. The three most important come first.</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>work</p>
+        <h2 class="section-heading">The <em class="accent-serif">Work</em></h2>
+        <p class="section-intro">Seven systems, told honestly — every pattern transfers.</p>
 
-        <article class="case" data-case="1">
-          <a class="case-cardlink" href="backbone.html" aria-label="Explore the case: Transaction Backbone">
-            <p class="case-label">Case 01 · featured</p>
-            <h3 class="case-title">Transaction Backbone</h3>
-            <p class="case-hook">Rebuilt a legacy transaction flow into a durable workflow service with safe retries and self-service integration.</p>
-            <div class="hero-stats case-chips">
-              <span class="hero-stat">millions/day</span>
-              <span class="hero-stat">100+ SDK releases</span>
-              <span class="hero-stat">30–60 min → ~2 min onboarding</span>
-              <span class="hero-stat">200+ types · one base workflow</span>
-            </div>
-            <p class="case-summary">Every financial transaction passes one audited approval workflow — millions a day. I rebuilt it on gRPC + Temporal with idempotency by construction, so a retry can only return the record it already made, and turned integration into a published SDK: adding a new request type is a two-minute self-service form.</p>
-            <span class="case-link">Explore the case →</span>
-          </a>
-        </article>
-
-        <article class="case" data-case="2">
-          <a class="case-cardlink" href="scale.html" aria-label="Explore the case: Scaling the Platform">
-            <p class="case-label">Case 02 · featured</p>
-            <h3 class="case-title">Scaling the Platform</h3>
-            <p class="case-hook">Improved core platform mechanisms as daily active users grew from 50k to 400k+.</p>
-            <div class="hero-stats case-chips">
-              <span class="hero-stat">50k → 400k+ DAU</span>
-              <span class="hero-stat">zero-downtime migration</span>
-              <span class="hero-stat">Redis fan-out and routing</span>
-            </div>
-            <p class="case-summary">As the platform grew, ID generation, notification fan-out and blocking scans each hit the old architecture's limits. I measured where the time actually went, then replaced each mechanism in production — no downtime, users online, every step revertible.</p>
-            <span class="case-link">Explore the case →</span>
-          </a>
-        </article>
-
-        <article class="case" data-case="3">
-          <a class="case-cardlink" href="ingestion.html" aria-label="Explore the case: Data Ingestion Pipeline">
-            <p class="case-label">Case 03 · featured</p>
-            <h3 class="case-title">Data Ingestion Pipeline</h3>
-            <p class="case-hook">Unified 10M+ daily records from 10+ sources into a reconciled queryable layer.</p>
-            <div class="hero-stats case-chips">
-              <span class="hero-stat">10M+ records/day</span>
-              <span class="hero-stat">10+ sources</span>
-              <span class="hero-stat">streaming + durable workflows</span>
-            </div>
-            <p class="case-summary">Every balance change a user sees, pulled from 10+ heterogeneous systems — most of which my team didn't own — aligned record by record into one reconciled, queryable layer that downstream analytics builds on.</p>
-            <span class="case-link">Explore the case →</span>
-          </a>
-        </article>
-
-        <!-- ── Remaining cases ─────────────────────────────── -->
-        <div class="case-minis">
-          <article class="case-mini" data-case="4">
-            <h3 class="case-mini-title"><a href="support.html">Case 04 — Support System</a></h3>
-            <p class="case-mini-hook"><strong>Problem:</strong> the platform needed a real-time support channel and had none. <strong>My part:</strong> built it from zero on a stack new to the company — AI-assisted handling with human takeover. <strong>Outcome:</strong> grew it to a team and handed it off; they run it independently.</p>
-            <a class="case-link" href="support.html">Explore the case →</a>
-          </article>
-          <article class="case-mini" data-case="5">
-            <h3 class="case-mini-title"><a href="reporting.html">Case 05 — Reporting Engine</a></h3>
-            <p class="case-mini-hook"><strong>Problem:</strong> the business needed analytics and compliance reporting before a dedicated BI team existed. <strong>My part:</strong> built and ran the reporting engine for six years — multi-view analytics over million-row datasets. <strong>Outcome:</strong> 140+ reporting changes, regulatory filings delivered on time.</p>
-            <a class="case-link" href="reporting.html">Explore the case →</a>
-          </article>
-          <article class="case-mini" data-case="6">
-            <h3 class="case-mini-title"><a href="ai-delivery.html">Case 06 — AI Delivery Pipeline</a></h3>
-            <p class="case-mini-hook"><strong>Problem:</strong> a small team, a growing backlog, and AI tools that produce plausible-but-wrong output when unmanaged. <strong>My part:</strong> a staged delivery pipeline where AI drafts and humans gate every merge. <strong>Outcome:</strong> 16 features shipped through it; first drafts in hours instead of days.</p>
-            <a class="case-link" href="ai-delivery.html">Explore the case →</a>
-          </article>
-          <article class="case-mini" data-case="7">
-            <h3 class="case-mini-title"><a href="crypto.html">Case 07 — Multi-Currency &amp; Crypto Integration</a></h3>
-            <p class="case-mini-hook"><strong>Problem:</strong> the platform needed crypto payment paths where a precision slip is real loss. <strong>My part:</strong> deposits, withdrawals and transfers threaded through every transaction boundary, with provider integration and reconciliation. <strong>Outcome:</strong> two years in production across three wallet protocols.</p>
-            <a class="case-link" href="crypto.html">Explore the case →</a>
-          </article>
-          <article class="case-mini" data-case="8">
-            <h3 class="case-mini-title"><a href="pipeline.html">Case 08 — Cross-Stack Rewards Pipeline</a></h3>
-            <p class="case-mini-hook"><strong>Problem:</strong> a rewards path across four services in three languages, where a double-pay is real loss. <strong>My part:</strong> designed the exactly-once layer — an atomic claims ledger plus a human-readable idempotency key. <strong>Outcome:</strong> correct under workflow replays and message redeliveries, with zero changes to legacy services.</p>
-            <a class="case-link" href="pipeline.html">Explore the case →</a>
-          </article>
-        </div>
-
-        <!-- ── Platform overview (simplified map) ──────────── -->
+        <!-- The life of a record — one river across nine systems -->
         <div class="river-block">
-          <h3 class="more-work-heading">Platform overview</h3>
-          <p class="section-intro">How the case studies connect — a transaction record flows through these systems end to end.</p>
+          <h3 class="section-heading">The life of a <em class="accent-serif">record</em></h3>
+          <p class="section-intro">One record, nine systems. Follow the record:</p>
           <div class="case-diagram river-diagram" aria-hidden="true">
             <svg viewBox="0 0 960 300" preserveAspectRatio="xMidYMid meet">
               <!-- row 1 -->
@@ -191,6 +120,7 @@
               <line class="dg-wire" x1="334" y1="74" x2="366" y2="74"/>
               <line class="dg-wire" x1="574" y1="74" x2="606" y2="74"/>
               <line class="dg-wire" x1="776" y1="74" x2="800" y2="74"/>
+              <!-- wire wraps down to row 2 -->
               <path class="dg-wire" d="M 928 74 C 954 74 954 222 928 222" fill="none"/>
               <!-- row 2 (flows right to left) -->
               <g class="dg-node"><rect x="754" y="196" width="174" height="52" rx="4"/><text x="841" y="218" text-anchor="middle">reports &amp; filings</text><text class="dg-label" x="841" y="236" text-anchor="middle">1M rows/file</text></g>
@@ -200,6 +130,7 @@
               <line class="dg-wire" x1="700" y1="222" x2="754" y2="222"/>
               <line class="dg-wire" x1="466" y1="222" x2="520" y2="222"/>
               <line class="dg-wire" x1="226" y1="222" x2="296" y2="222"/>
+              <!-- continuous flow along the whole river -->
               <g class="dg-flow">
                 <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="0s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
                 <circle class="dg-dot" r="4"><animateMotion dur="16s" repeatCount="indefinite" begin="-4s" path="M 71 74 L 928 74 C 954 74 954 222 928 222 L 161 222"/></circle>
@@ -208,7 +139,89 @@
               </g>
             </svg>
           </div>
-          <p class="thesis-block">Some of these systems I built, some I run, some my team owns — the point is that they have to add up end to end.</p>
+          <p class="thesis-block">Some of these I built, some I run, some my team owns — but the river is one system, and it has to add up end to end.</p>
+        </div>
+
+        <article class="case" data-case="1">
+          <a class="case-cardlink" href="backbone.html" aria-label="Read the case study: The transaction backbone">
+            <p class="case-label">Case 01</p>
+            <h3 class="case-title">The transaction backbone — from a legacy monolith to a contract-first service</h3>
+            <p class="case-hook">The system that makes sure no transaction is ever processed twice.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">monolith → microservices</span>
+              <span class="hero-stat">millions of transactions/day</span>
+              <span class="hero-stat">idempotent by construction</span>
+              <span class="hero-stat">2-min self-serve SDK</span>
+              <span class="hero-stat">200+ types · one base workflow</span>
+            </div>
+            <p class="case-summary">Every financial transaction passes one audited approval workflow — <span class="hl">millions of transactions a day</span>. I rebuilt it on Temporal with idempotency by construction (a retry can only return the existing record) and turned integration into a published SDK: adding a new request type is a <span class="hl">two-minute self-service</span> form.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
+        </article>
+
+        <article class="case" data-case="2">
+          <a class="case-cardlink" href="scale.html" aria-label="Read the case study: Keeping a high-concurrency platform standing">
+            <p class="case-label">Case 02</p>
+            <h3 class="case-title">Keeping a high-concurrency transaction platform standing 50k → 400k+ users</h3>
+            <p class="case-hook">I drove the re-architectures that kept the platform up as daily users climbed to 400k+ — one live single-point at a time.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">50k → 400k+, live</span>
+              <span class="hero-stat">collision-proof cutover</span>
+              <span class="hero-stat">sub-second pushes</span>
+            </div>
+            <p class="case-summary">The member management platform grew from 50k to 400k+ and the old mechanisms broke in production. I replaced them live — atomic ID generation cut over with a <span class="hl">+1-billion offset</span>, notification fan-out moved to pub/sub, blocking scans made incremental — inside a weekly release train.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
+        </article>
+
+        <article class="case" data-case="3">
+          <a class="case-cardlink" href="support.html" aria-label="Read the case study: The first production service on a brand-new stack">
+            <p class="case-label">Case 03</p>
+            <h3 class="case-title">The first production service on a brand-new stack — from zero to clean handoff</h3>
+            <p class="case-hook">The pilot the whole stack migration was judged on — every pattern I set became the template later services copied.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">first on the new stack</span>
+              <span class="hero-stat">buy the base, build the moat</span>
+              <span class="hero-stat">solo → team → clean handoff</span>
+              <span class="hero-stat">became the template others copied</span>
+            </div>
+            <p class="case-summary">AI-assisted support with human takeover, built solo on a stack nobody had shipped to production yet. I bought the messaging base and self-built only the differentiators — a routing queue encoding status, load and wait-time into one sorted-set score, AI-to-human handoff, a mini back-office — grew it to a two-person team, and handed it off clean. Being the pilot meant my patterns became the template every later service copied.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
+        </article>
+
+        <article class="case" data-case="4">
+          <a class="case-cardlink" href="pipeline.html" aria-label="Read the case study: The exactly-once reliability layer">
+            <p class="case-label">Case 04</p>
+            <h3 class="case-title">The exactly-once reliability layer for a cross-stack rewards pipeline</h3>
+            <p class="case-hook">Four services, three languages, a reward path where a double-pay is real loss — I designed the layer that makes payout happen exactly once, zero legacy changes.</p>
+            <div class="hero-stats case-chips">
+              <span class="hero-stat">4 services · 3 languages</span>
+              <span class="hero-stat">exactly-once, layered</span>
+              <span class="hero-stat">0 legacy changes</span>
+              <span class="hero-stat">pre-prod verified</span>
+            </div>
+            <p class="case-summary">A mission pipeline across four services in three languages, composing the platform's existing engines. My design: the <span class="hl">exactly-once layer</span> — an atomic claims ledger plus a human-readable idempotency key — correct under both workflow replays and message redeliveries.</p>
+            <span class="case-link">Read the case study →</span>
+          </a>
+        </article>
+
+        <div class="case-minis">
+          <article class="case-mini" data-case="5">
+            <h3 class="case-mini-title"><a href="ingestion.html">Case 05 — Hand-building the platform's highest-volume data path: over ten million records a day</a></h3>
+            <p class="case-mini-hook">Every balance change a user sees, pulled from 10+ heterogeneous systems most of which my team didn't own — aligned record by record.</p>
+            <a class="case-link" href="ingestion.html">Read the case study →</a>
+          </article>
+          <article class="case-mini" data-case="6">
+            <h3 class="case-mini-title"><a href="crypto.html">Case 06 — Crypto payment rails: a fintech capability at every transaction boundary</a></h3>
+            <p class="case-mini-hook">A two-year epic threading fiat↔USDT conversion through every transaction boundary — where a precision slip is real loss.</p>
+            <a class="case-link" href="crypto.html">Read the case study →</a>
+          </article>
+          <article class="case-mini" data-case="7">
+            <h3 class="case-mini-title"><a href="reporting.html">Case 07 — The platform's reporting engine for six years, before there was a business-intelligence team</a></h3>
+            <p class="case-mini-hook">Multi-view analytics over million-row, long-window queries — 140+ reporting changes, plus regulatory filings on time.</p>
+            <a class="case-link" href="reporting.html">Read the case study →</a>
+          </article>
         </div>
 
       </div>
@@ -254,7 +267,7 @@
           <article class="xp-item">
             <div class="xp-meta">Dec 2019 – present · Malaysia</div>
             <div>
-              <h3 class="xp-title">Backend Engineer &amp; Technical Lead</h3>
+              <h3 class="xp-title">Backend Team Lead</h3>
               <div class="xp-company">A high-concurrency transaction platform</div>
               <div class="xp-ladder">Lead Software Engineer Dec 2025– · Senior Software Engineer 2024–2025 · Software Engineer 2019–2024</div>
               <p class="xp-summary">A five-person team owning six module domains across two generations of stack — legacy monolith and modern microservices — plus third-party service integrations. Architecture gatekeeper for cross-team requirements. I grow engineers through ownership — three juniors now run an entire production platform themselves. Weekly releases, CI/CD discipline, mentoring as the core of the job.</p>
@@ -293,14 +306,6 @@
   ══════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
     <div class="container">
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html">Work</a>
-        <a href="../lab.html">Lab</a>
-        <a href="../ai.html">AI</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../hermes.html">Hermes</a>
-        <a href="../index.html#contact">Contact</a>
-      </nav>
       <p class="footer-copy">
         © 2026 Henry Lee
       </p>

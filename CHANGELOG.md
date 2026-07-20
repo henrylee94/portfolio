@@ -6,41 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.0] — 2026-07-20 — Portfolio V2
-
-Full-site rework: information architecture, content hierarchy, and a consistent
-case-study template — same visual identity, static stack, and bilingual support.
-
-### Changed
-
-- **Identity:** site-wide title is now **Backend Engineer & Technical Lead**
-  (page titles, meta, OG cards, experience section).
-- **Navigation:** primary nav reduced to **Work / About / Lab / Résumé**;
-  AI, Notes, Hermes and Contact moved to a new footer nav on every page.
-- **Homepage:** concise hero (positioning + three metrics: 400k+ DAU,
-  millions/day financial operations, 100+ SDK releases; two CTAs), exactly three
-  featured cases (Transaction Backbone, Scaling the Platform, Data Ingestion
-  Pipeline), short About preview, "How I work" reduced to four principles in a
-  2×2 grid, simplified contact. Manifesto-style copy removed.
-- **Work index:** rebuilt as "Selected Work" — three featured cards first, five
-  secondary cases in a problem / my-part / outcome format, platform map demoted
-  to an overview below the cases.
-- **Case studies:** all pages restructured onto one 12-section template
-  (Overview panel · Problem · Constraints · Role · Architecture · Key decisions
-  · Failure modes · Representative code · Testing · Trade-offs · Outcome ·
-  What I learned), each with at least one representative anonymized code block.
-- **Live demos** moved from the homepage to the Lab page.
-
-### Added
-
-- New case study: **AI Delivery Pipeline** (`work/ai-delivery.html`), case 06 —
-  the staged, artifact-gated delivery pipeline (10 stages · 23 skills · 12 role
-  agents · 16 features shipped).
-- Copy button on code blocks (JS-injected, keyboard accessible).
-- Footer navigation component; case Overview panel; Key-decision cards
-  (Options / Decision / Reason / Trade-off).
-- Résumé PDF refreshed and linked from nav, hero and contact.
-
 ## [1.0.1] — 2026-07-18
 
 ### Changed

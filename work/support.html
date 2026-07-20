@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Support System — Henry Lee</title>
-  <meta name="description" content="Built a real-time support system from zero on a stack new to the company — AI-assisted handling with human takeover — grown to a team and handed off clean." />
+  <title>Real-time support platform — Henry Lee</title>
+  <meta name="description" content="AI-assisted support with human takeover, built from zero on a stack nobody had shipped yet — then handed off clean, twice." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Support System — Henry Lee" />
-  <meta property="og:description" content="Built a real-time support system from zero on a stack new to the company — AI-assisted handling with human takeover — grown to a team and handed off clean." />
+  <meta property="og:title" content="Real-time support platform — Henry Lee" />
+  <meta property="og:description" content="AI-assisted support with human takeover, built from zero on a stack nobody had shipped yet — then handed off clean, twice." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/support.html" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Support System — Henry Lee" />
-  <meta name="twitter:description" content="Built a real-time support system from zero on a stack new to the company — AI-assisted handling with human takeover — grown to a team and handed off clean." />
+  <meta name="twitter:title" content="Real-time support platform — Henry Lee" />
+  <meta name="twitter:description" content="AI-assisted support with human takeover, built from zero on a stack nobody had shipped yet — then handed off clean, twice." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -43,10 +43,12 @@
       <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../index.html#about">About</a>
+        <a href="../ai.html">AI</a>
         <a href="../lab.html">Lab</a>
-        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -78,10 +80,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../index.html#about">About</a>
+        <a href="../ai.html">AI</a>
         <a href="../lab.html">Lab</a>
-        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -91,68 +95,28 @@
 
   <main>
 
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
     <section id="case" class="section">
       <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 03 / 07</p>
+        <h1 class="section-heading">The first production service on a brand-new stack — from zero to clean handoff</h1>
+        <p class="case-hook">The pilot the whole stack migration was judged on — I built it solo, and every pattern I set became the template later services copied.</p>
 
-        <!-- ── 1 · Overview ────────────────────────────────── -->
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 04 / 08</p>
-        <h1 class="section-heading">Support <em class="accent-serif">System</em></h1>
-        <p class="case-hook">Built from zero on a stack new to the company — AI-assisted handling with human takeover — grown to a team and handed off clean.</p>
-
-        <div class="case-overview">
-          <div class="case-overview-cell">
-            <h4>Role</h4>
-            <p>Built it solo from zero, grew the team to two, then handed the service off — first to a maintenance team, later to the AI team.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Scale</h4>
-            <p>Real-time customer conversations for the platform; AI designed to absorb roughly 70% of repetitive inquiries, humans take the rest.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Stack</h4>
-            <p>NestJS · gRPC · Temporal · Pulsar · Redis · a self-hosted off-the-shelf messaging backbone as transport.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Outcome</h4>
-            <p>First production service on the new stack; its patterns became the template later services copied. Runs today as standalone multi-channel middleware.</p>
-          </div>
-        </div>
-
-        <!-- ── 2 · Problem ─────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Problem</h2>
-          <p>The platform needed a real-time support channel and had none. At the same time, the company had just decided on a new microservices stack — NestJS, gRPC, Temporal, Pulsar — that no one had shipped to production yet. I was handed both problems at once: build the support system, and prove the stack on the way.</p>
-          <p>This was the pilot the whole stack migration was judged on. Whatever patterns it set — good or bad — later services would inherit.</p>
-        </div>
-
-        <!-- ── 3 · Constraints ─────────────────────────────── -->
-        <div class="case-section">
-          <h2>Constraints</h2>
-          <ul>
-            <li>Solo start — one engineer, no existing service on the stack to copy from.</li>
-            <li>Every piece of the stack was new to me at once: NestJS, gRPC, Temporal, Pulsar, and the messaging backbone.</li>
-            <li>The outcome would decide whether the company's migration to the new stack was viable.</li>
-            <li>The message transport was fixed — the framework choice was the CTO's call; the data model and flows were mine to design.</li>
-            <li>The AI could not be trusted in the critical path without an exit: a stalled model must never leave a customer waiting.</li>
-          </ul>
-        </div>
-
-        <!-- ── 4 · Role and responsibility ─────────────────── -->
-        <div class="case-section">
-          <h2>Role and responsibility</h2>
-          <p>I built the initial production version alone: the data model, the conversation flows, the agent-routing queue, the AI handoff path, and the operational patterns around them. As the system grew I brought in a second engineer, then handed the service off — first to a maintenance team, later to the AI team — and they run it independently today. The handoff was part of the job, not an afterthought: the service had to be operable by people who didn't build it.</p>
-        </div>
-
-        <!-- ── 5 · Architecture ────────────────────────────── -->
-        <div class="case-section">
-          <h2>Architecture</h2>
-          <p>Buy the base, build the differentiators. I self-hosted an off-the-shelf messaging backbone as the message transport and built only what it doesn't have: an agent-routing queue that encodes the whole assignment policy — status first, load second, longest-wait tie-break — into a single Redis sorted-set score; a mini back-office view so agents see a member's account records, top-up / withdrawal history and permissions in one screen instead of switching systems; and an AI-first answer path with a 10-second race guard that hands the chat to a human whenever the model stalls or errors.</p>
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">first on the new stack</span>
+          <span class="hero-stat">buy the base, build the moat</span>
+          <span class="hero-stat">solo → team → clean handoff</span>
+          <span class="hero-stat">became the template others copied</span>
         </div>
 
         <div class="case-grid">
           <div class="case-beats">
-            <div class="case-beat"><h4>Routing queue</h4><p>The score is banded so status always outranks load, and load outranks waiting time. Every agent state change is one atomic increment; assignment just reads the head of the queue — O(1), no scan, no race.</p></div>
-            <div class="case-beat"><h4>AI first, human takeover</h4><p>AI answers first — designed to absorb the repetitive share of inquiries, roughly 70%. Every model call races a ten-second timer; on stall, error or timeout the conversation goes straight to a human via the routing queue. A per-room lock gives each conversation exactly one owner: the first invite wins, duplicates walk away.</p></div>
+            <div class="case-beat"><h4>Situation</h4><p>The company needed AI-assisted customer conversations with human takeover — and had just decided on a new microservices stack no one had shipped to production yet. I was handed both problems at once.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>Solo start; NestJS, gRPC, Temporal, Pulsar and an off-the-shelf messaging backbone — all new to me at once; the outcome would decide whether the company's migration was viable.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Self-hosted an off-the-shelf messaging backbone as the message transport (the framework was the CTO's call; the data model and flows were mine), then built only the differentiators it doesn't have: an agent-routing queue encoding status > load > wait-time into a single Redis sorted-set score — banded so status always outranks load, and load outranks waiting time; assignment just reads the head of the queue; a mini back-office management system so agents see a member's account records, top-up / withdrawal history and permissions in one screen instead of switching systems; AI answers first — designed to absorb the repetitive ~70% of inquiries — with a 10-second race guard that hands the chat to a human whenever the model stalls or errors. Concurrency was the war — the score race and the duplicate-invite storm both have their own war stories below.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>First production service on the new stack — the pattern reference (config via Vault, contract-first gRPC, structured logging, graceful shutdown) that later services copied. Grew the team to two, handed the service to a maintenance team, later to the AI team. It now runs as a standalone multi-channel middleware.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
             <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
@@ -178,66 +142,10 @@
           </div>
         </div>
 
-        <!-- ── 6 · Key decisions ───────────────────────────── -->
-        <div class="case-section">
-          <h2>Key decisions</h2>
-          <div class="decisions">
-            <div class="decision">
-              <h3>Buy the base, build the differentiators</h3>
-              <dl>
-                <dt>Options</dt><dd>Build the message transport from scratch, or self-host an off-the-shelf messaging backbone and build only what it doesn't have.</dd>
-                <dt>Decision</dt><dd>Self-host the backbone as transport (the framework was the CTO's call; the data model and flows were mine). Build the routing queue, the agent back-office view, and the AI handoff in-house.</dd>
-                <dt>Reason</dt><dd>Message delivery is a solved problem; agent routing, one-screen member context, and AI-with-takeover are where the product actually differs.</dd>
-                <dt>Trade-off</dt><dd>Operating third-party infrastructure we didn't write — its room and event model shaped how our flows had to be expressed, and its production behaviour was ours to learn.</dd>
-              </dl>
-            </div>
-            <div class="decision">
-              <h3>Routing policy as one banded score</h3>
-              <dl>
-                <dt>Options</dt><dd>Scan and rank agents on every assignment, or encode the whole policy into a single sortable number.</dd>
-                <dt>Decision</dt><dd>One Redis sorted-set score, banded so each term owns an order of magnitude: status first, load second, longest-wait tie-break. Assignment reads the head of the set.</dd>
-                <dt>Reason</dt><dd>Every agent state change becomes one atomic increment — no read-modify-write race — and picking the next agent is O(1).</dd>
-                <dt>Trade-off</dt><dd>The policy is compressed into an encoding: bands must never overflow into each other, and reading the queue means knowing the scheme. The banding later paid for itself when the Redis cluster rejected transactions — pure atomic increments were already enough.</dd>
-              </dl>
-            </div>
-            <div class="decision">
-              <h3>AI answers first — behind a hard exit</h3>
-              <dl>
-                <dt>Options</dt><dd>Use the model as a suggestion tool for agents, or let it answer customers directly with humans as the escalation path.</dd>
-                <dt>Decision</dt><dd>AI first, designed to absorb the repetitive share of inquiries — roughly 70% — with every model call raced against a ten-second timer and any stall, error or timeout handed straight to a human.</dd>
-                <dt>Reason</dt><dd>Most inquiries are repetitive; the ones that aren't need a person anyway. Treating the model as a flaky third-party dependency — timeout, fallback, never in the critical path without an exit — makes the design safe either way.</dd>
-                <dt>Trade-off</dt><dd>AI answering first means AI failing first: the escalation path has to be bulletproof, and the concurrency in that path — duplicate invites, racing score updates — turned out to be the hardest engineering on the project.</dd>
-              </dl>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── 7 · Failure modes and recovery ──────────────── -->
-        <div class="case-section">
-          <h2>Failure modes and recovery</h2>
-          <p>Real incidents and the mechanisms that came out of them.</p>
-        </div>
-        <div class="war-stories">
-          <div class="notes-grid">
-            <article class="note-card">
-              <h3>The day the cluster said no</h3>
-              <p>Queue positions lived as scores, and the original update was read-modify-write: read the score, compute in memory, write it back. Under concurrency two updates interleaved and one silently overwrote the other. I rebuilt the updates as atomic increments wrapped in a transaction — and then production revealed our Redis cluster wouldn't accept the transaction at all. Because the score design was banded — status, load and waiting time each own their own order of magnitude — every state change was already expressible as a single atomic increment, so we degraded to pure atomic ops the same day. A fix isn't done until it survives the real topology — and data designed for plan B is why the fallback was a same-day change, not a redesign.</p>
-            </article>
-            <article class="note-card">
-              <h3>Two agents, one conversation</h3>
-              <p>Two messages arriving in the same conversation at the same moment each decided a human agent was needed — and two agents got invited into one chat. The fence is a per-room lock: the first caller takes it and performs the invite, everyone else finds it held and walks away, and the lock's time-to-live is aligned to the operation so a crash can't leave the room locked forever. Anything triggered by "a message arrived" will eventually be triggered twice in the same millisecond — design for the second caller before it exists.</p>
-            </article>
-            <article class="note-card">
-              <h3>The model is a dependency you can't trust</h3>
-              <p>AI answering first means AI failing first. Every model call races a ten-second timer, and on stall, error or timeout the conversation is handed straight to a human — the user always ends up with a person, never with a spinner. The model gets treated like any flaky third-party dependency: timeout, fallback, and never in the critical path without an exit. That guard fired in production more than once, and nobody noticed — which was the point. The service's structured logging is what made that verifiable after the fact: the fallbacks are in the logs, not in the complaints.</p>
-            </article>
-          </div>
-        </div>
-
-        <!-- ── 8 · Representative code ─────────────────────── -->
+        <!-- ── The design, in code ─────────────────────────── -->
         <div class="proof-code">
-          <h3 class="more-work-heading">Representative code</h3>
-          <p class="proof-code-note">Rewritten for publication to show the production design — not company source.</p>
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
           <div class="demo-terminal code-proof">
             <div class="demo-terminal-bar">
               <span class="term-dot term-dot-r"></span>
@@ -299,45 +207,30 @@
           </div>
         </div>
 
-        <!-- ── 9 · Testing ─────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Testing and validation</h2>
-          <p>The service follows the platform's test discipline: Jest with integration tests running against real dependencies via Testcontainers — the lock and score behaviour is concurrency-dependent, so it's exercised against a real Redis, not a mock — behind an 80% coverage gate and a weekly regression run. The tests that matter most here fire the same trigger twice: two simultaneous invites into one room must produce exactly one assigned agent, and a model call that never returns must land the conversation on a human within the guard window.</p>
-        </div>
-
-        <!-- ── 10 · Trade-offs ─────────────────────────────── -->
-        <div class="case-section">
-          <h2>Trade-offs</h2>
-          <ul>
-            <li>Self-hosting an off-the-shelf backbone meant operating infrastructure we didn't write — its room and event model constrained how our flows were expressed, in exchange for not rebuilding message delivery.</li>
-            <li>Compressing the routing policy into one banded score makes assignment O(1) and race-free, but couples the policy to an encoding: the bands are a contract, and changing the policy means changing the scheme.</li>
-            <li>AI answering first pushed real engineering cost into the escalation path — the race guard, the per-room lock, the atomic queue updates all exist because the fallback has to be more reliable than the model it backs.</li>
-            <li>Being the first service on the stack meant setting patterns while still learning it; some of that learning happened in production, which is where the war stories above come from.</li>
-          </ul>
-        </div>
-
-        <!-- ── 11 · Outcome ────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Outcome</h2>
-          <ul>
-            <li>First production service on the company's new stack — the migration's viability was proven on it.</li>
-            <li>Its patterns — config via Vault, contract-first gRPC, structured logging, graceful shutdown — became the pattern reference later services copied.</li>
-            <li>AI-assisted handling designed to absorb roughly 70% of repetitive inquiries, with silent human takeover when the model stalls or errors.</li>
-            <li>Grew from a solo build to a two-person team, then a clean handoff — first to a maintenance team, later to the AI team, who run it independently.</li>
-            <li>Runs today as a standalone multi-channel middleware.</li>
-          </ul>
-        </div>
-
-        <!-- ── 12 · What I learned ─────────────────────────── -->
-        <div class="case-section">
-          <h2>What I learned</h2>
-          <p>Buy the commodity and build the differentiator — the transport was never where this project's value was. Anything triggered by "a message arrived" will eventually fire twice in the same millisecond, so conversation ownership has to be a fence, not a convention. A model in the critical path is a flaky dependency and gets a flaky dependency's treatment: timeout, fallback, exit. And a fix isn't done until it survives the real production topology — the banded score design was worth more on the day the cluster rejected transactions than on the day it was drawn. Finally, patterns set by a first service outlive the service: the most durable output here wasn't the support system, it was the template everything after it copied.</p>
+        <!-- ── War stories ─────────────────────────────────── -->
+        <div class="war-stories">
+          <h3 class="more-work-heading">War stories</h3>
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The day the cluster said no</h3>
+              <p>Queue positions lived as scores, and the original update was read-modify-write: read the score, compute in memory, write it back. Under concurrency two updates interleaved and one silently overwrote the other. I rebuilt the updates as atomic increments wrapped in a transaction — and then production revealed our Redis cluster wouldn't accept the transaction at all. Because the score design was banded — status, load and waiting time each own their own order of magnitude — every state change was already expressible as a single atomic increment, so we degraded to pure atomic ops the same day. A fix isn't done until it survives the real topology — and data designed for plan B is why the fallback was a same-day change, not a redesign.</p>
+            </article>
+            <article class="note-card">
+              <h3>Two agents, one conversation</h3>
+              <p>Two messages arriving in the same conversation at the same moment each decided a human agent was needed — and two agents got invited into one chat. The fence is a per-room lock: the first caller takes it and performs the invite, everyone else finds it held and walks away, and the lock's time-to-live is aligned to the operation so a crash can't leave the room locked forever. Anything triggered by "a message arrived" will eventually be triggered twice in the same millisecond — design for the second caller before it exists.</p>
+            </article>
+            <article class="note-card">
+              <h3>The model is a dependency you can't trust</h3>
+              <p>AI answering first means AI failing first. Every model call races a ten-second timer, and on stall, error or timeout the conversation is handed straight to a human — the user always ends up with a person, never with a spinner. The model gets treated like any flaky third-party dependency: timeout, fallback, and never in the critical path without an exit. That guard fired in production more than once, and nobody noticed — which was the point.</p>
+            </article>
+          </div>
         </div>
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="index.html">← All work</a>
-          <a href="reporting.html">Next: Reporting Engine →</a>
+          <a href="scale.html">← Previous: Scaling 50k → 400k+ users</a>
+          <a href="index.html">All work</a>
+          <a href="pipeline.html">Next: Cross-stack mission pipeline →</a>
         </nav>
 
       </div>
@@ -350,14 +243,6 @@
   ══════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
     <div class="container">
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html">Work</a>
-        <a href="../lab.html">Lab</a>
-        <a href="../ai.html">AI</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../hermes.html">Hermes</a>
-        <a href="../index.html#contact">Contact</a>
-      </nav>
       <p class="footer-copy">
         © 2026 Henry Lee
       </p>

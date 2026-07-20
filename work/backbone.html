@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Transaction Backbone — Henry Lee</title>
-  <meta name="description" content="Rebuilt a legacy transaction flow into a durable workflow service — millions of transactions a day, idempotent by construction, integration as a two-minute self-service SDK." />
+  <title>Workflow backbone — Henry Lee</title>
+  <meta name="description" content="Every financial transaction passes one audited workflow — millions of transactions a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Transaction Backbone — Henry Lee" />
-  <meta property="og:description" content="Rebuilt a legacy transaction flow into a durable workflow service — millions of transactions a day, idempotent by construction, integration as a two-minute self-service SDK." />
+  <meta property="og:title" content="Workflow backbone — Henry Lee" />
+  <meta property="og:description" content="Every financial transaction passes one audited workflow — millions of transactions a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/backbone.html" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Transaction Backbone — Henry Lee" />
-  <meta name="twitter:description" content="Rebuilt a legacy transaction flow into a durable workflow service — millions of transactions a day, idempotent by construction, integration as a two-minute self-service SDK." />
+  <meta name="twitter:title" content="Workflow backbone — Henry Lee" />
+  <meta name="twitter:description" content="Every financial transaction passes one audited workflow — millions of transactions a day, idempotent by construction, with integration turned into a two-minute self-service SDK." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -43,10 +43,12 @@
       <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../index.html#about">About</a>
+        <a href="../ai.html">AI</a>
         <a href="../lab.html">Lab</a>
-        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
       <div class="topbar-actions">
@@ -78,10 +80,12 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../index.html#about">About</a>
+        <a href="../ai.html">AI</a>
         <a href="../lab.html">Lab</a>
-        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
 
     </div>
@@ -91,68 +95,29 @@
 
   <main>
 
+    <!-- ══════════════════════════════════════════════════════
+         CASE STUDY
+    ══════════════════════════════════════════════════════ -->
     <section id="case" class="section">
       <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 01 / 07</p>
+        <h1 class="section-heading">The transaction backbone — from a legacy monolith to a contract-first service</h1>
+        <p class="case-hook">Every financial transaction on the platform passes through it — millions a day, and it can never process one twice.</p>
 
-        <!-- ── 1 · Overview ────────────────────────────────── -->
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 01 / 08</p>
-        <h1 class="section-heading">Transaction <em class="accent-serif">Backbone</em></h1>
-        <p class="case-hook">Rebuilt a legacy transaction flow into a durable workflow service with safe retries and self-service integration.</p>
-
-        <div class="case-overview">
-          <div class="case-overview-cell">
-            <h4>Role</h4>
-            <p>Module owner — designed the service, led the migration, run it in production today.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Scale</h4>
-            <p>Millions of transactions a day, peaks around a thousand per second; 200+ request types on one base workflow.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Stack</h4>
-            <p>NestJS · gRPC · Temporal · MongoDB · published SDK with semantic versioning.</p>
-          </div>
-          <div class="case-overview-cell">
-            <h4>Outcome</h4>
-            <p>Duplicate execution prevented by construction; new-type onboarding cut from 30–60 minutes to ~2; 100+ SDK releases.</p>
-          </div>
-        </div>
-
-        <!-- ── 2 · Problem ─────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Problem</h2>
-          <p>Every financial transaction on the platform — withdrawal, top-up, loyalty reward, configuration change — must pass one audited create → review → approve → execute lifecycle. The legacy implementation was tightly coupled inside a monolith: every consumer re-implemented its own wiring, retries lived in cron-driven scanners, and adding a new request type was a 30-to-60-minute, person-dependent process that queued on the core team.</p>
-          <p>Traffic growth made this untenable — the flow was heading past what the old architecture could hold, and any duplicate execution on this path means a transaction is processed twice.</p>
-        </div>
-
-        <!-- ── 3 · Constraints ─────────────────────────────── -->
-        <div class="case-section">
-          <h2>Constraints</h2>
-          <ul>
-            <li>Production traffic could not stop: the platform's single point of trust, live throughout the migration.</li>
-            <li>Financial correctness — a retried create must never produce a second record.</li>
-            <li>Backward compatibility — legacy consumers stayed on the old endpoints until each flow cut over, with endpoint-level fallback.</li>
-            <li>Auditability — every state transition reviewed, logged, and traceable.</li>
-            <li>Cross-team integration — downstream services on different schedules had to adopt at their own pace.</li>
-          </ul>
-        </div>
-
-        <!-- ── 4 · Role and responsibility ─────────────────── -->
-        <div class="case-section">
-          <h2>Role and responsibility</h2>
-          <p>I own this module. I designed the service, wrote the initial production version, planned the migration path from the monolith, and coordinated the gRPC contracts consuming teams integrate against. The SDK and its release discipline are mine; the request-type patterns other services copy started here. Implementation beyond the initial version was shared with my team.</p>
-        </div>
-
-        <!-- ── 5 · Architecture ────────────────────────────── -->
-        <div class="case-section">
-          <h2>Architecture</h2>
-          <p>A gRPC microservice orchestrated by Temporal: one generic durable workflow runs every request type, with business extension points as child-workflow slots. Idempotency is structural — the workflow ID doubles as the creation key, so a retried step returns the existing record instead of creating twice. Integration is a published SDK: any service registers an executor with one import.</p>
+        <div class="hero-stats case-chips">
+          <span class="hero-stat">monolith → microservices</span>
+          <span class="hero-stat">millions of transactions/day</span>
+          <span class="hero-stat">idempotent by construction</span>
+          <span class="hero-stat">2-min self-serve SDK</span>
+          <span class="hero-stat">200+ types · one base workflow</span>
         </div>
 
         <div class="case-grid">
           <div class="case-beats">
-            <div class="case-beat"><h4>Lifecycle</h4><p>create → review → approve → execute, one audited path for every transaction type. Human review sits in the middle; the engine owns retries and timeouts.</p></div>
-            <div class="case-beat"><h4>Walkthrough — what each state does</h4><p><strong>First request:</strong> the workflow ID is derived from the request, the record is created, the lifecycle starts. <strong>Retry:</strong> the same derivation finds the existing record and returns it — no second write. <strong>Worker failure:</strong> the engine replays the workflow history on another worker; completed steps are not re-executed. <strong>Existing record return:</strong> the caller receives the same transaction ID either way.</p></div>
+            <div class="case-beat"><h4>Situation</h4><p>Every financial transaction on the platform — withdrawal, top-up, loyalty reward, configuration change — must pass one audited create → review → approve → execute lifecycle. The legacy implementation was tightly coupled inside a monolith; every consumer re-implemented its own wiring.</p></div>
+            <div class="case-beat"><h4>Constraint</h4><p>This is the platform's single point of trust: production pushes millions of transactions a day through it — into the tens of millions at peak — and a duplicate execution means a transaction is processed twice.</p></div>
+            <div class="case-beat"><h4>Approach</h4><p>Rebuilt it as a gRPC microservice orchestrated by Temporal: one generic durable workflow runs every request type, with business extension points as child-workflow slots. Idempotency is structural — the workflow ID doubles as the creation key, so a retried step returns the existing record instead of creating twice. Integration became a published SDK: any service registers an executor with one import; adding a new request type is a self-service CI form, not a queue on my desk. 100+ SDK releases with disciplined semantic versioning.</p></div>
+            <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Millions of transactions a day in production. Duplicate execution is prevented by construction rather than caught after the fact. New-type integration went from a 30-to-60-minute, person-dependent process to two-minute self-service.</p></div>
           </div>
           <div class="case-diagram" aria-hidden="true">
             <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
@@ -166,7 +131,7 @@
               <line class="dg-wire" x1="344" y1="77" x2="368" y2="77"/>
               <path class="dg-wire dg-wire-loop" d="M 414 98 C 414 130 66 130 66 98" fill="none"/>
               <text class="dg-label" x="240" y="142" text-anchor="middle">retry ⟲ returns the same record — workflow ID = creation key</text>
-              <text class="dg-label" x="182" y="52" text-anchor="middle" opacity="0.7">human review</text>
+              <text class="dg-label" x="182" y="52" text-anchor="middle" opacity="0.7">human human review</text>
               <g class="dg-node dg-node-sm"><rect x="20" y="196" width="150" height="34" rx="4"/><text x="95" y="218" text-anchor="middle">any microservice</text></g>
               <g class="dg-node dg-node-sm"><rect x="220" y="196" width="110" height="34" rx="4"/><text x="275" y="218" text-anchor="middle">SDK · 1 import</text></g>
               <line class="dg-wire" x1="170" y1="213" x2="220" y2="213"/>
@@ -181,71 +146,10 @@
           </div>
         </div>
 
-        <!-- ── 6 · Key decisions ───────────────────────────── -->
-        <div class="case-section">
-          <h2>Key decisions</h2>
-          <div class="decisions">
-            <div class="decision">
-              <h3>Durable workflows over cron-and-scan</h3>
-              <dl>
-                <dt>Options</dt><dd>Keep the legacy pattern — cron jobs re-scanning for stuck approvals — or move orchestration into a durable workflow engine.</dd>
-                <dt>Decision</dt><dd>Temporal. Retries, timeouts and recovery belong in the engine, not in scanners.</dd>
-                <dt>Reason</dt><dd>I had personally operated the 22-cron-job version for years; the failure modes were known and structural.</dd>
-                <dt>Trade-off</dt><dd>A new operational surface: worker fleets, task queues, and replay-deterministic code discipline the team had to learn.</dd>
-              </dl>
-            </div>
-            <div class="decision">
-              <h3>One generic workflow, not one per request type</h3>
-              <dl>
-                <dt>Options</dt><dd>A workflow implementation per transaction type, or one base workflow with business extension slots.</dd>
-                <dt>Decision</dt><dd>One base workflow; 200+ request types run through it.</dd>
-                <dt>Reason</dt><dd>Every new type inherits idempotency, audit and retry behaviour for free — correctness is written once.</dd>
-                <dt>Trade-off</dt><dd>The base workflow is high-blast-radius code: changes ship behind version markers and get the strictest review on the team.</dd>
-              </dl>
-            </div>
-            <div class="decision">
-              <h3>Cutover carried by the SDK, with endpoint-level fallback</h3>
-              <dl>
-                <dt>Options</dt><dd>Big-bang switch, or migrate flow by flow with the SDK routing between old and new endpoints.</dd>
-                <dt>Decision</dt><dd>Framework first, then flow-by-flow cutover; every endpoint could fall back independently.</dd>
-                <dt>Reason</dt><dd>On a live financial path, each step needs its own rollback — a big-bang cutover has none.</dd>
-                <dt>Trade-off</dt><dd>Two systems ran in parallel during the migration window, which meant double observability and double support until retirement.</dd>
-              </dl>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── 7 · Failure modes and recovery ──────────────── -->
-        <div class="case-section">
-          <h2>Failure modes and recovery</h2>
-          <p>Real incidents and the mechanisms that came out of them.</p>
-        </div>
-        <div class="war-stories">
-          <div class="notes-grid">
-            <article class="note-card">
-              <h3>The redemption that didn't charge</h3>
-              <p>Customer support found it before any dashboard did: a reward-redemption flow was handing out value without deducting the balance. A pre-charge step in the workflow was being skipped — silently. Rollback first, debug second. The trail led to a shared contract file that had quietly fallen behind on one branch; a routine package upgrade activated the stale copy.</p>
-              <p>The fixes were systemic, not local: the workflow fails loudly if the pre-charge step doesn't run; every release regression-tests every transaction path; and the incident seeded the first version of our risk-alerting pipeline — every redemption event published onto the event bus, alerting the risk team in chat.</p>
-            </article>
-            <article class="note-card">
-              <h3>The signal that arrived too early</h3>
-              <p>A third-party callback landed before our own state had finished persisting — the workflow received a signal for a record that, from its point of view, didn't exist yet. The fix was structural: signals are buffered until the state they refer to has landed, and every behavioural change ships behind a versioned patch marker, so workflows already running mid-history replay the exact logic they started with. In durable workflows, a code deploy is an event your running history has to survive.</p>
-            </article>
-            <article class="note-card">
-              <h3>The retry that had to return the same record</h3>
-              <p>The engine retries failed steps — that's the point of it. But on a transaction path, a retried create is a potential duplicate record. So creation isn't guarded by a check bolted on afterwards; it's guarded by construction: the workflow ID doubles as the record's creation key, and every create looks up before it writes. Updates carry status guards, and illegal state transitions throw instead of writing.</p>
-            </article>
-            <article class="note-card">
-              <h3>Four environments, one engine</h3>
-              <p>Several environments shared one workflow-engine cluster, and workers began stealing each other's tasks. The fix was a naming discipline, not more hardware: task-queue names resolve per environment — production fixed, local runs suffixed with the developer's identity, test lanes with the environment. Shared infrastructure needs namespacing before it needs capacity.</p>
-            </article>
-          </div>
-        </div>
-
-        <!-- ── 8 · Representative code ─────────────────────── -->
+        <!-- ── The design, in code ─────────────────────────── -->
         <div class="proof-code">
-          <h3 class="more-work-heading">Representative code</h3>
-          <p class="proof-code-note">Rewritten for publication to show the production design — not company source.</p>
+          <h3 class="more-work-heading">The design, in code</h3>
+          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
           <div class="demo-terminal code-proof">
             <div class="demo-terminal-bar">
               <span class="term-dot term-dot-r"></span>
@@ -264,6 +168,19 @@
 
   <span class="tk-kw">return</span> repo.<span class="tk-fn">insert</span>({ creationKey: workflowId, ...<span class="tk-fn">toRecord</span>(req) });
 }</code></pre>
+          </div>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">retry-policy.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// Retries are for infrastructure, never for business rejections.</span>
+<span class="tk-kw">const</span> retryPolicy = {
+  retryableErrors: [<span class="tk-str">'UNAVAILABLE'</span>], <span class="tk-cm">// a business "no" must stay a no</span>
+  backoff: { initial: <span class="tk-str">'500ms'</span>, factor: <span class="tk-num">2</span>, maxAttempts: <span class="tk-num">3</span> },
+};</code></pre>
           </div>
           <div class="demo-terminal code-proof">
             <div class="demo-terminal-bar">
@@ -289,64 +206,36 @@
           </div>
         </div>
 
-        <!-- ── 9 · Testing ─────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Testing and validation</h2>
-          <p>Integration tests run against real dependencies via Testcontainers, not mocks. The test that matters most on this path: fire the same create twice, assert one record exists and both responses carry the same transaction ID.</p>
-        </div>
-        <div class="proof-code">
-          <div class="demo-terminal code-proof">
-            <div class="demo-terminal-bar">
-              <span class="term-dot term-dot-r"></span>
-              <span class="term-dot term-dot-y"></span>
-              <span class="term-dot term-dot-g"></span>
-              <span class="demo-terminal-title">create-record.integration.spec.ts</span>
-            </div>
-            <pre class="code-proof-body"><code><span class="tk-cm">// Real database in a container — the guarantee is tested, not assumed.</span>
-<span class="tk-fn">it</span>(<span class="tk-str">'returns the same record when the same request is sent twice'</span>, <span class="tk-kw">async</span> () =&gt; {
-  <span class="tk-kw">const</span> req = <span class="tk-fn">makeCreateRequest</span>({ type: <span class="tk-str">'withdrawal'</span>, requestId: <span class="tk-str">'r-100'</span> });
-
-  <span class="tk-kw">const</span> first  = <span class="tk-kw">await</span> service.<span class="tk-fn">createRecord</span>(req);
-  <span class="tk-kw">const</span> second = <span class="tk-kw">await</span> service.<span class="tk-fn">createRecord</span>(req); <span class="tk-cm">// duplicate delivery</span>
-
-  <span class="tk-fn">expect</span>(second.id).<span class="tk-fn">toBe</span>(first.id);
-  <span class="tk-fn">expect</span>(<span class="tk-kw">await</span> repo.<span class="tk-fn">countByCreationKey</span>(first.creationKey)).<span class="tk-fn">toBe</span>(<span class="tk-num">1</span>);
-});</code></pre>
+        <!-- ── War stories ─────────────────────────────────── -->
+        <div class="war-stories">
+          <h3 class="more-work-heading">War stories</h3>
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The redemption that didn't charge</h3>
+              <p>Customer support found it before any dashboard did: a reward-redemption flow was handing out value without deducting the balance. A pre-charge step in the workflow was being skipped — silently.</p>
+              <p>Rollback first, debug second. The trail led to a shared contract file that had quietly fallen behind on one branch; a routine package upgrade activated the stale copy. Tests never caught it, because the change came from a different kind of project — the classic blind spot where two individually safe changes combine into one unsafe system.</p>
+              <p>The fixes were systemic, not local: the workflow fails loudly if the pre-charge step doesn't run; every release regression-tests every transaction path, no exceptions; and the incident report went up and out — the whole team knows this failure shape now.</p>
+              <p>One more thing grew out of it: the first version of our risk-alerting pipeline — every redemption event published onto the event bus, alerting the risk team in chat. Detection first, automation later. Incidents are cheapest when they compile into systems.</p>
+            </article>
+            <article class="note-card">
+              <h3>The signal that arrived too early</h3>
+              <p>Our workflows accept human decisions and third-party confirmations as signals — and one day a callback landed before our own state had finished persisting. The workflow received a signal for a record that, from its point of view, didn't exist yet; worse, on replay the interleaving wasn't deterministic. The fix was structural: signals are buffered until the state they refer to has landed, and every behavioural change to the workflow code ships behind a versioned patch marker — so workflows already running mid-history replay the exact logic they started with, while new ones take the new path. In durable workflows, a code deploy is an event your running history has to survive.</p>
+            </article>
+            <article class="note-card">
+              <h3>The retry that had to return the same record</h3>
+              <p>The engine retries failed steps — that's the point of it. But on a transaction path, a retried create is a potential duplicate record, and a duplicate record is a transaction processed twice. So creation isn't guarded by a check bolted on afterwards; it's guarded by construction: the workflow ID doubles as the record's creation key, and every create looks up before it writes — a retry finds the record its first attempt made and returns it. Updates carry status guards, and illegal state transitions throw instead of writing. When the failure mode is financial, idempotency can't be a best effort; it has to be impossible to get wrong.</p>
+            </article>
+            <article class="note-card">
+              <h3>Four environments, one engine</h3>
+              <p>Several environments shared one workflow-engine cluster, and workers began stealing each other's tasks — a developer's local worker could quietly pick up and fail a task that belonged to a shared test lane. The fix was a naming discipline, not more hardware: task-queue names resolve per environment — production gets a fixed name, local runs are suffixed with the developer's identity, test lanes with the environment. Boring, but it ended a whole class of "works on my machine, breaks your test run" ghosts. Shared infrastructure needs namespacing before it needs capacity.</p>
+            </article>
           </div>
-        </div>
-
-        <!-- ── 10 · Trade-offs ─────────────────────────────── -->
-        <div class="case-section">
-          <h2>Trade-offs</h2>
-          <ul>
-            <li>Temporal brought real operational complexity — worker fleets, task-queue management, and a replay-determinism discipline every contributor has to learn before touching workflow code.</li>
-            <li>During migration, the legacy path and the new service ran in parallel: duplicated infrastructure, double monitoring, and a longer tail of support until the old flows retired.</li>
-            <li>The generic base workflow concentrates risk: a defect there touches every request type, which is why changes to it move slower than anywhere else in the module.</li>
-          </ul>
-        </div>
-
-        <!-- ── 11 · Outcome ────────────────────────────────── -->
-        <div class="case-section">
-          <h2>Outcome</h2>
-          <ul>
-            <li>Millions of transactions a day in production, still climbing.</li>
-            <li>Duplicate execution prevented by construction rather than caught after the fact.</li>
-            <li>New-type integration went from a 30–60-minute, person-dependent process to ~2-minute self-service.</li>
-            <li>100+ SDK releases under semantic versioning; 200+ request types on one base workflow.</li>
-            <li>The SDK-per-domain pattern became the template later platform services copied.</li>
-          </ul>
-        </div>
-
-        <!-- ── 12 · What I learned ─────────────────────────── -->
-        <div class="case-section">
-          <h2>What I learned</h2>
-          <p>On a financial path, idempotency can't be a best effort bolted on afterwards — it has to be impossible to get wrong, which means it lives in the data model, not in a check. And durable workflows change what a deploy is: code changes become events your running histories have to survive, so versioning discipline matters as much as the business logic. Finally, the highest-leverage thing I built here wasn't the service — it was the self-service integration path that took the core team out of every consumer's critical path.</p>
         </div>
 
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
           <a href="index.html">← All work</a>
-          <a href="scale.html">Next: Scaling the Platform →</a>
+          <a href="scale.html">Next: Scaling 50k → 400k+ users →</a>
         </nav>
 
       </div>
@@ -359,14 +248,6 @@
   ══════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
     <div class="container">
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html">Work</a>
-        <a href="../lab.html">Lab</a>
-        <a href="../ai.html">AI</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../hermes.html">Hermes</a>
-        <a href="../index.html#contact">Contact</a>
-      </nav>
       <p class="footer-copy">
         © 2026 Henry Lee
       </p>

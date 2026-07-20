@@ -152,31 +152,6 @@
     });
   }
 
-  // ── Copy button on code blocks (injected: no dead UI if JS fails) ──
-  function initCodeCopy() {
-    if (!navigator.clipboard) return;
-    document.querySelectorAll('.code-proof').forEach(function (block) {
-      var bar = block.querySelector('.demo-terminal-bar');
-      var pre = block.querySelector('pre');
-      if (!bar || !pre) return;
-
-      var btn = document.createElement('button');
-      btn.className = 'code-copy';
-      btn.type = 'button';
-      btn.textContent = 'copy';
-      btn.setAttribute('aria-label', 'Copy code to clipboard');
-      btn.addEventListener('click', function () {
-        navigator.clipboard.writeText(pre.textContent).then(function () {
-          btn.textContent = 'copied';
-          setTimeout(function () {
-            btn.textContent = 'copy';
-          }, 1500);
-        });
-      });
-      bar.appendChild(btn);
-    });
-  }
-
   // ── Boot ─────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     // Wire theme toggle
@@ -192,6 +167,5 @@
     initSmoothScroll();
     initScrollProgress();
     initDiagramFlow();
-    initCodeCopy();
   });
 })();

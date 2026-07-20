@@ -23,11 +23,8 @@
 
     const tl = gsap
       .timeline({ delay: 0.2, defaults: { ease: 'power3.out' } })
+      .from('.hero-prompt', { y: 16, opacity: 0, duration: 0.35 }, 0)
       .from('#hero .hero-name .hero-line', { y: 28, opacity: 0, duration: 0.7, stagger: 0.1 }, 0.1);
-
-    if (document.querySelector('.hero-prompt')) {
-      tl.from('.hero-prompt', { y: 16, opacity: 0, duration: 0.35 }, 0);
-    }
 
     if (document.querySelector('#hero .hero-role')) {
       tl.from('#hero .hero-role', { y: 20, opacity: 0, duration: 0.5 }, 0.45);
