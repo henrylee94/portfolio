@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Crypto payment rails — Henry Lee</title>
-  <meta name="description" content="Cryptocurrency deposits and withdrawals alongside fiat — three wallet protocols, conversion at every transaction boundary, exact-decimal handling at the wallet edges." />
+  <title>Multi-Currency &amp; Crypto Integration — Henry Lee</title>
+  <meta name="description" content="USDT deposits, withdrawals and transfers alongside fiat — three wallet protocols, fiat↔USDT conversion at every transaction boundary, exact-decimal handling at the wallet edges." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Crypto payment rails — Henry Lee" />
-  <meta property="og:description" content="Cryptocurrency deposits and withdrawals alongside fiat — three wallet protocols, conversion at every transaction boundary, exact-decimal handling at the wallet edges." />
+  <meta property="og:title" content="Multi-Currency &amp; Crypto Integration — Henry Lee" />
+  <meta property="og:description" content="USDT deposits, withdrawals and transfers alongside fiat — three wallet protocols, fiat↔USDT conversion at every transaction boundary, exact-decimal handling at the wallet edges." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/crypto.html" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Crypto payment rails — Henry Lee" />
-  <meta name="twitter:description" content="Cryptocurrency deposits and withdrawals alongside fiat — three wallet protocols, conversion at every transaction boundary, exact-decimal handling at the wallet edges." />
+  <meta name="twitter:title" content="Multi-Currency &amp; Crypto Integration — Henry Lee" />
+  <meta name="twitter:description" content="USDT deposits, withdrawals and transfers alongside fiat — three wallet protocols, fiat↔USDT conversion at every transaction boundary, exact-decimal handling at the wallet edges." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -43,12 +43,10 @@
       <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../ai.html">AI</a>
+        <a href="../index.html#about">About</a>
         <a href="../lab.html">Lab</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
       </nav>
 
       <div class="topbar-actions">
@@ -80,12 +78,10 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../ai.html">AI</a>
+        <a href="../index.html#about">About</a>
         <a href="../lab.html">Lab</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
       </nav>
 
     </div>
@@ -95,31 +91,161 @@
 
   <main>
 
-    <!-- ══════════════════════════════════════════════════════
-         CASE STUDY
-    ══════════════════════════════════════════════════════ -->
     <section id="case" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 06 / 07</p>
-        <h1 class="section-heading">Building the platform's crypto payment rails — a fintech capability at every transaction boundary</h1>
-        <p class="case-hook">A two-year epic threading fiat↔USDT conversion through every transaction boundary on the platform — where a precision slip is a real financial loss.</p>
 
-        <div class="hero-stats case-chips">
-          <span class="hero-stat">OMNI · ERC-20 · TRC-20</span>
-          <span class="hero-stat">2-engineer pair, 2 years</span>
-          <span class="hero-stat">exact-decimal balances</span>
+        <!-- ── 1 · Overview ────────────────────────────────── -->
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 07 / 08</p>
+        <h1 class="section-heading">Multi-Currency &amp; <em class="accent-serif">Crypto</em></h1>
+        <p class="case-hook">Payment integration where a precision slip is a real loss — deposits, withdrawals and transfers threaded through every transaction boundary.</p>
+
+        <div class="case-overview">
+          <div class="case-overview-cell">
+            <h4>Role</h4>
+            <p>Drove the payments side for two years as half of a two-engineer pair, alongside the team's assistant lead.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Scale</h4>
+            <p>Every payment flow on the platform — deposits, withdrawals, transfers — with fiat↔USDT conversion at every transaction boundary.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Stack</h4>
+            <p>Three wallet protocols — OMNI · ERC-20 · TRC-20 — exact-decimal balance handling, config-driven currency paths.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Outcome</h4>
+            <p>Two years in production across three wallet protocols; later currencies reused the same config-driven paths instead of re-opening them.</p>
+          </div>
         </div>
 
-        <div class="case-beats">
-          <div class="case-beat"><h4>Situation</h4><p>The platform needed cryptocurrency deposits and withdrawals alongside fiat — conversion at every transaction boundary, on a platform where some third-party providers couldn't hold crypto at all.</p></div>
-          <div class="case-beat"><h4>Approach</h4><p>I drove the payments side for two years as half of a two-engineer pair (alongside the team's assistant lead): wallet protocol integrations (OMNI, ERC-20, TRC-20), USDT deposits and withdrawals, and fiat↔USDT conversion threaded through every transaction boundary. Provider heterogeneity was the judgment call — some providers couldn't hold USDT at all, so I absorbed the difference in one cross-cutting compatibility layer rather than leaking it into every call site — with exact-decimal handling at the wallet edges, where a rounding error becomes a real discrepancy.</p></div>
-          <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>Crypto rails went live across every payment flow; later currencies reused the same config-driven paths instead of re-opening them.</p></div>
+        <!-- ── 2 · Problem ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Problem</h2>
+          <p>The platform needed cryptocurrency deposits and withdrawals alongside fiat. That is not one feature — it is a conversion concern at every transaction boundary: every deposit, withdrawal and transfer now has two currencies on either side of it, and the amounts have to agree exactly.</p>
+          <p>Two things made it hard. First, provider heterogeneity: some third-party providers could not hold crypto at all, so a USDT balance had to become fiat before it could touch them — and become USDT again on the way back. Second, precision: at a wallet edge, a rounding error is not a display bug, it is a real discrepancy against a real balance.</p>
         </div>
 
-        <!-- ── The design, in code ─────────────────────────── -->
+        <!-- ── 3 · Constraints ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Constraints</h2>
+          <ul>
+            <li>Financial correctness — a conversion at any boundary must reconcile exactly; there is no acceptable rounding drift on a balance.</li>
+            <li>Provider heterogeneity — some providers could not hold USDT at all, and their limitations could not be allowed to leak into every call site.</li>
+            <li>On-chain reality — confirmations arrive more than once; a replayed notification must never credit twice.</li>
+            <li>Three wallet protocols — OMNI, ERC-20 and TRC-20 each with their own transfer semantics, behind one platform-facing interface.</li>
+            <li>Longevity — a two-year epic, so the design had to absorb currencies added after us without re-opening the payment paths.</li>
+          </ul>
+        </div>
+
+        <!-- ── 4 · Role and responsibility ─────────────────── -->
+        <div class="case-section">
+          <h2>Role and responsibility</h2>
+          <p>I drove the payments side for two years as half of a two-engineer pair, alongside the team's assistant lead. My part: the wallet protocol integrations (OMNI, ERC-20, TRC-20), USDT deposits and withdrawals, and threading fiat↔USDT conversion through every transaction boundary. The judgment call that shaped the module — absorbing provider differences in one cross-cutting compatibility layer instead of at every call site — was mine.</p>
+        </div>
+
+        <!-- ── 5 · Architecture ────────────────────────────── -->
+        <div class="case-section">
+          <h2>Architecture</h2>
+          <p>USDT enters and leaves through the wallet protocols; everything in the middle is a boundary question. Each transaction boundary knows how to convert between fiat and USDT with exact-decimal math, and a single compatibility layer answers the question "what currency does this provider actually settle in?" — so a provider that can't hold USDT is handled in one place, invisibly to callers. Deposit crediting is a guarded state machine, so replayed on-chain confirmations are structurally a no-op.</p>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-beats">
+            <div class="case-beat"><h4>Transaction paths</h4><p>Deposits: on-chain detection → confirmation → credit, each a guarded state transition. Withdrawals: platform balance out to a wallet address. Transfers: balance movement across providers — where conversion fires if the destination can't hold USDT.</p></div>
+            <div class="case-beat"><h4>Walkthrough — one transfer</h4><p><strong>USDT-capable provider:</strong> the amount passes through unconverted. <strong>Fiat-only provider:</strong> the compatibility layer converts at the boundary — exact integer minor-unit math, no float anywhere near a balance — and converts back on the return leg. <strong>Replayed confirmation:</strong> the credit state machine rejects the illegal transition; nothing is written twice.</p></div>
+          </div>
+          <div class="case-diagram" aria-hidden="true">
+            <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+              <text class="dg-label" x="20" y="30">fiat↔USDT conversion at the boundary</text>
+              <g class="dg-node"><rect x="20" y="56" width="120" height="42" rx="4"/><text x="80" y="82" text-anchor="middle">wallet · USDT</text></g>
+              <g class="dg-node dg-node-accent"><rect x="180" y="56" width="130" height="42" rx="4"/><text x="245" y="82" text-anchor="middle">compat layer</text></g>
+              <g class="dg-node"><rect x="350" y="36" width="110" height="34" rx="4"/><text x="405" y="58" text-anchor="middle">provider · USDT</text></g>
+              <g class="dg-node"><rect x="350" y="86" width="110" height="34" rx="4"/><text x="405" y="108" text-anchor="middle">provider · fiat</text></g>
+              <line class="dg-wire" x1="140" y1="77" x2="180" y2="77"/>
+              <path class="dg-wire" d="M 310 70 L 350 53" fill="none"/>
+              <path class="dg-wire" d="M 310 84 L 350 103" fill="none"/>
+              <text class="dg-label" x="245" y="140" text-anchor="middle">can't hold USDT? convert here — exact-decimal, one place</text>
+              <text class="dg-label" x="80" y="52" text-anchor="middle" opacity="0.7">OMNI · ERC-20 · TRC-20</text>
+              <g class="dg-node dg-node-sm"><rect x="20" y="196" width="120" height="34" rx="4"/><text x="80" y="218" text-anchor="middle">detected</text></g>
+              <g class="dg-node dg-node-sm"><rect x="180" y="196" width="120" height="34" rx="4"/><text x="240" y="218" text-anchor="middle">confirmed</text></g>
+              <g class="dg-node dg-node-sm"><rect x="340" y="196" width="120" height="34" rx="4"/><text x="400" y="218" text-anchor="middle">credited</text></g>
+              <line class="dg-wire" x1="140" y1="213" x2="180" y2="213"/>
+              <line class="dg-wire" x1="300" y1="213" x2="340" y2="213"/>
+              <path class="dg-wire dg-wire-loop" d="M 240 230 C 240 258 240 258 240 234" fill="none"/>
+              <text class="dg-label" x="240" y="278" text-anchor="middle">replayed confirmation ⟲ illegal transition — no second credit</text>
+              <g class="dg-flow">
+                <circle class="dg-dot" r="4"><animateMotion dur="7s" repeatCount="indefinite" begin="0s" path="M 80 77 L 245 77 L 245 84 L 350 103"/></circle>
+                <circle class="dg-dot" r="4"><animateMotion dur="7s" repeatCount="indefinite" begin="-3.5s" path="M 80 77 L 245 77 L 245 70 L 350 53"/></circle>
+                <circle class="dg-dot dg-dot-2" r="4"><animateMotion dur="6s" repeatCount="indefinite" begin="-1s" path="M 80 213 L 400 213"/></circle>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ── 6 · Key decisions ───────────────────────────── -->
+        <div class="case-section">
+          <h2>Key decisions</h2>
+          <div class="decisions">
+            <div class="decision">
+              <h3>One compatibility layer, not per-call-site handling</h3>
+              <dl>
+                <dt>Options</dt><dd>Let each payment flow check whether its provider can hold USDT and convert locally, or absorb the difference in one cross-cutting layer.</dd>
+                <dt>Decision</dt><dd>One layer. Every call site asks "what currency does this provider settle in?" and gets a converted-or-passthrough answer.</dd>
+                <dt>Reason</dt><dd>Provider heterogeneity was the recurring hazard; leaked into every call site, it would have been reimplemented — and mis-implemented — dozens of times.</dd>
+                <dt>Trade-off</dt><dd>The layer is on every payment path, so it carries concentrated blast radius and had to stay small and heavily reviewed.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Exact-decimal math at the wallet edges</h3>
+              <dl>
+                <dt>Options</dt><dd>Floating-point with careful rounding, a decimal library everywhere, or exact integer minor-unit arithmetic at the boundaries where value changes representation.</dd>
+                <dt>Decision</dt><dd>Exact integer minor units at every conversion — no float ever touches a balance.</dd>
+                <dt>Reason</dt><dd>At a wallet edge a rounding error becomes a real discrepancy against a real balance. Reconciliation only works if both sides of a conversion are exact by construction.</dd>
+                <dt>Trade-off</dt><dd>Rates are carried as ratios and conversion code is stricter to write; every boundary pays a small verbosity tax for exactness.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Credit as a guarded state transition</h3>
+              <dl>
+                <dt>Options</dt><dd>Deduplicate replayed on-chain confirmations with a processed-set check, or make crediting a state machine where a replay is an illegal transition.</dd>
+                <dt>Decision</dt><dd>State machine: detected → confirmed → credited, terminal at credited. A second "confirmed" changes nothing; an illegal jump throws.</dd>
+                <dt>Reason</dt><dd>On-chain confirmations arrive more than once by nature. A bolted-on check can be forgotten on a new path; a guarded transition cannot.</dd>
+                <dt>Trade-off</dt><dd>Every new deposit variant has to be expressed as states and transitions first, which is slower to prototype than an ad-hoc handler.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 7 · Failure modes and recovery ──────────────── -->
+        <div class="case-section">
+          <h2>Failure modes and recovery</h2>
+          <p>On a payment path, the failure modes are known in advance — the design's job is to make each one structurally harmless.</p>
+        </div>
+        <div class="war-stories">
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The confirmation that arrives twice</h3>
+              <p>On-chain confirmations are delivered more than once — that's the transport's nature, not an edge case. Crediting is therefore a state transition guarded by the current state: detected → confirmed → credited, and credited is terminal. A replayed notification attempts an illegal transition and is rejected before it can write; the balance moves exactly once no matter how many times the network repeats itself.</p>
+            </article>
+            <article class="note-card">
+              <h3>The cent that goes missing at a boundary</h3>
+              <p>Every fiat↔USDT conversion is a place where two ledgers must agree. Floating-point math would let them drift apart silently and surface weeks later as an unreconcilable difference. Conversion runs in exact integer minor units with rates as ratios — so when the two sides are compared, they match by construction, and a mismatch means a real problem, not arithmetic noise.</p>
+            </article>
+            <article class="note-card">
+              <h3>The provider that can't hold USDT</h3>
+              <p>Some third-party providers couldn't hold crypto at all. Handled naively, every flow touching such a provider would need its own conversion logic — and each copy is a chance to get it wrong. Instead the difference is absorbed once, in the compatibility layer: callers move value; the layer decides whether that value crosses the boundary as USDT or as converted fiat, and converts back on the return leg.</p>
+            </article>
+            <article class="note-card">
+              <h3>The currency added after us</h3>
+              <p>The rails were built over two years, but currencies keep arriving after the epic closes. Because the payment paths are config-driven — currency behaviour is data, not branching code — later currencies were added by configuration rather than by re-opening deposit, withdrawal and transfer logic that had already earned its production trust.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- ── 8 · Representative code ─────────────────────── -->
         <div class="proof-code">
-          <h3 class="more-work-heading">The design, in code</h3>
-          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <h3 class="more-work-heading">Representative code</h3>
+          <p class="proof-code-note">Rewritten for publication to show the production design — not company source.</p>
           <div class="demo-terminal code-proof">
             <div class="demo-terminal-bar">
               <span class="term-dot term-dot-r"></span>
@@ -161,11 +287,45 @@
           </div>
         </div>
 
+        <!-- ── 9 · Testing ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Testing and validation</h2>
+          <p>Same discipline as the rest of the platform: Jest for the units that matter — the state machine's transition table and the exact-decimal conversion math — and integration tests against real dependencies via Testcontainers rather than mocks. Payment paths sit inside the weekly regression run, so every release re-exercises deposits, withdrawals and transfers, including the replayed-confirmation case: fire the same confirmation twice, assert the balance moved once.</p>
+        </div>
+
+        <!-- ── 10 · Trade-offs ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Trade-offs</h2>
+          <ul>
+            <li>The compatibility layer sits on every payment path — one place to fix provider differences, but also one place whose defects touch everything, so it moves slower than the code around it.</li>
+            <li>Exact integer minor-unit arithmetic makes every conversion more verbose than a float multiply; that tax is paid at every boundary, deliberately.</li>
+            <li>Expressing crediting as a state machine means new deposit variants are slower to prototype — states and transitions first, behaviour second.</li>
+            <li>Two engineers over two years is a long, narrow investment; the payoff only shows when later currencies ride the same rails for free.</li>
+          </ul>
+        </div>
+
+        <!-- ── 11 · Outcome ────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Outcome</h2>
+          <ul>
+            <li>Crypto rails live across every payment flow — deposits, withdrawals and transfers.</li>
+            <li>Two years in production across three wallet protocols: OMNI, ERC-20, TRC-20.</li>
+            <li>Replayed on-chain confirmations are structurally harmless — credit happens exactly once, guarded by state.</li>
+            <li>Conversions reconcile exactly — no float ever touches a balance at a wallet edge.</li>
+            <li>Later currencies reused the same config-driven paths instead of re-opening them.</li>
+          </ul>
+        </div>
+
+        <!-- ── 12 · What I learned ─────────────────────────── -->
+        <div class="case-section">
+          <h2>What I learned</h2>
+          <p>Provider heterogeneity is where payment integrations rot: the moment one call site starts special-casing a provider, every call site eventually will. Absorbing the difference in one layer was the single decision this module's longevity rests on. And precision is not a detail to handle later — at a wallet edge, exactness has to be a property of the arithmetic itself, because a rounding error there isn't a bug report, it's a discrepancy against a real balance that someone has to reconcile by hand.</p>
+        </div>
+
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="ingestion.html">← Previous: Transaction-record ingestion</a>
-          <a href="index.html">All work</a>
-          <a href="reporting.html">Next: Reporting engine &amp; regulatory delivery →</a>
+          <a href="index.html">← All work</a>
+          <a href="pipeline.html">Next: Cross-Stack Rewards Pipeline →</a>
         </nav>
 
       </div>
@@ -178,6 +338,14 @@
   ══════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
     <div class="container">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Work</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../ai.html">AI</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../hermes.html">Hermes</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
       <p class="footer-copy">
         © 2026 Henry Lee
       </p>

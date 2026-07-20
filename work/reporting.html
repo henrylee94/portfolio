@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Reporting engine &amp; regulatory delivery — Henry Lee</title>
-  <meta name="description" content="A precompute/recompute reporting layer built before a business-intelligence team existed — and million-row-per-file regulatory filings that always met the deadline." />
+  <title>Reporting Engine — Henry Lee</title>
+  <meta name="description" content="Built and ran the platform's reporting for six years, before a dedicated BI team existed — multi-view analytics over million-row datasets and regulatory filings delivered on time." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Reporting engine &amp; regulatory delivery — Henry Lee" />
-  <meta property="og:description" content="A precompute/recompute reporting layer built before a business-intelligence team existed — and million-row-per-file regulatory filings that always met the deadline." />
+  <meta property="og:title" content="Reporting Engine — Henry Lee" />
+  <meta property="og:description" content="Built and ran the platform's reporting for six years, before a dedicated BI team existed — multi-view analytics over million-row datasets and regulatory filings delivered on time." />
   <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/reporting.html" />
   <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Reporting engine &amp; regulatory delivery — Henry Lee" />
-  <meta name="twitter:description" content="A precompute/recompute reporting layer built before a business-intelligence team existed — and million-row-per-file regulatory filings that always met the deadline." />
+  <meta name="twitter:title" content="Reporting Engine — Henry Lee" />
+  <meta name="twitter:description" content="Built and ran the platform's reporting for six years, before a dedicated BI team existed — multi-view analytics over million-row datasets and regulatory filings delivered on time." />
   <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -43,12 +43,10 @@
       <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
 
       <nav class="topbar-nav" aria-label="Primary navigation">
-        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../ai.html">AI</a>
+        <a href="../index.html#about">About</a>
         <a href="../lab.html">Lab</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
       </nav>
 
       <div class="topbar-actions">
@@ -80,12 +78,10 @@
       </div>
 
       <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="../index.html">Home</a>
         <a href="index.html" aria-current="page">Work</a>
-        <a href="../ai.html">AI</a>
+        <a href="../index.html#about">About</a>
         <a href="../lab.html">Lab</a>
-        <a href="../notes.html">Notes</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
       </nav>
 
     </div>
@@ -95,31 +91,114 @@
 
   <main>
 
-    <!-- ══════════════════════════════════════════════════════
-         CASE STUDY
-    ══════════════════════════════════════════════════════ -->
     <section id="case" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 07 / 07</p>
-        <h1 class="section-heading">The platform's reporting engine for six years — before there was a business-intelligence (BI) team</h1>
-        <p class="case-hook">Multi-view analytics over million-row, long-window queries on the primary database — 140+ reporting changes, plus regulatory filings on time at millions of rows.</p>
 
-        <div class="hero-stats case-chips">
-          <span class="hero-stat">millions of rows/day</span>
-          <span class="hero-stat">hard deadlines, met</span>
-          <span class="hero-stat">140+ reporting changes</span>
+        <!-- ── 1 · Overview ────────────────────────────────── -->
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 05 / 08</p>
+        <h1 class="section-heading">Reporting <em class="accent-serif">Engine</em></h1>
+        <p class="case-hook">Built and ran the platform's reporting for six years, before a dedicated BI team existed — multi-view analytics over million-row datasets, plus regulatory filings delivered on time.</p>
+
+        <div class="case-overview">
+          <div class="case-overview-cell">
+            <h4>Role</h4>
+            <p>Owner of the reporting function — designed the engine, ran it in production for six years, and delivered every reporting change through it.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Scale</h4>
+            <p>Millions of rows a day; long-window queries over million-row datasets; multi-million-row regulatory filing days.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Stack</h4>
+            <p>MongoDB aggregation pipelines · precomputed daily summaries · batch settlement workers · streamed FTP delivery.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Outcome</h4>
+            <p>A working BI function before a BI team existed; 140+ reporting changes over six years; regulatory filings on schedule at million-row scale.</p>
+          </div>
+        </div>
+
+        <!-- ── 2 · Problem ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Problem</h2>
+          <p>Operations, partners, and management all needed data — analytics across multiple views, aggregated over long windows, on the production database — and there was no business-intelligence team to build it. Later, a regulator added a harder requirement: daily filings in exact formats, millions of rows per day, against a hard deadline.</p>
+          <p>The two workloads pull in opposite directions. Analytics wants low-latency answers over long windows; regulatory delivery wants complete, correct, multi-million-row files that fit a fixed window. Both had to run against the same primary database without degrading it.</p>
+        </div>
+
+        <!-- ── 3 · Constraints ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Constraints</h2>
+          <ul>
+            <li>Correctness — reporting numbers feed commercial reconciliation, so a fast-but-wrong answer is not an option.</li>
+            <li>Late corrections — figures can change after the day closes; a frozen snapshot would lock in wrong numbers.</li>
+            <li>Hard deadlines — regulatory filings are due daily, in exact formats, regardless of how large the day was.</li>
+            <li>Shared infrastructure — long-window queries run against the primary database and must not starve production traffic.</li>
+            <li>No dedicated team — one engineering function had to cover operational, analytical, and compliance reporting.</li>
+          </ul>
+        </div>
+
+        <!-- ── 4 · Role and responsibility ─────────────────── -->
+        <div class="case-section">
+          <h2>Role and responsibility</h2>
+          <p>I built and ran the platform's reporting for six years, before a dedicated BI team existed. That meant owning the whole surface: multi-view analytics for operations, partners, and management; operational reporting; and the regulatory filing pipeline with its daily deadline. Every one of the 140+ reporting changes over that period shipped through this engine. When a formal BI team was eventually stood up, it built on these foundations.</p>
+        </div>
+
+        <!-- ── 5 · Architecture ────────────────────────────── -->
+        <div class="case-section">
+          <h2>Architecture</h2>
+          <p>A precompute + recompute dual track. An independent settlement process streams per-user transaction flows to workers in batches and lands precomputed daily summaries — the materialized layer reads are served from. A recompute window stays open behind the current day, so late corrections still land instead of freezing a wrong number. Ad-hoc queries run tuned aggregation pipelines; the scheduler was rewritten to make the 2-day recompute window reliable. Regulatory delivery is a separate pipeline off the settled data: million-row-per-file slicing with append-based FTP upload, streamed so multi-million-row days fit the filing window.</p>
         </div>
 
         <div class="case-beats">
-          <div class="case-beat"><h4>Situation</h4><p>Before a BI team existed, operations, partners, and management all needed data — and later, a regulator needed daily filings in exact formats: millions of rows per day, hard deadline, aggregated over long windows on the production database.</p></div>
-          <div class="case-beat"><h4>Design</h4><p>Reporting numbers feed commercial reconciliation, so I optimized for both speed and correctness rather than trading one for the other — a precompute + recompute dual track: read from precomputed daily summaries for latency, keep a recompute window open so late corrections still land. An independent settlement process streams per-user transaction flows to workers in batches, landing those daily summaries; ad-hoc queries run tuned aggregation pipelines; the scheduler was rewritten for reliable 2-day recompute windows. For regulatory delivery, built the filing pipeline: million-row-per-file slicing, append-based FTP upload, stream batches tuned until multi-million-row days fit the window.</p></div>
-          <div class="case-beat case-beat-outcome"><h4>Outcome</h4><p>The platform had a working BI function before it had a BI team — the formal team later built on these foundations. Regulatory filings shipped on schedule at million-row scale; 140+ reporting changes over six years.</p></div>
+          <div class="case-beat"><h4>Query flow</h4><p>A report request splits at the recompute cutoff: settled days are read straight from precomputed summaries; the recent window is aggregated live; the two tracks merge into one answer. Fast where the data is stable, correct where it is still moving.</p></div>
+          <div class="case-beat"><h4>Aggregation strategy</h4><p>Precompute what repeats — daily summaries per view, landed by batch settlement workers off per-user transaction streams. Only ad-hoc shapes hit the primary database live, through tuned aggregation pipelines rather than raw long-window scans.</p></div>
+          <div class="case-beat"><h4>Regulatory delivery</h4><p>Filing days stream in batches from the settled data, roll to a new file at a million rows, and upload by FTP append — constant memory, tuned until multi-million-row days fit the delivery window.</p></div>
         </div>
 
-        <!-- ── The design, in code ─────────────────────────── -->
+        <!-- ── 6 · Key decisions ───────────────────────────── -->
+        <div class="case-section">
+          <h2>Key decisions</h2>
+          <div class="decisions">
+            <div class="decision">
+              <h3>Precompute + recompute, not one or the other</h3>
+              <dl>
+                <dt>Options</dt><dd>Query everything live on the primary database, freeze daily snapshots and never revisit them, or run both tracks — precomputed summaries plus a live recompute window.</dd>
+                <dt>Decision</dt><dd>The dual track: read precomputed daily summaries for latency, keep a recompute window open so late corrections still land.</dd>
+                <dt>Reason</dt><dd>Reporting numbers feed commercial reconciliation. Pure live queries can't hold latency over long windows at million-row scale; frozen snapshots lock in wrong numbers when figures move after the day closes.</dd>
+                <dt>Trade-off</dt><dd>Two read paths and a merge at the cutoff — more moving parts than either extreme, and a recompute schedule that has to run reliably.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>An independent settlement process, not read-time computation</h3>
+              <dl>
+                <dt>Options</dt><dd>Compute summaries on the read path when a report is requested, or run a separate settlement process that streams per-user transaction flows to workers in batches and lands the summaries ahead of time.</dd>
+                <dt>Decision</dt><dd>The independent settlement process. Reads serve materialized summaries; the heavy aggregation happens once, off the request path.</dd>
+                <dt>Reason</dt><dd>Long-window aggregation at read time would put the full cost on every request and on the primary database at the worst moment — when someone is waiting.</dd>
+                <dt>Trade-off</dt><dd>Freshness depends on the scheduler, which became load-bearing — it had to be rewritten to make the 2-day recompute window reliable.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Stream and slice filings, never buffer a day</h3>
+              <dl>
+                <dt>Options</dt><dd>Build each filing day as one file in memory and upload it whole, or stream settled rows in batches, slice at a million rows per file, and upload by FTP append.</dd>
+                <dt>Decision</dt><dd>Stream, slice at one million rows per file, append-upload.</dd>
+                <dt>Reason</dt><dd>A multi-million-row day has to fit a fixed filing window under constant memory; buffering the whole day doesn't scale with the data and gives no room to tune.</dd>
+                <dt>Trade-off</dt><dd>Batch sizes became a tuning surface — throughput had to be adjusted until the largest days fit the window — and append-based upload needs care around partial writes.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 7 · Failure modes and recovery ──────────────── -->
+        <div class="case-section">
+          <h2>Failure modes and recovery</h2>
+          <p>The design exists to absorb three specific failure modes. <strong>Late corrections:</strong> figures that change after a day closes land through the open recompute window instead of silently diverging from a frozen summary. <strong>Unreliable recompute runs:</strong> the original scheduler couldn't be trusted with a window that reconciliation depends on, so it was rewritten until the 2-day recompute cycle ran reliably. <strong>Oversized filing days:</strong> when a day's volume grows past what a single pass can handle, the answer is in the pipeline's shape — streamed batches, per-file slicing, and append upload were tuned until multi-million-row days still fit the delivery window.</p>
+        </div>
+
+        <!-- ── 8 · Representative code ─────────────────────── -->
         <div class="proof-code">
-          <h3 class="more-work-heading">The design, in code</h3>
-          <p class="proof-code-note">Representative snippet of the production design — rewritten for publication; not company source.</p>
+          <h3 class="more-work-heading">Representative code</h3>
+          <p class="proof-code-note">Rewritten for publication to show the production design — not company source.</p>
           <div class="demo-terminal code-proof">
             <div class="demo-terminal-bar">
               <span class="term-dot term-dot-r"></span>
@@ -159,10 +238,62 @@
           </div>
         </div>
 
+        <!-- ── 9 · Testing ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Testing and validation</h2>
+          <p>Reporting follows the platform's testing practice: Jest with integration tests against real dependencies via Testcontainers, plus a weekly regression pass. The properties that matter here are the seams — that the merge at the recompute cutoff neither drops nor double-counts a day, and that the filing slicer rolls files at exactly the row limit.</p>
+        </div>
+        <div class="proof-code">
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">filing-slicer.spec.ts</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm">// The slicing boundary is the contract: every row delivered, no file over the limit.</span>
+<span class="tk-fn">it</span>(<span class="tk-str">'slices a 2.5M-row day into three files, none above the limit'</span>, <span class="tk-kw">async</span> () =&gt; {
+  <span class="tk-kw">const</span> uploads = <span class="tk-kw">await</span> <span class="tk-fn">fileDay</span>(<span class="tk-fn">seededDay</span>({ rows: <span class="tk-num">2_500_000</span> }));
+
+  <span class="tk-fn">expect</span>(uploads.files).<span class="tk-fn">toHaveLength</span>(<span class="tk-num">3</span>);
+  <span class="tk-fn">expect</span>(uploads.files.<span class="tk-fn">every</span>((f) =&gt; f.rows &lt;= <span class="tk-num">1_000_000</span>)).<span class="tk-fn">toBe</span>(<span class="tk-kw">true</span>);
+  <span class="tk-fn">expect</span>(uploads.totalRows).<span class="tk-fn">toBe</span>(<span class="tk-num">2_500_000</span>); <span class="tk-cm">// nothing dropped at the seams</span>
+});</code></pre>
+          </div>
+        </div>
+
+        <!-- ── 10 · Trade-offs ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Trade-offs</h2>
+          <ul>
+            <li>The dual track buys speed and correctness at the cost of two read paths — settled summaries and live aggregation — that have to agree at the cutoff, forever.</li>
+            <li>Precomputation ties report freshness to the settlement schedule; the scheduler became critical infrastructure and had to be rewritten to earn that role.</li>
+            <li>Streaming with append-based upload keeps memory constant but makes delivery a tuning exercise: batch sizes were adjusted until the largest days fit the filing window, and would need retuning if volume kept growing.</li>
+            <li>Everything runs against the primary database rather than a dedicated analytics store — workable at this scale with tuned pipelines and precompute, but it is a ceiling, not a permanent answer.</li>
+          </ul>
+        </div>
+
+        <!-- ── 11 · Outcome ────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Outcome</h2>
+          <ul>
+            <li>The platform had a working BI function before it had a BI team; the formal team later built on these foundations.</li>
+            <li>Regulatory filings shipped on schedule at million-row scale — millions of rows a day, hard deadlines met.</li>
+            <li>140+ reporting changes delivered over six years across operational, analytical, and compliance reporting.</li>
+            <li>Reads served from precomputed summaries instead of long-window scans, with late corrections still landing through the recompute window.</li>
+          </ul>
+        </div>
+
+        <!-- ── 12 · What I learned ─────────────────────────── -->
+        <div class="case-section">
+          <h2>What I learned</h2>
+          <p>When numbers feed reconciliation, speed and correctness aren't a trade to make — the architecture has to buy both, and the dual track is what that costs: precompute for latency, a recompute window for truth. The unglamorous parts carry the system — the scheduler and the batch tuning got no design credit, but the deadlines were met or missed there. And reporting built under constraint doesn't have to be throwaway: done with clear seams, it becomes the foundation the dedicated team inherits rather than the mess they replace.</p>
+        </div>
+
         <!-- ── Prev / next ─────────────────────────────────── -->
         <nav class="case-pager" aria-label="Case navigation">
-          <a href="crypto.html">← Previous: Crypto payment rails</a>
-          <a href="index.html">All work</a>
+          <a href="index.html">← All work</a>
+          <a href="ai-delivery.html">Next: AI Delivery Pipeline →</a>
         </nav>
 
       </div>
@@ -175,6 +306,14 @@
   ══════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
     <div class="container">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Work</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../ai.html">AI</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../hermes.html">Hermes</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
       <p class="footer-copy">
         © 2026 Henry Lee
       </p>

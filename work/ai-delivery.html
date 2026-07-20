@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AI Delivery Pipeline — Henry Lee</title>
+  <meta name="description" content="A staged, artifact-gated delivery pipeline where AI drafts and humans approve — 10 stages, 23 skills, 12 role agents; 16 features shipped through it." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Delivery Pipeline — Henry Lee" />
+  <meta property="og:description" content="A staged, artifact-gated delivery pipeline where AI drafts and humans approve — 10 stages, 23 skills, 12 role agents; 16 features shipped through it." />
+  <meta property="og:url" content="https://henrylee94.github.io/portfolio/work/ai-delivery.html" />
+  <meta property="og:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Delivery Pipeline — Henry Lee" />
+  <meta name="twitter:description" content="A staged, artifact-gated delivery pipeline where AI drafts and humans approve — 10 stages, 23 skills, 12 role agents; 16 features shipped through it." />
+  <meta name="twitter:image" content="https://henrylee94.github.io/portfolio/assets/og-image.png" />
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       TOPBAR
+  ══════════════════════════════════════════════════════ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+
+      <a href="../index.html" class="topbar-logo" aria-label="Henry Lee — Home">&lt;H/&gt;</a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button
+          class="topbar-btn"
+          data-action="toggle-lang"
+          aria-label="View this page in Chinese"
+          title="中 / EN"
+        >中</button>
+
+        <button
+          class="topbar-btn"
+          data-action="toggle-theme"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >☀</button>
+
+        <button
+          class="topbar-hamburger"
+          data-action="toggle-menu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="topbar-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html" aria-current="page">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../assets/Henry-Lee-Resume.pdf">Résumé</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main>
+
+    <section id="case" class="section">
+      <div class="container">
+
+        <!-- ── 1 · Overview ────────────────────────────────── -->
+        <p class="section-label" aria-hidden="true"><span class="section-num">01</span>case 06 / 08</p>
+        <h1 class="section-heading">AI Delivery <em class="accent-serif">Pipeline</em></h1>
+        <p class="case-hook">A staged delivery pipeline where AI drafts and humans gate every merge — built for a small team with a growing backlog.</p>
+
+        <div class="case-overview">
+          <div class="case-overview-cell">
+            <h4>Role</h4>
+            <p>Designed and built the pipeline, its skills and its review agents; my team ships through it.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Scale</h4>
+            <p>10 pipeline stages · 23 skills · 12 role agents · a routing manifest across 17 repositories.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Stack</h4>
+            <p>Agent skills (Markdown policies) · MCP · proto-first contracts · content-hash artifact state.</p>
+          </div>
+          <div class="case-overview-cell">
+            <h4>Outcome</h4>
+            <p>16 features shipped through it; feature first drafts went from days to hours. Nothing merges without human sign-off.</p>
+          </div>
+        </div>
+
+        <!-- ── 2 · Problem ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Problem</h2>
+          <p>A small backend team, a backlog that grows faster than headcount, and AI tools that produce plausible-but-wrong output when used casually. Unmanaged agent use had real costs: an agent "fixed" a harmless legacy bug that other code depended on and broke production behaviour; another answered a one-condition change with hundreds of new lines; another updated a database row by row — correct, and an IO storm at our volume.</p>
+          <p>The pattern behind all of these: damage happens when someone can't yet tell a good answer from a plausible one. The problem to solve was not "use AI more" — it was making AI output safe to ship.</p>
+        </div>
+
+        <!-- ── 3 · Constraints ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Constraints</h2>
+          <ul>
+            <li>Nothing irreversible without a human: commit, publish, deploy, migration all require explicit confirmation.</li>
+            <li>Contract discipline — producers and consumers must not drift, so contracts are generated and shared before code is written.</li>
+            <li>Finite context — a model can't hold 17 repositories; relevance had to be engineered, not hoped for.</li>
+            <li>Auditability — every stage's output is a reviewable artifact with an approval signature.</li>
+            <li>Junior safety — the pipeline had to protect people still building the discernment to judge AI output.</li>
+          </ul>
+        </div>
+
+        <!-- ── 4 · Role and responsibility ─────────────────── -->
+        <div class="case-section">
+          <h2>Role and responsibility</h2>
+          <p>I designed the pipeline, wrote the stage skills and agent remits, and set the governance rules the team runs under. Some building blocks were adopted from the community and adapted — credited, not claimed. The delivery pipeline, the review roles and the repo router were built from scratch. The team uses it daily; I maintain it.</p>
+        </div>
+
+        <!-- ── 5 · Architecture ────────────────────────────── -->
+        <div class="case-section">
+          <h2>Architecture</h2>
+          <p>A one-line feature request walks through ten artifact-gated stages: requirements draft → design proposal → human design approval → contract generation → SDK update → task breakdown → parallel implementation by subagents → machine-judged verification against the contracts. There is no state database — every stage derives its state from the presence and content hash of the artifact the previous stage wrote, and refuses to run until that artifact exists and is approved.</p>
+          <p><strong>What AI drafts:</strong> requirements documents (unknowns marked "to confirm" instead of guessed), design proposals, contracts, task breakdowns, implementation, review feedback. <strong>What humans own:</strong> the design approval gate, every merge, and every irreversible action. <strong>What can never happen automatically:</strong> commit, publish, deploy, migration.</p>
+        </div>
+
+        <!-- ── 6 · Key decisions ───────────────────────────── -->
+        <div class="case-section">
+          <h2>Key decisions</h2>
+          <div class="decisions">
+            <div class="decision">
+              <h3>Artifact-gated state, no state database</h3>
+              <dl>
+                <dt>Options</dt><dd>Track pipeline progress in a state store, or derive state from the artifacts themselves.</dd>
+                <dt>Decision</dt><dd>Content-hash state: each stage hashes the upstream artifact and detects changes.</dd>
+                <dt>Reason</dt><dd>Edits ripple forward deterministically; re-running a stage is always safe, and the artifact trail doubles as the audit trail.</dd>
+                <dt>Trade-off</dt><dd>Ceremony — even a small change walks the stages, which can feel heavy for one-line fixes.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Specialist reviewers, not one generalist agent</h3>
+              <dl>
+                <dt>Options</dt><dd>One agent that does everything, or twelve role agents with tight remits and separate tool budgets.</dd>
+                <dt>Decision</dt><dd>Role specialists — planner, architect, developers, reviewers, QA, security auditor and more. None can approve its own work.</dd>
+                <dt>Reason</dt><dd>Each role draws a boundary; review quality comes from the separation, the same way it does in a human team.</dd>
+                <dt>Trade-off</dt><dd>More invocations and more harness maintenance than a single-agent setup.</dd>
+              </dl>
+            </div>
+            <div class="decision">
+              <h3>Contracts before code</h3>
+              <dl>
+                <dt>Options</dt><dd>Let implementation drive the interfaces, or generate and publish contracts before a line of code is written.</dd>
+                <dt>Decision</dt><dd>Contract-first: the design stage produces the API and data contracts; the SDK consumes them before development starts.</dd>
+                <dt>Reason</dt><dd>Producers and consumers can't drift, and machine-judged acceptance has something objective to judge against.</dd>
+                <dt>Trade-off</dt><dd>Upfront design cost on features where the contract is trivial.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 7 · Failure modes and recovery ──────────────── -->
+        <div class="case-section">
+          <h2>Failure modes and recovery</h2>
+          <p>The discipline came from the failures — these are the ones that shaped the rules.</p>
+        </div>
+        <div class="war-stories">
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>The fix that broke production</h3>
+              <p>The agent found a real bug — one that had sat harmless in production for years — and repaired it. The repair changed behaviour other code had quietly grown to depend on, and things blew up. An agent evaluates code; it doesn't know your system's history. A harmless bug is load-bearing until proven otherwise.</p>
+            </article>
+            <article class="note-card">
+              <h3>The big answer to a small ask</h3>
+              <p>The requirement was genuinely small — an existing rule needed one more condition, a change the codebase was already shaped for. The agent, not grasping that intent, rebuilt the surrounding flow instead: hundreds of new lines that technically worked and doubled the review burden. The smallest correct change comes from knowing what the codebase already wants to do — that judgment is still ours.</p>
+            </article>
+            <article class="note-card">
+              <h3>Correct, and slow</h3>
+              <p>Asked for accuracy, the agent updated the database row by row — correct, and an IO storm at our volume. Batching was the obvious answer, but only obvious to someone who has paid for IO before. Performance instincts don't ship with the model; they come from the scars.</p>
+            </article>
+            <article class="note-card">
+              <h3>How failures become policy</h3>
+              <p>Each of these compiled into the pipeline: a production lesson becomes a rule wired into the agent harness — a readiness gate the agent can't skip — so the same mistake can't ship twice. The rule is not "use AI less." It is: discernment first, delegation second.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- ── 8 · Representative code ─────────────────────── -->
+        <div class="proof-code">
+          <h3 class="more-work-heading">Representative artifact</h3>
+          <p class="proof-code-note">Real excerpt from the pipeline repo — desensitized (neutral service names, no company internals). Each stage and building block is a skill: a Markdown policy the agent reads before it acts. This one came out of a real incident.</p>
+          <div class="demo-terminal code-proof">
+            <div class="demo-terminal-bar">
+              <span class="term-dot term-dot-r"></span>
+              <span class="term-dot term-dot-y"></span>
+              <span class="term-dot term-dot-g"></span>
+              <span class="demo-terminal-title">skills/graceful-shutdown/SKILL.md</span>
+            </div>
+            <pre class="code-proof-body"><code><span class="tk-cm"># Graceful Shutdown — Monorepo Default Policy</span>
+
+<span class="tk-cm"># A service is "graceful-restart capable" iff all six hold:</span>
+
+  1. <span class="tk-kw">Signal binding.</span> Listen for SIGTERM → enter draining state, do not exit.
+  2. <span class="tk-kw">Two-stage drain.</span> Flip health probe to NOT_SERVING first, wait one
+     readiness period so the load balancer stops sending traffic, then drain.
+  3. <span class="tk-kw">In-flight wait.</span> Stop accepting new connections; let in-flight
+     requests finish, bounded by a timeout &lt; terminationGracePeriodSeconds.
+  4. <span class="tk-kw">Background workers drained.</span> Consumers, tickers, span processors
+     all observe the shutdown signal and exit cleanly.
+  5. <span class="tk-kw">Connection cleanup.</span> DB / Redis / upstream pools closed after the
+     server stops; telemetry flushed last.
+  6. <span class="tk-kw">K8s manifest aligned.</span> terminationGracePeriodSeconds ≥ drain + buffer.
+
+<span class="tk-cm"># If verification can't be done, say so in the PR —</span>
+<span class="tk-cm"># do not claim "graceful shutdown done" on code review alone.</span></code></pre>
+          </div>
+        </div>
+
+        <!-- ── 9 · Testing ─────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Testing and validation</h2>
+          <p>The final stage is machine-judged acceptance against the contracts generated at design time — objective criteria, not vibes. Code produced through the pipeline still passes the same bar as any other code on the platform: review by the role agents and by humans, the coverage gate, and the weekly full regression before release. Every artifact carries a human approval signature before the next stage will run.</p>
+        </div>
+
+        <!-- ── 10 · Trade-offs ─────────────────────────────── -->
+        <div class="case-section">
+          <h2>Trade-offs</h2>
+          <ul>
+            <li>Review burden is real: AI multiplies draft volume, and every line still needs a human who can judge it.</li>
+            <li>Hallucination risk never reaches zero — the gates reduce blast radius; they don't remove the need for discernment.</li>
+            <li>Context quality is a standing maintenance cost: the routing manifest and 30+ per-service context files have to stay current or the agent starts every task wrong.</li>
+            <li>Skills and agent remits are code too — 23 skills need versioning, review and upkeep.</li>
+            <li>False confidence is the quiet failure mode: output that looks right invites rubber-stamping, which is why no agent can approve its own work.</li>
+          </ul>
+        </div>
+
+        <!-- ── 11 · Outcome ────────────────────────────────── -->
+        <div class="case-section">
+          <h2>Outcome</h2>
+          <ul>
+            <li>16 features shipped through the pipeline.</li>
+            <li>Feature first drafts compressed from days to hours — a two-day build becomes a two-hour first draft; the last twenty percent is still ours.</li>
+            <li>No unreviewed merge: every stage produces a signed-off artifact before the next runs.</li>
+            <li>Production lessons compile into pipeline policy, so the same mistake can't ship twice.</li>
+          </ul>
+        </div>
+
+        <!-- ── 12 · What I learned ─────────────────────────── -->
+        <div class="case-section">
+          <h2>What I learned</h2>
+          <p>AI amplifies your code culture — an agent raised on a disciplined codebase ships discipline; raised on mess, it ships mess faster. Context beats prompts: the agent should start every task already knowing the codebase, not be talked into it per request. And the human skill that matters most is discernment — you must be able to judge the problem and the logic before you outsource the typing.</p>
+        </div>
+
+        <!-- ── Prev / next ─────────────────────────────────── -->
+        <nav class="case-pager" aria-label="Case navigation">
+          <a href="index.html">← All work</a>
+          <a href="crypto.html">Next: Multi-Currency &amp; Crypto Integration →</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Work</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../ai.html">AI</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../hermes.html">Hermes</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">
+        © 2026 Henry Lee
+      </p>
+    </div>
+  </footer>
+
+  <script src="../js/i18n-zh.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/main.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="../js/animations.js" defer></script>
+
+<script data-goatcounter="https://henry.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
