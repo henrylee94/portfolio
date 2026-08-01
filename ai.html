@@ -113,13 +113,60 @@
         </div>
       </div>
     </section>
+    <!-- ══════════════════════════════════════════════════════
+         ARCHITECTURE — system diagrams
+    ══════════════════════════════════════════════════════ -->
+    <section id="architecture" class="section section-band">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>architecture</p>
+        <h2 class="section-heading">System <em class="accent-serif">architecture</em></h2>
+        <p class="section-intro">Two views of how the system works — the orchestration pipeline that routes every request, and the memory architecture that makes it remember.</p>
+
+        <h3 style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.02em; margin-bottom: 0.6rem;">Orchestration Pipeline</h3>
+        <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1rem;">A request flows through six stages — from user input to learned response. The orchestrator decides which models, tools, and memory stores to use at each step.</p>
+        <div class="arch-diagram">
+          <img src="assets/hermes-orchestration-v1.jpg" alt="Hermes Orchestration V1 Architecture — 6-stage pipeline: Input, Intent, Context, Execution, LLM Execution, Output, with Memory Plane, Capability Fabric, and Learning Loop" loading="lazy" />
+        </div>
+
+        <h3 style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.02em; margin: 2.5rem 0 0.6rem;">Memory Architecture</h3>
+        <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1rem;">Every layer earns its token cost. Facts flow from ephemeral session context to permanent knowledge — and nothing important lives in only one place.</p>
+        <div class="arch-diagram">
+          <img src="assets/hermes-memory-architecture-v2.1.jpg" alt="Hermes Agent Memory Architecture v2.1 — showing the layered system from SOUL.md (identity/law) through MEMORY.md (runtime injection), Mnemosyne (vector store + knowledge graph), to Obsidian (human-curated semantic store)" loading="lazy" />
+        </div>
+
+        <div class="notes-grid" style="margin-top: 2rem;">
+          <article class="note-card">
+            <h3>SOUL.md — identity & law</h3>
+            <p>Loaded every turn. Contains persona, iron rules, skill triggers, routing logic. The constitution — it never changes mid-task and overrides everything below it on conflict.</p>
+          </article>
+          <article class="note-card">
+            <h3>MEMORY.md — runtime injection</h3>
+            <p>Always-loaded facts with a 7-day admission test: still true and useful next week, or it doesn't get in. Behavioral corrections, environment facts, user preferences — compact, high-signal, token-cost forever.</p>
+          </article>
+          <article class="note-card">
+            <h3>Mnemosyne — vector store + graph</h3>
+            <p>3,700+ entries. Hybrid search (50% vector + 30% FTS5 + 20% importance). Knowledge graph with temporal triples for structured relationships. The long tail — on-demand recall, not always-loaded. Self-maintains via nightly digest and weekly consolidation.</p>
+          </article>
+          <article class="note-card">
+            <h3>Obsidian — human-curated layer</h3>
+            <p>The canonical semantic store. Interlinked markdown knowledge base for deep domain knowledge. Human-authored, human-organized — the agent reads it but doesn't write to it uninvited.</p>
+          </article>
+          <article class="note-card">
+            <h3>Session transcripts — searchable history</h3>
+            <p>FTS5-backed conversation history. Past sessions are searchable but stay out of the active context. Used for cross-session recall — "what did we do about X" — without polluting the current turn.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
 
     <!-- ══════════════════════════════════════════════════════
          THE FAILURE FILE — crown jewel first
     ══════════════════════════════════════════════════════ -->
     <section id="failure-file" class="section section-band">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">02</span>the failure file</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>the failure file</p>
         <h2 class="section-heading">The failure <em class="accent-serif">file</em></h2>
         <p class="section-intro">Every AI success story you'll read is missing this section. Here's what went wrong in ours — the discipline came from the failures.</p>
         <div class="notes-grid">
@@ -145,7 +192,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="delivery-system" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">03</span>the delivery system</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">04</span>the delivery system</p>
         <h2 class="section-heading">The delivery <em class="accent-serif">system</em></h2>
         <div class="demo-showcase">
           <article class="demo-row">
@@ -280,7 +327,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="pipeline" class="section section-band">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">04</span>the pipeline</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">05</span>the pipeline</p>
         <h2 class="section-heading">Ten stages, one <em class="accent-serif">gate at a time</em></h2>
         <p class="section-intro">A one-line feature request walks through ten stages, each invoked as <code>/workflow-&lt;stage&gt;</code>. There is no <code>state.json</code> — every stage derives its state from the presence and content hash of the artifact the previous stage wrote, and refuses to run until that artifact exists and is approved.</p>
         <ol class="more-work-list">
@@ -304,7 +351,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="sample-skill" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">05</span>sample: a skill</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">06</span>sample: a skill</p>
         <h2 class="section-heading">A skill is a <em class="accent-serif">checklist with teeth</em></h2>
         <p class="section-intro">Each stage — and each reusable building block — is a skill: a Markdown file the agent reads before it acts. This is a real excerpt from <code>graceful-shutdown</code>, the policy every backend service must satisfy before it's called production-ready. It came out of a real incident.</p>
         <div class="proof-code">
@@ -344,7 +391,7 @@
     ══════════════════════════════════════════════════════ -->
     <section id="sample-agent" class="section section-band">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">06</span>sample: an agent</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">07</span>sample: an agent</p>
         <h2 class="section-heading">Each reviewer is a <em class="accent-serif">specialist, not a generalist</em></h2>
         <p class="section-intro">The pipeline dispatches role-specialized subagents, each with a tight remit and its own tool budget. Here is the real remit of <code>code-reviewer</code> — one of twelve.</p>
         <div class="proof-code">
@@ -384,7 +431,7 @@ Severity:
     ══════════════════════════════════════════════════════ -->
     <section id="governance" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">07</span>governance</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">08</span>governance</p>
         <h2 class="section-heading">The discipline the agents <em class="accent-serif">run under</em></h2>
         <p class="section-intro">All of it operates under one standing rule set — a desensitized set of Karpathy-derived guidelines that bias toward caution over speed.</p>
         <ul class="more-work-list">
@@ -412,7 +459,7 @@ Severity:
     ══════════════════════════════════════════════════════ -->
     <section id="agent-principles" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">08</span>working with agents</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">09</span>working with agents</p>
         <h2 class="section-heading">Principles of working with <em class="accent-serif">agents</em></h2>
         <ul class="more-work-list">
           <li><strong>AI proposes, humans approve.</strong> Every irreversible action — commit, publish, deploy, migration — sits behind an explicit human gate. No agent ever commits.</li>
@@ -429,7 +476,7 @@ Severity:
     ══════════════════════════════════════════════════════ -->
     <section id="agent-rules" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">09</span>the rules</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">10</span>the rules</p>
         <h2 class="section-heading">The rules my agents <em class="accent-serif">live by</em></h2>
         <p class="section-intro">Both of my agents — the one at work and the one at home — run under the same standing rules. Every one of them was written the hard way.</p>
         <ol class="more-work-list">
@@ -449,7 +496,7 @@ Severity:
     ══════════════════════════════════════════════════════ -->
     <section id="raising-an-agent" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">10</span>raising an agent</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">11</span>raising an agent</p>
         <h2 class="section-heading">Raising an <em class="accent-serif">agent</em></h2>
         <p class="section-intro">The Lab page shows what my home agent does. This is how it got that way — the same method I use on the agents at work, run twice, converging on the same constitution.</p>
         <div class="notes-grid">
@@ -487,7 +534,7 @@ Severity:
     ══════════════════════════════════════════════════════ -->
     <section id="constraints" class="section">
       <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">11</span>the constraints</p>
+        <p class="section-label" aria-hidden="true"><span class="section-num">12</span>the constraints</p>
         <h2 class="section-heading">Every tool answers a <em class="accent-serif">constraint</em></h2>
         <p class="section-intro">None of this tooling exists because it's cool. Large language models have a handful of hard constraints — and every piece of my stack is a direct answer to one of them.</p>
         <div class="notes-grid">
@@ -517,44 +564,7 @@ Severity:
     </section>
 
 
-    <!-- ══════════════════════════════════════════════════════
-         MEMORY ARCHITECTURE — the diagram
-    ══════════════════════════════════════════════════════ -->
-    <section id="memory-architecture" class="section section-band">
-      <div class="container">
-        <p class="section-label" aria-hidden="true"><span class="section-num">12</span>memory architecture</p>
-        <h2 class="section-heading">The memory <em class="accent-serif">architecture</em></h2>
-        <p class="section-intro">Every layer earns its token cost. The diagram below shows how facts flow from ephemeral session context to permanent knowledge — and why nothing important lives in only one place.</p>
-        <div class="arch-diagram">
-          <img src="assets/hermes-memory-architecture-v2.1.jpg" alt="Hermes Agent Memory Architecture v2.1 — showing the layered system from SOUL.md (identity/law) through MEMORY.md (runtime injection), Mnemosyne (vector store + knowledge graph), to Obsidian (human-curated semantic store)" loading="lazy" />
-        </div>
-        <div class="notes-grid" style="margin-top: 2rem;">
-          <article class="note-card">
-            <h3>SOUL.md — identity & law</h3>
-            <p>Loaded every turn. Contains persona, iron rules, skill triggers, routing logic. The constitution — it never changes mid-task and overrides everything below it on conflict.</p>
-          </article>
-          <article class="note-card">
-            <h3>MEMORY.md — runtime injection</h3>
-            <p>Always-loaded facts with a 7-day admission test: still true and useful next week, or it doesn't get in. Behavioral corrections, environment facts, user preferences — compact, high-signal, token-cost forever.</p>
-          </article>
-          <article class="note-card">
-            <h3>Mnemosyne — vector store + graph</h3>
-            <p>3,700+ entries. Hybrid search (50% vector + 30% FTS5 + 20% importance). Knowledge graph with temporal triples for structured relationships. The long tail — on-demand recall, not always-loaded. Self-maintains via nightly digest and weekly consolidation.</p>
-          </article>
-          <article class="note-card">
-            <h3>Obsidian — human-curated layer</h3>
-            <p>The canonical semantic store. Interlinked markdown knowledge base for deep domain knowledge. Human-authored, human-organized — the agent reads it but doesn't write to it uninvited.</p>
-          </article>
-          <article class="note-card">
-            <h3>Session transcripts — searchable history</h3>
-            <p>FTS5-backed conversation history. Past sessions are searchable but stay out of the active context. Used for cross-session recall — "what did we do about X" — without polluting the current turn.</p>
-          </article>
-        </div>
-        <p class="thesis-block">The stack will change. The constraints won't. <strong>Build for the constraints.</strong></p>
-      </div>
-    </section>
-
-  </main>
+      </main>
 
   <!-- ══════════════════════════════════════════════════════
        FOOTER
