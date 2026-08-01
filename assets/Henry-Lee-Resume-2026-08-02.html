@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Henry Lee — Backend Engineer & Technical Lead Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1b2320; --sub:#3c463f; --muted:#727c74; --line:#dbe0dc;
+    --accent:#1a5f9e; --accent-deep:#0e3f6e; --band:#eef4fa; --band-line:#d7e5f2;
+    --spine:#c3d7ea; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Inter","Helvetica Neue",Arial,"PingFang SC",sans-serif;
+    color:var(--sub); line-height:1.34; font-size:10.5pt; background:#eceeec;
+    -webkit-font-smoothing:antialiased; font-variant-ligatures:none; }
+  .page { max-width:8.27in; margin:22px auto; background:#fff;
+    box-shadow:0 2px 18px rgba(0,0,0,.13); overflow:hidden; }
+
+  /* ===== HERO BAND (full width, tinted) ===== */
+  .band { background:var(--band); border-bottom:3px solid var(--accent);
+    padding:0.38in 0.6in 0.3in; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  h1 { font-size:19pt; font-weight:700; color:var(--accent-deep); line-height:1.05; letter-spacing:-.3px; }
+  .title { font-size:11pt; font-weight:600; color:var(--accent); margin-top:5px; }
+  .contact { font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;
+    font-size:8.25pt; color:var(--muted); margin-top:8px; letter-spacing:-.24px; }
+  .contact a { color:var(--muted); text-decoration:none; }
+
+  .highlights { display:flex; margin-top:12px; padding-top:11px; border-top:1px solid var(--band-line); }
+  .hl { flex:1; }
+  .hl:not(:first-child) { padding-left:16px; border-left:1px solid var(--band-line); }
+  .hl .n { font-family:"JetBrains Mono","IBM Plex Mono",monospace; font-size:10.5pt;
+    font-weight:700; color:var(--accent); line-height:1.1; }
+  .hl .l { font-size:7.5pt; color:var(--muted); text-transform:uppercase;
+    letter-spacing:.65px; margin-top:3px; font-weight:600; }
+
+  /* ===== BODY (single column) ===== */
+  .body { padding:0.3in 0.6in 0.4in; }
+  section { margin-top:22px; }
+  section:first-child { margin-top:0; }
+  h2 { font-family:"JetBrains Mono","IBM Plex Mono",monospace; font-size:9pt; font-weight:700;
+    color:var(--accent); text-transform:uppercase; letter-spacing:1.3px;
+    padding-bottom:4px; margin-bottom:9px; border-bottom:1.5px solid var(--line); }
+  .summary { font-size:10.5pt; line-height:1.37; color:var(--sub); }
+
+  .company { font-weight:700; font-size:11pt; color:var(--ink); margin-bottom:8px; }
+
+  /* ===== TIMELINE SPINE ===== */
+  .timeline { position:relative; padding-left:22px; }
+  .timeline::before { content:""; position:absolute; left:5px; top:6px; bottom:4px;
+    width:2px; background:var(--spine); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .timeline .job::before { content:""; position:absolute; left:-21px; top:4px; width:10px; height:10px;
+    border-radius:50%; background:#fff; border:2.5px solid var(--accent);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .timeline + .timeline { margin-top:18px; }
+
+  .job { position:relative; margin-bottom:17px; break-inside:avoid; }
+  .job:last-child { margin-bottom:0; }
+  .job-head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:5px; }
+  .job-title { font-weight:700; font-size:11pt; color:var(--ink); }
+  .job-dates { font-family:"JetBrains Mono","IBM Plex Mono",monospace; font-size:8.55pt; color:var(--muted); white-space:nowrap; }
+  ul { list-style:none; }
+  li { position:relative; padding-left:16px; margin-bottom:4.2px; line-height:1.32; }
+  li::before { content:""; position:absolute; left:2px; top:7px; width:4px; height:4px;
+    border-radius:50%; background:var(--accent); }
+  strong { color:var(--ink); font-weight:700; }
+
+  .early-line { font-size:10.5pt; line-height:1.34; margin-bottom:6px; }
+
+  .skills-row { display:flex; gap:10px; margin-bottom:8px; font-size:10.45pt; break-inside:avoid; }
+  .skills-row .lbl { flex:0 0 145px; font-family:"JetBrains Mono","IBM Plex Mono",monospace;
+    font-size:8.25pt; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.35px; padding-top:2px; }
+  .skills-row .val { flex:1; line-height:1.32; }
+
+  .edu { font-size:10.5pt; line-height:1.34; }
+  a { color:var(--accent); }
+
+  .page-break { break-before:page; }
+
+  @media print {
+    body { background:#fff; font-size:10.65pt; }
+    .page { box-shadow:none; margin:0; max-width:none; }
+    .band { padding:0.38in 0.6in 0.3in; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .body { padding:0.3in 0.6in 0.4in; }
+    h1, .hl .n, h2, .band, .timeline::before, .timeline .job::before {
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+    .job, .skills-row { break-inside:avoid; }
+    .page-break { break-before:page; padding-top:0.5in; }
+    @page { size:A4; margin:0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="band">
+    <h1>Henry Lee</h1>
+    <div class="title">Backend Engineer &amp; Technical Lead · Distributed Systems &amp; Transaction Platforms</div>
+    <div class="contact">Petaling Jaya, Malaysia · Open to Remote · UTC+8 &nbsp;|&nbsp; +60 19-413 3366 &nbsp;|&nbsp; henrylee_xhfc@hotmail.com<br><a href="https://www.linkedin.com/in/henry-lee-985300158">linkedin.com/in/henry-lee-985300158</a> &nbsp;|&nbsp; <a href="https://github.com/henrylee94">github.com/henrylee94</a> &nbsp;|&nbsp; <a href="https://henrylee94.github.io/portfolio/">henrylee94.github.io/portfolio</a></div>
+
+    <div class="highlights">
+      <div class="hl"><div class="n">8+ years</div><div class="l">Software engineering</div></div>
+      <div class="hl"><div class="n">50k → 400k+</div><div class="l">Daily active users</div></div>
+      <div class="hl"><div class="n">10M+ / day</div><div class="l">Records processed</div></div>
+      <div class="hl"><div class="n">100+ releases</div><div class="l">Integration SDK</div></div>
+    </div>
+  </header>
+
+  <div class="body">
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">Backend engineer and technical lead with 8+ years of experience building and scaling high-volume transaction platforms. Lead a four-engineer backend team while remaining hands-on with durable workflows, event-driven services, contract-first integration, real-time data processing, and legacy modernisation. Helped scale the platform from <strong>50k to 400k+ daily active users</strong>.</p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="company">SNSoft Sdn Bhd</div>
+
+      <div class="timeline">
+
+      <div class="job">
+        <div class="job-head">
+          <span class="job-title">Lead Software Engineer (Backend Team Lead)</span>
+          <span class="job-dates">Dec 2025 – Present</span>
+        </div>
+        <ul>
+          <li>Lead a <strong>four-engineer backend team across six module domains</strong>, owning solution design, work breakdown, code reviews, technical risk, and cross-team delivery across legacy and microservice systems.</li>
+          <li>Designed and delivered an <strong>approval-based transaction workflow</strong> using NestJS, gRPC, and Temporal, making money and account mutations durable, auditable, and recoverable across retries and partial failures.</li>
+          <li>Established layered <strong>idempotency and failure-recovery patterns</strong> across workflows, services, messaging, cache, and database state transitions to prevent duplicate transaction effects.</li>
+          <li>Designed and drove a <strong>configuration-driven promotion and customer-journey engine</strong>, integrating real-time events, durable orchestration, eligibility rules, missions, rewards, and controlled settlement with existing systems.</li>
+          <li>Built and evolved a <strong>protobuf and SDK delivery platform</strong> with 100+ releases and 200+ request types, reducing new integration onboarding from 30–60 minutes to around 2 minutes.</li>
+          <li>Built a <strong>real-time account-change pipeline</strong> processing over 10M records per day, and helped modernise a long-running monolith through staged service extraction, contract-based integration, and zero-downtime migration.</li>
+</ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <span class="job-title">Senior Software Engineer</span>
+          <span class="job-dates">Jan 2024 – Dec 2025</span>
+        </div>
+        <ul>
+          <li>Built an in-house customer-support platform from the ground up as the company's first production service on the <strong>NestJS/gRPC</strong> stack, integrating Matrix messaging and operational data.</li>
+          <li>Designed routing, agent queues, concurrency safeguards, AI-to-human escalation, and support tooling, then mentored three junior engineers to independent ownership and completed a clean handover.</li>
+          <li>Helped scale the platform from <strong>50k to 400k+ daily active users</strong> through Redis Pub/Sub fan-out, atomic ID generation, hot-path cache redesign, production diagnostics, and staged zero-downtime changes.</li>
+          <li>Delivered the platform reporting engine before a dedicated BI team existed, supporting operational and compliance analysis over million-row datasets and expanding slow one-day queries to reliable 30-day windows.</li>
+        </ul>
+      </div>
+
+      </div>
+
+      <div class="page-break">
+        <div class="company" style="margin-top:2px">SNSoft Sdn Bhd — continued</div>
+
+        <div class="timeline">
+          <div class="job">
+            <div class="job-head">
+              <span class="job-title">Software Engineer</span>
+              <span class="job-dates">Dec 2019 – Jan 2024</span>
+            </div>
+            <ul>
+              <li>Worked across a long-running transaction platform during rapid growth, delivering backend features, production fixes, reporting, and reliability improvements.</li>
+              <li>Co-delivered platform-wide <strong>multi-currency transaction support</strong> across deposits, withdrawals, and transfers.</li>
+              <li>Delivered regulatory reporting workflows for million-row datasets, including automated file splitting under strict submission constraints and deadlines.</li>
+              <li>Integrated third-party providers and improved live-data reliability through WebSocket heartbeat, reconnection, retry, and failure handling.</li>
+              <li>Built operational reporting capabilities that later became part of the platform's broader reporting foundation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="job">
+            <div class="job-head">
+              <span class="job-title">Hitachi eBworx Sdn Bhd — Mobile Engineer</span>
+              <span class="job-dates">Apr 2018 – Oct 2019</span>
+            </div>
+            <ul>
+              <li>Built Great Eastern Singapore's first insurance <strong>point-of-sale mobile application</strong>, supporting agents in their daily sales workflow.</li>
+              <li>Developed responsive web and hybrid mobile features across delivery, bug fixing, testing support, and production deployment.</li>
+              <li>Owned QA deployments and automated the daily release process to improve speed and consistency.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Early Career</h2>
+      <div class="early-line">QA &amp; Field-Test Engineer Intern, OPPO Electronics Malaysia HQ — field testing, troubleshooting, test-case design, and product-quality feedback (2017)</div>
+      <div class="early-line">IT &amp; Network Support Intern, Chin Hin — IT and network support across 23 branches (2014)</div>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skills-row"><span class="lbl">Backend</span><span class="val">TypeScript · JavaScript / Node.js · NestJS · Express · gRPC · Protocol Buffers · REST · WebSocket · Temporal.io</span></div>
+      <div class="skills-row"><span class="lbl">Distributed Systems</span><span class="val">durable workflows · event-driven architecture · idempotency · retry and recovery · saga / compensation · contract-first services · legacy modernisation</span></div>
+      <div class="skills-row"><span class="lbl">Messaging &amp; Data</span><span class="val">Apache Pulsar · Apache Flink · Kafka · MongoDB / Mongoose · Redis · PostgreSQL · ClickHouse · Hologres · CDC and stream processing</span></div>
+      <div class="skills-row"><span class="lbl">Platform</span><span class="val">Docker · Kubernetes · HashiCorp Vault · APISIX · GitHub Actions · Nexus · buf · SDK and package publishing · Alibaba Cloud</span></div>
+      <div class="skills-row"><span class="lbl">Observability &amp; Quality</span><span class="val">OpenTelemetry · SigNoz · Grafana · Aliyun SLS · structured logging · distributed tracing · Jest · Testcontainers · integration and contract testing</span></div>
+      <div class="skills-row"><span class="lbl">AI Engineering</span><span class="val">Claude Code · MCP · multi-agent workflows · specification and review workflows · context and knowledge engineering</span></div>
+</section>
+
+    <section>
+      <h2>Education</h2>
+      <p class="edu"><strong>Bachelor of Information Technology</strong> — HELP University · 2012–2017 &nbsp;·&nbsp; English · Mandarin · Malay</p>
+    </section>
+
+  </div>
+</div>
+</body>
+</html>
