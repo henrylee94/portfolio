@@ -2041,3 +2041,18 @@ footer {
 .qna-item .code-proof {
   margin-top: 1.15rem;
 }
+
+/* ── Architecture diagram (raster image) ────────────────────── */
+.arch-diagram {
+  margin: 2rem auto;
+  max-width: 960px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-hi);
+  background: #0d1117;
+}
+.arch-diagram img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

@@ -516,6 +516,44 @@ Severity:
       </div>
     </section>
 
+
+    <!-- ══════════════════════════════════════════════════════
+         MEMORY ARCHITECTURE — the diagram
+    ══════════════════════════════════════════════════════ -->
+    <section id="memory-architecture" class="section section-band">
+      <div class="container">
+        <p class="section-label" aria-hidden="true"><span class="section-num">12</span>memory architecture</p>
+        <h2 class="section-heading">The memory <em class="accent-serif">architecture</em></h2>
+        <p class="section-intro">Every layer earns its token cost. The diagram below shows how facts flow from ephemeral session context to permanent knowledge — and why nothing important lives in only one place.</p>
+        <div class="arch-diagram">
+          <img src="assets/hermes-memory-architecture-v2.1.jpg" alt="Hermes Agent Memory Architecture v2.1 — showing the layered system from SOUL.md (identity/law) through MEMORY.md (runtime injection), Mnemosyne (vector store + knowledge graph), to Obsidian (human-curated semantic store)" loading="lazy" />
+        </div>
+        <div class="notes-grid" style="margin-top: 2rem;">
+          <article class="note-card">
+            <h3>SOUL.md — identity & law</h3>
+            <p>Loaded every turn. Contains persona, iron rules, skill triggers, routing logic. The constitution — it never changes mid-task and overrides everything below it on conflict.</p>
+          </article>
+          <article class="note-card">
+            <h3>MEMORY.md — runtime injection</h3>
+            <p>Always-loaded facts with a 7-day admission test: still true and useful next week, or it doesn't get in. Behavioral corrections, environment facts, user preferences — compact, high-signal, token-cost forever.</p>
+          </article>
+          <article class="note-card">
+            <h3>Mnemosyne — vector store + graph</h3>
+            <p>3,700+ entries. Hybrid search (50% vector + 30% FTS5 + 20% importance). Knowledge graph with temporal triples for structured relationships. The long tail — on-demand recall, not always-loaded. Self-maintains via nightly digest and weekly consolidation.</p>
+          </article>
+          <article class="note-card">
+            <h3>Obsidian — human-curated layer</h3>
+            <p>The canonical semantic store. Interlinked markdown knowledge base for deep domain knowledge. Human-authored, human-organized — the agent reads it but doesn't write to it uninvited.</p>
+          </article>
+          <article class="note-card">
+            <h3>Session transcripts — searchable history</h3>
+            <p>FTS5-backed conversation history. Past sessions are searchable but stay out of the active context. Used for cross-session recall — "what did we do about X" — without polluting the current turn.</p>
+          </article>
+        </div>
+        <p class="thesis-block">The stack will change. The constraints won't. <strong>Build for the constraints.</strong></p>
+      </div>
+    </section>
+
   </main>
 
   <!-- ══════════════════════════════════════════════════════
